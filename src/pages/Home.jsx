@@ -17,16 +17,17 @@ flex-direction: row;
         line-height: 1.125em;
         border : 0px;
         border-radius: 10px;
-        box-shadow: 0px 5px 8px 0px gray;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     }
 `;
 
 const HomeContainer = styled.div`
     height: 1080px;
     width: 1920px;
-    background: #eefaf6;
+    background: linear-gradient(137deg, rgba(167, 255, 201, 0.13) 1.63%, rgba(70, 137, 175, 0.17) 98.37%, rgba(0, 255, 133, 0.51) 98.37%);
     display: flex;
     flex-direction: column;
+    padding: 30px;
 
     /* align-items: center; */
     /* justify-content: center; */
@@ -34,18 +35,18 @@ const HomeContainer = styled.div`
 
 
 
+// 가계부,일정 전환 스위치
 .toggle-switch input{
-  -webkit-appearance:none;
-  -webkit-border-radius:0;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
 }
 
 #container{
   display: flex;
   width: 100%;
-  /* height: 98vh;
-  justify-content:center;
-  align-items:center; */
+  /* height: 98vh; */
 }
+
 .toggle-switch input[type=checkbox]{
   display: none;
 }
@@ -53,92 +54,100 @@ const HomeContainer = styled.div`
 .toggle-track{
   display: inline-block;
   position: relative;
-  width: 60px;
-  height: 27px;
-  border-radius:60px;
-  background: #3BB2B8;
+  margin: 20px;
+  width: 140px;
+  height: 45px;
+  border-radius: 60px;
+  background: #fff;
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
+  justify-content: center;
 }
+
 .toggle-track:before{
-  content:'';
+  content:'가계부';
   display: block;
   position: absolute;
-  top: -6px;
-  left: -15px;
-  width: 27px;
-  height: 27px; 
-  margin: 5px;
-  background: #fff;
-  border-radius:100%;
-  border:1px solid #3BB2B8;
-  transition:left 0.3s;
-}
-
-.toggle-switch input[type=checkbox] + label .toggle-track:after{
-  content:'일정';
-  display: inline-block;
-  position: absolute;
-  right: 8px;
+  margin: 0 auto;
   color: #fff;
-}
+  text-align: center;
+  line-height: 32px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  width: 70px;
+  height: 33px; 
+  top: 5px;
+  left: 7px;
+  background: linear-gradient(89.63deg, rgba(66, 230, 149, 0.6) 5.56%, rgba(59, 178, 184, 0.6) 96.4%, rgba(59, 178, 184, 0.6) 96.4%);
 
-.toggle-switch input[type=checkbox]:checked + label .toggle-track{
-  background: #42E695;
+  border-radius: 60px;
+  border: 1px solid linear-gradient(89.63deg, rgba(66, 230, 149, 0.6) 5.56%, rgba(59, 178, 184, 0.6) 96.4%, rgba(59, 178, 184, 0.6) 96.4%);
+
+  transition: left 0.3s;
 }
 
 .toggle-switch input[type=checkbox]:checked + label .toggle-track:before{
-  left: 40px;
-  border:1px solid #42E695;
+  content: '일 정';
+  width: 65px;
+  left: 67px;
+}
+
+/* .toggle-switch input[type=checkbox]:checked + label .toggle-track{
+  background: #fff;
+} */
+
+.toggle-switch input[type=checkbox] + label .toggle-track:after{
+  content:'일 정';
+  display: inline-block;
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  font-weight: bold;
+  color: #999;
 }
 
 .toggle-switch input[type=checkbox]:checked + label .toggle-track:after{
   content:'가계부';
-  left: 5px;
+  left: 15px;
+  top: 12px;
 }
 `;
 
+
 const Home = () => {
-    return (
+  return (
 
-        <>
-            <HomeContainer>
+    <>
+      <HomeContainer>
 
-                <div class="container">
-                    {/* <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
-                        <label class="btn btn-outline-primary" for="btnradio1">가계부</label>
+        <div class="container">
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
-                        <label class="btn btn-outline-primary" for="btnradio2">일정</label>
-                    </div> */}
+          <div id="container">
+            <div class="toggle-switch">
+              <input type="checkbox" id="chkTog2" />
+              <label for="chkTog2">
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+          </div>
 
-
-                    <div id="container">
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="chkTog4" />
-                            <label for="chkTog4">
-                                <span class="toggle-track"></span>
-                            </label>
-                        </div>
-                    </div>
-
-                </div>
+        </div>
 
 
-                <CalendarContainer>
-                    <div className="calendar">
-                        <Calendar
-                            locale="en" />
-                    </div>
+        <CalendarContainer>
+          <div className="calendar">
+            <Calendar
+              locale="en" />
+          </div>
 
-                    <div className="calendar-tab">
+          <div className="calendar-tab">
 
-                    </div>
-                </CalendarContainer>
+          </div>
+        </CalendarContainer>
 
-            </HomeContainer>
-        </>
+      </HomeContainer>
+    </>
 
-    );
+  );
 };
 
 
