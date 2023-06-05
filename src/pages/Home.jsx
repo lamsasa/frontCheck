@@ -10,8 +10,8 @@ flex-direction: row;
 
 .calendar-tab {
         margin-left: 30px;
-        height: 500px;
         width: 300px;
+        padding: 10px;
         background-color: #fff;
         color: #999;
         line-height: 1.125em;
