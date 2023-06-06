@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../styles/calendar.css";
+import MyCalendar from '../pages/Common/MyCalendar.jsx';
 
 const CalendarContainer = styled.div`
 display: flex;
@@ -139,9 +140,11 @@ const Home = () => {
               locale="en" />
           </div>
 
-          <div className="calendar-tab">
 
-          </div>
+          {/* <div className="App">
+            <MyCalendar />
+          </div> */}
+
         </CalendarContainer>
 
       </HomeContainer>
