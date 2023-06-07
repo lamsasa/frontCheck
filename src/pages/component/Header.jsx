@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import logo from '../../images/Logo.png';
+import darkMode from '../../images/DarkMode.png';
 import AvatarButton from "./AvatarButton";
 import {useContext} from "react";
 import {ThemeContext} from "../../context/themeProvider";
@@ -12,22 +13,28 @@ const Logo = styled.img`
 const Container = styled.div`
     width: 100%;
     height: 73px;
-    padding: 0 22px 0 22px;
+    padding: 0 11px 0 22px;
     background-color: ${( {theme}) => theme.bgColor};
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
   
-    .headerRight {
+    div {
       display: flex;
+      align-items: center;
     }
 `
 
 const DarkModeButton = styled.button`
     width: 50px;
     height: 50px;
-    background-color: ${({theme}) => theme.bgColor};
+    border-radius: 50%;
+    background-color: ${({theme}) => theme.toggleButton.bgColor};
+    box-shadow: ${({theme}) => theme.toggleButton.boxShadow};
+    border: none;
+    
+    
 `
 const Header = () => {
     const {isDark, setIsDark} = useContext(ThemeContext);
@@ -40,7 +47,7 @@ const Header = () => {
             <div className="headerRight">
                 {/* 다크모드 버튼*/}
                 <DarkModeButton onClick={handleDarkModeToggle}>
-                    {isDark ? "Light Mode" : "Dark Mode"}
+                    <img src={darkMode} alt="#"/>
                 </DarkModeButton>
                 <AvatarButton name="홍비"></AvatarButton>
 

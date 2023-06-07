@@ -6,7 +6,12 @@ export const lightTheme = {
     // 컴포넌트 배경색
     bgColor: '#FFFFFF',
     // 컴포넌트 텍스트
-    textColor: '#404040'
+    textColor: '#404040',
+    // 다크모드 토글
+    toggleButton: {
+        bgColor: '#FFFFFF',
+        boxShadow: '0px 2px 7px 1px rgba(0, 0, 0, 0.1)'
+    }
 };
 
 export const darkTheme = {
@@ -15,8 +20,10 @@ export const darkTheme = {
     // 컴포넌트 배경색
     bgColor: '#2F353F',
     // 컴포넌트 텍스트
-    textColor: '#FFFFFF'
-
-
-
+    textColor: '#FFFFFF',
+    // 다크모드 버튼
+    toggleButton: {
+        bgColor: '#292C35',
+        boxShadow: 'inset 0px 5px 11px -2px rgba(0, 0, 0, 0.2)'
+    },
 }

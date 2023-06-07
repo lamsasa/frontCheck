@@ -43,7 +43,7 @@ const stringAvatar = (name) => {
             fontSize: 13,
             width: 50,
             height: 50,
-            margin: 1
+            margin: 11/8 // 1당 8px
         },
         children: name,
     };
