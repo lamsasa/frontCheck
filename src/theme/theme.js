@@ -11,7 +11,9 @@ export const lightTheme = {
     toggleButton: {
         bgColor: '#FFFFFF',
         boxShadow: '0px 2px 7px 1px rgba(0, 0, 0, 0.1)'
-    }
+    },
+    // 메뉴 텍스트
+    menuColor: '#575757'
 };
 
 export const darkTheme = {
@@ -26,4 +28,7 @@ export const darkTheme = {
         bgColor: '#292C35',
         boxShadow: 'inset 0px 5px 11px -2px rgba(0, 0, 0, 0.2)'
     },
+    //메뉴 텍스트
+    menuColor: '#ffffff'
+
 }

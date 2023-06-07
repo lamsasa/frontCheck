@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import {useContext} from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import {ThemeContext} from '../../context/themeProvider';
+import {ReactComponent as CreditCard} from '../../images/CreditCard.svg'
+import {ReactComponent as List} from '../../images/List.svg'
+import {ReactComponent as Stats} from '../../images/Stats.svg'
+import {ReactComponent as Person} from '../../images/Person.svg'
 
 const NavContainer = styled.div`
     width:220px;
@@ -10,59 +15,58 @@ const NavContainer = styled.div`
     position:fixed;
     margin-top: 73px;
 `
-const navDefault = {
-  color: '#575757',
-  fontSize: '14px',
-  fontWeight: '700',
-  textDecoration: 'none',
-  margin: '40px',
-  display: 'block'
 
-};
+const LiContainer = styled.li`
+    display:flex;
+    align-items: center;
+`
 
-const navSelect = {
-    color: '#575757',
-    fontSize: '14px',
-    fontWeight: '700',
-    textDecoration: 'none',
-    margin: '40px',
-    display: 'block'
-};
+const LiText = styled.p`
+    margin-left: 8px;
+`
+
+const CustomLink = styled(Link)`
+      color:${({theme}) => theme.menuColor};
+      font-size: 14px;
+      font-weight:700;
+      text-decoration:none;
+      margin: 40px;
+      display:block;
+`
+
+
 
 const Navbar = () => {
-
+    const {isDark} = useContext(ThemeContext);
     return(
-        <NavContainer>
+        <NavContainer> 
             <nav>
                 <ul>
-                    <li>
-                        <NavLink to={'/'} style={({ isActive }) => {
-                        return isActive ? navSelect : navDefault
-                        }}>
-                            나의 예산
-                        </NavLink>
-                    </li>
-                    <li>
-                    <NavLink to={'/'} style={({ isActive }) => {
-                        return isActive ? navSelect : navDefault
-                        }}>
-                            소비 리스트
-                        </NavLink>
-                    </li>
-                    <li>
-                    <NavLink to={'/'} style={({ isActive }) => {
-                        return isActive ? navSelect : navDefault
-                        }}>
-                            통계
-                        </NavLink>
-                    </li>
-                    <li>
-                    <NavLink to={'/'} style={({ isActive }) => {
-                        return isActive ? navSelect : navDefault
-                        }}>
-                            마이 페이지
-                        </NavLink>
-                    </li>
+                    <CustomLink to={'/'}>
+                        <LiContainer>
+                            <CreditCard width="20" height="17"  fill={isDark ? "white" : "#575757"}/><LiText>나의 예산</LiText>
+                        </LiContainer>
+                    </CustomLink>
+
+                    <CustomLink to={'/'}>
+                         <LiContainer>
+                            <List width="17" height="17"  fill={isDark ? "white" : "#575757"}/><LiText>소비 리스트</LiText>
+                        </LiContainer>
+                    </CustomLink>
+
+                    <CustomLink to={'/'}>
+                        <LiContainer>
+                            <Stats width="17" height="17"  fill={isDark ? "white" : "#575757"}/><LiText>통계</LiText>
+                        </LiContainer>
+                    </CustomLink>
+
+                    <CustomLink to={'/'}>
+                        <LiContainer>
+                            <Person width="17" height="17"  fill={isDark ? "white" : "#575757"}/><LiText>마이 페이지</LiText>
+                        </LiContainer>
+                    </CustomLink>
+                     
+                  
                 </ul>
             </nav>
         </NavContainer>
