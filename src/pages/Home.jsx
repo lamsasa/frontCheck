@@ -4,6 +4,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../styles/calendar.css";
 import MyCalendar from '../pages/Common/MyCalendar.jsx';
+import Header from "./component/Header";
 
 const CalendarContainer = styled.div`
 display: flex;
@@ -23,12 +24,10 @@ flex-direction: row;
 `;
 
 const HomeContainer = styled.div`
-    height: 1080px;
-    width: 1920px;
+    width: 100%;
     background: linear-gradient(137deg, rgba(167, 255, 201, 0.13) 1.63%, rgba(70, 137, 175, 0.17) 98.37%, rgba(0, 255, 133, 0.51) 98.37%);
     display: flex;
     flex-direction: column;
-    padding: 30px;
 
     /* align-items: center; */
     /* justify-content: center; */
@@ -119,7 +118,7 @@ const Home = () => {
 
     <>
       <HomeContainer>
-
+        <Header/>
         <div class="container">
 
           <div id="container">

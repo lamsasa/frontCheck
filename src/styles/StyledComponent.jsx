@@ -1,19 +1,25 @@
 import styled, {css} from 'styled-components';
 import { createGlobalStyle} from "styled-components";
+import reset from 'styled-reset'
 
 // 전역스타일링: 모든 곳에 쓰이는 style입니다.
 const GlobalStyle = createGlobalStyle`
-height: 1080px;
-width: 1920px;
-background: linear-gradient(137deg, rgba(167, 255, 201, 0.13) 1.63%, rgba(70, 137, 175, 0.17) 98.37%, rgba(0, 255, 133, 0.51) 98.37%);
-
+  ${reset}
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
   html {
     font-size: 62.5%; // 10px = 1rem;
     --maincolor: #DFF6EE
   }  
 
   body {
-    //font-family:
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.textColor};
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
   }
 `;
 
