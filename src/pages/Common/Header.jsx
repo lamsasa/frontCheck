@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import logo from '../../images/Logo.png';
 import darkMode from '../../images/DarkMode.png';
-import AvatarButton from "./AvatarButton";
-import {useContext} from "react";
-import {ThemeContext} from "../../context/themeProvider";
+import AvatarButton from './AvatarButton';
+import {useContext} from 'react';
+import {ThemeContext} from '../../context/themeProvider';
 
 const Logo = styled.img`
     width: 213px;

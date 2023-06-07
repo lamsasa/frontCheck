@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../styles/calendar.css";
-import MyCalendar from '../pages/Common/MyCalendar.jsx';
-import Header from "./component/Header";
+import MyCalendar from './Common/calendar/MyCalendar.jsx';
+import Header from './Common/Header'
 
 const CalendarContainer = styled.div`
 display: flex;
@@ -97,24 +97,24 @@ const HomeContainer = styled.div`
   content:'일 정';
   display: inline-block;
   position: absolute;
-  right: 15px;
-  top: 12px;
+  right: 20px;
+  top: 17px;
   font-weight: bold;
   color: #999;
 }
 
 .toggle-switch input[type=checkbox]:checked + label .toggle-track:after{
   content:'가계부';
-  left: 15px;
-  top: 12px;
+  left: 20px;
+  top: 17px;
 }
 `;
 
-const Test = styled.div`
-  background: linear-gradient(137deg, rgba(167, 255, 201, 0.13) 1.63%, rgba(70, 137, 175, 0.17) 98.37%, rgba(0, 255, 133, 0.51) 98.37%);
-  width: 150px;
-  height: 150px;
-`
+// const Test = styled.div`
+//   background: linear-gradient(137deg, rgba(167, 255, 201, 0.13) 1.63%, rgba(70, 137, 175, 0.17) 98.37%, rgba(0, 255, 133, 0.51) 98.37%);
+//   width: 150px;
+//   height: 150px;
+// `
 
 
 const Home = () => {
@@ -142,12 +142,15 @@ const Home = () => {
               locale="en" />
           </div>
 
+          <div className="calendar-tab" >
 
-          <div className="App">
-            {/*<MyCalendar />*/}
           </div>
 
         </CalendarContainer>
+
+        <div className="App">
+            <MyCalendar />
+          </div>
 
       </HomeContainer>
 
