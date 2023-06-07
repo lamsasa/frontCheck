@@ -5,6 +5,7 @@ import "react-calendar/dist/Calendar.css";
 import "../styles/calendar.css";
 import MyCalendar from './Common/calendar/MyCalendar.jsx';
 import Header from './Common/Header'
+import Navbar from "./Common/Navbar";
 
 const CalendarContainer = styled.div`
 display: flex;
@@ -122,6 +123,7 @@ const Home = () => {
 
       <HomeContainer>
         <Header/>
+        <Navbar/>
         <div className="container">
 
           <div id="container">
