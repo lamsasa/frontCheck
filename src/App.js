@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import GlobalStyle from "./styles/StyledComponent";
 import {ThemeProvider} from "./context/themeProvider";
+import TotalList from './pages/IncomeExpenseList/TotalList';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
 
                         <Route path='/' element={<Home/>}/>
                         <Route path='/Login' element={<Login/>}/>
+                        <Route path='/TotalList' element={<TotalList/>}/>
 
                     </Routes>
                 </Router>

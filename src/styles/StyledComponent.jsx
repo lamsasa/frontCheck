@@ -31,5 +31,29 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export {Button};
+//일반 버튼 컴포넌트
+const ClickButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+
+  width: ${props => props.width || '128px'};
+  height: ${props => props.height || '40px'};
+
+  background: linear-gradient(99.99deg, rgba(66, 230, 149, 0.8) 1.31%, rgba(59, 178, 184, 0.8) 98.06%);
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+
+  color: #FFFFFF;
+
+  &:hover {
+    background: linear-gradient(99.99deg, rgba(66, 230, 149, 1) 1.31%, rgba(59, 178, 184, 1) 98.06%);
+  }
+`;
+
+export {Button, ClickButton};
 export default GlobalStyle;
