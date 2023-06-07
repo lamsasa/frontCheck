@@ -6,8 +6,8 @@ import reset from 'styled-reset'
 const GlobalStyle = createGlobalStyle`
   ${reset}
   *, *::before, *::after {
+    box-sizing: border-box;
   }
-  box-sizing: border-box;
   
   html {
     font-size: 62.5%; // 10px = 1rem;
