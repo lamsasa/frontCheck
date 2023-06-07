@@ -141,9 +141,9 @@ const Home = () => {
           </div>
 
 
-          {/* <div className="App">
+          <div className="App">
             <MyCalendar />
-          </div> */}
+          </div>
 
         </CalendarContainer>
 
