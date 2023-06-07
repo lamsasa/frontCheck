@@ -25,7 +25,6 @@ flex-direction: row;
 
 const HomeContainer = styled.div`
     width: 100%;
-    background: linear-gradient(137deg, rgba(167, 255, 201, 0.13) 1.63%, rgba(70, 137, 175, 0.17) 98.37%, rgba(0, 255, 133, 0.51) 98.37%);
     display: flex;
     flex-direction: column;
 
@@ -41,10 +40,9 @@ const HomeContainer = styled.div`
   -webkit-border-radius: 0;
 }
 
-#container{
+.container{
   display: flex;
   width: 100%;
-  /* height: 98vh; */
 }
 
 .toggle-switch input[type=checkbox]{
@@ -74,7 +72,7 @@ const HomeContainer = styled.div`
   font-weight: bold;
   font-size: 1.1rem;
   width: 70px;
-  height: 33px; 
+  height: 33px;
   top: 5px;
   left: 7px;
   background: linear-gradient(89.63deg, rgba(66, 230, 149, 0.6) 5.56%, rgba(59, 178, 184, 0.6) 96.4%, rgba(59, 178, 184, 0.6) 96.4%);
@@ -112,14 +110,19 @@ const HomeContainer = styled.div`
 }
 `;
 
+const Test = styled.div`
+  background: linear-gradient(137deg, rgba(167, 255, 201, 0.13) 1.63%, rgba(70, 137, 175, 0.17) 98.37%, rgba(0, 255, 133, 0.51) 98.37%);
+  width: 150px;
+  height: 150px;
+`
+
 
 const Home = () => {
   return (
 
-    <>
       <HomeContainer>
         <Header/>
-        <div class="container">
+        <div className="container">
 
           <div id="container">
             <div class="toggle-switch">
@@ -141,13 +144,12 @@ const Home = () => {
 
 
           <div className="App">
-            <MyCalendar />
+            {/*<MyCalendar />*/}
           </div>
 
         </CalendarContainer>
 
       </HomeContainer>
-    </>
 
   );
 };

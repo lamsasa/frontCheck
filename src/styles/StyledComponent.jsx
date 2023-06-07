@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 import { createGlobalStyle} from "styled-components";
 import reset from 'styled-reset'
 
@@ -6,19 +6,18 @@ import reset from 'styled-reset'
 const GlobalStyle = createGlobalStyle`
   ${reset}
   *, *::before, *::after {
-    box-sizing: border-box;
   }
+  box-sizing: border-box;
   
   html {
     font-size: 62.5%; // 10px = 1rem;
-    --maincolor: #DFF6EE
   }  
 
   body {
     background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.textColor};
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     margin: 0 auto;
   }
 `;

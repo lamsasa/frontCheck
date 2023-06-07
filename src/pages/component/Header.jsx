@@ -45,10 +45,12 @@ const Header = () => {
         <Container>
             <Logo src={logo} alt='#'></Logo>
             <div className="headerRight">
-                {/* 다크모드 버튼*/}
+
+                {/* dark mode button*/}
                 <DarkModeButton onClick={handleDarkModeToggle}>
                     <img src={darkMode} alt="#"/>
                 </DarkModeButton>
+
                 <AvatarButton name="홍비"></AvatarButton>
 
             </div>
