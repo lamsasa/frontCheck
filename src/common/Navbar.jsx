@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import {useContext} from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import {ThemeContext} from '../../context/themeProvider';
-import {ReactComponent as CreditCard} from '../../images/CreditCard.svg'
-import {ReactComponent as List} from '../../images/List.svg'
-import {ReactComponent as Stats} from '../../images/Stats.svg'
-import {ReactComponent as Person} from '../../images/Person.svg'
+import {ThemeContext} from '../context/themeProvider';
+import {ReactComponent as CreditCard} from '../images/CreditCard.svg'
+import {ReactComponent as List} from '../images/List.svg'
+import {ReactComponent as Stats} from '../images/Stats.svg'
+import {ReactComponent as Person} from '../images/Person.svg'
 
 const NavContainer = styled.div`
     width:220px;

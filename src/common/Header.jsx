@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import logo from '../../images/Logo.png';
-import darkMode from '../../images/DarkMode.png';
-import AvatarButton from './AvatarButton';
+import logo from '../images/Logo.png'
+import darkMode from '../images/DarkMode.png';
+import AvatarButton from '../common/AvatarButton';
 import {useContext} from 'react';
-import {ThemeContext} from '../../context/themeProvider';
+import {ThemeContext} from '../context/themeProvider';
 
 const Logo = styled.img`
     width: 213px;
@@ -11,8 +11,10 @@ const Logo = styled.img`
 `
 
 const Container = styled.div`
+    z-index: 1;
     width: 100%;
     height: 73px;
+    position: fixed;
     padding: 0 11px 0 22px;
     background-color: ${( {theme}) => theme.bgColor};
     display: flex;
