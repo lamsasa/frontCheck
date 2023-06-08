@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import ToggleButtonLarge from '../Common/ToggleButton/ToggleButtonLarge';
 import ToggleButtonSmall from '../Common/ToggleButton/ToggleButtonSmall';
-import SlideButton from '../../styles/SlideButton'
+import SlideButton from '../Common/ToggleButton/SlideButton'
 import {ClickButton} from '../../styles/StyledComponent';
+import styled from 'styled-components';
+
+const Back = styled.div`
+  background-color: #ffffff;
+  cursor: pointer;
+`;
 
 const TotalList = () => {
     const handleSlideChange = (index) => {
@@ -22,7 +28,7 @@ const TotalList = () => {
        <ToggleButtonSmall onText={"지출"} offText={"수입"}/>
        <ClickButton>gg</ClickButton>
        <h1>Slider with Index Buttons</h1>
-      <SlideButton slides={slides} onSlideChange={handleSlideChange} />
+        <><SlideButton slides={slides} onSlideChange={handleSlideChange} /></>
         </>
     );
 };
