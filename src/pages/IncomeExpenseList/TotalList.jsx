@@ -20,17 +20,16 @@ const TotalList = () => {
       };
     
       const slides = [
-        <div><h1>왜 안되는 거야...ㅠ</h1></div>,
         <div><IncomeList/></div>,
         <div><ExpenseList/></div>
       ];
 
     return(
         <>
-        <p>엥...토글 버튼 어려워...확인 필수...</p>
        <ToggleButtonLarge onText={"일 정"} offText={"가계부"}/>
        <ToggleButtonSmall onText={"지출"} offText={"수입"}/>
-       <ClickButton>gg</ClickButton>
+       <ClickButton>Button</ClickButton>
+       
        <h1>Slider with Index Buttons</h1>
         <Back><SlideButton slides={slides} onSlideChange={handleSlideChange} /></Back>
         </>
