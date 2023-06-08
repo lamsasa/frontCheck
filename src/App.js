@@ -3,9 +3,10 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'; // ы╕Мы
 import {ThemeProvider} from "./context/themeProvider";
 import Home from './pages/MainHome/HomePage';
 import Calendar from './pages/MainHome/Calendar';
-
 import Login from './pages/LoginPage';
 import MainList from './pages/IncomeExpenseList/MainListPage';
+import MybudgetPage from './pages/MybudgetPage';
+
 import GlobalStyle from "./styles/StyledComponent";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                         <Route path='/Calendar' element={<Calendar/>}/>
                         <Route path='/Login' element={<Login/>}/>
                         <Route path='/MainList' element={<MainList/>}/>
+                        <Route path='/mybudget' element={<MybudgetPage/>}/>
 
 
                     </Routes>

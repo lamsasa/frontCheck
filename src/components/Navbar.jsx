@@ -18,6 +18,20 @@ const NavContainer = styled.div`
     box-shadow: inset 8px 3px 36px rgba(0, 0, 0, 0.08);
     position:fixed;
     margin-top: 73px;
+
+    .logoutDiv{
+            position: fixed;
+            bottom: 30px;
+            display:flex;
+            align-items:center;
+            >svg{
+             fill:${({theme}) => theme.menuColor};
+            }
+            &:hover {
+             background-color: #ffffff00; 
+             border-radius:5px;
+            }
+        }
 `
 
 
@@ -25,42 +39,42 @@ const CustomLink = styled(NavLink)`
       color:${({theme}) => theme.menuColor};
       >svg{
         fill:${({theme}) => theme.menuColor};
+        margin-left:${(props) => (props.isMobile ? '5px' : '0px')};
       }
+      height:40px;
       font-size: 12px;
       font-weight:700;
       text-decoration:none;
       display:flex;
-      margin:${(props) => (props.isMobile ? '0px' : '30px')};
+      padding-left:${(props) => (props.isMobile ? '0px' : '10px')};
+      margin:${(props) => (props.isMobile ? '0px' : '20px')};
       flex-direction: ${(props) => (props.isMobile ? 'column' : 'none')};
       justify-content: ${(props) => (props.isMobile ? 'center' : 'none')};
       align-items: center;
       
         .navText{
             margin-left: 8px;   
+        } 
+
+        &.active{
+            background:  ${(props) => (props.isMobile ? '#ffffff00' : 'linear-gradient(100deg, rgba(66, 230, 148, 0.090) 3.56%, rgba(59, 178, 184, 0.090) 96.4%)')}; 
+            color:#3FCEA5;
+            > svg {
+            fill: url(#paint0_linear_273_162);
+            }
+            border-radius:5px;
+            &:hover {
+             background-color:  ${(props) => (props.isMobile ? '#ffffff00' : '#3FCEA520')};
+             border-radius:5px;
         }
 
-        .logoutDiv{
-            position: fixed;
-            bottom: 30px;
-            display:flex;
-            align-items:center;
-            >svg{
-             fill:${({theme}) => theme.menuColor};
-      }
+        }
+        
+        &:hover {
+            background-color: ${(props) => (props.isMobile ? '#ffffff00' : props.theme.menuBgColor)};
+            border-radius: 5px;
         }
 
-      
-      // 텍스트에 그라이언트 주기
-      &.active{
-        background: linear-gradient(100deg, rgba(66, 230, 149, 0.7) 3.56%, rgba(59, 178, 184, 0.7) 96.4%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        > svg {
-         fill: url(#paint0_linear_273_162);
-        }
-
-       
-      }
 `
 
 
@@ -70,16 +84,16 @@ const Navbar = () => {
     return(
         <NavContainer isMobile={isMobile}> 
                     {isMobile && ( 
-                        <CustomLink to={"/test"} isMobile={isMobile}>
+                        <CustomLink to={"/"} isMobile={isMobile}>
                             <Calendar width="20" height="20"/><p className="navText">달력</p>
                         </CustomLink>
                     )}
 
-                    <CustomLink to={'/'} isMobile={isMobile}>
+                    <CustomLink to={'/mybudget'} isMobile={isMobile}>
                             <CreditCard width="20" height="17"/><p className="navText">나의 예산</p>
                     </CustomLink>
 
-                    <CustomLink to={'/'} isMobile={isMobile}>
+                    <CustomLink to={'/MainList'} isMobile={isMobile}>
                             <List width="17" height="17"/><p className="navText">소비 리스트</p>
                     </CustomLink>
 
@@ -92,11 +106,8 @@ const Navbar = () => {
                     </CustomLink>
 
                     {!isMobile && ( 
-                        <CustomLink to={'/logout'}>
-                            <div className="logoutDiv">
-                                <Logout width="17" height="" fill="#575757"/><p className="navText">로그아웃</p>
-                            </div>
-                            
+                        <CustomLink to={'/logout'} className="logoutDiv">
+                                <Logout width="17" height="" fill="#575757"/><p className="navText">로그아웃</p>                         
                         </CustomLink>
                     )}
                     
