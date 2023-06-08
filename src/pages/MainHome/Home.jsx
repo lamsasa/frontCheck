@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 // import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "../styles/calendar.css";
-import MyCalendar from './Common/calendar/MyCalendar.jsx';
-import Header from './Common/Header'
-import Navbar from "./Common/Navbar";
+import "../../styles/calendar.css";
+import MyCalendar from '../../common/calendar/MyCalendar.jsx';
+import Header from '../../common/Header'
+import Navbar from "../../common/Navbar";
 
 
 const CalendarContainer = styled.div`

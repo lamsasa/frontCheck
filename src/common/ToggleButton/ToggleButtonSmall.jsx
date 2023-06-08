@@ -1,6 +1,6 @@
 import React from 'react';
 //import styled from 'styled-components';
-import {SwitchInput, SwitchLabel, OnButton, TextContainer, OffText, OnText} from '../../../styles/StyledComponent';
+import {SwitchInput, SwitchLabel, OnButton, TextContainer, OffText, OnText} from '../../styles/StyledComponent';
 
 
 const ToggleButtonSmall = ({ offText, onText }) => {
