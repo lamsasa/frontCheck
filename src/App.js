@@ -8,6 +8,9 @@ import Login from './pages/Login';
 import TotalList from './pages/IncomeExpenseList/TotalList';
 import GlobalStyle from "./styles/StyledComponent";
 
+//테스트용 페이지입니다. 테스트 완료 후 삭제할게요!
+import Test from './pages/IncomeExpenseList/Test';
+
 function App() {
     return (
         <>
@@ -20,6 +23,10 @@ function App() {
                         <Route path='/Calendar' element={<Calendar/>}/>
                         <Route path='/Login' element={<Login/>}/>
                         <Route path='/TotalList' element={<TotalList/>}/>
+
+
+                        
+                        <Route path='/Test' element={<Test/>}/>
 
                     </Routes>
                 </Router>

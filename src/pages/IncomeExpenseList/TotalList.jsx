@@ -28,9 +28,8 @@ const TotalList = () => {
         <>
        <ToggleButtonLarge onText={"일 정"} offText={"가계부"}/>
        <ToggleButtonSmall onText={"지출"} offText={"수입"}/>
-       <ClickButton>Button</ClickButton>
-       
-       <h1>Slider with Index Buttons</h1>
+       <ClickButton>gg</ClickButton>
+       <h1>슬라이드 버튼 연동...</h1>
         <Back><SlideButton slides={slides} onSlideChange={handleSlideChange} /></Back>
         </>
     );
