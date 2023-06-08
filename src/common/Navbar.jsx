@@ -25,13 +25,16 @@ const LiText = styled.p`
     margin-left: 8px;
 `
 
-const CustomLink = styled(Link)`
+const CustomLink = styled(NavLink)`
       color:${({theme}) => theme.menuColor};
       font-size: 14px;
       font-weight:700;
       text-decoration:none;
       margin: 40px;
       display:block;
+      &.active{
+         fill: url(#paint0_linear_281_162);
+      }
 `
 
 
