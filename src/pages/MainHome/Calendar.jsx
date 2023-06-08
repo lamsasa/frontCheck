@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import MyCalendar from '../../common/calendar/MyCalendar.css'
+import MyCalendar from '../../common/calendar/MyCalendar'
 
 
 const CalendarContainer = styled.div`

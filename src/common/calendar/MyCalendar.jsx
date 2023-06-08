@@ -5,11 +5,12 @@ import './MyCalendar.css';
 
 class MyCalendar extends Component {
     render() {
+
         return (
-          <div className="App">
+          <div id="App">
             <FullCalendar 
               id="calendar"
-              defaultView="dayGridMonth" 
+              defaultView="dayGridMonth"
               plugins={[ dayGridPlugin ]}
             />
           </div>

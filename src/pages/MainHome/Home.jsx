@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-// import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-import "../../styles/calendar.css";
 import MyCalendar from '../../common/calendar/MyCalendar.jsx';
 import Header from '../../common/Header'
 import Navbar from "../../common/Navbar";
 
+// import Calendar from "react-calendar";
+// import "react-calendar/dist/Calendar.css";
+// import "../../styles/calendar.css";
 
 const CalendarContainer = styled.div`
 display: flex;
