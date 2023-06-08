@@ -1,6 +1,6 @@
 import React from 'react';
 //import styled from 'styled-components';
-import {SwitchInput, SwitchLabel, OnButton, TextContainer, OffText, OnText} from './StyledComponent';
+import {SwitchInput, SwitchLabel, OnButton, TextContainer, OffText, OnText} from '../../../styles/StyledComponent';
 
 
 const ToggleButtonSmall = ({ offText, onText }) => {
@@ -13,9 +13,9 @@ const ToggleButtonSmall = ({ offText, onText }) => {
         <OnButton width="30px" height="20px" />
         <TextContainer>
           {/* margin으로 margin-left 설정 가능 */}
-          <OffText fontSize={'10px'} margin={'5px'}>{offText}</OffText>
+          <OffText fontSize={'12px'} margin={'5px'}>{offText}</OffText>
           {/* margin으로 margin-right 설정 가능 */}
-          <OnText fontSize={'10px'} margin={'5px'}>{onText}</OnText>
+          <OnText fontSize={'13px'} margin={'5px'}>{onText}</OnText>
         </TextContainer>
       </SwitchLabel>
     </>
