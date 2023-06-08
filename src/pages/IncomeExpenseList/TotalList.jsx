@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ToggleButtonLarge from '../../common/ToggleButton/ToggleButtonLarge';
-import ToggleButtonSmall from '../../common/ToggleButton/ToggleButtonSmall';
+import ToggleButtonLarge from '../../components/ToggleButton/ToggleButtonLarge';
+import ToggleButtonSmall from '../../components/ToggleButton/ToggleButtonSmall';
 import SlideButton from '../../styles/SlideButton'
 import {ClickButton} from '../../styles/StyledComponent';
 

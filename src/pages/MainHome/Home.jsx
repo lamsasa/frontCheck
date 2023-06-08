@@ -3,9 +3,9 @@ import styled from "styled-components";
 // import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../../styles/calendar.css";
-import MyCalendar from '../../common/calendar/MyCalendar.jsx';
-import Header from '../../common/Header'
-import Navbar from "../../common/Navbar";
+import MyCalendar from '../../components/calendar/MyCalendar.jsx';
+import Header from '../../components/Header'
+import Navbar from "../../components/Navbar";
 
 
 const CalendarContainer = styled.div`
