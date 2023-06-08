@@ -33,13 +33,8 @@ export const darkTheme = {
         boxShadow: 'inset 0px 5px 11px -2px rgba(0, 0, 0, 0.2)'
     },
     //메뉴 텍스트
-<<<<<<< HEAD
-    menuColor: '#E0E0E0'
-
-=======
-    menuColor: '#ffffff',
+    menuColor: '#E0E0E0',
     // 달력
     // today 색상
     todayColor: '#545862'
->>>>>>> a20de3f56ad60e8d6dabe503ad5fc6507d234bcc
 }
