@@ -25,14 +25,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Button = styled.button`
-  background: linear-gradient(89.63deg, rgba(66, 230, 149, 0.6) 5.56%, rgba(59, 178, 184, 0.6) 96.4%, rgba(59, 178, 184, 0.6) 96.4%);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-`;
-
 //일반 버튼 컴포넌트
 const ClickButton = styled.button`
   display: flex;
@@ -74,7 +66,7 @@ const SwitchLabel = styled.label`
   width: ${({ width }) => width || '148px'};
   height: ${({ height }) => height || '49px'};
   background: #fff;
-  border-radius: 20px;
+  border-radius: 100px;
   transition: 0.2s;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 
@@ -111,7 +103,7 @@ const TextContainer = styled.div`
 `;
 
 const OffText = styled.span`
-  font-weight: 700;
+  font-weight: ${({fontWeight}) => fontWeight || '700'};
   font-size: ${({ fontSize }) => fontSize || '16px'};
   line-height: 19px;
   color: #ffffff;
@@ -126,7 +118,7 @@ const OffText = styled.span`
 `;
 
 const OnText = styled.span`
-  font-weight: 700;
+  font-weight: ${({fontWeight}) => fontWeight || '700'};
   font-size: ${({ fontSize }) => fontSize || '16px'};
   line-height: 19px;
   color: rgba(192, 192, 192, 1);
@@ -140,5 +132,5 @@ const OnText = styled.span`
   }
 `;
 
-export {Button, ClickButton, SwitchInput, SwitchLabel, OnButton, TextContainer, OffText, OnText};
+export {ClickButton, SwitchInput, SwitchLabel, OnButton, TextContainer, OffText, OnText};
 export default GlobalStyle;

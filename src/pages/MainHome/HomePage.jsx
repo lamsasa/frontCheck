@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-// import Calendar from "react-calendar";
+
 import "react-calendar/dist/Calendar.css";
 import "../../styles/calendar.css";
 import MyCalendar from '../../components/calendar/MyCalendar.jsx';
 import Header from '../../components/Header'
 import Navbar from "../../components/Navbar";
 
+
+// import Calendar from "react-calendar";
+// import "react-calendar/dist/Calendar.css";
+// import "../../styles/calendar.css";
 
 const CalendarContainer = styled.div`
 display: flex;
@@ -19,7 +23,7 @@ margin: 50px;
         margin-left: 30px;
         width: 300px;
         padding: 10px;
-        background-color: #fff;
+        background-color: ${( {theme}) => theme.bgColor};
         color: #999;
         line-height: 1.125em;
         border : 0px;

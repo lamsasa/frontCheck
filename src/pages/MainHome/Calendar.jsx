@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import MyCalendar from '../../components/calendar/MyCalendar'
 
-
 const CalendarContainer = styled.div`
 display: flex;
 flex-direction: row;

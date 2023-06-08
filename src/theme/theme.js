@@ -13,12 +13,16 @@ export const lightTheme = {
         boxShadow: '0px 2px 7px 1px rgba(0, 0, 0, 0.1)'
     },
     // 메뉴 텍스트
-    menuColor: '#575757'
+    menuColor: '#575757',
+    // 달력
+    // today 색상
+    todayColor: '#f0f0f0'
+    
 };
 
 export const darkTheme = {
     // 메인 배경색
-    background: '#1E1E1E',
+    background: '#25272D',
     // 컴포넌트 배경색
     bgColor: '#2F353F',
     // 컴포넌트 텍스트
@@ -29,6 +33,13 @@ export const darkTheme = {
         boxShadow: 'inset 0px 5px 11px -2px rgba(0, 0, 0, 0.2)'
     },
     //메뉴 텍스트
+<<<<<<< HEAD
     menuColor: '#E0E0E0'
 
+=======
+    menuColor: '#ffffff',
+    // 달력
+    // today 색상
+    todayColor: '#545862'
+>>>>>>> a20de3f56ad60e8d6dabe503ad5fc6507d234bcc
 }

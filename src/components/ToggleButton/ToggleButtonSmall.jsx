@@ -4,18 +4,19 @@ import {SwitchInput, SwitchLabel, OnButton, TextContainer, OffText, OnText} from
 
 
 const ToggleButtonSmall = ({ offText, onText }) => {
+
   return (
     <>
       <SwitchInput id="toggle_small" type="checkbox"/>
       {/* width, height 설정 가능 */}
       <SwitchLabel htmlFor="toggle_small" width="63px" height="24px">
         {/* width, height 설정 가능 */}
-        <OnButton width="30px" height="20px" />
+        <OnButton width="28px" height="20px"/>
         <TextContainer>
           {/* margin으로 margin-left 설정 가능 */}
-          <OffText fontSize={'12px'} margin={'5px'}>{offText}</OffText>
+          <OffText fontSize={'12px'} fontWeight={'500'} margin={'5px'}>{offText}</OffText>
           {/* margin으로 margin-right 설정 가능 */}
-          <OnText fontSize={'13px'} margin={'5px'}>{onText}</OnText>
+          <OnText fontSize={'12px'} fontWeight={'500'} margin={'7px'}>{onText}</OnText>
         </TextContainer>
       </SwitchLabel>
     </>
