@@ -5,11 +5,8 @@ import Home from './pages/MainHome/HomePage';
 import Calendar from './pages/MainHome/Calendar';
 
 import Login from './pages/LoginPage';
-import TotalList from './pages/IncomeExpenseList/TotalListPage';
+import MainList from './pages/IncomeExpenseList/MainListPage';
 import GlobalStyle from "./styles/StyledComponent";
-
-//테스트용 페이지입니다. 테스트 완료 후 삭제할게요!
-// import Test from './pages/IncomeExpenseList/Test';
 
 function App() {
     return (
@@ -22,11 +19,8 @@ function App() {
                         <Route path='/' element={<Home/>}/>
                         <Route path='/Calendar' element={<Calendar/>}/>
                         <Route path='/Login' element={<Login/>}/>
-                        <Route path='/TotalList' element={<TotalList/>}/>
+                        <Route path='/MainList' element={<MainList/>}/>
 
-
-                        
-                        {/* <Route path='/Test' element={<Test/>}/> */}
 
                     </Routes>
                 </Router>
