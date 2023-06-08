@@ -18,7 +18,7 @@ export const lightTheme = {
 
 export const darkTheme = {
     // 메인 배경색
-    background: '#1E1E1E',
+    background: '#25272D',
     // 컴포넌트 배경색
     bgColor: '#2F353F',
     // 컴포넌트 텍스트

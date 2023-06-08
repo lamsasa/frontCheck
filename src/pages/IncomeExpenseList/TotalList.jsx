@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ToggleButtonLarge from '../../components/ToggleButton/ToggleButtonLarge';
 import ToggleButtonSmall from '../../components/ToggleButton/ToggleButtonSmall';
-import SlideButton from '../../styles/StyledComponent'
+import SlideButton from '../../components/ToggleButton/SlideButton'
 import {ClickButton} from '../../styles/StyledComponent';
 import styled from 'styled-components';
 import IncomeList from './IncomList';
@@ -12,6 +12,18 @@ const Back = styled.div`
   width: 500px;
   height: 800px;
   cursor: pointer;
+
+  .test1 {
+    width: 300px;
+    background: black;
+    color: aquamarine;
+  }
+  
+  .test2 {
+    width: 300px;
+    background: #ff7474;
+    color: aquamarine;
+  }
 `;
 
 const TotalList = () => {
@@ -20,7 +32,8 @@ const TotalList = () => {
       };
     
       const slides = [
-        <div><IncomeList/></div>,
+        <div className='test1'><h1>제발...ㅠ</h1></div>,
+        <div className='test2'><IncomeList/></div>,
         <div><ExpenseList/></div>
       ];
 

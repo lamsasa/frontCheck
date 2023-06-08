@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const BackBar = styled.div`
   display: flex;
@@ -13,6 +15,8 @@ const BackBar = styled.div`
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
   border-radius: 100px;
   cursor: pointer;
+
+
 `;
 
 const SlideIndexButton = styled.button`
@@ -70,6 +74,7 @@ const SlideButton = ({ slides, onSlideChange }) => {
       </div>
       </BackBar>
       
+      <div>
       <Slider ref={sliderRef} {...settings}>
         {slides.map((slide, index) => (
           <div key={index}>
@@ -77,6 +82,7 @@ const SlideButton = ({ slides, onSlideChange }) => {
           </div>
         ))}
       </Slider>
+      </div>
 
     </div>
   );
