@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import ToggleButtonLarge from '../Common/ToggleButton/ToggleButtonLarge';
-import ToggleButtonSmall from '../Common/ToggleButton/ToggleButtonSmall';
-import SlideButton from '../Common/ToggleButton/SlideButton'
+import ToggleButtonLarge from '../../common/ToggleButton/ToggleButtonLarge';
+import ToggleButtonSmall from '../../common/ToggleButton/ToggleButtonSmall';
+import SlideButton from '../../common/ToggleButton/SlideButton'
 import {ClickButton} from '../../styles/StyledComponent';
 import styled from 'styled-components';
+import IncomeList from './IncomList';
+import ExpenseList from './ExpenseList';
 
 const Back = styled.div`
   background-color: #ffffff;
+  width: 500px;
+  height: 800px;
   cursor: pointer;
 `;
 
@@ -16,9 +20,9 @@ const TotalList = () => {
       };
     
       const slides = [
-        <div>Slide 1</div>,
-        <div>Slide 2</div>,
-        <div>Slide 3</div>
+        <div><h1>왜 안되는 거야...ㅠ</h1></div>,
+        <div><IncomeList/></div>,
+        <div><ExpenseList/></div>
       ];
 
     return(
@@ -28,7 +32,7 @@ const TotalList = () => {
        <ToggleButtonSmall onText={"지출"} offText={"수입"}/>
        <ClickButton>gg</ClickButton>
        <h1>Slider with Index Buttons</h1>
-        <><SlideButton slides={slides} onSlideChange={handleSlideChange} /></>
+        <Back><SlideButton slides={slides} onSlideChange={handleSlideChange} /></Back>
         </>
     );
 };

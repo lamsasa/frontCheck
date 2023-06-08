@@ -33,7 +33,6 @@ const SlideIndexButton = styled.button`
 `;
 
 
-
 const SlideButton = ({ slides, onSlideChange }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
