@@ -23,7 +23,7 @@ margin: 50px;
         margin-left: 30px;
         width: 300px;
         padding: 10px;
-        background-color: #fff;
+        background-color: ${( {theme}) => theme.bgColor};
         color: #999;
         line-height: 1.125em;
         border : 0px;

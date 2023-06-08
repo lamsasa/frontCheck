@@ -13,7 +13,11 @@ export const lightTheme = {
         boxShadow: '0px 2px 7px 1px rgba(0, 0, 0, 0.1)'
     },
     // 메뉴 텍스트
-    menuColor: '#575757'
+    menuColor: '#575757',
+    // 달력
+    // today 색상
+    todayColor: '#f0f0f0'
+    
 };
 
 export const darkTheme = {
@@ -29,6 +33,8 @@ export const darkTheme = {
         boxShadow: 'inset 0px 5px 11px -2px rgba(0, 0, 0, 0.2)'
     },
     //메뉴 텍스트
-    menuColor: '#ffffff'
-
+    menuColor: '#ffffff',
+    // 달력
+    // today 색상
+    todayColor: '#545862'
 }

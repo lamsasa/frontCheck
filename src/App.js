@@ -1,15 +1,15 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'; // 브라우저 라우터 이름 변경
 import {ThemeProvider} from "./context/themeProvider";
-import Home from './pages/MainHome/Home';
+import Home from './pages/MainHome/HomePage';
 import Calendar from './pages/MainHome/Calendar';
 
-import Login from './pages/Login';
-import TotalList from './pages/IncomeExpenseList/TotalList';
+import Login from './pages/LoginPage';
+import TotalList from './pages/IncomeExpenseList/TotalListPage';
 import GlobalStyle from "./styles/StyledComponent";
 
 //테스트용 페이지입니다. 테스트 완료 후 삭제할게요!
-import Test from './pages/IncomeExpenseList/Test';
+// import Test from './pages/IncomeExpenseList/Test';
 
 function App() {
     return (
@@ -26,7 +26,7 @@ function App() {
 
 
                         
-                        <Route path='/Test' element={<Test/>}/>
+                        {/* <Route path='/Test' element={<Test/>}/> */}
 
                     </Routes>
                 </Router>
