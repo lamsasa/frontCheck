@@ -41,7 +41,7 @@ const ClickButton = styled.button`
   width: ${props => props.width || '128px'};
   height: ${props => props.height || '40px'};
 
-  background: linear-gradient(99.99deg, rgba(66, 230, 149, 0.8) 1.31%, rgba(59, 178, 184, 0.8) 98.06%);
+  background: linear-gradient(100deg, rgba(66, 230, 149, 0.7) 3.56%, rgba(59, 178, 184, 0.7) 96.4%);
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   border: none;
@@ -50,7 +50,7 @@ const ClickButton = styled.button`
   color: #FFFFFF;
 
   &:hover {
-    background: linear-gradient(99.99deg, rgba(66, 230, 149, 1) 1.31%, rgba(59, 178, 184, 1) 98.06%);
+    background: linear-gradient(100deg, rgba(66, 230, 149, 1) 3.56%, rgba(59, 178, 184, 1) 96.4%);
   }
 `;
 
@@ -87,7 +87,7 @@ const OnButton = styled.span`
   width: ${({ width }) => width || '73px'};
   height: ${({ height }) => height || '40px'};
   transition: 0.2s;
-  background: linear-gradient(135deg, rgba(66, 230, 149, 0.8) 0%, rgba(59, 178, 184, 0.8) 100%);
+  background: linear-gradient(100deg, rgba(66, 230, 149, 0.8) 3.56%, rgba(59, 178, 184, 0.8) 96.4%);
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
   border-radius: 100px;
 
@@ -95,7 +95,7 @@ const OnButton = styled.span`
   ${SwitchInput}:checked + ${SwitchLabel} & {
     left: calc(100% - 3px);
     transform: translateX(-100%);
-    background: linear-gradient(135deg, rgba(66, 230, 149, 0.8) 0%, rgba(59, 178, 184, 0.8) 100%);
+    background: linear-gradient(100deg, rgba(66, 230, 149, 0.8) 3.56%, rgba(59, 178, 184, 0.8) 96.4%);
     box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
   }
 `;

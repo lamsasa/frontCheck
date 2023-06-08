@@ -1,17 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import Calendar from "react-calendar";
+// import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "../styles/calendar.css";
-import MyCalendar from './Common/calendar/MyCalendar.jsx';
-import Header from './Common/Header'
-import Navbar from "./Common/Navbar";
+import "../../styles/calendar.css";
+import MyCalendar from '../../common/calendar/MyCalendar.jsx';
+import Header from '../../common/Header'
+import Navbar from "../../common/Navbar";
+
 
 const CalendarContainer = styled.div`
 display: flex;
 flex-direction: row;
+margin: 50px;
+
 
 .calendar-tab {
+        margin-top: 80px;
         margin-left: 30px;
         width: 300px;
         padding: 10px;
@@ -32,7 +36,6 @@ const HomeContainer = styled.div`
     /* align-items: center; */
     /* justify-content: center; */
     /* vertical-align: center; */
-
 
 
 // 가계부,일정 전환 스위치
@@ -80,7 +83,6 @@ const HomeContainer = styled.div`
 
   border-radius: 60px;
   border: 1px solid linear-gradient(89.63deg, rgba(66, 230, 149, 0.6) 5.56%, rgba(59, 178, 184, 0.6) 96.4%, rgba(59, 178, 184, 0.6) 96.4%);
-
   transition: left 0.3s;
 }
 
@@ -121,43 +123,37 @@ const HomeContainer = styled.div`
 const Home = () => {
   return (
 
-      <HomeContainer>
-        <Header/>
-        <Navbar/>
-        <div className="container">
+    <HomeContainer>
+      <Header />
+      <Navbar/>
 
-          <div id="container">
-            <div class="toggle-switch">
-              <input type="checkbox" id="chkTog2" />
-              <label for="chkTog2">
-                <span class="toggle-track"></span>
-              </label>
-            </div>
+
+      <CalendarContainer>
+
+      {/* <div className="container">
+          <div class="toggle-switch">
+            <input type="checkbox" id="chkTog2" />
+            <label for="chkTog2">
+              <span class="toggle-track"></span>
+            </label>
           </div>
-
-        </div>
-
-
-        <CalendarContainer>
-          <div className="calendar">
-            <Calendar
-              locale="en" />
-          </div>
-
-          <div className="calendar-tab" >
-
-          </div>
-
-        </CalendarContainer>
+      </div> */}
 
         <div className="App">
-            <MyCalendar />
-          </div>
+          <MyCalendar />
+        </div>
 
-      </HomeContainer>
+        {/* <div className="calendar">
+          <Calendar locale="en" />
+        </div> */}
 
+        <div className="calendar-tab" >
+        </div>
+
+      </CalendarContainer>
+
+    </HomeContainer>
   );
 };
-
 
 export default Home;
