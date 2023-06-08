@@ -11,8 +11,10 @@ const Logo = styled.img`
 `
 
 const Container = styled.div`
+    z-index: 1;
     width: 100%;
     height: 73px;
+    position: fixed;
     padding: 0 11px 0 22px;
     background-color: ${( {theme}) => theme.bgColor};
     display: flex;
