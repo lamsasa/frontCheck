@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ToggleButtonLarge from '../../common/ToggleButton/ToggleButtonLarge';
-import ToggleButtonSmall from '../../common/ToggleButton/ToggleButtonSmall';
-import SlideButton from '../../common/ToggleButton/SlideButton'
+import ToggleButtonLarge from '../../components/ToggleButton/ToggleButtonLarge';
+import ToggleButtonSmall from '../../components/ToggleButton/ToggleButtonSmall';
+import SlideButton from '../../styles/StyledComponent'
 import {ClickButton} from '../../styles/StyledComponent';
 import styled from 'styled-components';
 import IncomeList from './IncomList';

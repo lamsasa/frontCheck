@@ -1,8 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
 import MyCalendar from '../../common/calendar/MyCalendar.jsx';
 import Header from '../../common/Header'
 import Navbar from "../../common/Navbar";
+=======
+// import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "../../styles/calendar.css";
+import MyCalendar from '../../components/calendar/MyCalendar.jsx';
+import Header from '../../components/Header'
+import Navbar from "../../components/Navbar";
+>>>>>>> e614dfe29647b3afce46fd887d8bd88e4bd6a14c
 
 // import Calendar from "react-calendar";
 // import "react-calendar/dist/Calendar.css";

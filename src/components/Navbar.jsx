@@ -2,10 +2,10 @@ import styled from "styled-components";
 import {useContext} from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import {ThemeContext} from '../context/themeProvider';
-import {ReactComponent as CreditCard} from '../images/CreditCard.svg'
-import {ReactComponent as List} from '../images/List.svg'
-import {ReactComponent as Stats} from '../images/Stats.svg'
-import {ReactComponent as Person} from '../images/Person.svg'
+import {ReactComponent as CreditCard} from '../assets/CreditCard.svg'
+import {ReactComponent as List} from '../assets/List.svg'
+import {ReactComponent as Stats} from '../assets/Stats.svg'
+import {ReactComponent as Person} from '../assets/Person.svg'
 
 const NavContainer = styled.div`
     width:220px;
@@ -22,7 +22,7 @@ const LiContainer = styled.li`
 `
 
 const LiText = styled.p`
-    margin-left: 8px;
+    margin-left: 8px;   
 `
 
 const CustomLink = styled(NavLink)`

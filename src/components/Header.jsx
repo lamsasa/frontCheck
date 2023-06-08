@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import logo from '../images/Logo.png'
-import darkMode from '../images/DarkMode.png';
-import AvatarButton from '../common/AvatarButton';
+import logo from '../assets/Logo.png'
+import darkMode from '../assets/DarkMode.png';
+import AvatarButton from '../components/AvatarButton';
 import {useContext} from 'react';
 import {ThemeContext} from '../context/themeProvider';
 
