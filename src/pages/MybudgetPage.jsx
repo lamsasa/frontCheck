@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import Header from "../components/Header";
-import Navbar from "../components/Navbar";
+import Header from "../components/Common/";
+import Navbar from "../components/Common/Navbar";
 import useViewport from "../context/viewportHook";
-import { ClickButton } from "../components/StyledComponents/Button";
+import { ClickButton } from "../components/Common/ButtonStyle";
 
 const Container = styled.div`
     width:100%;
