@@ -6,7 +6,7 @@ import {ReactComponent as Stats} from '../assets/Stats.svg'
 import {ReactComponent as Person} from '../assets/Person.svg'
 import {ReactComponent as Calendar} from '../assets/Calendar.svg'
 import {ReactComponent as Logout} from '../assets/Logout.svg'
-import useViewport from "../context/viewportHook";
+import useViewport from "../../context/viewportHook";
 
 const NavContainer = styled.div`
     width:${(props) => (props.isMobile ? '100%' : '180px')};
