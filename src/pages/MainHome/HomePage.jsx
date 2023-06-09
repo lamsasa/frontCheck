@@ -6,115 +6,49 @@ import "../../styles/calendar.css";
 import MyCalendar from '../../components/calendar/MyCalendar.jsx';
 import Header from '../../components/Header'
 import Navbar from "../../components/Navbar";
+import ToggleButtonLarge from "../../components/ToggleButton/ToggleButtonLarge";
 
 
 // import Calendar from "react-calendar";
 // import "react-calendar/dist/Calendar.css";
 // import "../../styles/calendar.css";
 
+
+const HomeContainer = styled.div`
+    width: 100%;
+    display: flex;
+    /* flex-direction: ; */
+
+
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* vertical-align: center; */
+
+`;
+
 const CalendarContainer = styled.div`
 display: flex;
-flex-direction: row;
-margin: 50px;
+flex-direction: column;
+padding : 100px;
+margin-left: 180px;
 
-
+.calendar {
+  display: flex;
+  flex-direction: row;
+}
 .calendar-tab {
-        margin-top: 80px;
+        margin-top: 20px;
         margin-left: 30px;
         width: 300px;
         padding: 10px;
-        background-color: ${( {theme}) => theme.bgColor};
+        background-color: ${({ theme }) => theme.bgColor};
         color: #999;
         line-height: 1.125em;
         border : 0px;
         border-radius: 10px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     }
-`;
-
-const HomeContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* vertical-align: center; */
-
-
-// 가계부,일정 전환 스위치
-.toggle-switch input{
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-}
-
-.container{
-  display: flex;
-  width: 100%;
-}
-
-.toggle-switch input[type=checkbox]{
-  display: none;
-}
-
-.toggle-track{
-  display: inline-block;
-  position: relative;
-  margin: 20px;
-  width: 140px;
-  height: 45px;
-  border-radius: 60px;
-  background: #fff;
-  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
-  justify-content: center;
-}
-
-.toggle-track:before{
-  content:'가계부';
-  display: block;
-  position: absolute;
-  margin: 0 auto;
-  color: #fff;
-  text-align: center;
-  line-height: 32px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  width: 70px;
-  height: 33px;
-  top: 5px;
-  left: 7px;
-  background: linear-gradient(89.63deg, rgba(66, 230, 149, 0.6) 5.56%, rgba(59, 178, 184, 0.6) 96.4%, rgba(59, 178, 184, 0.6) 96.4%);
-
-  border-radius: 60px;
-  border: 1px solid linear-gradient(89.63deg, rgba(66, 230, 149, 0.6) 5.56%, rgba(59, 178, 184, 0.6) 96.4%, rgba(59, 178, 184, 0.6) 96.4%);
-  transition: left 0.3s;
-}
-
-.toggle-switch input[type=checkbox]:checked + label .toggle-track:before{
-  content: '일 정';
-  width: 65px;
-  left: 67px;
-}
-
-/* .toggle-switch input[type=checkbox]:checked + label .toggle-track{
-  background: #fff;
-} */
-
-.toggle-switch input[type=checkbox] + label .toggle-track:after{
-  content:'일 정';
-  display: inline-block;
-  position: absolute;
-  right: 20px;
-  top: 17px;
-  font-weight: bold;
-  color: #999;
-}
-
-.toggle-switch input[type=checkbox]:checked + label .toggle-track:after{
-  content:'가계부';
-  left: 20px;
-  top: 17px;
-}
 `;
 
 // const Test = styled.div`
@@ -126,37 +60,31 @@ const HomeContainer = styled.div`
 
 const Home = () => {
   return (
-
-    <HomeContainer>
+    <>
       <Header />
-      <Navbar/>
+      <Navbar />
+
+      <HomeContainer>
 
 
-      <CalendarContainer>
+        <CalendarContainer>
+          <ToggleButtonLarge onText={"일 정"} offText={"가계부"} />
 
-      {/* <div className="container">
-          <div class="toggle-switch">
-            <input type="checkbox" id="chkTog2" />
-            <label for="chkTog2">
-              <span class="toggle-track"></span>
-            </label>
+          <div className="calendar">
+
+            <div className="App">
+              <MyCalendar />
+            </div>
+
+            <div className="calendar-tab" >
+            </div>
+
           </div>
-      </div> */}
 
-        <div className="App">
-          <MyCalendar />
-        </div>
+        </CalendarContainer>
 
-        {/* <div className="calendar">
-          <Calendar locale="en" />
-        </div> */}
-
-        <div className="calendar-tab" >
-        </div>
-
-      </CalendarContainer>
-
-    </HomeContainer>
+      </HomeContainer>
+    </>
   );
 };
 

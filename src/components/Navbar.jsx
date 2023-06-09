@@ -18,6 +18,7 @@ const NavContainer = styled.div`
     box-shadow: inset 8px 3px 36px rgba(0, 0, 0, 0.08);
     position:fixed;
     margin-top: 73px;
+    z-index: 2;
 
     .logoutDiv{
             position: fixed;

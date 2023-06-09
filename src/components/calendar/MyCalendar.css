@@ -5,8 +5,8 @@
   display: flex;
   justify-items: center;
 
-  margin-top: 80px;
-  margin-left: 250px;
+  margin-top: 20px;
+  /* margin-left: 50px; */
 
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
@@ -50,13 +50,15 @@
 .fc-col-header-cell-cushion {
   color: #999;
   font-size: 15px;
+  /* padding-top: 5px; */
   margin-bottom: 10px;
 }
 
 /*일자*/
 .fc-daygrid-day-number {
   /* color: #222; */
-  font-size:15px;
+  font-size: 15px;
+  margin-top: 5px;
   margin-right: 45px;
   justify-content: center;
 }
