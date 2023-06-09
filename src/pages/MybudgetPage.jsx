@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import useViewport from "../context/viewportHook";
-import { ClickButton } from "../styles/StyledComponent";
+import { ClickButton } from "../components/StyledComponents/Button";
 
 const Container = styled.div`
     width:100%;
