@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import './MyCalendar.css';
-
 
 const CalendarContainer = styled.div`
 
@@ -19,7 +19,9 @@ const CalendarContainer = styled.div`
 
 
 class MyCalendar extends Component {
+  
   render() {
+    const apiKey = process.env.REACT_APP_CAL_API_KEY;
 
     return (
       <CalendarContainer>
@@ -27,7 +29,12 @@ class MyCalendar extends Component {
           <FullCalendar
             id="calendar"
             defaultView="dayGridMonth"
-            plugins={[dayGridPlugin]}
+            plugins={[dayGridPlugin, googleCalendarPlugin]}
+
+            googleCalendarApiKey={apiKey}
+            events={{
+              googleCalendarId: 'b1ockbust2r@gmail.com',
+            }}
           />
         </div>
       </CalendarContainer>
