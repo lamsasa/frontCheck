@@ -4,9 +4,9 @@ import styled from "styled-components";
 import "react-calendar/dist/Calendar.css";
 import "../../styles/calendar.css";
 import MyCalendar from '../../components/calendar/MyCalendar.jsx';
-import Header from '../../components/Header'
-import Navbar from "../../components/Navbar";
-import ToggleButtonLarge from "../../components/ToggleButton/ToggleButtonLarge";
+import Header from '../../common/Header'
+import Navbar from "../../common/Navbar";
+import ToggleButtonLarge from "../../common/ToggleButton/ToggleButtonLarge";
 
 
 // import Calendar from "react-calendar";

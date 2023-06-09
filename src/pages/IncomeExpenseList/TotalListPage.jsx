@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {ClickButton} from '../../components/Common/ButtonStyle';
+import {ClickButton} from '../../common/Styles/ButtonStyle';
 import styled from 'styled-components';
 
 

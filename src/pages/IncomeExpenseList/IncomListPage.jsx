@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {ListContainer} from '../../components/Common/ListStyledComponents'
+import {ListContainer} from '../../components/ListStyledComponents'
 
 const IncomeList = () => {
 
