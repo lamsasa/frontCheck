@@ -11,12 +11,16 @@ const BackBar = styled.div`
   width: 224px;
   height: 49px;
   
-  background: #FFFFFF;
+  background: ${( {theme}) => theme.bgColor};
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
   border-radius: 100px;
   cursor: pointer;
 
+  margin-left: 411px;
 
+  @media (max-width: 768px) {
+    margin-left: 20%;
+  }
 `;
 
 const SlideIndexButton = styled.button`
@@ -74,7 +78,7 @@ const SlideButton = ({ slides, onSlideChange }) => {
       </div>
       </BackBar>
       
-      <div>
+      <>
       <Slider ref={sliderRef} {...settings}>
         {slides.map((slide, index) => (
           <div key={index}>
@@ -82,7 +86,7 @@ const SlideButton = ({ slides, onSlideChange }) => {
           </div>
         ))}
       </Slider>
-      </div>
+      </>
 
     </div>
   );
