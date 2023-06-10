@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Header from "../common/Header"
-import Navbar from "../common/Header";
+import Navbar from "../common/Navbar";
 import useViewport from "../constants/viewportHook";
 import { ClickButton } from "../common/Styles/ButtonStyle";
 
