@@ -28,13 +28,13 @@ const stringToColor = (string) => {
 // 배경색을 바꿔줌
 const stringAvatar = (name) => {
     if (!name || typeof name !== 'string') {
-        return null; // or handle the error case in your desired way
+        return null
     }
 
     const initials = name
         .split('')
         .map((char) => char.charCodeAt(0))
-        .join('');
+        .join('')
 
     return {
         sx: {

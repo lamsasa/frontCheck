@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import MyCalendar from '../../components/calendar/MyCalendar'
-import ToggleButtonLarge from "../../common/ToggleButton/ToggleButtonLarge";
+import MyCalendar from '../../components/Calendar/MyCalendar'
+import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 
 const CalendarContainer = styled.div`
 display: flex;

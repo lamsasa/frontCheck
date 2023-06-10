@@ -1,10 +1,33 @@
 import React from "react";
 import styled from "styled-components";
 
-import Header from "../common/Header"
-import Navbar from "../common/Navbar";
-import useViewport from "../constants/viewportHook";
-import { ClickButton } from "../common/Styles/ButtonStyle";
+import Header from "../components/Common/Header"
+import Navbar from "../components/Common/Navbar";
+import useViewport from "../hooks/viewportHook";
+import ClickButton  from "../components/Common/ClickButton";
+
+const MybudgetPage = () => {
+    const { isMobile } = useViewport();
+    return(
+        <>
+            <Header/>   
+            <Navbar/>
+            <Container isMobile={isMobile}>
+                <Box>
+                    <div className="content">
+                        <p className="title">나의 예산</p>
+                        <ClickButton width={'90px'} text={'예산 추가'}/>
+                    </div>
+                </Box>
+                <Box height={'300px'}>
+
+                </Box>
+            </Container>
+        </>
+      
+    )
+}
+export default MybudgetPage;
 
 const Container = styled.div`
     width:100%;
@@ -33,26 +56,3 @@ const Box = styled.div`
         font-size: 18px;
     }
 `
-const MybudgetPage = () => {
-    const { isMobile } = useViewport();
-    return(
-        <>
-            <Header/>
-            <Navbar/>
-            <Container isMobile={isMobile}>
-                <Box>
-                    <div className="content">
-                        <p className="title">나의 예산</p>
-                        <ClickButton width={'90px'}>예산 추가</ClickButton>
-                    </div>
-                    
-                </Box>
-                <Box height={'300px'}>
-
-                </Box>
-            </Container>
-        </>
-      
-    )
-}
-export default MybudgetPage;

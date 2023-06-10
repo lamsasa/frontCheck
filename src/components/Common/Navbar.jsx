@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
-import {ReactComponent as CreditCard} from '../assets/CreditCard.svg'
-import {ReactComponent as List} from '../assets/List.svg'
-import {ReactComponent as Stats} from '../assets/Stats.svg'
-import {ReactComponent as Person} from '../assets/Person.svg'
-import {ReactComponent as Calendar} from '../assets/Calendar.svg'
-import {ReactComponent as Logout} from '../assets/Logout.svg'
-import useViewport from "../constants/viewportHook";
+import {ReactComponent as CreditCard} from '../../assets/CreditCard.svg'
+import {ReactComponent as List} from '../../assets/List.svg'
+import {ReactComponent as Stats} from '../../assets/Stats.svg'
+import {ReactComponent as Person} from '../../assets/Person.svg'
+import {ReactComponent as Calendar} from '../../assets/Calendar.svg'
+import {ReactComponent as Logout} from '../../assets/Logout.svg'
+import useViewport from "../../hooks/viewportHook";
 
 const NavContainer = styled.div`
     width:${(props) => (props.isMobile ? '100%' : '180px')};
@@ -73,7 +73,7 @@ const CustomLink = styled(NavLink)`
         
         &:hover {
             background-color: ${(props) => (props.isMobile ? '#ffffff00' : props.theme.menuBgColor)};
-            border-radius: 5px;
+            border-radius: 5px; 
         }
 
 `
@@ -86,29 +86,35 @@ const Navbar = () => {
         <NavContainer isMobile={isMobile}> 
                     {isMobile && ( 
                         <CustomLink to={"/"} isMobile={isMobile}>
-                            <Calendar width="20" height="20"/><p className="navText">달력</p>
+                            <Calendar width="20" height="20"/>
+                            <p className="navText">달력</p>
                         </CustomLink>
                     )}
 
                     <CustomLink to={'/mybudget'} isMobile={isMobile}>
-                            <CreditCard width="20" height="17"/><p className="navText">나의 예산</p>
+                            <CreditCard width="20" height="17"/>
+                            <p className="navText">나의 예산</p>
                     </CustomLink>
 
                     <CustomLink to={'/MainList'} isMobile={isMobile}>
-                            <List width="17" height="17"/><p className="navText">소비 리스트</p>
+                            <List width="17" height="17"/>
+                            <p className="navText">소비 리스트</p>
                     </CustomLink>
 
                     <CustomLink to={'/test'} isMobile={isMobile}>
-                            <Stats width="17" height="17"/><p className="navText">통계</p>
+                            <Stats width="17" height="17"/>
+                            <p className="navText">통계</p>
                     </CustomLink>
 
                     <CustomLink to={'/test'} isMobile={isMobile}>
-                            <Person width="17" height="17"/><p className="navText">마이 페이지</p>
+                            <Person width="17" height="17"/>
+                            <p className="navText">마이 페이지</p>
                     </CustomLink>
 
                     {!isMobile && ( 
                         <CustomLink to={'/logout'} className="logoutDiv">
-                                <Logout width="17" height="" fill="#575757"/><p className="navText">로그아웃</p>                         
+                                <Logout width="17" height="" fill="#575757"/>
+                                <p className="navText">로그아웃</p>                         
                         </CustomLink>
                     )}
                     

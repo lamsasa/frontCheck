@@ -17,5 +17,5 @@ const ListContainer = styled.div`
   }
 `;
 
-export {ListContainer};
+export default ListContainer;
 

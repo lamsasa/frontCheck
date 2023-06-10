@@ -1,10 +1,10 @@
-import SlideButton from '../../common/ToggleButton/SlideButton';
+import SlideButton from '../components/Common/SlideButton';
 import styled from 'styled-components';
-import Header from '../../common/Header';
-import Navbar from "../../common/Navbar";
-import IncomeList from './IncomListPage';
-import ExpenseList from './ExpenseListPage';
-import TotalList from './TotalListPage';
+import Header from '../components/Common/Header';
+import Navbar from "../components/Common/Navbar";
+import IncomeList from '../components/TransactionList/IncomeList';
+import ExpenseList from '../components/TransactionList/ExpenseList';
+import TotalList from '../components/TransactionList/TotalList';
 
 const MainListContainer = styled.div`
     display: flex;
