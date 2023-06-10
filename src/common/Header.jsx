@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import logo from '../assets/Logo.png'
 import darkMode from '../assets/DarkMode.png';
 import AvatarButton from '../components/AvatarButton';
-import {useContext} from 'react';
-import {ThemeContext} from '../constants/Theme/themeProvider';
+import { useContext } from 'react';
+import { ThemeContext } from '../constants/theme/themeProvider';
+import { NavLink, useNavigate } from 'react-router-dom';
+
+
 
 const Logo = styled.img`
     width: 213px;
@@ -16,7 +19,7 @@ const Container = styled.div`
     height: 73px;
     position: fixed;
     padding: 0 11px 0 22px;
-    background-color: ${( {theme}) => theme.bgColor};
+    background-color: ${({ theme }) => theme.bgColor};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,25 +35,27 @@ const DarkModeButton = styled.button`
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: ${({theme}) => theme.toggleButton.bgColor};
-    box-shadow: ${({theme}) => theme.toggleButton.boxShadow};
-    border: none;
-    
-    
+    background-color: ${({ theme }) => theme.toggleButton.bgColor};
+    box-shadow: ${({ theme }) => theme.toggleButton.boxShadow};
+    border: none;   
 `
+
 const Header = () => {
-    const {isDark, setIsDark} = useContext(ThemeContext);
+    const { isDark, setIsDark } = useContext(ThemeContext);
     const handleDarkModeToggle = () => {
         setIsDark(!isDark);
     }
     return (
         <Container>
-            <Logo src={logo} alt='#'></Logo>
-            <div className="headerRight">
 
+            <NavLink to="/">
+                <Logo src={logo} alt='#' ></Logo>
+            </NavLink>
+
+            <div className="headerRight">
                 {/* dark mode button*/}
                 <DarkModeButton onClick={handleDarkModeToggle}>
-                    <img src={darkMode} alt="#"/>
+                    <img src={darkMode} alt="#" />
                 </DarkModeButton>
 
                 <AvatarButton name="홍비"></AvatarButton>
@@ -58,7 +63,6 @@ const Header = () => {
             </div>
         </Container>
     )
-
 }
 
 export default Header;
