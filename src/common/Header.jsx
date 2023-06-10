@@ -3,7 +3,7 @@ import logo from '../assets/Logo.png'
 import darkMode from '../assets/DarkMode.png';
 import AvatarButton from '../components/AvatarButton';
 import {useContext} from 'react';
-import {ThemeContext} from '../constants/theme/themeProvider';
+import {ThemeContext} from '../constants/Theme/themeProvider';
 
 const Logo = styled.img`
     width: 213px;
