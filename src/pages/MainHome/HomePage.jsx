@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import "react-calendar/dist/Calendar.css";
 import "../../styles/calendar.css";
-import MyCalendar from '../../components/Calendar/MyCalendar.jsx';
+import MyCalendar from '../../components/Calendar/MyCalendar';
 import Header from '../../components/Common/Header'
 import Navbar from "../../components/Common/Navbar";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";

@@ -14,8 +14,8 @@ const SwitchLabel = styled.label`
   position: relative;
 
   cursor: pointer;
-  width: ${({ width }) => width || '148px'};
-  height: ${({ height }) => height || '49px'};
+  width: 63px;
+  height: 24px;
   background: #fff;
   border-radius: 100px;
   transition: 0.2s;
@@ -30,8 +30,8 @@ const OnButton = styled.span`
   position: absolute;
   left: 3px;
   display: inline-block;
-  width: ${({ width }) => width || '73px'};
-  height: ${({ height }) => height || '40px'};
+  width: 28px;
+  height: 20px;
   transition: 0.2s;
   background: linear-gradient(100deg, rgba(66, 230, 149, 0.8) 3.56%, rgba(59, 178, 184, 0.8) 96.4%);
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
@@ -54,13 +54,13 @@ const TextContainer = styled.div`
 `;
 
 const OffText = styled.span`
-  font-weight: ${({fontWeight}) => fontWeight || '700'};
-  font-size: ${({ fontSize }) => fontSize || '16px'};
+  font-weight: 500;
+  font-size: 20px;
   line-height: 19px;
   color: #ffffff;
   position: relative;
   z-index: 1;
-  margin-left: ${({ margin }) => margin || '15px'};
+  margin-left: 5px;
 
   /* ON 버튼이 눌리면 text 색 변화 */
   ${SwitchInput}:checked + ${SwitchLabel} & {
@@ -69,13 +69,13 @@ const OffText = styled.span`
 `;
 
 const OnText = styled.span`
-  font-weight: ${({fontWeight}) => fontWeight || '700'};
-  font-size: ${({ fontSize }) => fontSize || '16px'};
+  font-weight: 500;
+  font-size: 20px;
   line-height: 19px;
   color: rgba(192, 192, 192, 1);
   position: relative;
   z-index: 1;
-  margin-right: ${({ margin }) => margin || '22px'};
+  margin-right: 7px;
 
   /* ON 버튼이 눌리면 text 색 변화 */
   ${SwitchInput}:checked + ${SwitchLabel} & {
@@ -90,14 +90,14 @@ const ToggleButtonSmall = ({ offText, onText }) => {
     <>
       <SwitchInput id="toggle_small" type="checkbox"/>
       {/* width, height 설정 가능 */}
-      <SwitchLabel htmlFor="toggle_small" width="63px" height="24px">
+      <SwitchLabel htmlFor="toggle_small">
         {/* width, height 설정 가능 */}
-        <OnButton width="28px" height="20px"/>
+        <OnButton/>
         <TextContainer>
           {/* margin으로 margin-left 설정 가능 */}
-          <OffText fontSize={'12px'} fontWeight={'500'} margin={'5px'}>{offText}</OffText>
+          <OffText>{offText}</OffText>
           {/* margin으로 margin-right 설정 가능 */}
-          <OnText fontSize={'12px'} fontWeight={'500'} margin={'7px'}>{onText}</OnText>
+          <OnText>{onText}</OnText>
         </TextContainer>
       </SwitchLabel>
     </>
