@@ -191,16 +191,19 @@ const Chart = () => {
       <Header/>
       <Navbar/>
 
-    <Container>
+    <ChartContainer>
       <Line type="line" data={data} options={options} />
-    </Container>
+    </ChartContainer>
     </>
   );
 };
 
 export default Chart;
 
-const Container = styled.div`
-  width: 90vw;
-  max-width: 900px;
+const ChartContainer = styled.div`
+  display: flex;
+  position: fixed;
+  padding-top: 100px;
+  padding-left: 300px;
+  width: 1200px;
 `;
