@@ -34,9 +34,12 @@ export default function MyCalendar() {
           plugins={[dayGridPlugin, googleCalendarPlugin]}
 
           googleCalendarApiKey={apiKey}
-          events={{
-            googleCalendarId: 'b1ockbust2r@gmail.com',
-          }}
+          events={[
+            { googleCalendarId: 'b1ockbust2r@gmail.com'},
+            { title: 'Event 1', date: '2023-06-01' },
+            { title: 'Event 2', date: '2023-06-05' },
+            { title: 'Event 3', date: '2023-06-12' },
+          ]}
           eventDisplay={'block'}
           eventTextColor={'#222'}
           eventColor={'#DFF6EE'}

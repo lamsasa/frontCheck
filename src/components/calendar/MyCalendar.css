@@ -88,6 +88,7 @@
   display: flex;
   justify-content: center;
   margin: 15px;
+  margin-left: 100px;
 }
 
 .fc .fc-button-group{
@@ -102,10 +103,10 @@
 
 .fc .fc-prev-button{
   position: fixed;
-  left: -400px;
+  left: -415px;
 }
 
 .fc .fc-next-button{
   position: fixed;
-  right: -280px;
+  right: -210px;
 }
