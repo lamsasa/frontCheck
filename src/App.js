@@ -6,6 +6,7 @@ import Calendar from './pages/MainHome/Calendar';
 import Login from './pages/LoginPage';
 import MainList from './pages/MainListPage';
 import MybudgetPage from './pages/MybudgetPage';
+import Chart from './pages/ChartPage';
 
 import GlobalStyle from "./styles/GlobalStyle";
 
@@ -21,6 +22,7 @@ function App() {
                         <Route path='/Calendar' element={<Calendar/>}/>
                         <Route path='/Login' element={<Login/>}/>
                         <Route path='/MainList' element={<MainList/>}/>
+                        <Route path='/Chart' element={<Chart/>}/>
                         <Route path='/mybudget' element={<MybudgetPage/>}/>
 
 
