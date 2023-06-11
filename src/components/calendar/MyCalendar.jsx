@@ -18,27 +18,36 @@ const CalendarContainer = styled.div`
 `;
 
 
-class MyCalendar extends Component {
-  
-  render() {
-    const apiKey = process.env.REACT_APP_CAL_API_KEY;
 
-    return (
-      <CalendarContainer>
-        <div className="App">
-          <FullCalendar
-            id="calendar"
-            defaultView="dayGridMonth"
-            plugins={[dayGridPlugin, googleCalendarPlugin]}
+export default function MyCalendar() {
 
-            googleCalendarApiKey={apiKey}
-            events={{
-              googleCalendarId: 'b1ockbust2r@gmail.com',
-            }}
-          />
-        </div>
-      </CalendarContainer>
-    );
-  }
+  // render() {
+  const apiKey = process.env.REACT_APP_CAL_API_KEY;
+
+
+  return (
+    <CalendarContainer>
+      <div className="App">
+        <FullCalendar
+          id="calendar"
+          defaultView="dayGridMonth"
+          plugins={[dayGridPlugin, googleCalendarPlugin]}
+
+          googleCalendarApiKey={apiKey}
+          events={[
+            { googleCalendarId: 'b1ockbust2r@gmail.com'},
+            { title: 'Event 1', date: '2023-06-01' },
+            { title: 'Event 2', date: '2023-06-05' },
+            { title: 'Event 3', date: '2023-06-12' },
+          ]}
+          eventDisplay={'block'}
+          eventTextColor={'#222'}
+          eventColor={'#DFF6EE'}
+          Toolbar
+        />
+      </div>
+    </CalendarContainer>
+  );
 }
-export default MyCalendar;
+
+// export default MyCalendar;
