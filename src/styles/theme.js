@@ -17,6 +17,7 @@ export const lightTheme = {
     // 메뉴 배경색
     menuBgColor :'#eeeeee81',
     // 달력
+    
     // today 색상
     todayColor: '#f0f0f0'
     
