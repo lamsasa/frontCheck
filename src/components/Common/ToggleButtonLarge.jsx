@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState }from 'react';
 import styled from 'styled-components';
+
+// import { useNavigate } from "react-router-dom";
 
 
 const SwitchInput = styled.input`
@@ -78,14 +80,17 @@ const OnText = styled.span`
   z-index: 1;
   margin-right: ${({ margin }) => margin || '22px'};
 
-  /* ON 버튼이 눌리면 text 색 변화 */
+  /* OFF 버튼이 눌리면 text 색 변화 */
   ${SwitchInput}:checked + ${SwitchLabel} & {
     color: #ffffff;
   }
 `;
 
 
+
 const ToggleButtonLarge = ({ offText, onText }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
   return (
     <>
       <SwitchInput id="toggle_large" type="checkbox" />

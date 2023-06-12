@@ -18,16 +18,16 @@ const CalendarContainer = styled.div`
 `;
 
 
-
-export default function MyCalendar() {
+export default function MyCalendar({ isCal }) {
 
   // render() {
   const apiKey = process.env.REACT_APP_CAL_API_KEY;
 
-
   return (
     <CalendarContainer>
+      
       <div className="App">
+        {isCal ? 
         <FullCalendar
           id="calendar"
           defaultView="dayGridMonth"
@@ -38,13 +38,22 @@ export default function MyCalendar() {
             { googleCalendarId: 'b1ockbust2r@gmail.com'},
             { title: 'Event 1', date: '2023-06-01' },
             { title: 'Event 2', date: '2023-06-05' },
-            { title: 'Event 3', date: '2023-06-12' },
+            { title: 'Event 3', date: '2023-06-10' },
           ]}
           eventDisplay={'block'}
           eventTextColor={'#222'}
           eventColor={'#DFF6EE'}
           Toolbar
-        />
+        /> :         
+        <FullCalendar
+        id="calendar"
+        defaultView="dayGridMonth"
+        plugins={[dayGridPlugin]}
+        eventDisplay={'block'}
+        eventTextColor={'#222'}
+        eventColor={'#DFF6EE'}
+        Toolbar />
+        }
       </div>
     </CalendarContainer>
   );

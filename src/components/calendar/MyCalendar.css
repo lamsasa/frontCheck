@@ -95,9 +95,9 @@
   --fc-button-bg-color: #f0f0f0;
   --fc-button-border-color:  #f0f0f0;
   --fc-button-hover-bg-color:  #f0f0f0;
-  /* --fc-button-hover-border-color: #999; */
+  --fc-button-hover-border-color: #f0f0f0;
   --fc-button-active-bg-color:  #f0f0f0;
-  /* --fc-button-active-border-color: #999; */
+  --fc-button-active-border-color: #f0f0f0;
 
 }
 
