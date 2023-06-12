@@ -106,7 +106,7 @@ const Navbar = () => {
                             <p className="navText">통계</p>
                     </CustomLink>
 
-                    <CustomLink to={'/test'} isMobile={isMobile}>
+                    <CustomLink to={'/mypage'} isMobile={isMobile}>
                             <Person width="17" height="17"/>
                             <p className="navText">마이 페이지</p>
                     </CustomLink>

@@ -1,12 +1,12 @@
-import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'; // 브라우저 라우터 이름 변경
 import {ThemeProvider} from "./components/themeProvider";
 import Home from './pages/MainHome/HomePage';
 import Calendar from './pages/MainHome/Calendar';
 import Login from './pages/LoginPage';
 import MainList from './pages/MainListPage';
-import MybudgetPage from './pages/MybudgetPage';
+import Mybudget from './pages/MybudgetPage';
 import Chart from './pages/ChartPage';
+import Mypage from './pages/MypagePage';
 
 import GlobalStyle from "./styles/GlobalStyle";
 
@@ -23,7 +23,9 @@ function App() {
                         <Route path='/Login' element={<Login/>}/>
                         <Route path='/MainList' element={<MainList/>}/>
                         <Route path='/Chart' element={<Chart/>}/>
-                        <Route path='/mybudget' element={<MybudgetPage/>}/>
+                        <Route path='/mybudget' element={<Mybudget/>}/>
+                        <Route path='/mypage' element={<Mypage/>}/>
+
 
 
                     </Routes>

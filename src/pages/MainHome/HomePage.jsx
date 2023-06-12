@@ -30,7 +30,7 @@ flex-direction: column;
 padding : 100px;
 padding-left: 230px;
 
-.calendar_Main, .calendar_SC {
+.calendar {
   display: flex;
   flex-direction: row;
 }
@@ -67,21 +67,10 @@ const Home = () => {
 
           <ToggleButtonLarge onText={"일 정"} offText={"가계부"}/>
 
-          <div className="calendar_Main">
+          <div className="calendar">
             <div className="App">
               <MyCalendar />
-            </div>
-
-            <div className="calendar-tab" >
-            </div>
-          </div>
-
-          <div className="calendar_SC">
-            <div className="App">
-              <MyCalendar isCal={true} />
-            </div>
-
-            <div className="calendar-tab" >
+              {/* <MyCalendar isCal={true} /> */}
             </div>
           </div>
 
