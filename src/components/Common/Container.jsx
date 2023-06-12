@@ -4,11 +4,11 @@ import useViewport from "../../hooks/viewportHook";
 
 const Container = () => {
     const { isMobile } = useViewport();
-    return <ContainerStyled isMobile={isMobile}/>
+    return <StyledContainer isMobile={isMobile}/>
 }
 export default Container;
 
-const ContainerStyled = styled.div`
+const StyledContainer = styled.div`
     width:100%;
     height:100vh;
     padding-left:${(props) => (props.isMobile ? '0px' : '180px')};
