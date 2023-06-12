@@ -6,22 +6,15 @@ import Header from '../../components/Common/Header'
 import Navbar from "../../components/Common/Navbar";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 
-// import Calendar from "react-calendar";
-// import "react-calendar/dist/Calendar.css";
-// import "../../styles/calendar.css";
-
 
 const HomeContainer = styled.div`
     width: 100%;
     display: flex;
     /* flex-direction: ; */
-
-
     /* flex-direction: column; */
     /* align-items: center; */
     /* justify-content: center; */
     /* vertical-align: center; */
-
 `;
 
 const CalendarContainer = styled.div`
@@ -47,12 +40,6 @@ padding-left: 230px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     }
 `;
-
-// const Test = styled.div`
-//   background: linear-gradient(137deg, rgba(167, 255, 201, 0.13) 1.63%, rgba(70, 137, 175, 0.17) 98.37%, rgba(0, 255, 133, 0.51) 98.37%);
-//   width: 150px;
-//   height: 150px;
-// `
 
 
 const Home = () => {

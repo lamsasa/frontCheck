@@ -37,8 +37,8 @@ export default function MyCalendar({ isCal }) {
             <FullCalendar
               id="calendar"
               defaultView="dayGridMonth"
-              plugins={[dayGridPlugin, googleCalendarPlugin]}
 
+              plugins={[dayGridPlugin, googleCalendarPlugin]}
               googleCalendarApiKey={apiKey}
               events={[
                 { googleCalendarId: 'b1ockbust2r@gmail.com' },
@@ -46,6 +46,12 @@ export default function MyCalendar({ isCal }) {
                 { title: 'Event 2', date: '2023-06-05' },
                 { title: 'Event 3', date: '2023-06-10' },
               ]}
+
+              headerToolbar={{
+                left: 'prev',
+                center: 'title',
+                right: 'next'}}
+
               eventDisplay={'block'}
               eventTextColor={'#222'}
               eventColor={'#DFF6EE'}
@@ -66,7 +72,7 @@ export default function MyCalendar({ isCal }) {
         <div className="calendar-tab" >
         </div>
       </div>
-      
+
     </CalendarContainer>
   );
 }
