@@ -80,7 +80,9 @@
 }
 
 .fc .fc-today-button {
-  display: none;
+  /* display: none; */
+  margin-left: 10px;
+  border-radius: 10px;
 }
 
 .fc .fc-toolbar {

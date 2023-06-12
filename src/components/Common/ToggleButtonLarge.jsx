@@ -19,13 +19,13 @@ const SwitchLabel = styled.label`
   cursor: pointer;
   width: ${({ width }) => width || '148px'};
   height: ${({ height }) => height || '49px'};
-  background: #fff;
+  background:  ${( {theme}) => theme.bgColor};
   border-radius: 100px;
   transition: 0.2s;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    background: #efefef;
+    background: ${( {theme}) => theme.bgColor};
   }
 `;
 
@@ -87,13 +87,11 @@ const OnText = styled.span`
 `;
 
 
-
 const ToggleButtonLarge = ({ offText, onText }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   return (
     <>
-      <SwitchInput id="toggle_large" type="checkbox" />
+      <SwitchInput id="toggle_large" type="checkbox"/>
       {/* width, height 설정 가능 */}
       <SwitchLabel htmlFor="toggle_large">
         {/* width, height 설정 가능 */}

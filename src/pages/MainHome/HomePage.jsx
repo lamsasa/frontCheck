@@ -39,8 +39,10 @@ margin-left: 180px;
 }
 
 .calendar_Main {
-  display: none;
   /* display: var(--display); */
+}
+.calendar_SC {
+  display: none;
 }
 
 .calendar-tab {
@@ -64,10 +66,7 @@ margin-left: 180px;
 // `
 
 
-
-
 const Home = () => {
-  // const navigate = useNavigate();
 
   return (
     <>
@@ -88,7 +87,6 @@ const Home = () => {
             </div>
           </div>
 
-
           <div className="calendar_SC">
             <div className="App">
               <MyCalendar isCal={true} />
@@ -103,5 +101,6 @@ const Home = () => {
     </>
   );
 };
+
 
 export default Home;
