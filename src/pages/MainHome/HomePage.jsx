@@ -1,9 +1,6 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import "react-calendar/dist/Calendar.css";
-import "../../styles/calendar.css";
 import MyCalendar from '../../components/Calendar/MyCalendar';
 import Header from '../../components/Common/Header'
 import Navbar from "../../components/Common/Navbar";
@@ -31,25 +28,17 @@ const CalendarContainer = styled.div`
 display: flex;
 flex-direction: column;
 padding : 100px;
-margin-left: 180px;
+padding-left: 230px;
 
 .calendar_Main, .calendar_SC {
   display: flex;
   flex-direction: row;
 }
 
-.calendar_Main {
-  /* display: var(--display); */
-}
-.calendar_SC {
-  display: none;
-}
-
 .calendar-tab {
         margin-top: 20px;
         margin-left: 30px;
         width: 300px;
-        padding: 10px;
         background-color: ${({ theme }) => theme.bgColor};
         color: #999;
         line-height: 1.125em;
