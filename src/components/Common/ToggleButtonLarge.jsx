@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 
 const SwitchInput = styled.input`
@@ -86,21 +85,26 @@ const OnText = styled.span`
 `;
 
 
-const ToggleButtonLarge = ({ offText, onText }) => {
+const ToggleButtonLarge = ({ offText, onText, onClick }) => {
+  const [isOn, setIsOn] = useState(false);
 
-
+  const handleToggle = () => {
+    setIsOn(prevState => !prevState);
+    onClick();
+  };
 
   return (
     <>
-      <SwitchInput id="toggle_large" type="checkbox"/>
-      {/* width, height 설정 가능 */}
+      <SwitchInput
+        id="toggle_large"
+        type="checkbox"
+        checked={isOn}
+        onChange={handleToggle}
+      />
       <SwitchLabel htmlFor="toggle_large">
-        {/* width, height 설정 가능 */}
-        <OnButton/>
+        <OnButton />
         <TextContainer>
-          {/* margin으로 margin-left 설정 가능 */}
           <OffText>{offText}</OffText>
-          {/* margin으로 margin-right 설정 가능 */}
           <OnText>{onText}</OnText>
         </TextContainer>
       </SwitchLabel>

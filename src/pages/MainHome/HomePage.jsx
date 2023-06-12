@@ -44,10 +44,10 @@ padding-left: 230px;
 
 
 const Home = () => {
-  const [isCalendarShown, setIsCalendarShown] = useState(false);
+  const [isOn, setIsOn] = useState(false);
 
   const handleToggle = () => {
-    setIsCalendarShown(!isCalendarShown);
+    setIsOn(prevState => !prevState);
   };
 
   return (
@@ -58,17 +58,14 @@ const Home = () => {
       <HomeContainer>
         <CalendarContainer>
           <ToggleButtonLarge
-            onText={"일 정"}
-            offText={"가계부"}
+            onText="일 정"
+            offText="가계부"
             onClick={handleToggle}
           />
 
-          <ToggleButtonLarge onText={"일 정"} offText={"가계부"}/>
-
           <div className="calendar">
             <div className="App">
-              <MyCalendar />
-              {/* <MyCalendar isCal={true} /> */}
+              {isOn ? <MyCalendar isCal={true} /> : <MyCalendar isCal={false} />}
             </div>
           </div>
         </CalendarContainer>
@@ -78,4 +75,3 @@ const Home = () => {
 };
 
 export default Home;
-
