@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-
-import MyCalendar from '../../components/Calendar/MyCalendar';
-import Header from '../../components/Common/Header'
+import MyCalendar from "../../components/Calendar/MyCalendar";
+import Header from "../../components/Common/Header";
 import Navbar from "../../components/Common/Navbar";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 
 
 const HomeContainer = styled.div`
+  width: 100%;
+  display: flex;
     width: 100%;
     display: flex;
     /* flex-direction: ; */
@@ -43,6 +44,11 @@ padding-left: 230px;
 
 
 const Home = () => {
+  const [isCalendarShown, setIsCalendarShown] = useState(false);
+
+  const handleToggle = () => {
+    setIsCalendarShown(!isCalendarShown);
+  };
 
   return (
     <>
@@ -51,6 +57,11 @@ const Home = () => {
 
       <HomeContainer>
         <CalendarContainer>
+          <ToggleButtonLarge
+            onText={"일 정"}
+            offText={"가계부"}
+            onClick={handleToggle}
+          />
 
           <ToggleButtonLarge onText={"일 정"} offText={"가계부"}/>
 
@@ -60,12 +71,11 @@ const Home = () => {
               {/* <MyCalendar isCal={true} /> */}
             </div>
           </div>
-
         </CalendarContainer>
       </HomeContainer>
     </>
   );
 };
 
-
 export default Home;
+
