@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import 'chartjs-plugin-datalabels';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -33,7 +34,7 @@ const data = {
       yAxisID: 'y_sub',
     },
 
-    //도표 그래프
+    //막대 그래프
     {
       type: 'bar',
       label: '수입',
@@ -48,6 +49,15 @@ const data = {
       ],
       //borderColor: '#3FCEA5',
       //borderWidth: 2,
+      datalabels: {
+        anchor: 'end',
+        align: 'top',
+        offset: 10,
+        color: 'black',
+        font: {
+          weight: 'bold'
+        }
+      }
     },
     {
       type: 'bar',

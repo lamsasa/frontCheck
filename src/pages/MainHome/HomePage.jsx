@@ -57,11 +57,7 @@ const Home = () => {
 
       <HomeContainer>
         <CalendarContainer>
-          <ToggleButtonLarge
-            onText="일 정"
-            offText="가계부"
-            onClick={handleToggle}
-          />
+          <ToggleButtonLarge onText="일 정" offText="가계부" isOn={isOn} handleToggle={handleToggle}/>
 
           <div className="calendar">
             <div className="App">

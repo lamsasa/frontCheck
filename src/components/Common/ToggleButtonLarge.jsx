@@ -85,22 +85,10 @@ const OnText = styled.span`
 `;
 
 
-const ToggleButtonLarge = ({ offText, onText, onClick }) => {
-  const [isOn, setIsOn] = useState(false);
-
-  const handleToggle = () => {
-    setIsOn(prevState => !prevState);
-    onClick();
-  };
-
+const ToggleButtonLarge = ({ offText, onText, isOn, handleToggle }) => {
   return (
     <>
-      <SwitchInput
-        id="toggle_large"
-        type="checkbox"
-        checked={isOn}
-        onChange={handleToggle}
-      />
+      <SwitchInput id="toggle_large" type="checkbox" checked={isOn} onChange={handleToggle}/>
       <SwitchLabel htmlFor="toggle_large">
         <OnButton />
         <TextContainer>
