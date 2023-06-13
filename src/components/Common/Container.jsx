@@ -1,14 +1,13 @@
-import React from "react";
 import styled from "styled-components";
 import useViewport from "../../hooks/viewportHook";
-
-const Container = () => {
+const Container = ({children}) => {
     const { isMobile } = useViewport();
-    return <StyledContainer isMobile={isMobile}/>
-}
+        return <ContainerStyle isMobile={isMobile}>{children}</ContainerStyle>;
+    };
+
 export default Container;
 
-const StyledContainer = styled.div`
+const ContainerStyle = styled.div`
     width:100%;
     height:100vh;
     padding-left:${(props) => (props.isMobile ? '0px' : '180px')};

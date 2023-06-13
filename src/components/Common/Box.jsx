@@ -1,12 +1,12 @@
-import React from "react";
 import styled from "styled-components";
-
-const Box = ({height}) => {
-    return <BoxStyled height={height}/>
-}
+import useViewport from "../../hooks/viewportHook";
+const Box = ({children}) => {
+    const { isMobile } = useViewport();
+        return <BoxStyle isMobile={isMobile}>{children}</BoxStyle>;
+    };
 export default Box;
 
-const BoxStyled = styled.div`
+const BoxStyle = styled.div`
     width:80%;
     margin:0 auto;
     margin-bottom:20px;

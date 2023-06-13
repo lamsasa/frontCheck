@@ -23,6 +23,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
+    
   
     div {
       display: flex;
@@ -37,6 +38,7 @@ const DarkModeButton = styled.button`
     background-color: ${({ theme }) => theme.toggleButton.bgColor};
     box-shadow: ${({ theme }) => theme.toggleButton.boxShadow};
     border: none;   
+    
 `
 
 const Header = () => {

@@ -1,8 +1,9 @@
+
 import styled from 'styled-components';
 
-const ClickButton = ({width, height, text}) => {
+const ClickButton = ({width, height, children}) => {
   
-        return <ClickButtonStyled width={width} height={height}>{text}</ClickButtonStyled>;
+        return <ClickButtonStyled width={width} height={height}>{children}</ClickButtonStyled>;
     };
 
 export default ClickButton;
@@ -14,7 +15,7 @@ flex-direction: row;
 justify-content: center;
 align-items: center;
 padding: 0 16px;
-
+font-family: "Noto Sans KR";
 width: ${props => props.width || '128px'};
 height: ${props => props.height || '40px'};
 
