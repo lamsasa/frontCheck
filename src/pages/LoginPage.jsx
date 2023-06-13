@@ -1,54 +1,30 @@
-import {GoogleLogin} from "@react-oauth/google";
-import {GoogleOAuthProvider} from "@react-oauth/google";
-import styled from "styled-components";
-import { createGlobalStyle } from 'styled-components';
+import { Box, Button } from "@mui/material";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom right, rgba(167, 255, 201, 0.3), rgba(0, 255, 133, 0.3));
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-`;
+const Login = () => {
+    const googleLogin = useGoogleLogin({
+        onSuccess: async tokenResponse => {
+            console.log(tokenResponse);
+            // fetching userinfo can be done on the client or the server
+            const userInfo = await axios
+                .get('https://www.googleapis.com/oauth2/v3/userinfo', {
+                    headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+                })
+                .then(res => res.data);
 
-const LoginBox = styled.div`
-    width: 500px;
-    height: 300px;
-    background:  rgba(255, 255, 255, 0.7);
-    box-shadow: 0 0 20px rgba(0, 255, 133, 0.5);
-    display: flex;
-    border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-`;
+            console.log(userInfo);
+        },
+        flow: 'auth-code',
+    });
 
-
-const GoogleLoginButton = () => {
-    const clientId = '937459665159-tfpfnlmnrpc0s2d4gc8781k399jjg2oj.apps.googleusercontent.com'
     return (
-        <>
-        <GlobalStyle/>
-        <LoginBox>
-            <GoogleOAuthProvider clientId={clientId}>
-                <GoogleLogin
-                    onSuccess={(res) => {
-                        console.log(res);
-                    }}
-                    onFailure={(err) => {
-                        console.log(err);
-                    }}
-                />
-            </GoogleOAuthProvider>
-        </LoginBox>
-        </>
+        <Box>
+            <Box>
+                <Button onClick={googleLogin}>Google Button</Button>
+            </Box>
+        </Box>
     );
 };
 
-export default GoogleLoginButton
+export default Login;
