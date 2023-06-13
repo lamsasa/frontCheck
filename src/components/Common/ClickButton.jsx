@@ -15,7 +15,6 @@ flex-direction: row;
 justify-content: center;
 align-items: center;
 padding: 0 16px;
-font-family: "Noto Sans KR";
 width: ${props => props.width || '128px'};
 height: ${props => props.height || '40px'};
 

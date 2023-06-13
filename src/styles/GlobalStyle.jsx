@@ -20,6 +20,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Noto Sans KR";// 폰트 설정
   }  
 
+  button{
+    font-family: "Noto Sans KR";// 폰트 설정
+  }
+  div{
+    font-family: "Noto Sans KR";// 폰트 설정
+  }
   body {
     font-family: "Noto Sans KR";// 폰트 설정
     background: ${({ theme }) => theme.background};
