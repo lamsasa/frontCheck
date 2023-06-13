@@ -10,7 +10,7 @@ const BoxStyle = styled.div`
     width:80%;
     margin:0 auto;
     margin-bottom:20px;
-    height:${props => props.height || '150px'};
+    height:${props => props.height || '500px'};
     background-color:${({theme}) => theme.bgColor};
     box-shadow: 0px 5px 2px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
