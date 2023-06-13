@@ -1,47 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-
-import "react-calendar/dist/Calendar.css";
-import "../../styles/calendar.css";
-import MyCalendar from '../../components/Calendar/MyCalendar';
-import Header from '../../components/Common/Header'
+import MyCalendar from "../../components/Calendar/MyCalendar";
+import Header from "../../components/Common/Header";
 import Navbar from "../../components/Common/Navbar";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 
 
-// import Calendar from "react-calendar";
-// import "react-calendar/dist/Calendar.css";
-// import "../../styles/calendar.css";
-
-
 const HomeContainer = styled.div`
+  width: 100%;
+  display: flex;
     width: 100%;
     display: flex;
     /* flex-direction: ; */
-
-
     /* flex-direction: column; */
     /* align-items: center; */
     /* justify-content: center; */
     /* vertical-align: center; */
-
 `;
 
 const CalendarContainer = styled.div`
 display: flex;
 flex-direction: column;
 padding : 100px;
-margin-left: 180px;
+padding-left: 230px;
 
 .calendar {
   display: flex;
   flex-direction: row;
 }
+
 .calendar-tab {
         margin-top: 20px;
         margin-left: 30px;
         width: 300px;
-        padding: 10px;
         background-color: ${({ theme }) => theme.bgColor};
         color: #999;
         line-height: 1.125em;
@@ -51,38 +42,29 @@ margin-left: 180px;
     }
 `;
 
-// const Test = styled.div`
-//   background: linear-gradient(137deg, rgba(167, 255, 201, 0.13) 1.63%, rgba(70, 137, 175, 0.17) 98.37%, rgba(0, 255, 133, 0.51) 98.37%);
-//   width: 150px;
-//   height: 150px;
-// `
-
 
 const Home = () => {
+  const [isOn, setIsOn] = useState(false);
+
+  const handleToggle = () => {
+    setIsOn(prevState => !prevState);
+  };
+
   return (
     <>
       <Header />
       <Navbar />
 
       <HomeContainer>
-
-
         <CalendarContainer>
-          <ToggleButtonLarge onText={"일 정"} offText={"가계부"} />
+          <ToggleButtonLarge onText="일 정" offText="가계부" isOn={isOn} handleToggle={handleToggle}/>
 
           <div className="calendar">
-
             <div className="App">
-              <MyCalendar />
+              {isOn ? <MyCalendar isCal={true} /> : <MyCalendar isCal={false} />}
             </div>
-
-            <div className="calendar-tab" >
-            </div>
-
           </div>
-
         </CalendarContainer>
-
       </HomeContainer>
     </>
   );
