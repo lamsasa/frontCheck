@@ -1,5 +1,5 @@
 .fc {
-  padding: 10px;
+  /* padding: 10px; */
   width: 800px;
   height: auto;
   display: flex;
@@ -13,8 +13,13 @@
 }
 
 .fc .fc-toolbar-title {
+  width: 200px;
+  /* left: 100px; */
   font-weight: bold;
   font-size: 2.25rem;
+  text-align: center;
+  vertical-align: center;
+  margin-left: 10px;
 }
 
 /* 일요일 날짜: 빨간색 */
@@ -85,21 +90,13 @@
 
 .fc .fc-today-button {
   /* display: none; */
-  margin-left: 10px;
+  /* margin-left: 10px; */
   border-radius: 10px;
   background-color: #fff;
   /* border: 1px solid #fff; */
 }
 
-.fc .fc-button-primary {
-  background-color:  #f0f0f0;
-  border-color:  #f0f0f0;
-  --fc-button-hover-bg-color: #f0f0f0; 
-    --fc-button-hover-border-color: #f0f0f0;
-    --fc-button-active-bg-color: #f0f0f0;
-    --fc-button-active-border-color: #f0f0f0;
 
-}
 .fc .fc-button:not(:disabled) {
   cursor: pointer;
   color: #fff;
@@ -120,14 +117,7 @@
   border-color:#fff;
 } */
 
-.fc .fc-button-primary:disabled {
-  background-color: #fff;
-  color: #fff;
-  border: none;
-  /* border-color: var(--fc-button-border-color; */
 
-
-}
 .fc .fc-toolbar {
   align-items: center;
   display: flex;
@@ -137,21 +127,16 @@
 }
 
 .fc .fc-button-group{
-  --fc-button-bg-color: #f0f0f0;
-  --fc-button-border-color:  #f0f0f0;
-  --fc-button-hover-bg-color:  #f0f0f0;
-  --fc-button-hover-border-color: #f0f0f0;
-  --fc-button-active-bg-color:  #f0f0f0;
-  --fc-button-active-border-color: #f0f0f0;
+  width: 40px;
 }
 
 .fc .fc-prev-button{
   position: fixed;
-  left: -415px;
+  left: -500px;
 }
 
 .fc .fc-next-button{
   position: fixed;
-  right: -210px;
+  right: -110px;
 }
 
