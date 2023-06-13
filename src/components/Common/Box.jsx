@@ -23,5 +23,17 @@ const BoxStyle = styled.div`
         font-weight: bolder;
         font-size: 18px;
     }
+    .date{
+        margin:20px;
+        font-style: normal;
+        font-weight: bolder;
+        font-size: 18px;
+    }
+    .total{
+        text-align:right;
+    }
+    .totalMoney{
+        font-size:15px;
+    }
 
 `

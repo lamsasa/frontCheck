@@ -30,6 +30,7 @@ const Chart = styled.div`
     }
     .money{
         width:10%;
-        padding-left:1%
+        padding-left:1%;
+        text-align:right;
     }
 `
