@@ -7,12 +7,14 @@ import Mybudget from './pages/MybudgetPage';
 import Chart from './pages/ChartPage';
 import GlobalStyle from "./styles/GlobalStyle";
 import Mypage from "./pages/MypagePage";
-
+import {GoogleOAuthProvider} from "@react-oauth/google";
 function App() {
     return (
         <>
+
             <ThemeProvider>
             <GlobalStyle/>
+                <GoogleOAuthProvider clientId="424508353024-c5edcpeveh5okgqi047k8odsj3vgksa6.apps.googleusercontent.com">
                 <Router>
                     <Routes>
 
@@ -25,6 +27,7 @@ function App() {
 
                     </Routes>
                 </Router>
+                </GoogleOAuthProvider>
             </ThemeProvider>
         </>
 
