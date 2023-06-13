@@ -9,7 +9,8 @@ export default Container;
 
 const ContainerStyle = styled.div`
     width:100%;
-    height:100vh;
+    height:100%;
     padding-left:${(props) => (props.isMobile ? '0px' : '180px')};
     padding-top:100px;
+    padding-bottom:${(props) => (props.isMobile ? '50px' : '0px')};
 `
