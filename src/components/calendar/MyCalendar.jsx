@@ -16,6 +16,21 @@ const CalendarContainer = styled.div`
   --fc-today-bg-color: ${({ theme }) => theme.todayColor};
 }
 
+.fc .fc-button-primary:disabled {
+  background-color: ${({ theme }) => theme.bgColor};
+  color: ${({ theme }) => theme.bgColor};
+  border: none;
+}
+
+.fc .fc-button-primary {
+  background-color: ${({ theme }) => theme.todayColor};
+  border-color: ${({ theme }) => theme.todayColor};
+  --fc-button-hover-bg-color: ${({ theme }) => theme.todayColor};
+  --fc-button-hover-border-color: ${({ theme }) => theme.todayColor};
+  --fc-button-active-bg-color: ${({ theme }) => theme.todayColor};
+  --fc-button-active-border-color:${({ theme }) => theme.todayColor};
+}
+
 .calendar_Main, .calendar_SC {
   display: flex;
   flex-direction: row;
@@ -47,10 +62,10 @@ export default function MyCalendar({ isCal }) {
                 { title: 'Event 3', date: '2023-06-10' },
               ]}
 
-              headerToolbar={{
-                left: 'prev',
-                center: 'title',
-                right: 'next'}}
+              // headerToolbar={{
+              //   left: 'prev',
+              //   center: 'title',
+              //   right: 'next'}}
 
               eventDisplay={'block'}
               eventTextColor={'#222'}
