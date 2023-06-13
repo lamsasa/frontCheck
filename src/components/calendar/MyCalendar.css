@@ -1,7 +1,4 @@
 .fc {
-  /* padding: 10px; */
-  width: 800px;
-  height: auto;
   display: flex;
   justify-items: center;
 
@@ -124,6 +121,7 @@
   justify-content: center;
   margin: 15px;
   margin-left: 100px;
+  padding: 10px;
 }
 
 .fc .fc-button-group{

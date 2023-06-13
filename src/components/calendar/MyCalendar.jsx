@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import useViewport from '../../hooks/viewportHook';
 import './MyCalendar.css';
 
 const CalendarContainer = styled.div`
@@ -10,6 +11,8 @@ const CalendarContainer = styled.div`
 .fc {
   background-color: ${({ theme }) => theme.bgColor};
   --fc-border-color: ${({ theme }) => theme.bgColor};
+  width: ${(props) => (props.isMobile ? '768px' : '800px')};
+  height: ${(props) => (props.isMobile ? '50px' : 'auto')};
 }
 
 .fc-day-today {
@@ -39,12 +42,13 @@ const CalendarContainer = styled.div`
 
 
 export default function MyCalendar({ isCal }) {
+  const { isMobile } = useViewport();
 
   // render() {
   const apiKey = process.env.REACT_APP_CAL_API_KEY;
 
   return (
-    <CalendarContainer>
+    <CalendarContainer isMobile={isMobile}>
 
       <div className="calendar_Main">
         {isCal ?
