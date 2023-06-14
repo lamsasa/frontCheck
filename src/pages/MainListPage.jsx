@@ -17,7 +17,7 @@ const MainListContainer = styled.div`
         display: flex;
         flex-direction: column;
         align-content: center;
-        background-color: #a1d3ff;
+        background-color: #fff;
         position: fixed;
         top: 120px;
         left: 350px;
