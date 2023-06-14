@@ -124,3 +124,47 @@ const CustomLink = styled(NavLink)`
 
 
 
+const Navbar = () => {
+    const { isMobile } = useViewport();
+    return(
+        <NavContainer isMobile={isMobile}> 
+                    {isMobile && ( 
+                        <CustomLink to={"/"} isMobile={isMobile}>
+                            <Calendar width="20" height="20"/>
+                            <p className="navText">달력</p>
+                        </CustomLink>
+                    )}
+
+                    <CustomLink to={'/mybudget'} isMobile={isMobile}>
+                            <CreditCard width="20" height="17"/>
+                            <p className="navText">나의 예산</p>
+                    </CustomLink>
+
+                    <CustomLink to={'/MainList'} isMobile={isMobile}>
+                            <List width="17" height="17"/>
+                            <p className="navText">소비 리스트</p>
+                    </CustomLink>
+
+                    <CustomLink to={'/Chart'} isMobile={isMobile}>
+                            <Stats width="17" height="17"/>
+                            <p className="navText">통계</p>
+                    </CustomLink>
+
+                    <CustomLink to={'/mypage'} isMobile={isMobile}>
+                            <Person width="17" height="17"/>
+                            <p className="navText">마이 페이지</p>
+                    </CustomLink>
+
+                    {!isMobile && ( 
+                        <CustomLink to={'/logout'} className="logoutDiv">
+                                <Logout width="17" height="" fill="#575757"/>
+                                <p className="navText">로그아웃</p>                         
+                        </CustomLink>
+                    )}
+                    
+
+        </NavContainer>
+    )
+}
+
+export default Navbar;

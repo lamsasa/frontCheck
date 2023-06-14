@@ -6,6 +6,32 @@ import IncomeList from '../components/TransactionList/IncomeList';
 import ExpenseList from '../components/TransactionList/ExpenseList';
 import TotalList from '../components/TransactionList/TotalList';
 
+const MainList = () => {
+
+    const handleSlideChange = (index) => {
+        console.log('Current slide index:', index);
+      };
+    
+      const slides = [
+        <div><TotalList/></div>,
+        <div><ExpenseList/></div>,
+        <div><IncomeList/></div>
+      ];
+
+    return(
+        <>
+        <Header/>
+        <Navbar/>
+
+        <MainListContainer>
+        <div className='slideContainer'><SlideButton slides={slides} onSlideChange={handleSlideChange} /></div>
+        </MainListContainer>
+        </>
+    );
+}
+export default MainList
+
+
 const MainListContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -36,28 +62,3 @@ const MainListContainer = styled.div`
   }
 
 `;
-
-const MainList = () => {
-
-    const handleSlideChange = (index) => {
-        console.log('Current slide index:', index);
-      };
-    
-      const slides = [
-        <div><TotalList/></div>,
-        <div><ExpenseList/></div>,
-        <div><IncomeList/></div>
-      ];
-
-    return(
-        <>
-        <Header/>
-        <Navbar/>
-
-        <MainListContainer>
-        <div className='slideContainer'><SlideButton slides={slides} onSlideChange={handleSlideChange} /></div>
-        </MainListContainer>
-        </>
-    );
-}
-export default MainList
