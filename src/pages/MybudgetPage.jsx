@@ -1,36 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
 import Header from "../components/Common/Header"
 import Navbar from "../components/Common/Navbar";
 import ClickButton  from "../components/Common/ClickButton";
 import Container from "../components/Common/Container";
 import Box from "../components/Common/Box";
 import BudgetChart from "../components/MyBudget/BudgetChart";
-import {ReactComponent as Right} from '../assets/right.svg';
-import {ReactComponent as Left} from '../assets/left.svg';
 import CategoryTotalBar from "../components/MyBudget/CategoryTotalBar";
+import BudgetCalendar from "../components/MyBudget/BudgetCalendar";
+
 
 const MybudgetPage = () => {
-    const currentDate = new Date();
-    const [year, setYear] = useState(currentDate.getFullYear());
-    const [month, setMonth] = useState(currentDate.getMonth() + 1);
-
-    const handleNextMonth = () => {
-        if (month === 12) {
-          setYear(year + 1);
-          setMonth(1);
-        } else {
-          setMonth(month + 1);
-        }
-      };
-    
-      const handlePreviousMonth = () => {
-        if (month === 1) {
-          setYear(year - 1);
-          setMonth(12);
-        } else {
-          setMonth(month - 1);
-        }
-      };
 
     const categoryData = [
         { Name: '식비', Money: '60000', date : "2023-06"},
@@ -65,25 +44,21 @@ const MybudgetPage = () => {
                         <ClickButton width={'90px'}>예산 추가</ClickButton>
                     </div>    
                     <div className="content">
-                        <div>
-                        <Left onClick={handlePreviousMonth}/>
-                        <span className="date">{year}년 {month}월</span>
-                        <Right onClick={handleNextMonth}/>
-                        </div>
+                        <BudgetCalendar></BudgetCalendar>
                         <div className="total">
                             <p>총 예산</p>
-                            <p className="totalMoney">{totalData[0].Money}원</p>
+                            <p className="totalMoney">{totalData[0].Money ? totalData[0].Money : "0"}원</p>
                         </div>
                     </div>
                     <div className="content">
-                        <CategoryTotalBar/>
+                        <CategoryTotalBar categoryData={categoryData} totalData={totalData}/>
                     </div>
                     
                     
                 </Box>
                 <Box>
                     <div className="center">
-                        {categoryData.map(data => <BudgetChart name={data.Name} money={data.Money} totalMoney={totalData[0].Money} />)}
+                        {categoryData && categoryData.map(data => <BudgetChart name={data.Name} money={data.Money} totalMoney={totalData[0].Money ? totalData[0].Money : "0"} />)}
                     </div>
                     
                 </Box>

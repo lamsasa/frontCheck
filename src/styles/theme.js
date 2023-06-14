@@ -18,8 +18,9 @@ export const lightTheme = {
     menuBgColor :'#eeeeee81',
     // 달력
     // today 색상
-    todayColor: '#f0f0f0'
-    
+    todayColor: '#f0f0f0',
+    // 나의 예산 달력 버튼
+    budgetButton : "#404040"
 };
 
 export const darkTheme = {
@@ -40,5 +41,7 @@ export const darkTheme = {
     menuBgColor :'#292C35',
     // 달력
     // today 색상
-    todayColor: '#545862'
+    todayColor: '#545862',
+    // 나의 예산 달력 버튼
+    budgetButton : '#ffffff'
 }

@@ -2,12 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import categoryList from '../../styles/categoryColor';
 
-const CategoryTotalBar = ({ name, money, totalMoney }) => {
-    const selectedItem = categoryList.find((item) => item.Name === name);
-    const percent = ((money / totalMoney) * 100).toFixed(2) + "%"; // 소수점 둘째자리까지 표시
+const CategoryTotalBar = ({categoryData, totalData}) => {
+    
+
     return (
       <TotalBar>
-        
+        {categoryData.map(data => {
+        const selectedItem = categoryList.find(item => item.Name === data.Name);
+        const percent = `${(data.Money / totalData[0].Money) * 100}%`;
+        const color = selectedItem ? selectedItem.Color : '#FF7076';
+
+        return <Bar key={data.Name} width={percent} color={color} />;
+      })}
       </TotalBar>
     );
   };
@@ -19,6 +25,7 @@ const CategoryTotalBar = ({ name, money, totalMoney }) => {
     height: 5px;
     background-color: ${props => props.color};
     border-radius: 100px;
+    
   `;
   
   const TotalBar = styled.div`
@@ -27,4 +34,5 @@ const CategoryTotalBar = ({ name, money, totalMoney }) => {
     background-color: #D6D6D6;
     border-radius: 100px;
     margin-bottom:20px;
+    display:flex;
   `;
