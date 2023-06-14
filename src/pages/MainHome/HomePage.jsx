@@ -5,6 +5,7 @@ import Header from "../../components/Common/Header";
 import Navbar from "../../components/Common/Navbar";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 import useViewport from "../../hooks/viewportHook";
+import { Container } from "@mui/material";
 
 const HomeContainer = styled.div`
   width: ${(props) => (props.isMobile ? '768px' : '100%')};
@@ -56,7 +57,7 @@ const Home = () => {
       <Header />
       <Navbar />
 
-      <HomeContainer>
+      <Container>
         <CalendarContainer>
           <ToggleButtonLarge onText="일 정" offText="가계부" isOn={isOn} handleToggle={handleToggle}/>
 
@@ -68,7 +69,7 @@ const Home = () => {
 
           <calendar/>
         </CalendarContainer>
-      </HomeContainer>
+      </Container>
     </>
   );
 };

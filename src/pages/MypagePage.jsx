@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Header from '../components/Common/Header';
 import Navbar from "../components/Common/Navbar";
 
-const MypageContainer = styled.div`
+const Container = styled.div`
 
     display: flex;
     max-width: 100%;
@@ -39,10 +39,9 @@ const Mypage = () => {
             <Header/>
             <Navbar/>
 
-            <MypageContainer>
+            <Container>
                 <div className="mypage-box"></div>
-
-            </MypageContainer>
+            </Container>
         </>
     );
 };
