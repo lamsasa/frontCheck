@@ -36,5 +36,6 @@ const BoxStyle = styled.div`
     .totalMoney{
         font-size:15px;
     }
+    
 
 `
