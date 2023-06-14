@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useRef }from 'react';
 import styled from 'styled-components';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+// import interactionPlugin from "@fullcalendar/interaction";
 import useViewport from '../../hooks/viewportHook';
 import './MyCalendar.css';
+
+// import '@fullcalendar/core/main.css';
+// import '@fullcalendar/daygrid/main.css';
+// import '@fullcalendar/timegrid/main.css';
 
 const CalendarContainer = styled.div`
 
 .fc {
   background-color: ${({ theme }) => theme.bgColor};
   --fc-border-color: ${({ theme }) => theme.bgColor};
-  width: ${(props) => (props.isMobile ? '768px' : '800px')};
+  width: ${(props) => (props.isMobile ? '500px' : '800px')};
   height: ${(props) => (props.isMobile ? '50px' : 'auto')};
 }
 
@@ -43,6 +48,8 @@ const CalendarContainer = styled.div`
 
 export default function MyCalendar({ isCal }) {
   const { isMobile } = useViewport();
+
+    const calendarRef = useRef(null);
 
   // render() {
   const apiKey = process.env.REACT_APP_CAL_API_KEY;
