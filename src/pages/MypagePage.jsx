@@ -2,11 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../components/Common/Header";
 import Navbar from "../components/Common/Navbar";
+import Container from "../components/Common/Container";
 
-const Container = styled.div`
 
-    display: flex;
-    max-width: 100%;
+const Mypage = () => {
+  return (
+    <>
+      <Header />
+      <Navbar />
+      <Container>
+        <MypageStyle>
+          <div className="mypage-box"></div>
+        </MypageStyle>
+      </Container>
+    </>
+  );
+};
+
+export default Mypage;
+
+
+const MypageStyle = styled.div`
+  display: flex;
+  max-width: 100%;
 
   .mypage-box {
     width: 800px;
@@ -31,18 +49,3 @@ const Container = styled.div`
     }
   }
 `;
-
-const Mypage = () => {
-  return (
-    <>
-      <Header />
-      <Navbar />
-
-            <Container>
-                <div className="mypage-box"></div>
-            </Container>
-        </>
-    );
-};
-
-export default Mypage;

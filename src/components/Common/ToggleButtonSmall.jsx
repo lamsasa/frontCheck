@@ -1,6 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
+const ToggleButtonSmall = ({ offText, onText }) => {
+  return (
+    <>
+      <SwitchInput id="toggle_small" type="checkbox" />
+      {/* width, height 설정 가능 */}
+      <SwitchLabel htmlFor="toggle_small">
+        {/* width, height 설정 가능 */}
+        <OnButton />
+        <TextContainer>
+          {/* margin으로 margin-left 설정 가능 */}
+          <OffText>{offText}</OffText>
+          {/* margin으로 margin-right 설정 가능 */}
+          <OnText>{onText}</OnText>
+        </TextContainer>
+      </SwitchLabel>
+    </>
+  );
+};
+
+export default ToggleButtonSmall;
+
 const SwitchInput = styled.input`
   position: absolute;
   appearance: none;
@@ -14,8 +35,8 @@ const SwitchLabel = styled.label`
   position: relative;
 
   cursor: pointer;
-  width: 63px;
-  height: 24px;
+  width: 100px;
+  height: 40px;
   background: #fff;
   border-radius: 100px;
   transition: 0.2s;
@@ -28,10 +49,10 @@ const SwitchLabel = styled.label`
 
 const OnButton = styled.span`
   position: absolute;
-  left: 3px;
+  left: 3.5px;
   display: inline-block;
-  width: 28px;
-  height: 20px;
+  width: 50px;
+  height: 34px;
   transition: 0.2s;
   background: linear-gradient(
     100deg,
@@ -63,12 +84,12 @@ const TextContainer = styled.div`
 
 const OffText = styled.span`
   font-weight: 500;
-  font-size: 20px;
+  font-size: 2.2px;
   line-height: 19px;
   color: #ffffff;
   position: relative;
   z-index: 1;
-  margin-left: 5px;
+  margin-left: 14px;
 
   /* ON 버튼이 눌리면 text 색 변화 */
   ${SwitchInput}:checked + ${SwitchLabel} & {
@@ -78,36 +99,15 @@ const OffText = styled.span`
 
 const OnText = styled.span`
   font-weight: 500;
-  font-size: 20px;
+  font-size: 2.2px;
   line-height: 19px;
   color: rgba(192, 192, 192, 1);
   position: relative;
   z-index: 1;
-  margin-right: 7px;
+  margin-right: 17px;
 
   /* ON 버튼이 눌리면 text 색 변화 */
   ${SwitchInput}:checked + ${SwitchLabel} & {
     color: #ffffff;
   }
 `;
-
-const ToggleButtonSmall = ({ offText, onText }) => {
-  return (
-    <>
-      <SwitchInput id="toggle_small" type="checkbox" />
-      {/* width, height 설정 가능 */}
-      <SwitchLabel htmlFor="toggle_small">
-        {/* width, height 설정 가능 */}
-        <OnButton />
-        <TextContainer>
-          {/* margin으로 margin-left 설정 가능 */}
-          <OffText>{offText}</OffText>
-          {/* margin으로 margin-right 설정 가능 */}
-          <OnText>{onText}</OnText>
-        </TextContainer>
-      </SwitchLabel>
-    </>
-  );
-};
-
-export default ToggleButtonSmall;

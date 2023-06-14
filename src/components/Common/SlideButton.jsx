@@ -4,45 +4,6 @@ import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BackBar = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 224px;
-  height: 49px;
-
-  background: ${({ theme }) => theme.bgColor};
-  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 100px;
-  cursor: pointer;
-
-  margin-left: 411px;
-
-  @media (max-width: 768px) {
-    margin-left: 20%;
-  }
-`;
-
-const SlideIndexButton = styled.button`
-  color: #b7b7b7;
-  background: none;
-  border: none;
-  cursor: pointer;
-
-  width: 62px;
-  height: 40px;
-
-  &.active {
-    background: linear-gradient(
-      103.72deg,
-      rgba(66, 230, 149, 0.8) 10.74%,
-      rgba(59, 178, 184, 0.8) 85.3%
-    );
-    color: white;
-    box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 100px;
-  }
-`;
 
 const SlideButton = ({ slides, onSlideChange }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -95,3 +56,44 @@ const SlideButton = ({ slides, onSlideChange }) => {
 };
 
 export default SlideButton;
+
+
+const BackBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 224px;
+  height: 49px;
+
+  background: ${({ theme }) => theme.bgColor};
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+  cursor: pointer;
+
+  margin-left: 411px;
+
+  @media (max-width: 768px) {
+    margin-left: 20%;
+  }
+`;
+
+const SlideIndexButton = styled.button`
+  color: #b7b7b7;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  width: 62px;
+  height: 40px;
+
+  &.active {
+    background: linear-gradient(
+      103.72deg,
+      rgba(66, 230, 149, 0.8) 10.74%,
+      rgba(59, 178, 184, 0.8) 85.3%
+    );
+    color: white;
+    box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 100px;
+  }
+`;

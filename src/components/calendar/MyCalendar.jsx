@@ -20,7 +20,7 @@ const CalendarContainer = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 
     width: ${(props) => (props.isMobile ? "500px" : "800px")};
-    height: ${(props) => (props.isMobile ? "800px" : "auto")};
+    height: ${(props) => (props.isMobile ? "530px" : "auto")};
 
     background-color: ${({ theme }) => theme.bgColor};
     --fc-border-color: ${({ theme }) => theme.bgColor};

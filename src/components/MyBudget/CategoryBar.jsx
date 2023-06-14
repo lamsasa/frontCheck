@@ -22,6 +22,7 @@ const CategoryBar = ({ name, money, totalMoney }) => {
 
 export default CategoryBar;
 
+
 const moveInAnimation = keyframes`
     0% {
       transform: translateX(-100%);

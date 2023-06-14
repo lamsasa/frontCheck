@@ -1,6 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 
+
+const ToggleButtonLarge = ({ offText, onText, isOn, handleToggle }) => {
+  return (
+    <>
+      <SwitchInput
+        id="toggle_large"
+        type="checkbox"
+        checked={isOn}
+        onChange={handleToggle}
+      />
+      <SwitchLabel htmlFor="toggle_large">
+        <OnButton />
+        <TextContainer>
+          <OffText>{offText}</OffText>
+          <OnText>{onText}</OnText>
+        </TextContainer>
+      </SwitchLabel>
+    </>
+  );
+};
+
+export default ToggleButtonLarge;
+
+
 const SwitchInput = styled.input`
   position: absolute;
   appearance: none;
@@ -90,25 +114,3 @@ const OnText = styled.span`
     color: #ffffff;
   }
 `;
-
-const ToggleButtonLarge = ({ offText, onText, isOn, handleToggle }) => {
-  return (
-    <>
-      <SwitchInput
-        id="toggle_large"
-        type="checkbox"
-        checked={isOn}
-        onChange={handleToggle}
-      />
-      <SwitchLabel htmlFor="toggle_large">
-        <OnButton />
-        <TextContainer>
-          <OffText>{offText}</OffText>
-          <OnText>{onText}</OnText>
-        </TextContainer>
-      </SwitchLabel>
-    </>
-  );
-};
-
-export default ToggleButtonLarge;

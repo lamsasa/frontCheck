@@ -6,6 +6,32 @@ import AvatarButton from "../AvatarButton";
 import { useContext } from "react";
 import { ThemeContext } from "../themeProvider";
 
+const Header = () => {
+  const { isDark, setIsDark } = useContext(ThemeContext);
+  const handleDarkModeToggle = () => {
+    setIsDark(!isDark);
+  };
+  return (
+    <Container>
+      <NavLink to="/">
+        <Logo src={logo} alt="#"></Logo>
+      </NavLink>
+
+      <div className="headerRight">
+        {/* dark mode button*/}
+        <DarkModeButton onClick={handleDarkModeToggle}>
+          <img src={darkMode} alt="#" />
+        </DarkModeButton>
+
+        <AvatarButton name="홍비"></AvatarButton>
+      </div>
+    </Container>
+  );
+};
+
+export default Header;
+
+
 const Logo = styled.img`
   width: 213px;
   height: 39px;
@@ -38,27 +64,3 @@ const DarkModeButton = styled.button`
   border: none;
 `;
 
-const Header = () => {
-  const { isDark, setIsDark } = useContext(ThemeContext);
-  const handleDarkModeToggle = () => {
-    setIsDark(!isDark);
-  };
-  return (
-    <Container>
-      <NavLink to="/">
-        <Logo src={logo} alt="#"></Logo>
-      </NavLink>
-
-      <div className="headerRight">
-        {/* dark mode button*/}
-        <DarkModeButton onClick={handleDarkModeToggle}>
-          <img src={darkMode} alt="#" />
-        </DarkModeButton>
-
-        <AvatarButton name="홍비"></AvatarButton>
-      </div>
-    </Container>
-  );
-};
-
-export default Header;
