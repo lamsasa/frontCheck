@@ -1,17 +1,15 @@
-import React, { useEffect, useRef } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
+import React, { useEffect, useRef } from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction"; // interaction 패키지 추가설치 필요
 import { INITIAL_EVENTS, createEventId } from "./event-utils"; // 이벤트 셋팅 함수
 
 // import '@fullcalendar/daygrid/main.css';
 
-
 export default class calendar extends React.Component {
-  
-   // 이벤트 내용이 반영될 배열
+  // 이벤트 내용이 반영될 배열
   state = {
-    currentEvents: [],  
+    currentEvents: [],
   };
 
   render() {
