@@ -7,7 +7,7 @@ const CategoryTotalBar = ({ name, money, totalMoney }) => {
     const percent = ((money / totalMoney) * 100).toFixed(2) + "%"; // 소수점 둘째자리까지 표시
     return (
       <TotalBar>
-        <Bar color={selectedItem ? selectedItem.Color : '#FF7076'} width={percent} />
+        
       </TotalBar>
     );
   };
@@ -22,8 +22,9 @@ const CategoryTotalBar = ({ name, money, totalMoney }) => {
   `;
   
   const TotalBar = styled.div`
-    width: 80%;
+    width: 100%;
     height: 5px;
     background-color: #D6D6D6;
     border-radius: 100px;
+    margin-bottom:20px;
   `;

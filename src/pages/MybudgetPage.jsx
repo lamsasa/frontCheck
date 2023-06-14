@@ -7,6 +7,7 @@ import Box from "../components/Common/Box";
 import BudgetChart from "../components/MyBudget/BudgetChart";
 import {ReactComponent as Right} from '../assets/right.svg';
 import {ReactComponent as Left} from '../assets/left.svg';
+import CategoryTotalBar from "../components/MyBudget/CategoryTotalBar";
 
 const MybudgetPage = () => {
     const currentDate = new Date();
@@ -58,7 +59,7 @@ const MybudgetPage = () => {
             <Header/>   
             <Navbar/>
             <Container>
-                <Box height='150px'>
+                <Box>
                     <div className="content">
                         <p className="title">나의 예산</p>
                         <ClickButton width={'90px'}>예산 추가</ClickButton>
@@ -72,8 +73,12 @@ const MybudgetPage = () => {
                         <div className="total">
                             <p>총 예산</p>
                             <p className="totalMoney">{totalData[0].Money}원</p>
-                        </div>     
+                        </div>
                     </div>
+                    <div className="content">
+                        <CategoryTotalBar/>
+                    </div>
+                    
                     
                 </Box>
                 <Box>
