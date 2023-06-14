@@ -5,7 +5,6 @@ import Header from "../../components/Common/Header";
 import Navbar from "../../components/Common/Navbar";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 import useViewport from "../../hooks/viewportHook";
-import calendar from "../../components/Calendar/calendar"
 
 const HomeContainer = styled.div`
   width: ${(props) => (props.isMobile ? '768px' : '100%')};
