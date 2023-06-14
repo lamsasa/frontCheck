@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const SwitchInput = styled.input`
   position: absolute;
@@ -33,7 +33,11 @@ const OnButton = styled.span`
   width: 28px;
   height: 20px;
   transition: 0.2s;
-  background: linear-gradient(100deg, rgba(66, 230, 149, 0.8) 3.56%, rgba(59, 178, 184, 0.8) 96.4%);
+  background: linear-gradient(
+    100deg,
+    rgba(66, 230, 149, 0.8) 3.56%,
+    rgba(59, 178, 184, 0.8) 96.4%
+  );
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
   border-radius: 100px;
 
@@ -41,7 +45,11 @@ const OnButton = styled.span`
   ${SwitchInput}:checked + ${SwitchLabel} & {
     left: calc(100% - 3px);
     transform: translateX(-100%);
-    background: linear-gradient(100deg, rgba(66, 230, 149, 0.8) 3.56%, rgba(59, 178, 184, 0.8) 96.4%);
+    background: linear-gradient(
+      100deg,
+      rgba(66, 230, 149, 0.8) 3.56%,
+      rgba(59, 178, 184, 0.8) 96.4%
+    );
     box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
   }
 `;
@@ -83,16 +91,14 @@ const OnText = styled.span`
   }
 `;
 
-
 const ToggleButtonSmall = ({ offText, onText }) => {
-
   return (
     <>
-      <SwitchInput id="toggle_small" type="checkbox"/>
+      <SwitchInput id="toggle_small" type="checkbox" />
       {/* width, height 설정 가능 */}
       <SwitchLabel htmlFor="toggle_small">
         {/* width, height 설정 가능 */}
-        <OnButton/>
+        <OnButton />
         <TextContainer>
           {/* margin으로 margin-left 설정 가능 */}
           <OffText>{offText}</OffText>
@@ -105,5 +111,3 @@ const ToggleButtonSmall = ({ offText, onText }) => {
 };
 
 export default ToggleButtonSmall;
-
-
