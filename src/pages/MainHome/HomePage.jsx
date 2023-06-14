@@ -4,13 +4,13 @@ import MyCalendar from "../../components/Calendar/MyCalendar";
 import Header from "../../components/Common/Header";
 import Navbar from "../../components/Common/Navbar";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
-
+import useViewport from "../../hooks/viewportHook";
+import calendar from "../../components/Calendar/calendar"
 
 const HomeContainer = styled.div`
-  width: 100%;
-  display: flex;
-    width: 100%;
-    display: flex;
+  width: ${(props) => (props.isMobile ? '768px' : '100%')};
+  /* display: flex; */
+
     /* flex-direction: ; */
     /* flex-direction: column; */
     /* align-items: center; */
@@ -44,6 +44,8 @@ padding-left: 230px;
 
 
 const Home = () => {
+  const { isMobile } = useViewport();
+
   const [isOn, setIsOn] = useState(false);
 
   const handleToggle = () => {
@@ -64,6 +66,8 @@ const Home = () => {
               {isOn ? <MyCalendar isCal={true} /> : <MyCalendar isCal={false} />}
             </div>
           </div>
+
+          <calendar/>
         </CalendarContainer>
       </HomeContainer>
     </>
