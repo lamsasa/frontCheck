@@ -43,4 +43,10 @@ const Calendar = styled.div`
     > svg {
         fill: ${({ theme }) => theme.budgetButton};
     }
+    .date {
+        margin: 20px;
+        font-style: normal;
+        font-weight: bolder;
+        font-size: 18px;
+    }
 `;

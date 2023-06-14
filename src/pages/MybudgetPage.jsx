@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Common/Header';
 import Navbar from '../components/Common/Navbar';
 import ClickButton from '../components/Common/ClickButton';
@@ -7,8 +7,18 @@ import Box from '../components/Common/Box';
 import BudgetChart from '../components/MyBudget/BudgetChart';
 import CategoryTotalBar from '../components/MyBudget/CategoryTotalBar';
 import BudgetCalendar from '../components/MyBudget/BudgetCalendar';
+import Modal from '../components/Common/Modal';
+import BudgetAdd from '../components/MyBudget/BudgetAdd';
 
 const MybudgetPage = () => {
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => {
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
     // 임시 데이터
     const categoryData = [
         { Name: '식비', Money: '60000', date: '2023-06' },
@@ -36,7 +46,9 @@ const MybudgetPage = () => {
                 <Box>
                     <div className="content">
                         <p className="title">나의 예산</p>
-                        <ClickButton width={'90px'}>예산 추가</ClickButton>
+                        <ClickButton width={'90px'} onClick={openModal}>
+                            예산 추가
+                        </ClickButton>
                     </div>
                     <div className="content">
                         <BudgetCalendar></BudgetCalendar>
@@ -61,6 +73,11 @@ const MybudgetPage = () => {
                             ))}
                     </div>
                 </Box>
+                {modalOpen && (
+                    <Modal open={modalOpen} close={closeModal}>
+                        <BudgetAdd categoryData={categoryData}></BudgetAdd>
+                    </Modal>
+                )}
             </Container>
         </>
     );

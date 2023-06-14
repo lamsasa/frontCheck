@@ -53,6 +53,7 @@ const CategoryIcon = ({ name }) => {
         }
     };
 
+    // 카테고리 이름(name)을 받아 카테고리 이름별 색코드 파일(categoryList)에서 해당 카테고리 이름에 해당하는 색 코드를 찾아옴
     const selectedItem = categoryList.find((item) => item.Name === name);
 
     return <Icon color={selectedItem ? selectedItem.Color : '#FF7076'}>{getItemSvg(name)}</Icon>;

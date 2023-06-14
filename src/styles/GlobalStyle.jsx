@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import NotoSansRefular from '../assets/fonts/NotoSansKR-Regular.woff2'
+import NotoSansRefular from '../assets/fonts/NotoSansKR-Regular.woff2';
 
 // 전역스타일링: 모든 곳에 쓰이는 style입니다.
 const GlobalStyle = createGlobalStyle`
@@ -23,9 +23,15 @@ const GlobalStyle = createGlobalStyle`
   button{
     font-family: "Noto Sans KR";// 폰트 설정
   }
+
   div{
     font-family: "Noto Sans KR";// 폰트 설정
   }
+
+  input{
+    font-family: "Noto Sans KR";// 폰트 설정
+  }
+  
   body {
     font-family: "Noto Sans KR";// 폰트 설정
     background: ${({ theme }) => theme.background};
