@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import categoryList from '../../styles/categoryColor';
 
 const CategoryTotalBar = ({ categoryData, totalData }) => {
+    const [isBarVisible, setIsBarVisible] = useState(false);
+
+    useEffect(() => {
+        setIsBarVisible(true);
+    }, []);
+
     return (
         <TotalBar>
-            {categoryData.map((data) => {
-                // data에서 카테고리 이름(name)을 받아 카테고리 이름별 색코드 파일(categoryList)에서 해당 카테고리 이름에 해당하는 색 코드를 찾아옴
+            {categoryData.map((data, index) => {
                 const selectedItem = categoryList.find((item) => item.Name === data.Name);
-                // data의 Money와 totalData의 총액인 Money를 가져와 퍼센트를 계산함
                 const percent = `${(data.Money / totalData[0].Money) * 100}%`;
-                // selectedItem이 있다면 해당 컬러코드로, 아니라면 #FF7076로 지정
                 const color = selectedItem ? selectedItem.Color : '#FF7076';
 
-                return <Bar key={data.Name} width={percent} color={color} />;
+                return (
+                    <Bar
+                        key={data.Name}
+                        width={percent}
+                        color={color}
+                        animationDelay={index * 0.1}
+                        isBarVisible={isBarVisible}
+                    />
+                );
             })}
         </TotalBar>
     );
@@ -26,6 +37,10 @@ const Bar = styled.div`
     height: 5px;
     background-color: ${(props) => props.color};
     border-radius: 100px;
+    opacity: ${(props) => (props.isBarVisible ? 1 : 0)};
+    transform: ${(props) => (props.isBarVisible ? 'translateX(0)' : 'translateX(-20px)')};
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transition-delay: ${(props) => props.animationDelay}s;
 `;
 
 const TotalBar = styled.div`
