@@ -1,23 +1,32 @@
-import React, { useRef }from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-// import interactionPlugin from "@fullcalendar/interaction";
+import interactionPlugin from "@fullcalendar/interaction";
+import { INITIAL_EVENTS } from "./event-utils"; // 이벤트 셋팅 함수
+// import { INITIAL_EVENTS, createEventId } from "./event-utils"; // 이벤트 셋팅 함수
+
 import useViewport from '../../hooks/viewportHook';
 import './MyCalendar.css';
 
-// import '@fullcalendar/core/main.css';
-// import '@fullcalendar/daygrid/main.css';
-// import '@fullcalendar/timegrid/main.css';
 
 const CalendarContainer = styled.div`
 
+// 달력 전체 크기 
 .fc {
+  display: flex;
+  justify-items: center;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+
+  width: ${(props) => (props.isMobile ? '500px' : '800px')};
+  height: ${(props) => (props.isMobile ? '800px' : 'auto')};
+
   background-color: ${({ theme }) => theme.bgColor};
   --fc-border-color: ${({ theme }) => theme.bgColor};
-  width: ${(props) => (props.isMobile ? '500px' : '800px')};
-  height: ${(props) => (props.isMobile ? '50px' : 'auto')};
+
 }
 
 .fc-day-today {
@@ -48,11 +57,12 @@ const CalendarContainer = styled.div`
 
 export default function MyCalendar({ isCal }) {
   const { isMobile } = useViewport();
-
-    const calendarRef = useRef(null);
-
-  // render() {
   const apiKey = process.env.REACT_APP_CAL_API_KEY;
+
+  // state = {
+  //   currentEvents: [],  
+  // };
+  // render() {
 
   return (
     <CalendarContainer isMobile={isMobile}>
@@ -62,9 +72,9 @@ export default function MyCalendar({ isCal }) {
           <div className="App">
             <FullCalendar
               id="calendar"
+              plugins={[dayGridPlugin, googleCalendarPlugin, interactionPlugin]}
               defaultView="dayGridMonth"
 
-              plugins={[dayGridPlugin, googleCalendarPlugin]}
               googleCalendarApiKey={apiKey}
               events={[
                 { googleCalendarId: 'b1ockbust2r@gmail.com' },
@@ -78,10 +88,22 @@ export default function MyCalendar({ isCal }) {
               //   center: 'title',
               //   right: 'next'}}
 
+              selectable={true} // 날짜를 클릭했을때 날짜 주변이 하늘색으로 변하면서 선택됨
               eventDisplay={'block'}
               eventTextColor={'#222'}
               eventColor={'#DFF6EE'}
               Toolbar
+
+              initialEvents={INITIAL_EVENTS} // 달력 로딩 후 초기화할 이벤트 내용
+              // 이벤트를 클릭했을때 실행되는 함수(내용 삭제)
+              eventClick={this.handleEventClick}
+              // 날짜를 클릭했을때 실행되는 함수(내용 추가)
+              select={this.handleDateSelect}
+              // 이벤트틀이 초기화/추가/수정/삭제 된 후에 호출되는 함수
+              // eventAdd={function(){}}
+              // eventChange={function(){}}
+              // eventRemove={function(){}}
+              eventsSet={this.handleEvents}
             />
           </div> :
           <div className="App">
@@ -101,6 +123,9 @@ export default function MyCalendar({ isCal }) {
 
     </CalendarContainer>
   );
+  
 }
+
+
 
 // export default MyCalendar;

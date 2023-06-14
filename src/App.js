@@ -8,6 +8,7 @@ import Chart from './pages/ChartPage';
 import GlobalStyle from "./styles/GlobalStyle";
 import Mypage from "./pages/MypagePage";
 import {GoogleOAuthProvider} from "@react-oauth/google";
+
 function App() {
     return (
         <>
