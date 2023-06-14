@@ -29,7 +29,7 @@ const Navbar = () => {
                             <p className="navText">소비 리스트</p>
                     </CustomLink>
 
-                    <CustomLink to={'/test'} isMobile={isMobile}>
+                    <CustomLink to={'/Chart'} isMobile={isMobile}>
                             <Stats width="17" height="17"/>
                             <p className="navText">통계</p>
                     </CustomLink>
@@ -52,6 +52,7 @@ const Navbar = () => {
 }
 
 export default Navbar;
+
 const NavContainer = styled.div`
     width:${(props) => (props.isMobile ? '100%' : '180px')};
     height:${(props) => (props.isMobile ? '50px' : '100vh')};
@@ -121,6 +122,3 @@ const CustomLink = styled(NavLink)`
         }
 
 `
-
-
-
