@@ -19,7 +19,15 @@ const BoxStyle = styled.div`
         padding: 20px;
         align-items: center;
     }
+
     .title {
+        font-style: normal;
+        font-weight: bolder;
+        font-size: 18px;
+    }
+
+    .date {
+        margin: 20px;
         font-style: normal;
         font-weight: bolder;
         font-size: 18px;
@@ -28,6 +36,7 @@ const BoxStyle = styled.div`
     .total {
         text-align: right;
     }
+
     .totalMoney {
         font-size: 15px;
     }

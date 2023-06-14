@@ -1,25 +1,43 @@
 import React from "react";
 import styled from "styled-components";
-import Header from '../components/Common/Header';
+import Header from "../components/Common/Header";
 import Navbar from "../components/Common/Navbar";
+import Container from "../components/Common/Container";
 
-const MypageContainer = styled.div`
 
+const Mypage = () => {
+  return (
+    <>
+      <Header />
+      <Navbar />
+      <Container>
+        <MypageStyle>
+          <div className="mypage-box"></div>
+        </MypageStyle>
+      </Container>
+    </>
+  );
+};
+
+export default Mypage;
+
+
+const MypageStyle = styled.div`
+  display: flex;
+  max-width: 100%;
+
+  .mypage-box {
+    width: 800px;
+    height: 500px;
     display: flex;
-    max-width: 100%;
+    align-content: center;
+    background-color: #fff;
+    position: fixed;
+    top: 180px;
+    left: 400px;
+  }
 
-    .mypage-box {
-        width: 800px;
-        height: 500px;
-        display: flex;
-        align-content: center;
-        background-color: #fff;
-        position: fixed;
-        top: 180px;
-        left: 400px;
-    }
-
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
     .mypage-box {
       width: 90%;
       height: 80%;
@@ -31,23 +49,3 @@ const MypageContainer = styled.div`
     }
   }
 `;
-
-const Mypage = () => {
-
-    return (
-        <>
-            <Header/>
-            <Navbar/>
-
-            <MypageContainer>
-                <div className="mypage-box"></div>
-
-            </MypageContainer>
-        </>
-    );
-};
-
-
-
-
-export default Mypage;

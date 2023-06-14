@@ -7,6 +7,7 @@ const BudgetCalendar = () => {
     const currentDate = new Date();
     const [year, setYear] = useState(currentDate.getFullYear());
     const [month, setMonth] = useState(currentDate.getMonth() + 1);
+
     // 버튼 클릭 시 다음 달로 값을 넘김
     const handleNextMonth = () => {
         if (month === 12) {

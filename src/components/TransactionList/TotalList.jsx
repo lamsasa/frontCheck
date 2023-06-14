@@ -1,14 +1,11 @@
-import React from 'react';
-
-
+import React from "react";
 
 const TotalList = () => {
-
-    return(
-        <>
-       <h1>슬라이드 버튼 연동...</h1>
-        </>
-    );
+  return (
+    <>
+      <h1>슬라이드 버튼 연동...</h1>
+    </>
+  );
 };
 
-export default TotalList
+export default TotalList;

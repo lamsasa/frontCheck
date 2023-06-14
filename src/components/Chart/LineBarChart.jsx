@@ -19,7 +19,7 @@ const data = [
   { x: "4", v: 4.4, v1: 85.0 },
   { x: "5", v: 4.7, v1: 3.9 },
   { x: "6", v: 4.9, v1: 45.9 },
-  { x: "7", v: 5.2, v1: 23.3 }
+  { x: "7", v: 5.2, v1: 23.3 },
 ];
 
 const Line = ({ bars, xScale, innerWidth, innerHeight, tooltip }) => {
@@ -27,8 +27,8 @@ const Line = ({ bars, xScale, innerWidth, innerHeight, tooltip }) => {
     [
       {
         id: "only",
-        data: data.map((it) => ({ x: it.d, y: it.v1 }))
-      }
+        data: data.map((it) => ({ x: it.d, y: it.v1 })),
+      },
     ],
     { type: "linear" },
     { type: "linear" },
@@ -56,7 +56,7 @@ const Line = ({ bars, xScale, innerWidth, innerHeight, tooltip }) => {
         width={innerWidth}
         height={innerHeight}
         right={{
-          ticksPosition: "after"
+          ticksPosition: "after",
         }}
       />
       <path
@@ -98,7 +98,7 @@ function CustomTooltip({ barValue, lineValue }) {
     <TableTooltip
       rows={[
         ["bar", barValue],
-        ["line", lineValue]
+        ["line", lineValue],
       ]}
     />
   );
@@ -115,14 +115,14 @@ const LineBarChart = () => (
         top: 20,
         right: 36,
         bottom: 36,
-        left: 36
+        left: 36,
       }}
       indexBy="x"
       enableLabel={false}
       colors={[barColor]}
       borderRadius={2}
       axisLeft={{
-        tickValues: 7
+        tickValues: 7,
       }}
       enableGridY={false}
       layers={["grid", "axes", "bars", Line, "markers", "legends"]}
@@ -132,5 +132,5 @@ const LineBarChart = () => (
 
 const root = createRoot(document.getElementById("root"));
 root.render(<LineBarChart />);
-    
-    export default LineBarChart;
+
+export default LineBarChart;
