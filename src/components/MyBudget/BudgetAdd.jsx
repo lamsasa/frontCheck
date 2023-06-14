@@ -56,10 +56,11 @@ const Input = styled.input`
     border-bottom: 1px solid lightgray;
     text-align: right;
     outline: none;
+    background-color: rgba(255, 255, 255, 0);
 
     :focus {
-        border-bottom: 1px solid black;
-        color: black;
+        border-bottom: 1px solid ${({ theme }) => theme.menuColor};
+        color: ${({ theme }) => theme.menuColor};
     }
 `;
 
