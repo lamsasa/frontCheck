@@ -1,6 +1,10 @@
 import styled from 'styled-components';
-const Box = ({ children, height }) => {
-    return <BoxStyle height={height}>{children}</BoxStyle>;
+const Box = ({ children, height, titleMargin }) => {
+    return (
+        <BoxStyle height={height} margin={titleMargin}>
+            {children}
+        </BoxStyle>
+    );
 };
 export default Box;
 
@@ -24,6 +28,7 @@ const BoxStyle = styled.div`
         font-style: normal;
         font-weight: bolder;
         font-size: 18px;
+        margin-top: ${({ margin }) => margin || ''};
     }
 
     .date {

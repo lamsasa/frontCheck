@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BudgetCalendar from '../MyBudget/BudgetCalendar';
 import CategoryIcon from '../MyBudget/CategoryIcon';
+import Box from '../Common/Box';
 
 const ListContainer = ({ listData }) => {
     const [showList, setShowList] = useState(false);
@@ -12,30 +13,32 @@ const ListContainer = ({ listData }) => {
 
     return (
         <>
-            <ListContainerStyled>
-                <BudgetCalendar />
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th className="table-header">날짜</th>
-                            <th className="table-header">카테고리</th>
-                            <th className="table-header">내용</th>
-                            <th className="table-header">금액</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {listData &&
-                            listData.map((data, index) => (
-                                <ListRow key={index} show={showList} index={index} data={data} />
-                            ))}
-                    </tbody>
-                </table>
-            </ListContainerStyled>
+            <Box>
+                <ListContainerStyled>
+                    <BudgetCalendar />
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th className="table-header">날짜</th>
+                                <th className="table-header">카테고리</th>
+                                <th className="table-header">내용</th>
+                                <th className="table-header">금액</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {listData &&
+                                listData.map((listData, index) => (
+                                    <ListRow key={index} show={showList} index={index} listData={listData} />
+                                ))}
+                        </tbody>
+                    </table>
+                </ListContainerStyled>
+            </Box>
         </>
     );
 };
 
-const ListRow = ({ show, index, data }) => {
+const ListRow = ({ show, index, listData }) => {
     const [showRow, setShowRow] = useState(false);
 
     useEffect(() => {
@@ -48,15 +51,15 @@ const ListRow = ({ show, index, data }) => {
 
     return (
         <StyledRow show={show && showRow}>
-            <td className="table-cell">{data.date}</td>
+            <td className="table-cell">{listData.date}</td>
             <td className="table-cell category-cell">
                 <div className="category-cell-content">
-                    <CategoryIcon name={data.category} />
-                    <p className="category">{data.category}</p>
+                    <CategoryIcon name={listData.category} />
+                    <p className="category">{listData.category}</p>
                 </div>
             </td>
-            <td className="table-cell content-cell">{data.detail}</td>
-            <td className={data.deal === '지출' ? 'table-cell red' : 'table-cell blue'}>￦{data.money}</td>
+            <td className="table-cell content-cell">{listData.detail}</td>
+            <td className={listData.deal === '지출' ? 'table-cell red' : 'table-cell blue'}>￦{listData.money}</td>
         </StyledRow>
     );
 };
@@ -71,7 +74,6 @@ const ListContainerStyled = styled.div`
     width: 100%;
     margin-top: 30px;
     padding: 40px;
-    padding-top: 0px;
 
     .table {
         width: 100%;

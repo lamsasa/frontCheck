@@ -29,9 +29,8 @@ const MainList = () => {
             <Header />
             <Navbar />
             <Container>
-                <Box>
-                    <SlideButton slides={slides} onSlideChange={handleSlideChange} />
-                </Box>
+                <SlideButton slides={slides} onSlideChange={handleSlideChange} />
+                <Box></Box>
             </Container>
         </>
     );
