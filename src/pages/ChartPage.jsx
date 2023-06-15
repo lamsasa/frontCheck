@@ -1,4 +1,4 @@
-//import styled from 'styled-components';
+import styled from "styled-components";
 //import TotalChart from '../components/Chart/TotalChart';
 import Header from "../components/Common/Header";
 import Navbar from "../components/Common/Navbar";
@@ -6,6 +6,8 @@ import Navbar from "../components/Common/Navbar";
 //import LineChart from "../components/Chart/LineChart";
 import LineBarChart from "../components/Chart/LineBarChart";
 import Container from "../components/Common/Container";
+import Box from "../components/Common/Box";
+import PieChart from "../components/Chart/PieChart";
 
 const Chart = () => {
   return (
@@ -13,7 +15,17 @@ const Chart = () => {
       <Header />
       <Navbar />
       <Container>
-        <LineBarChart />
+        <Box>
+          <ChartContainer>
+            <LineBarChart />
+          </ChartContainer>
+        </Box>
+
+        <Box>
+          <ChartContainer>
+            <PieChart />
+          </ChartContainer>
+        </Box>
       </Container>
     </>
   );
@@ -21,5 +33,10 @@ const Chart = () => {
 
 export default Chart;
 
-// const ChartContainer = styled.div`
-// `;
+const ChartContainer = styled.div`
+  display: flex;
+  height: 500px;
+  align-content: center;
+  justify-content: center;
+  background-color: #ffdbdb;
+`;
