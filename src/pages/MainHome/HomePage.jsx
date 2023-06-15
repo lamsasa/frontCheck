@@ -4,7 +4,7 @@ import MyCalendar from "../../components/Calendar/MyCalendar";
 import Header from "../../components/Common/Header";
 import Navbar from "../../components/Common/Navbar";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
-import useViewport from "../../hooks/viewportHook";
+// import useViewport from "../../hooks/viewportHook";
 import Container from "../../components/Common/Container";
 import ToggleButtonSmall from "../../components/Common/ToggleButtonSmall";
 
@@ -37,7 +37,6 @@ const Home = () => {
             isOn={isOn}
             handleToggle={handleToggle}
           />
-
           <div className="calendar">
             <div className="App">
               {isOn ? (
@@ -50,6 +49,10 @@ const Home = () => {
 
           <calendar />
         </CalendarContainer>
+        <div className="detail">
+          <div className="box1"></div>
+          <div className="box2"></div>
+        </div>
       </Container>
     </>
   );
@@ -88,5 +91,16 @@ const CalendarContainer = styled.div`
     border: 0px;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .detail {
+    padding: 20px;
+  }
+  .box1,
+  .box2 {
+    width: 500px;
+    height: 300px;
+    margin: 15px;
+    background-color: #fff;
   }
 `;

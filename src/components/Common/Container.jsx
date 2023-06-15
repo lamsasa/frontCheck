@@ -1,8 +1,14 @@
 import styled from "styled-components";
 import useViewport from "../../hooks/viewportHook";
-const Container = ({ children }) => {
+
+const Container = ({ children, flex }) => {
   const { isMobile } = useViewport();
-  return <ContainerStyle isMobile={isMobile}>{children}</ContainerStyle>;
+
+  return (
+    <ContainerStyle isMobile={isMobile} flex-direction={flex}>
+      {children}
+    </ContainerStyle>
+  );
 };
 
 export default Container;
@@ -12,6 +18,10 @@ const ContainerStyle = styled.div`
   height: 100%;
 
   position: relative;
+  display: flex;
+  flex-direction: column;
+
+  /* flex-direction: ${({ flex }) => flex || " "}; */
 
   padding-left: ${(props) => (props.isMobile ? "0px" : "180px")};
   padding-top: 100px;

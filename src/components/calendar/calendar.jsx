@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction"; // interaction 패키지 추가설치 필요
 import { INITIAL_EVENTS, createEventId } from "./event-utils"; // 이벤트 셋팅 함수
+import styled from "styled-components";
 
 // import '@fullcalendar/daygrid/main.css';
 
@@ -12,25 +13,44 @@ export default class calendar extends React.Component {
     currentEvents: [],
   };
 
-  render() {
+  render({ isCal }) {
     return (
-      <FullCalendar
-        // interactionPlugin: 클릭이벤트를 사용하기 위해 필요한 콜백기능
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        selectable={true} // 날짜를 클릭했을때 날짜 주변이 하늘색으로 변하면서 선택됨
-        weekends={true} // false일 경우 토요일, 일요일은 표시 생략
-        initialEvents={INITIAL_EVENTS} // 달력 로딩 후 초기화할 이벤트 내용
-        // 이벤트를 클릭했을때 실행되는 함수(내용 삭제)
-        eventClick={this.handleEventClick}
-        // 날짜를 클릭했을때 실행되는 함수(내용 추가)
-        select={this.handleDateSelect}
-        // 이벤트틀이 초기화/추가/수정/삭제 된 후에 호출되는 함수
-        // eventAdd={function(){}}
-        // eventChange={function(){}}
-        // eventRemove={function(){}}
-        eventsSet={this.handleEvents}
-      />
+      <CalendarContainer isMobile={isMobile}>
+        <div className="calendar_Main">
+          {isCal ? (
+            <FullCalendar
+              // interactionPlugin: 클릭이벤트를 사용하기 위해 필요한 콜백기능
+              plugins={[dayGridPlugin, interactionPlugin]}
+              initialView="dayGridMonth"
+              selectable={true} // 날짜를 클릭했을때 날짜 주변이 하늘색으로 변하면서 선택됨
+              weekends={true} // false일 경우 토요일, 일요일은 표시 생략
+              initialEvents={INITIAL_EVENTS} // 달력 로딩 후 초기화할 이벤트 내용
+              // 이벤트를 클릭했을때 실행되는 함수(내용 삭제)
+              eventClick={this.handleEventClick}
+              // 날짜를 클릭했을때 실행되는 함수(내용 추가)
+              select={this.handleDateSelect}
+              // 이벤트틀이 초기화/추가/수정/삭제 된 후에 호출되는 함수
+              // eventAdd={function(){}}
+              // eventChange={function(){}}
+              // eventRemove={function(){}}
+              eventsSet={this.handleEvents}
+            />
+          ) : (
+            <div className="App">
+              <FullCalendar
+                id="calendar"
+                defaultView="dayGridMonth"
+                plugins={[dayGridPlugin]}
+                eventDisplay={"block"}
+                eventTextColor={"#222"}
+                eventColor={"#DFF6EE"}
+                Toolbar
+              />
+            </div>
+          )}
+          <div className="calendar-tab"></div>
+        </div>
+      </CalendarContainer>
     );
   }
 
@@ -73,3 +93,20 @@ export default class calendar extends React.Component {
     }
   };
 }
+
+const CalendarContainer = styled.div`
+  // 달력 전체 크기
+  .fc {
+    display: flex;
+    justify-items: center;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+
+    width: ${(props) => (props.isMobile ? "500px" : "800px")};
+    height: ${(props) => (props.isMobile ? "530px" : "auto")};
+
+    background-color: ${({ theme }) => theme.bgColor};
+    --fc-border-color: ${({ theme }) => theme.bgColor};
+  }
+`;
