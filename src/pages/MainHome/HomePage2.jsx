@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import MyCalendar from "../../components/Calendar/MyCalendar";
 import Header from "../../components/Common/Header";
 import Navbar from "../../components/Common/Navbar";
-import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
-// import useViewport from "../../hooks/viewportHook";
 import Container from "../../components/Common/Container";
-import ToggleButtonSmall from "../../components/Common/ToggleButtonSmall";
-import { Box } from "@mui/material";
+// import Box from "../../components/Common/Box";
+import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
+// import ToggleButtonSmall from "../../components/Common/ToggleButtonSmall";
+// import useViewport from "../../hooks/viewportHook";
+
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "../../components/Calendar/calendar.css";
 
 const Home = () => {
   // const { isMobile } = useViewport();
@@ -16,6 +19,12 @@ const Home = () => {
 
   const handleToggle = () => {
     setIsOn((prevState) => !prevState);
+  };
+
+  const [date, setDate] = useState(new Date());
+
+  const handleTodayClick = () => {
+    setDate(new Date());
   };
 
   return (
@@ -40,6 +49,20 @@ const Home = () => {
           /> */}
 
           <div className="calendar">
+            {/* <Calendar locale="en" /> */}
+
+            <div>
+              <button onClick={handleTodayClick}>Today</button>
+              <Calendar
+                value={date}
+                onChange={setDate}
+                defaultValue={new Date()} // 초기 선택 날짜 설정
+              />
+            </div>
+            <div className="calendar-tab"></div>
+          </div>
+
+          {/* <div className="calendar">
             <div className="App">
               {isOn ? (
                 <MyCalendar isCal={true} />
@@ -47,7 +70,7 @@ const Home = () => {
                 <MyCalendar isCal={false} />
               )}
             </div>
-          </div>
+          </div> */}
 
           <calendar />
         </CalendarContainer>
@@ -81,6 +104,15 @@ const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 0 30px 70px;
+
+  /* height: 1080px;
+    width: 1920px;
+    background: #eefaf6;
+    display: flex;
+    flex-direction: column; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* vertical-align: center; */
 
   .calendar {
     display: flex;
@@ -118,7 +150,7 @@ const BoxContainer = styled.div`
     border-radius: 10px;
     margin-left: 30px;
   }
-  
+
   .text {
     height: 30px;
     font-size: 2rem;

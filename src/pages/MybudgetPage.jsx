@@ -42,7 +42,7 @@ const MybudgetPage = () => {
     <>
       <Header />
       <Navbar />
-      <Container flex="column">
+      <Container>
         <Box>
           <div className="content">
             <p className="title">나의 예산</p>
