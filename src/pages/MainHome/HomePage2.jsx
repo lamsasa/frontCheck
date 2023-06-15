@@ -21,6 +21,12 @@ const Home = () => {
     setIsOn((prevState) => !prevState);
   };
 
+  const [date, setDate] = useState(new Date());
+
+  const handleTodayClick = () => {
+    setDate(new Date());
+  };
+
   return (
     <>
       <Header />
@@ -43,7 +49,16 @@ const Home = () => {
           /> */}
 
           <div className="calendar">
-            <Calendar locale="en" />
+            {/* <Calendar locale="en" /> */}
+
+            <div>
+              <button onClick={handleTodayClick}>Today</button>
+              <Calendar
+                value={date}
+                onChange={setDate}
+                defaultValue={new Date()} // 초기 선택 날짜 설정
+              />
+            </div>
             <div className="calendar-tab"></div>
           </div>
 

@@ -10,12 +10,13 @@
   border: 0px;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  
 }
 
 .react-calendar__navigation button {
   color: #222;
   font-weight: bold;
-  min-width: 44px;
+  min-width: 60px;
   background: none;
   font-size: 16px;
   margin-top: 15px;
@@ -78,4 +79,8 @@ abbr[title] {
   background: #dff6ee;
   color: #fff;
   border-radius: 0;
+}
+
+.react-calendar__month-view__days__day--weekend:nth-child(7n-1) {
+  color: #0000ff;
 }
