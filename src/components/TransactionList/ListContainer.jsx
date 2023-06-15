@@ -1,8 +1,15 @@
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BudgetCalendar from '../MyBudget/BudgetCalendar';
 import CategoryIcon from '../MyBudget/CategoryIcon';
 
 const ListContainer = ({ listData }) => {
+    const [showList, setShowList] = useState(false);
+
+    useEffect(() => {
+        setShowList(true);
+    }, []);
+
     return (
         <>
             <ListContainerStyled>
@@ -18,20 +25,8 @@ const ListContainer = ({ listData }) => {
                     </thead>
                     <tbody>
                         {listData &&
-                            listData.map((data) => (
-                                <tr>
-                                    <td className="table-cell">{data.date}</td>
-                                    <td className="table-cell category-cell">
-                                        <div className="category-cell-content">
-                                            <CategoryIcon name={data.category} />
-                                            <p className="categroy">{data.category}</p>
-                                        </div>
-                                    </td>
-                                    <td className="table-cell content-cell">{data.detail}</td>
-                                    <td className={data.deal === '지출' ? 'table-cell red' : 'table-cell blue'}>
-                                        ￦{data.money}
-                                    </td>
-                                </tr>
+                            listData.map((data, index) => (
+                                <ListRow key={index} show={showList} index={index} data={data} />
                             ))}
                     </tbody>
                 </table>
@@ -39,6 +34,38 @@ const ListContainer = ({ listData }) => {
         </>
     );
 };
+
+const ListRow = ({ show, index, data }) => {
+    const [showRow, setShowRow] = useState(false);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setShowRow(true);
+        }, index * 100); // 각 항목을 200ms 간격으로 보여줍니다.
+
+        return () => clearTimeout(timeout);
+    }, [index]);
+
+    return (
+        <StyledRow show={show && showRow}>
+            <td className="table-cell">{data.date}</td>
+            <td className="table-cell category-cell">
+                <div className="category-cell-content">
+                    <CategoryIcon name={data.category} />
+                    <p className="category">{data.category}</p>
+                </div>
+            </td>
+            <td className="table-cell content-cell">{data.detail}</td>
+            <td className={data.deal === '지출' ? 'table-cell red' : 'table-cell blue'}>￦{data.money}</td>
+        </StyledRow>
+    );
+};
+
+const StyledRow = styled.tr`
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    ${({ show }) => show && 'opacity: 1;'}
+`;
 
 const ListContainerStyled = styled.div`
     width: 100%;
@@ -77,10 +104,11 @@ const ListContainerStyled = styled.div`
         display: flex;
         align-items: center;
     }
-    .categroy {
+    .category {
         margin-left: 10px;
         width: 80px;
     }
+
     .content-cell {
         width: 40%;
     }
