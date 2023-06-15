@@ -7,6 +7,7 @@ import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 // import useViewport from "../../hooks/viewportHook";
 import Container from "../../components/Common/Container";
 import ToggleButtonSmall from "../../components/Common/ToggleButtonSmall";
+import { Box } from "@mui/material";
 
 const Home = () => {
   // const { isMobile } = useViewport();
@@ -31,12 +32,13 @@ const Home = () => {
             handleToggle={handleToggle}
           />
 
-          <ToggleButtonSmall
+          {/* <ToggleButtonSmall
             onText="일 정"
             offText="가계부"
             isOn={isOn}
             handleToggle={handleToggle}
-          />
+          /> */}
+
           <div className="calendar">
             <div className="App">
               {isOn ? (
@@ -49,10 +51,14 @@ const Home = () => {
 
           <calendar />
         </CalendarContainer>
-        <div className="detail">
-          <div className="box1"></div>
-          <div className="box2"></div>
-        </div>
+        <BoxContainer>
+          <div className="box-1">
+            <div className="text">지난 달 대비 사용 금액</div>
+          </div>
+          <div className="box-2">
+            <div className="text">남은 돈 확인</div>
+          </div>
+        </BoxContainer>
       </Container>
     </>
   );
@@ -92,15 +98,30 @@ const CalendarContainer = styled.div`
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   }
+`;
 
-  .detail {
-    padding: 20px;
+const BoxContainer = styled.div`
+  width: 1160px;
+  height: auto;
+  padding-bottom: 30px;
+  display: flex;
+  /* padding: 30px; */
+
+  .box-1,
+  .box-2 {
+    border-radius: 10px;
+    /* position: absolute; */
+    width: 550px;
+    height: 230px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-left: 30px;
   }
-  .box1,
-  .box2 {
-    width: 500px;
-    height: 300px;
-    margin: 15px;
-    background-color: #fff;
+  .text {
+    height: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 20px;
   }
 `;
