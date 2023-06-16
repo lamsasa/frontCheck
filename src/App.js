@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // 브라우저 라우터 이름 변경
 import { ThemeProvider } from "./components/themeProvider";
-import Home from "./pages/MainHome/HomePage2";
+import Home from "./pages/MainHome/HomePage";
 import Login from "./pages/LoginPage";
 import MainList from "./pages/MainListPage";
 import Mybudget from "./pages/MybudgetPage";

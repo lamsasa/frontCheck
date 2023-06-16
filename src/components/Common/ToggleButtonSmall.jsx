@@ -89,7 +89,7 @@ const OffText = styled.span`
   color: #ffffff;
   position: relative;
   z-index: 1;
-  margin-left: 14px;
+  margin-left: 17px;
 
   /* ON 버튼이 눌리면 text 색 변화 */
   ${SwitchInput}:checked + ${SwitchLabel} & {
