@@ -28,7 +28,7 @@ const BoxStyle = styled.div`
         font-style: normal;
         font-weight: bolder;
         font-size: 18px;
-        margin-top: ${({ margin }) => margin || ''};
+        margin: ${({ margin }) => margin || ''};
     }
 
     .date {

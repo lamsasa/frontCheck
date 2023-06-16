@@ -4,7 +4,6 @@ import Navbar from '../components/Common/Navbar';
 import IncomeList from '../components/TransactionList/IncomeList';
 import ExpenseList from '../components/TransactionList/ExpenseList';
 import TotalList from '../components/TransactionList/TotalList';
-import Box from '../components/Common/Box';
 import Container from '../components/Common/Container';
 
 const MainList = () => {
@@ -30,7 +29,6 @@ const MainList = () => {
             <Navbar />
             <Container>
                 <SlideButton slides={slides} onSlideChange={handleSlideChange} />
-                <Box></Box>
             </Container>
         </>
     );
