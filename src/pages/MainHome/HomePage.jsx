@@ -79,7 +79,7 @@ const CalendarContainer = styled.div`
 `;
 
 const BoxContainer = styled.div`
-  width: 1200px;
+  width: 1170px;
   height: auto;
   padding-bottom: 30px;
   display: flex;
@@ -89,7 +89,7 @@ const BoxContainer = styled.div`
   .box-2 {
     border-radius: 10px;
     /* position: absolute; */
-    width: 580px;
+    width: 550px;
     height: 200px;
     background: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);

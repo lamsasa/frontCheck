@@ -17,9 +17,18 @@
   color: #222;
   font-weight: bold;
   width: auto;
+  height: auto;
   background: none;
-  font-size: 16px;
-  margin-top: 15px;
+  /* font-size: 16px; */
+  /* margin-top: 15px; */
+}
+
+.react-calendar__navigation__arrow {
+  font-size: 50px;
+}
+
+.react-calendar__navigation__label {
+  font-size: 20px;
 }
 
 .react-calendar__viewContainer {

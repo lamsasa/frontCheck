@@ -91,7 +91,7 @@ const CalendarContainer = styled.div`
   .calendar-tab {
     display: flex;
     justify-content: center;
-    margin: 20px 30px 0 20px;
+    margin: 20px 30px 0 30px;
     padding: 10px;
     width: 300px;
     height: auto;
