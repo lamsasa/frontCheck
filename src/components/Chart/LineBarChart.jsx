@@ -13,7 +13,7 @@ const lineColor = "#ffa198";
 // `l` is used for line
 const data = [
   { x: "0", v: 120, v1: 30, l: 50 },
-  { x: "1", v: -30.5, v1: 2.9, l: 30.1 },
+  { x: "1", v: -10.5, v1: 2.9, l: 30.1 },
   { x: "2", v: 3.8, v1: 3.2, l: 2.3 },
   { x: "3", v: 4.1, v1: 5.0, l: 3.1 },
   { x: "4", v: 4.4, v1: 3.8, l: 55.0 },
@@ -27,7 +27,7 @@ const data = [
 ];
 
 const Line = ({ bars, xScale, yScale, innerWidth, innerHeight, tooltip }) => {
-  const scale = computeXYScalesForSeries(
+  computeXYScalesForSeries(
     [
       {
         id: "only",
@@ -161,9 +161,9 @@ const maxValue = Math.max(...data.map(item => Math.max(item.v, item.v1)));
 
 
 const LineBarChart = () => (
-  <div className="App" style={{ width: 800, height: 500 }}>
+  <div className="App" style={{ width: "800px", height: "90%" }}>
     <ResponsiveBar
-      data={transformedData}
+      data={transformedData} 
       keys={["v", "v1"]}
       groupMode="grouped" // 그룹 모드를 'grouped'로 설정
       maxValue={maxValue}
