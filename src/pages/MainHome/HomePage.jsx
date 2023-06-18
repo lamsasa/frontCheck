@@ -35,7 +35,7 @@ const Home = () => {
               isOn={isOn}
               handleToggle={handleToggle}
             />
-            <Plus />
+            {/* <Plus/> */}
             {/* <ToggleButtonSmall
             onText="일 정"
             offText="가계부"
@@ -91,7 +91,7 @@ const CalendarContainer = styled.div`
 `;
 
 const BoxContainer = styled.div`
-  width: 1170px;
+  width: 1200px;
   height: auto;
   padding-bottom: 30px;
   display: flex;

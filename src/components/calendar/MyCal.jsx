@@ -52,6 +52,8 @@ const MYCalendar = ({ isCal }) => {
               onChange={setDate}
               defaultValue={new Date()}
               tileContent={tileContent}
+              calendarType="US" // 요일을 일요일부터 시작하도록 설정
+              // formatDay={(locale, date) => moment(date).format("D")} // '일' 제외하고 숫자만 보이도록 설정
             />
           </div>
         ) : (
@@ -67,6 +69,7 @@ const MYCalendar = ({ isCal }) => {
               value={date}
               onChange={setDate}
               defaultValue={new Date()}
+              calendarType="US" // 요일을 일요일부터 시작하도록 설정
             />
           </div>
         )}

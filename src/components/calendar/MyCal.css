@@ -94,7 +94,7 @@ abbr[title] {
   color: red;
 }
 
-.react-calendar__month-view__days__day--weekend:nth-child(7n-1) {
+.react-calendar__month-view__days__day--weekend:nth-child(7n) {
   color: blue;
 }
 
@@ -127,4 +127,9 @@ abbr[title] {
 
 .react-calendar__month-view__weekdays {
   font-size: 1.2em;
+}
+
+/* 해당 월의 날짜가 아니면 투명도 0.5 */
+.react-calendar__month-view__days__day--neighboringMonth {
+  opacity: 0.3;
 }
