@@ -24,7 +24,7 @@
 }
 
 .react-calendar__navigation__arrow {
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .react-calendar__navigation__label {
@@ -123,4 +123,8 @@ abbr[title] {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+.react-calendar__month-view__weekdays {
+  font-size: 1.2em;
 }

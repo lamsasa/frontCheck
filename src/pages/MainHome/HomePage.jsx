@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Header from "../../components/Common/Header";
 import Navbar from "../../components/Common/Navbar";
 
+import { ReactComponent as Plus } from "../../assets/plus.svg";
 import Container from "../../components/Common/Container";
 // import Box from "../../components/Common/Box";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
@@ -27,18 +28,22 @@ const Home = () => {
 
       <Container>
         <CalendarContainer>
-          <ToggleButtonLarge
+          <div className="header">
+            <ToggleButtonLarge
+              onText="일 정"
+              offText="가계부"
+              isOn={isOn}
+              handleToggle={handleToggle}
+            />
+            <Plus />
+            {/* <ToggleButtonSmall
             onText="일 정"
             offText="가계부"
             isOn={isOn}
-            handleToggle={handleToggle}
-          />
-          {/* <ToggleButtonSmall
-            onText="일 정"
-            offText="가계부"
-            isOn={isOn}
-            handleToggle={handleToggle}
+            handleToggl
+            e={handleToggle}
           /> */}
+          </div>
 
           <div className="calendar">
             <div className="App">
@@ -76,6 +81,13 @@ const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 0 30px 70px;
+
+  .header {
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const BoxContainer = styled.div`

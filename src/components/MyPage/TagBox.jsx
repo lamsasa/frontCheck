@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import useViewport from '../../hooks/viewportHook';
 import { ReactComponent as Plus } from '../../assets/plus.svg';
+
 const TagBox = ({ tag, children }) => {
     const { isMobile } = useViewport();
     return (
