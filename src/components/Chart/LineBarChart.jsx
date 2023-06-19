@@ -80,7 +80,7 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
         width={innerWidth}
         height={innerHeight}
         right={{
-          ticksPosition: "after",
+          ticksPosition: "after"
         }}
       />
       <text
@@ -163,15 +163,15 @@ function CustomTooltip({ barValue, barValue1, lineValue }) {
 const transformedData = data.map((item) => ({
   x: item.x,
   수입: item.v,
-  수출: item.v1,
+  지출: item.v1,
   l: item.l,
 }));
 
 const LineBarChart = () => (
-  <div className="App" style={{ width: "800px", height: "90%" }}>
+  <div style={{ width: "800px", height: "90%" }}>
     <ResponsiveBar
       data={transformedData}
-      keys={["수입", "수출"]}
+      keys={["수입", "지출"]}
       groupMode="grouped" // 그룹 모드를 'grouped'로 설정
       maxValue={maxValue}
       padding={0.5} // 각 막대 그래프 사이의 거리

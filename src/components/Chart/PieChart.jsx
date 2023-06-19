@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ResponsivePie } from "@nivo/pie";
 import CategoryIcon from "../MyBudget/CategoryIcon";
 import categoryList from "../../styles/categoryColor";
+import crown from "../../assets/crown.png";
 
 const data = [
   { id: "식비", category: "식비", label: "식비", value: 100 },
@@ -34,9 +35,18 @@ const Legends = () => {
     <>
       <LegendsContainer>
         <ul>
+          <img
+            src={crown}
+            alt="Crown"
+            style={{
+              display: "block",
+              width: "20px",
+              height: "20px",
+              marginLeft: "5px",
+            }}
+          />
           {formattedData.map((item) => (
             <li key={item.id} className="legendsList">
-              {/*이거 모바일에서 사이즈 줄여야 함... 고쳐도 되나...?*/}
               <CategoryIcon name={item.category} className={"category-icon"} />
 
               <span
@@ -47,11 +57,12 @@ const Legends = () => {
                   width: "12px",
                   height: "12px",
                   //backgroundColor: "none",//item.color,
-                  margin: "15px 0px 15px 15px",
+                  margin: "15px 0px 15px -3px",
                 }}
               />
-
-              {`${item.label}  ${item.value}  ${item.originalValue}원`}
+              <div className="valueList">
+                {`${item.label}  ${item.value}  ${item.originalValue}원`}
+              </div>
             </li>
           ))}
         </ul>
@@ -125,6 +136,7 @@ export default PieChart;
 
 const StyledPieChartContainer = styled.div`
   width: 70%;
+  padding: 10px;
   @media (max-width: 768px) {
     width: 60%;
   }
@@ -144,11 +156,20 @@ const LegendsContainer = styled.div`
   .legendsList {
     display: flex;
     align-items: center;
+    white-space: pre-wrap;
+  }
+
+  .valueList {
+    width: 200px;
   }
 
   @media (max-width: 768px) {
     width: 40%;
     font-weight: 700;
     font-size: 10px;
+
+    .valueList {
+      width: 80px;
+    }
   }
 `;
