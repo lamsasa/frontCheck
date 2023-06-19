@@ -14,8 +14,6 @@ const Chart = () => {
     <>
       <Header />
       <Navbar />
-      <Header />
-      <Navbar />
       <Container>
         <Box>
           <ButtonContainer>
