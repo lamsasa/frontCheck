@@ -16,15 +16,19 @@ import ToggleButtonSmall from "../Common/ToggleButtonSmall";
 
 const MYCalendar = ({ isCal }) => {
   // const { isMobile } = useViewport();
-  const apiKey = process.env.REACT_APP_CAL_API_KEY;
+  // const apiKey = process.env.REACT_APP_CAL_API_KEY;
 
   // Today 버튼
-  const [date, setDate] = useState(new Date());
-  const handleTodayClick = () => {
-    setDate(new Date());
-  };
+  // const [date, setDate] = useState(new Date());
+  // const handleTodayClick = () => {
+  //   setDate(new Date());
+  // };
 
-  const tileContent = () => {};
+  const addContent = () => {};
+
+  const curDate = new Date();
+  const [value, onChange] = useState(curDate);
+  // const activeDate = moment(value).format("YYYY-MM-DD");
 
   return (
     <CalendarContainer>
@@ -32,44 +36,42 @@ const MYCalendar = ({ isCal }) => {
         {isCal ? (
           <div className="App">
             <Calendar
+              onChange={onChange}
+              value={value}
               locale="en"
               // onClickDay={dayIn}
-              // formatShortWeekday={(locale, value) =>
-              //   ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"][
-              //     value.getDay()
-              //   ]
-              // }
-              // formatDay={(locale, date) =>
-              //   date.toLocaleString("en", { day: "numeric" })
-              // }
-              returnValue="range"
-              // selectRange={true}
+              // returnValue="range"
               // nextLabel={<NextButton />}
               // prevLabel={<PrevButton />}
               next2Label={null}
               prev2Label={null}
-              value={date}
-              onChange={setDate}
-              defaultValue={new Date()}
-              tileContent={tileContent}
+              // defaultValue={new Date()}
+              tileContent={addContent}
               calendarType="US" // 요일을 일요일부터 시작하도록 설정
-              // formatDay={(locale, date) => moment(date).format("D")} // '일' 제외하고 숫자만 보이도록 설정
+
+              // today 값
+              // value={date}
+              // onChange={setDate}
             />
           </div>
         ) : (
           <div className="App">
             <Calendar
-              locale="ko"
-              returnValue="range"
+              onChange={onChange}
+              value={value}
+              locale="en"
+              // returnValue="range"
               // selectRange={true}
               // nextLabel={<NextButton />}
               // prevLabel={<PrevButton />}
               next2Label={null}
               prev2Label={null}
-              value={date}
-              onChange={setDate}
-              defaultValue={new Date()}
+              // defaultValue={new Date()}
               calendarType="US" // 요일을 일요일부터 시작하도록 설정
+
+              // today 값
+              // value={date}
+              // onChange={setDate}
             />
           </div>
         )}
@@ -83,6 +85,9 @@ const MYCalendar = ({ isCal }) => {
             // isOn={isOn}
             // handleToggle={handleToggle}
           />
+          <div className="select-day">
+            {moment(value).format("YYYY년 MM월 DD일")}
+          </div>
         </div>
       </div>
     </CalendarContainer>
@@ -93,7 +98,9 @@ export default MYCalendar;
 const CalendarContainer = styled.div`
   .calendar-tab {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
     margin: 20px 30px 0 30px;
     padding: 10px;
     width: 300px;
@@ -109,5 +116,9 @@ const CalendarContainer = styled.div`
   .calendar_Main {
     display: flex;
     flex-direction: row;
+  }
+
+  .select-day {
+    margin: 10px;
   }
 `;
