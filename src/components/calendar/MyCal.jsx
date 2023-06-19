@@ -9,8 +9,8 @@ import moment from "moment";
 
 // import Button from "../Common/ClickButton";
 import ToggleButtonSmall from "../Common/ToggleButtonSmall";
-// import NextButton from "../../assets/1.png";
-// import PrevButton from "../../assets/2.png";
+// import { Next1 } from "../../assets/next.png";
+// import { Prev1 } from "../../assets/prev.png";
 // import NextTo from "../../assets/NextTo.png";
 // import PrevDouble from "../../assets/PrevDouble.png";
 
@@ -24,11 +24,57 @@ const MYCalendar = ({ isCal }) => {
   //   setDate(new Date());
   // };
 
-  const addContent = () => {};
-
   const curDate = new Date();
   const [value, onChange] = useState(curDate);
   // const activeDate = moment(value).format("YYYY-MM-DD");
+
+  // 컨텐츠 날짜 리스트
+  const incomeList = ["2023-06-02", "2023-06-15", "2023-06-20", "2023-06-27"];
+  const expenseList = [
+    "2023-06-01",
+    "2023-06-07",
+    "2023-06-11",
+    "2023-06-17",
+    "2023-06-20",
+    "2023-06-26",
+  ];
+
+  // 각 날짜 타일에 컨텐츠 추가
+  const addContent = ({ date }: any) => {
+    // 해당 날짜에 추가할 컨텐츠의 배열
+    const contents = [];
+
+    // date가 리스트의 날짜와 일치하면 해당 컨텐츠 추가
+    if (incomeList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
+      contents.push(
+        <>
+          <div className="dot-income"></div>
+          {/* <img
+            src="CreditCard.svg"
+            className="diaryImg"
+            width="26"
+            height="26"
+            alt="today is..."
+          /> */}
+        </>
+      );
+    }
+    if (expenseList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
+      contents.push(
+        <>
+          <div className="dot-expense"></div>
+          {/* <img
+            src="CreditCard.svg"
+            className="diaryImg"
+            width="26"
+            height="26"
+            alt="today is..."
+          /> */}
+        </>
+      );
+    }
+    return <div className="dot-all">{contents}</div>; // 각 날짜마다 해당 요소가 들어감
+  };
 
   return (
     <CalendarContainer>
@@ -41,8 +87,8 @@ const MYCalendar = ({ isCal }) => {
               locale="en"
               // onClickDay={dayIn}
               // returnValue="range"
-              // nextLabel={<NextButton />}
-              // prevLabel={<PrevButton />}
+              // nextLabel={<Next1 />}
+              // prevLabel={<Prev1 />}
               next2Label={null}
               prev2Label={null}
               // defaultValue={new Date()}
@@ -62,8 +108,8 @@ const MYCalendar = ({ isCal }) => {
               locale="en"
               // returnValue="range"
               // selectRange={true}
-              // nextLabel={<NextButton />}
-              // prevLabel={<PrevButton />}
+              // nextLabel={<Next1 />}
+              // prevLabel={<Prev1 />}
               next2Label={null}
               prev2Label={null}
               // defaultValue={new Date()}
@@ -120,5 +166,24 @@ const CalendarContainer = styled.div`
 
   .select-day {
     margin: 10px;
+  }
+
+  .dot-all {
+    display: flex;
+    flex-direction: row;
+  }
+  .dot-income,
+  .dot-expense {
+    margin: 2px;
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    margin-top: 55px;
+  }
+  .dot-income {
+    background-color: #3fcea5;
+  }
+  .dot-expense {
+    background-color: #ff005c;
   }
 `;
