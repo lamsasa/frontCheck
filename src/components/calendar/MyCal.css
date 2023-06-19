@@ -4,7 +4,7 @@
   max-width: 100%;
   height: auto;
   margin-top: 20px;
-  background-color: #fff;
+  /* background-color:  ${({ theme }) => theme.bgColor}; */
   color: #999;
   font-family: Arial, Helvetica, sans-serif;
   /* line-height: 1.125em; */
@@ -17,9 +17,18 @@
   color: #222;
   font-weight: bold;
   width: auto;
+  height: auto;
   background: none;
-  font-size: 16px;
-  margin-top: 15px;
+  /* font-size: 16px; */
+  /* margin-top: 15px; */
+}
+
+.react-calendar__navigation__arrow {
+  font-size: 30px;
+}
+
+.react-calendar__navigation__label {
+  font-size: 20px;
 }
 
 .react-calendar__viewContainer {
@@ -85,7 +94,7 @@ abbr[title] {
   color: red;
 }
 
-.react-calendar__month-view__days__day--weekend:nth-child(7n-1) {
+.react-calendar__month-view__days__day--weekend:nth-child(7n) {
   color: blue;
 }
 
@@ -114,4 +123,13 @@ abbr[title] {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+.react-calendar__month-view__weekdays {
+  font-size: 1.2em;
+}
+
+/* 해당 월의 날짜가 아니면 투명도 0.5 */
+.react-calendar__month-view__days__day--neighboringMonth {
+  opacity: 0.3;
 }
