@@ -108,11 +108,6 @@ const ListContainerStyled = styled.div`
     }
     .category {
         margin-left: 10px;
-        width: 80px;
-    }
-
-    .content-cell {
-        width: 40%;
     }
 `;
 

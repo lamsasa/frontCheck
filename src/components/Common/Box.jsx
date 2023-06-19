@@ -1,7 +1,9 @@
 import styled from 'styled-components';
+import useViewport from '../../hooks/viewportHook';
 const Box = ({ children, height, titleMargin }) => {
+    const { isMobile } = useViewport();
     return (
-        <BoxStyle height={height} margin={titleMargin}>
+        <BoxStyle height={height} margin={titleMargin} isMobile={isMobile}>
             {children}
         </BoxStyle>
     );
@@ -9,7 +11,7 @@ const Box = ({ children, height, titleMargin }) => {
 export default Box;
 
 const BoxStyle = styled.div`
-    width: 80%;
+    width: ${(props) => (props.isMobile ? '90%' : '80%')};
     margin: 0 auto;
     margin-bottom: 20px;
     height: ${({ height }) => height || ''};
