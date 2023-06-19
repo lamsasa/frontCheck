@@ -30,6 +30,7 @@ const MYCalendar = ({ isCal }) => {
 
   // 컨텐츠 날짜 리스트
   const incomeList = ["2023-06-02", "2023-06-15", "2023-06-20", "2023-06-27"];
+
   const expenseList = [
     "2023-06-01",
     "2023-06-07",
@@ -37,6 +38,19 @@ const MYCalendar = ({ isCal }) => {
     "2023-06-17",
     "2023-06-20",
     "2023-06-26",
+  ];
+
+  const scList = ["2023-06-04", "2023-06-05", "2023-06-09", "2023-06-15"];
+
+  const workList = [
+    "2023-06-03",
+    "2023-06-04",
+    "2023-06-10",
+    "2023-06-11",
+    "2023-06-17",
+    "2023-06-18",
+    "2023-06-24",
+    "2023-06-25",
   ];
 
   // 각 날짜 타일에 컨텐츠 추가
@@ -59,6 +73,7 @@ const MYCalendar = ({ isCal }) => {
         </>
       );
     }
+
     if (expenseList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
       contents.push(
         <>
@@ -73,7 +88,38 @@ const MYCalendar = ({ isCal }) => {
         </>
       );
     }
-    return <div className="dot-all">{contents}</div>; // 각 날짜마다 해당 요소가 들어감
+
+    if (scList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
+      contents.push(
+        <>
+          <div className="box-schedule"></div>
+          {/* <img
+            src="CreditCard.svg"
+            className="diaryImg"
+            width="26"
+            height="26"
+            alt="today is..."
+          /> */}
+        </>
+      );
+    }
+    if (workList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
+      contents.push(
+        <>
+          <div className="box-work">
+            <p>근무</p>
+          </div>
+          {/* <img
+            src="CreditCard.svg"
+            className="diaryImg"
+            width="26"
+            height="26"
+            alt="today is..."
+          /> */}
+        </>
+      );
+    }
+    return <div className="contents">{contents}</div>; // 각 날짜마다 해당 요소가 들어감
   };
 
   return (
@@ -168,22 +214,44 @@ const CalendarContainer = styled.div`
     margin: 10px;
   }
 
-  .dot-all {
+  .contents {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
   }
+
   .dot-income,
   .dot-expense {
     margin: 2px;
     width: 0.5em;
     height: 0.5em;
     border-radius: 50%;
-    margin-top: 55px;
+    /* margin-top: 55px; */
   }
+
   .dot-income {
     background-color: #3fcea5;
   }
+
   .dot-expense {
     background-color: #ff005c;
+  }
+
+  .box-schedule,
+  .box-work {
+    width: 2.5em;
+    height: 1em;
+    border-radius: 10%;
+    margin: 1px;
+  }
+
+  .box-schedule {
+    background-color: #dff6ee;
+  }
+
+  .box-work {
+    background-color: #bdbdbd;
+    color: #fff;
+    /* font-size: 0.6em; */
   }
 `;
