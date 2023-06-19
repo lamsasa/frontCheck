@@ -50,4 +50,10 @@ const TotalBar = styled.div`
   border-radius: 100px;
   margin-bottom: 20px;
   display: flex;
+  width: 100%;
+  height: 5px;
+  background-color: #d6d6d6;
+  border-radius: 100px;
+  margin-bottom: 20px;
+  display: flex;
 `;

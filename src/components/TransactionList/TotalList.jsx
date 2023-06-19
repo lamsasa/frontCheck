@@ -26,3 +26,5 @@ const TotalList = () => {
 };
 
 export default TotalList;
+
+export default TotalList;

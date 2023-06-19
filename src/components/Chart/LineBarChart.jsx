@@ -81,6 +81,7 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
         height={innerHeight}
         right={{
           ticksPosition: "after",
+          ticksPosition: "after",
         }}
       />
       <text
