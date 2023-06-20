@@ -90,7 +90,7 @@ const PieChart = ({ name }) => {
           cornerRadius={3}
           activeOuterRadiusOffset={8}
           borderColor={{
-            from: "item.color",
+            from: "item.Color",
             modifiers: [["darker", 0.2]],
           }}
           colors={colors}
