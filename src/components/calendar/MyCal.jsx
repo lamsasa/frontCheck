@@ -7,14 +7,11 @@ import "react-calendar/dist/Calendar.css";
 import "./MyCal.css";
 import moment from "moment";
 
-// import Button from "../Common/ClickButton";
 import ToggleButtonSmall from "../Common/ToggleButtonSmall";
 // import { Next1 } from "../../assets/next.png";
 // import { Prev1 } from "../../assets/prev.png";
-// import NextTo from "../../assets/NextTo.png";
-// import PrevDouble from "../../assets/PrevDouble.png";
 
-const MYCalendar = ({ isCal }) => {
+const MYCalendar = ({ isBasic }) => {
   // const { isMobile } = useViewport();
   // const apiKey = process.env.REACT_APP_CAL_API_KEY;
 
@@ -26,15 +23,23 @@ const MYCalendar = ({ isCal }) => {
 
   const curDate = new Date();
   const [value, onChange] = useState(curDate);
-  // const activeDate = moment(value).format("YYYY-MM-DD");
 
   // 컨텐츠 날짜 리스트
-  const incomeList = ["2023-06-02", "2023-06-15", "2023-06-20", "2023-06-27"];
+  const incomeList = [
+    "2023-06-02",
+    "2023-06-04",
+    "2023-06-07",
+    "2023-06-15",
+    "2023-06-20",
+    "2023-06-27",
+  ];
 
   const expenseList = [
     "2023-06-01",
+    "2023-06-04",
     "2023-06-07",
     "2023-06-11",
+    "2023-06-12",
     "2023-06-17",
     "2023-06-20",
     "2023-06-26",
@@ -56,120 +61,135 @@ const MYCalendar = ({ isCal }) => {
   // 각 날짜 타일에 컨텐츠 추가
   const addContent = ({ date }: any) => {
     // 해당 날짜에 추가할 컨텐츠의 배열
-    const contents = [];
+    const contentBasic = [];
+    const contentSchedule = [];
+    const contentWork = [];
 
     // date가 리스트의 날짜와 일치하면 해당 컨텐츠 추가
+
+    // 수입
     if (incomeList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
-      contents.push(
+      contentBasic.push(
         <>
-          <div className="dot-income"></div>
-          {/* <img
-            src="CreditCard.svg"
-            className="diaryImg"
-            width="26"
-            height="26"
-            alt="today is..."
-          /> */}
+          {isBasic ? (
+            <>
+              <p className="income-text">+ 0원</p>
+            </>
+          ) : (
+            <div className="dot-income"></div>
+          )}
         </>
       );
     }
 
+    // 지출
     if (expenseList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
-      contents.push(
+      contentBasic.push(
         <>
-          <div className="dot-expense"></div>
-          {/* <img
-            src="CreditCard.svg"
-            className="diaryImg"
-            width="26"
-            height="26"
-            alt="today is..."
-          /> */}
+          {isBasic ? (
+            <>
+              <p className="expense-text">- 0원</p>
+            </>
+          ) : (
+            <div className="dot-expense"></div>
+          )}
         </>
       );
     }
 
+    // 일정
     if (scList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
-      contents.push(
+      contentSchedule.push(
         <>
-          <div className="box-schedule"></div>
-          {/* <img
-            src="CreditCard.svg"
-            className="diaryImg"
-            width="26"
-            height="26"
-            alt="today is..."
-          /> */}
+          {isBasic ? (
+            <div className="dot-schedule"></div>
+          ) : (
+            <div className="box-schedule">
+              <p>일정</p>
+            </div>
+          )}
         </>
       );
     }
+
+    // 근무
     if (workList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
-      contents.push(
+      contentWork.push(
         <>
-          <div className="box-work">
-            <p>근무</p>
-          </div>
-          {/* <img
-            src="CreditCard.svg"
-            className="diaryImg"
-            width="26"
-            height="26"
-            alt="today is..."
-          /> */}
+          {isBasic ? (
+            <div className="dot-work"></div>
+          ) : (
+            <div className="box-work">
+              <p>근무</p>
+            </div>
+          )}
         </>
       );
     }
-    return <div className="contents">{contents}</div>; // 각 날짜마다 해당 요소가 들어감
+    return (
+      <div className="contents">
+        {isBasic ? (
+          <>
+            <div className="content-row">
+              <div className="content-sc">{contentSchedule}</div>
+              <div className="content-work">{contentWork}</div>
+            </div>
+            <div className="content-column">{contentBasic}</div>
+          </>
+        ) : (
+          <>
+            <div className="content-row">{contentBasic}</div>
+            <div className="content-column">
+              <div className="content-sc">{contentSchedule}</div>
+              <div className="content-work">{contentWork}</div>
+            </div>
+          </>
+        )}
+      </div>
+    ); // 각 날짜마다 해당 요소가 들어감
   };
 
   return (
     <CalendarContainer>
       <div className="calendar_Main">
-        {isCal ? (
+        {isBasic ? (
           <div className="App">
             <Calendar
+              calendarType="US" // 요일을 일요일부터 시작하도록 설정
+              locale="en"
               onChange={onChange}
               value={value}
-              locale="en"
-              // onClickDay={dayIn}
-              // returnValue="range"
-              // nextLabel={<Next1 />}
-              // prevLabel={<Prev1 />}
               next2Label={null}
               prev2Label={null}
-              // defaultValue={new Date()}
               tileContent={addContent}
-              calendarType="US" // 요일을 일요일부터 시작하도록 설정
-
-              // today 값
-              // value={date}
-              // onChange={setDate}
+              isBasic={true}
             />
           </div>
         ) : (
           <div className="App">
             <Calendar
+              calendarType="US" // 요일을 일요일부터 시작하도록 설정
+              locale="en"
               onChange={onChange}
               value={value}
-              locale="en"
+              // onClickDay={dayIn}
               // returnValue="range"
-              // selectRange={true}
+
               // nextLabel={<Next1 />}
               // prevLabel={<Prev1 />}
               next2Label={null}
               prev2Label={null}
-              // defaultValue={new Date()}
-              calendarType="US" // 요일을 일요일부터 시작하도록 설정
+              tileContent={addContent}
+              isBasic={false}
 
+              // defaultValue={new Date()}
               // today 값
               // value={date}
               // onChange={setDate}
             />
           </div>
         )}
-        {/* <Button width={"50px"} height={"30px"} onClick={handleTodayClick}>
-          Today
-        </Button> */}
+
         <div className="calendar-tab">
           <ToggleButtonSmall
             onText="수 입"
@@ -177,6 +197,7 @@ const MYCalendar = ({ isCal }) => {
             // isOn={isOn}
             // handleToggle={handleToggle}
           />
+
           <div className="select-day">
             {moment(value).format("YYYY년 MM월 DD일")}
           </div>
@@ -205,53 +226,96 @@ const CalendarContainer = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   }
 
-  .calendar_Main {
-    display: flex;
-    flex-direction: row;
-  }
-
   .select-day {
     margin: 10px;
   }
 
   .contents {
+    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+  }
+
+  .calendar_Main {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .content-row {
+    display: flex;
+    flex-direction: row;
+    margin: 7px;
+  }
+
+  .content-colunm {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-sc {
+    display: flex;
+    flex-direction: column;
   }
 
   .dot-income,
-  .dot-expense {
-    margin: 2px;
-    width: 0.5em;
-    height: 0.5em;
+  .dot-expense,
+  .dot-schedule,
+  .dot-work {
+    margin: 2.5px;
+    width: 0.6em;
+    height: 0.6em;
     border-radius: 50%;
     /* margin-top: 55px; */
   }
 
+  .income-text {
+    color: #3fcea5;
+  }
+
+  .expense-text {
+    color: #ff005c;
+  }
+
+  .income-text,
+  .expense-text {
+    font-size: 0.8em;
+  }
+
   .dot-income {
-    background-color: #35f2bc;
+    background-color: #3fcea5;
   }
 
   .dot-expense {
     background-color: #ff005c;
   }
 
+  .dot-schedule {
+    background-color: #329d9c;
+  }
+
+  .dot-work {
+    background-color: #bdbdbd;
+  }
+
   .box-schedule,
   .box-work {
-    width: 2.5em;
+    width: 2em;
     height: 1em;
     border-radius: 10%;
-    margin: 1px;
+    margin: 2px;
+    p {
+      color: #fff;
+      font-size: 0.6em;
+    }
   }
 
   .box-schedule {
-    background-color: #dff6ee;
+    background-color: #329d9c;
   }
 
   .box-work {
     background-color: #bdbdbd;
-    color: #fff;
-    /* font-size: 0.6em; */
   }
 `;

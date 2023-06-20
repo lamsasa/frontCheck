@@ -1,5 +1,4 @@
 //import axios from 'axios';
-//import Header from "../components/Common/Header";
 //import Container from "../components/Common/Container";
 import Box from "../components/Common/Box";
 import logo1 from "../assets/logo1.png";
@@ -70,7 +69,7 @@ const LoginContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 30px;
   }
 
   .signUpBox {
@@ -79,15 +78,15 @@ const LoginContainer = styled.div`
     width: 80%;
   }
 
-  .click{
+  .click {
     color: gray;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 
   @media (max-width: 768px) {
     .signUpBox {
-    width: 70%;
-  }
+      width: 70%;
+    }
   }
 `;
 
