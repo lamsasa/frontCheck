@@ -48,7 +48,7 @@ const Home = () => {
 
           <div className="calendar">
             <div className="App">
-              {isOn ? <MyCal isCal={true} /> : <MyCal isCal={false} />}
+              {isOn ? <MyCal isBasic={false} /> : <MyCal isBasic={true} />}
             </div>
           </div>
         </CalendarContainer>
