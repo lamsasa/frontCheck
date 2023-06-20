@@ -8,20 +8,20 @@ const SlideButton = ({ slides, onSlideChange }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
 
-    const settings = {
-        dots: false,
-        arrows: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        beforeChange: (current, next) => {
-            setCurrentIndex(next);
-        },
-        afterChange: (index) => {
-            onSlideChange(index);
-        },
-    };
+  const settings = {
+    dots: false,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    beforeChange: (current, next) => {
+      setCurrentIndex(next);
+    },
+    afterChange: (index) => {
+      onSlideChange(index);
+    },
+  };
 
     const goToSlide = (index) => {
         setCurrentIndex(index);

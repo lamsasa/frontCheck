@@ -31,7 +31,6 @@ const Header = () => {
 
 export default Header;
 
-
 const Logo = styled.img`
   width: 213px;
   height: 39px;
@@ -63,4 +62,3 @@ const DarkModeButton = styled.button`
   box-shadow: ${({ theme }) => theme.toggleButton.boxShadow};
   border: none;
 `;
-

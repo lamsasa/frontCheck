@@ -12,21 +12,24 @@ const lineColor = "#ffa198";
 // `v` and `v1` are used for bars
 // `l` is used for line
 const data = [
-  { x: "0", v: 120, v1: 30, l: 50 },
-  { x: "1", v: -10.5, v1: 2.9, l: 30.1 },
-  { x: "2", v: 3.8, v1: 3.2, l: 2.3 },
-  { x: "3", v: 4.1, v1: 5.0, l: 3.1 },
-  { x: "4", v: 4.4, v1: 3.8, l: 55.0 },
-  { x: "5", v: 4.7, v1: 4.1, l: 3.9 },
-  { x: "6", v: 4.9, v1: 4.3, l: 45.9 },
-  { x: "7", v: 3.0, v1: 4.6, l: 23.3 },
-  { x: "8", v: 3.0, v1: 4.6, l: 23.3 },
-  { x: "9", v: 3.0, v1: 4.6, l: 23.3 },
-  { x: "10", v: 3.0, v1: 4.6, l: 23.3 },
-  { x: "11", v: 3.0, v1: 4.6, l: 23.3 },
+  { x: "1월", v: 120, v1: 30, l: 50 },
+  { x: "2월", v: -10.5, v1: 2.9, l: 30.1 },
+  { x: "3월", v: 3.8, v1: 3.2, l: 2.3 },
+  { x: "4월", v: 4.1, v1: 5.0, l: 3.1 },
+  { x: "5월", v: 4.4, v1: 3.8, l: 55.0 },
+  { x: "6월", v: 4.7, v1: 4.1, l: 3.9 },
+  { x: "7월", v: 4.9, v1: 4.3, l: 45.9 },
+  { x: "8월", v: 3.0, v1: 4.6, l: 23.3 },
+  { x: "9월", v: 3.0, v1: 4.6, l: 23.3 },
+  { x: "10월", v: 3.0, v1: 4.6, l: 23.3 },
+  { x: "11월", v: 3.0, v1: 4.6, l: 23.3 },
+  { x: "12월", v: 3.0, v1: 4.6, l: 23.3 },
 ];
 
-const Line = ({ bars, xScale, yScale, innerWidth, innerHeight, tooltip }) => {
+// scale 최댓값 입력
+const maxValue = Math.max(...data.map((item) => Math.max(item.v, item.v1)));
+
+const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
   computeXYScalesForSeries(
     [
       {
@@ -77,9 +80,16 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight, tooltip }) => {
         width={innerWidth}
         height={innerHeight}
         right={{
-          ticksPosition: "after",
+          ticksPosition: "after"
         }}
       />
+      <text
+        x={innerWidth + 10} // 오른쪽 끝에 위치
+        y={yScale(maxValue) - 12} // yScale의 최댓값에 해당하는 y 좌표에서 약간 위로 이동
+        textAnchor="start" // 시작 부분에 정렬
+        style={{ fontSize: "10px" }}>
+        (원)
+      </text>
       <path
         d={linePath}
         fill="none"
@@ -89,7 +99,7 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight, tooltip }) => {
       {bars.map((bar) => (
         <circle
           key={`circle-${bar.key}`}
-          cx={xScale(bar.data.index) + xScale.bandwidth() / 2}
+          cx={xScale(bar.data.data.x) + xScale.bandwidth() / 2}
           cy={yScale(bar.data.data.l)}
           r={4}
           fill="white"
@@ -112,21 +122,21 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight, tooltip }) => {
             onMouseLeave={tip.hideTooltip}
           />
           <text
-            x={xScale(bar.data.index) + xScale.bandwidth() / 2 - bar.width / 2}
+            x={xScale(bar.data.data.x) + xScale.bandwidth() / 2 - bar.width / 2}
             y={yScale(bar.data.data.v)} // v 값 텍스트의 y 좌표 수정
             textAnchor="middle"
             style={{ fontSize: "12px" }}>
             {bar.data.data.v}
           </text>
           <text
-            x={xScale(bar.data.index) + xScale.bandwidth() / 2 + bar.width / 2}
+            x={xScale(bar.data.data.x) + xScale.bandwidth() / 2 + bar.width / 2}
             y={yScale(bar.data.data.v1)} // v1 값 텍스트의 y 좌표 수정
             textAnchor="middle"
             style={{ fontSize: "12px" }}>
             {bar.data.data.v1}
           </text>
           <text
-            x={xScale(bar.data.index) + xScale.bandwidth() / 2}
+            x={xScale(bar.data.data.x) + xScale.bandwidth() / 2}
             y={yScale(bar.data.data.l) - 10}
             textAnchor="middle"
             style={{ fontSize: "12px" }}>
@@ -152,19 +162,16 @@ function CustomTooltip({ barValue, barValue1, lineValue }) {
 
 const transformedData = data.map((item) => ({
   x: item.x,
-  v: item.v,
-  v1: item.v1,
+  수입: item.v,
+  지출: item.v1,
   l: item.l,
 }));
 
-const maxValue = Math.max(...data.map(item => Math.max(item.v, item.v1)));
-
-
 const LineBarChart = () => (
-  <div className="App" style={{ width: "800px", height: "90%" }}>
+  <div style={{ width: "800px", height: "90%" }}>
     <ResponsiveBar
-      data={transformedData} 
-      keys={["v", "v1"]}
+      data={transformedData}
+      keys={["수입", "지출"]}
       groupMode="grouped" // 그룹 모드를 'grouped'로 설정
       maxValue={maxValue}
       padding={0.5} // 각 막대 그래프 사이의 거리

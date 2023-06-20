@@ -62,8 +62,8 @@ const CategoryIcon = ({ name }) => {
 export default CategoryIcon;
 
 const Icon = styled.div`
-    width: 25px;
-    height: 25px;
+    width: ${({ width }) => width || '25px'};
+    height: ${({ height }) => height || '25px'};
     background-color: ${(props) => props.color};
     border-radius: 50%;
     display: flex;

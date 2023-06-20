@@ -46,7 +46,7 @@ const SwitchLabel = styled.label`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    background: ${({ theme }) => theme.bgColor};
+    background: ${( {theme}) => theme.bgColor};
   }
 `;
 
@@ -57,11 +57,7 @@ const OnButton = styled.span`
   width: ${({ width }) => width || "73px"};
   height: ${({ height }) => height || "40px"};
   transition: 0.2s;
-  background: linear-gradient(
-    100deg,
-    rgba(66, 230, 149, 0.8) 3.56%,
-    rgba(59, 178, 184, 0.8) 96.4%
-  );
+  background: linear-gradient(100deg, rgba(66, 230, 149, 0.8) 3.56%, rgba(59, 178, 184, 0.8) 96.4%);
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
   border-radius: 100px;
 
@@ -69,11 +65,7 @@ const OnButton = styled.span`
   ${SwitchInput}:checked + ${SwitchLabel} & {
     left: calc(100% - 3px);
     transform: translateX(-100%);
-    background: linear-gradient(
-      100deg,
-      rgba(66, 230, 149, 0.8) 3.56%,
-      rgba(59, 178, 184, 0.8) 96.4%
-    );
+    background: linear-gradient(100deg, rgba(66, 230, 149, 0.8) 3.56%, rgba(59, 178, 184, 0.8) 96.4%);
     box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.1);
   }
 `;

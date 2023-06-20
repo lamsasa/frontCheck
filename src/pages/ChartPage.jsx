@@ -5,11 +5,33 @@ import LineBarChart from "../components/Chart/LineBarChart";
 import Container from "../components/Common/Container";
 import Box from "../components/Common/Box";
 import PieChart from "../components/Chart/PieChart";
-import BudgetCalendar from "../components/MyBudget/BudgetCalendar";
+import ChartButton from "../components/Chart/ChartButton";
+import React, { useRef, useEffect } from 'react';
 
 // 버튼 년도 단위로 변경 필요
 
 const Chart = () => {
+
+  const inBoxRef = useRef(null);
+
+  useEffect(() => {
+    // 현재 월에 맞게 스크롤 위치 설정
+    scrollToCurrentMonth();
+  }, []);
+
+  const scrollToCurrentMonth = () => {
+    const inBoxElement = inBoxRef.current;
+    if (inBoxElement) {
+      const currentDate = new Date();
+      const currentMonth = currentDate.getMonth();
+      const monthElement = inBoxElement.querySelector(`[data-month="${currentMonth}"]`);
+      if (monthElement) {
+        const scrollLeft = monthElement.offsetLeft;
+        inBoxElement.scrollLeft = scrollLeft;
+      }
+    }
+  };
+
   return (
     <>
       <Header />
@@ -17,10 +39,10 @@ const Chart = () => {
       <Container>
         <Box>
           <ButtonContainer>
-            <BudgetCalendar />
+            <ChartButton />
           </ButtonContainer>
           <ChartContainer>
-            <InBox>
+          <InBox ref={inBoxRef}>
               <LineBarChart />
             </InBox>
           </ChartContainer>
@@ -42,7 +64,8 @@ const ButtonContainer = styled.div`
   display: flex;
   align-content: center;
   justify-content: center;
-  background-color: #ffdbdb;
+  background-color: none;
+  margin-top: 10px;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -54,7 +77,7 @@ const ChartContainer = styled.div`
   height: 500px;
   align-content: center;
   justify-content: center;
-  background-color: #ffdbdb;
+  background-color: none;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -67,10 +90,10 @@ const ChartContainer2 = styled.div`
   width: 100%;
   align-content: center;
   justify-content: center;
-  background-color: #ffdbdb;
-
+  background-color: none;
   @media (max-width: 768px) {
     width: 100%;
+    height: 300px;
   }
 `;
 
@@ -80,5 +103,6 @@ const InBox = styled.div`
   justify-content: center;
   overflow-x: scroll;
   overflow-y: hidden;
-  zoom: 1;
+  scroll-behavior: smooth;
 `;
+ 

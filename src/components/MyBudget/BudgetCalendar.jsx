@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ReactComponent as Right } from '../../assets/right.svg';
-import { ReactComponent as Left } from '../../assets/left.svg';
-import styled from 'styled-components';
+import { useState } from "react";
+import { ReactComponent as Right } from "../../assets/right.svg";
+import { ReactComponent as Left } from "../../assets/left.svg";
+import styled from "styled-components";
 
 const BudgetCalendar = () => {
     const currentDate = new Date();

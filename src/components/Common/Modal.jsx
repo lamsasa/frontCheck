@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Close } from '../../assets/close.svg';
+import useViewport from '../../hooks/viewportHook';
 const Modal = (props) => {
+    const { isMobile } = useViewport();
     const { open, close, name, width, height } = props;
 
     const closeModal = () => {
@@ -9,7 +11,7 @@ const Modal = (props) => {
     };
 
     return (
-        <ModalStyle width={width} height={height}>
+        <ModalStyle width={width} height={height} isMobile={isMobile}>
             <div className={open ? 'openModal modal' : 'modal'}>
                 {open ? (
                     <section>
@@ -46,8 +48,8 @@ const ModalStyle = styled.div`
     }
 
     .modal > section {
-        width: 100%;
-        height: 100%;
+        width: ${(props) => (props.isMobile ? '100%' : '60%')};
+        height: ${(props) => (props.isMobile ? '100%' : '500px')};
         padding: 10px;
         margin: 0 auto;
         border-radius: 10px;
