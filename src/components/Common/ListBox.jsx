@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-const Box = ({ children, height, titleMargin, width }) => {
+const Box = ({ children, height, titleMargin, width, mobileHeight }) => {
     return (
-        <BoxStyle height={height} margin={titleMargin} width={width}>
+        <BoxStyle height={height} margin={titleMargin} width={width} mobileHeight={mobileHeight}>
             {children}
         </BoxStyle>
     );
@@ -48,5 +48,6 @@ const BoxStyle = styled.div`
 
     @media (max-width: 768px) {
     width: 90%;
+    height: ${({ mobileHeight }) => mobileHeight || ''};
   }
 `;

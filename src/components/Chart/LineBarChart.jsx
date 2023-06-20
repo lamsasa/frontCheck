@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import styled from "styled-components";
 import { createRoot } from "react-dom/client";
 import { ResponsiveBar } from "@nivo/bar";
 import { Axes } from "@nivo/axes";
@@ -182,58 +183,72 @@ const transformedData = data.map((item) => ({
 }));
 
 const LineBarChart = () => (
-  <div style={{ width: "800px", height: "90%" }}>
-    <ResponsiveBar
-      data={transformedData}
-      keys={["수입", "지출"]}
-      groupMode="grouped" // 그룹 모드를 'grouped'로 설정
-      maxValue={maxValue}
-      padding={0.5} // 각 막대 그래프 사이의 거리
-      margin={{
-        top: 20,
-        right: 36,
-        bottom: 36,
-        left: 36,
-      }}
-      indexBy="x"
-      enableLabel={false}
-      colors={[barColor, "#ffca80"]}
-      //borderRadius={2}
-      axisLeft={false} // 왼쪽 y좌표
-      enableGridY={false}
-      layers={["grid", "axes", "bars", Line, "markers", "legends"]}
-      //범례
-      legends={[
-        {
-          anchor: "top-right", // 범례 위치 (top-left, top-right, bottom-left, bottom-right 등)
-          direction: "row", // 범례 방향 (row, column 등)
-          justify: false,
-          translateX: 0,
-          translateY: -20,
-          itemsSpacing: 4,
-          itemWidth: 100,
-          itemHeight: 20,
-          itemDirection: "left-to-right",
-          itemOpacity: 0.85,
-          itemTextColor: "#000",
-          symbolSize: 20,
-          symbolShape: "circle",
-          effects: [
-            {
-              on: "hover",
-              style: {
-                itemTextColor: "#000",
-                itemOpacity: 1,
+  <LineBarChartContainer>
+    <div className="lineBarChart">
+      <ResponsiveBar
+        data={transformedData}
+        keys={["수입", "지출"]}
+        groupMode="grouped" // 그룹 모드를 'grouped'로 설정
+        maxValue={maxValue}
+        padding={0.5} // 각 막대 그래프 사이의 거리
+        margin={{
+          top: 20,
+          right: 36,
+          bottom: 36,
+          left: 36,
+        }}
+        indexBy="x"
+        enableLabel={false}
+        colors={[barColor, "#ffca80"]}
+        //borderRadius={2}
+        axisLeft={false} // 왼쪽 y좌표
+        enableGridY={false}
+        layers={["grid", "axes", "bars", Line, "markers", "legends"]}
+        //범례
+        legends={[
+          {
+            anchor: "top-right", // 범례 위치 (top-left, top-right, bottom-left, bottom-right 등)
+            direction: "row", // 범례 방향 (row, column 등)
+            justify: false,
+            translateX: 0,
+            translateY: -20,
+            itemsSpacing: 4,
+            itemWidth: 100,
+            itemHeight: 20,
+            itemDirection: "left-to-right",
+            itemOpacity: 0.85,
+            itemTextColor: "#000",
+            symbolSize: 20,
+            symbolShape: "circle",
+            effects: [
+              {
+                on: "hover",
+                style: {
+                  itemTextColor: "#000",
+                  itemOpacity: 1,
+                },
               },
-            },
-          ],
-        },
-      ]}
-    />
-  </div>
+            ],
+          },
+        ]}
+      />
+    </div>
+  </LineBarChartContainer>
 );
 
 const root = createRoot(document.getElementById("root"));
 root.render(<LineBarChart />);
 
 export default LineBarChart;
+
+const LineBarChartContainer = styled.div`
+  width: 800px;
+  height: 100%;
+  display: flex;
+
+  .lineBarChart{
+    margin-top: 10px;
+    width: 100%;
+    height: 90%;
+  }
+`;

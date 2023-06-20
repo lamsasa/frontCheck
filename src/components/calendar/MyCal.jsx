@@ -230,7 +230,7 @@ const CalendarContainer = styled.div`
   }
 
   .dot-income {
-    background-color: #3fcea5;
+    background-color: #35f2bc;
   }
 
   .dot-expense {
