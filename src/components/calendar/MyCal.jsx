@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import useViewport from "../../hooks/viewportHook";
 
 // 캘린더 API 적용
 import Calendar from "react-calendar";
@@ -11,7 +12,8 @@ import ToggleButtonSmall from "../Common/ToggleButtonSmall";
 // import { Prev1 } from "../../assets/prev.png";
 
 const MYCalendar = ({ isBasic }) => {
-  // const { isMobile } = useViewport();
+  const { isMobile } = useViewport();
+
   // const apiKey = process.env.REACT_APP_CAL_API_KEY;
 
   // Today 버튼
@@ -155,7 +157,7 @@ const MYCalendar = ({ isBasic }) => {
   };
 
   return (
-    <CalendarContainer>
+    <CalendarContainer isMobile={isMobile}>
       <div className="calendar_Main">
         {isBasic ? (
           <div className="App">
@@ -215,13 +217,14 @@ export default MYCalendar;
 
 const CalendarContainer = styled.div`
   .calendar-tab {
-    display: flex;
+    display: ${(props) => (props.isMobile ? "none" : "flex")};
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
     margin: 20px 30px 0 30px;
     padding: 10px;
     width: 300px;
+    min-width: 300px;
     height: auto;
     background-color: ${({ theme }) => theme.bgColor};
     color: #999;
@@ -327,7 +330,7 @@ const CalendarContainer = styled.div`
   // react-calendar.css
   .react-calendar {
     padding: 10px;
-    width: 800px;
+    width: ${(props) => (props.isMobile ? "500px" : "800px")};
     max-width: 100%;
     height: auto;
     margin-top: 20px;
