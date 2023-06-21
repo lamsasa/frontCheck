@@ -4,7 +4,6 @@ import styled from "styled-components";
 // 캘린더 API 적용
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "./MyCal.css";
 import moment from "moment";
 
 import ToggleButtonSmall from "../Common/ToggleButtonSmall";
@@ -35,7 +34,6 @@ const MYCalendar = ({ isBasic }) => {
   ];
 
   const expenseList = [
-    "2023-06-01",
     "2023-06-04",
     "2023-06-07",
     "2023-06-11",
@@ -45,7 +43,14 @@ const MYCalendar = ({ isBasic }) => {
     "2023-06-26",
   ];
 
-  const scList = ["2023-06-04", "2023-06-05", "2023-06-09", "2023-06-15"];
+  const scList = [
+    "2023-06-04",
+    "2023-06-05",
+    "2023-06-10",
+    "2023-06-11",
+    "2023-06-17",
+    "2023-06-30",
+  ];
 
   const workList = [
     "2023-06-03",
@@ -218,7 +223,7 @@ const CalendarContainer = styled.div`
     padding: 10px;
     width: 300px;
     height: auto;
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.bgColor};
     color: #999;
     line-height: 1.125em;
     border: 0px;
@@ -263,7 +268,7 @@ const CalendarContainer = styled.div`
   .dot-expense,
   .dot-schedule,
   .dot-work {
-    margin: 2.5px;
+    margin: 1px;
     width: 0.6em;
     height: 0.6em;
     border-radius: 50%;
@@ -304,7 +309,7 @@ const CalendarContainer = styled.div`
     width: 2em;
     height: 1em;
     border-radius: 10%;
-    margin: 2px;
+    margin: 1.5px;
     p {
       color: #fff;
       font-size: 0.6em;
@@ -317,5 +322,148 @@ const CalendarContainer = styled.div`
 
   .box-work {
     background-color: #bdbdbd;
+  }
+
+  // react-calendar.css
+  .react-calendar {
+    padding: 10px;
+    width: 800px;
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    background-color: ${({ theme }) => theme.bgColor};
+    color: #999;
+    font-family: Arial, Helvetica, sans-serif;
+    /* line-height: 1.125em; */
+    border: 0px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .react-calendar__navigation button {
+    color: #222;
+    font-weight: bold;
+    width: auto;
+    height: auto;
+    background: none;
+    /* font-size: 16px; */
+    /* margin-top: 15px; */
+  }
+
+  .react-calendar__navigation__arrow {
+    font-size: 30px;
+  }
+
+  .react-calendar__navigation__label {
+    font-size: 20px;
+  }
+
+  .react-calendar__viewContainer {
+    margin-bottom: 15px;
+  }
+
+  .react-calendar__navigation button:enabled:hover,
+  .react-calendar__navigation button:enabled:focus {
+    background-color: ${({ theme }) => theme.bgColor};
+    border: 0px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .react-calendar__navigation button[disabled] {
+    /* background-color: #fff; */
+  }
+
+  abbr[title] {
+    text-decoration: none;
+  }
+
+  .react-calendar__tile {
+    height: 80px;
+    font-size: 16px;
+  }
+
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus {
+    background: ${({ theme }) => theme.seldayColor};
+    color: #fff;
+    border-radius: 6px;
+  }
+
+  .react-calendar__tile--now {
+    /* background: ${({ theme }) => theme.bgColor}; */
+    background: ${({ theme }) => theme.todayColor};
+    border-radius: 6px;
+    font-weight: bold;
+    color: #222;
+  }
+
+  // 오늘 날짜 선택 시
+  .react-calendar__tile--now:enabled:hover,
+  .react-calendar__tile--now:enabled:focus {
+    background: ${({ theme }) => theme.seldayColor};
+
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .react-calendar__tile--hasActive:enabled:hover,
+  .react-calendar__tile--hasActive:enabled:focus {
+    background: ${({ theme }) => theme.todayColor};
+  }
+
+  .react-calendar--selectRange .react-calendar__tile--hover {
+    background-color: #f0f0f0;
+  }
+
+  .react-calendar__tile--range {
+    background: ${({ theme }) => theme.todayColor};
+    color: #fff;
+    border-radius: 6px;
+  }
+
+  .react-calendar__month-view__days__day--weekend {
+    color: red;
+  }
+
+  .react-calendar__month-view__days__day--weekend:nth-child(7n) {
+    color: blue;
+  }
+
+  /* .react-calendar__month-view__weekNumbers .react-calendar__tile {
+  display: flex;
+  align-items: center;
+  justify-content: top;
+  font-size: 0.75em;
+  font-weight: bold;
+} */
+
+  /* .react-calendar__tile {
+  max-width: 100%;
+  padding: 10px 6.6667px;
+    background: none;
+    text-align: center;
+    line-height: 16px;
+} */
+
+  .react-calendar__tile {
+    text-align: center;
+    padding: 20px;
+    height: 110px;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .react-calendar__month-view__weekdays {
+    font-size: 1.2em;
+  }
+
+  /* 해당 월의 날짜가 아니면 투명도 0.5 */
+  .react-calendar__month-view__days__day--neighboringMonth {
+    opacity: 0.3;
   }
 `;

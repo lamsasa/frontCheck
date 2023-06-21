@@ -10,10 +10,11 @@ import Container from "../../components/Common/Container";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 import MyCal from "../../components/Calendar/MyCal";
 // import ToggleButtonSmall from "../../components/Common/ToggleButtonSmall";
-import useViewport from "../../hooks/viewportHook";
+
+// import useViewport from "../../hooks/viewportHook";
 
 const Home = () => {
-  const { isMobile } = useViewport();
+  // const { isMobile } = useViewport();
 
   const [isOn, setIsOn] = useState(false);
 
@@ -35,7 +36,7 @@ const Home = () => {
               isOn={isOn}
               handleToggle={handleToggle}
             />
-            <Plus />
+            <Plus width="33px" height="33px" />
 
             {/* <ToggleButtonSmall
             onText="일 정"
@@ -88,6 +89,8 @@ const CalendarContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    padding-right: 15px;
     > svg {
       fill: ${({ theme }) => theme.menuColor};
     }
@@ -107,7 +110,7 @@ const BoxContainer = styled.div`
     /* position: absolute; */
     width: 550px;
     height: 200px;
-    background: #ffffff;
+    background: ${({ theme }) => theme.bgColor};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-left: 30px;
