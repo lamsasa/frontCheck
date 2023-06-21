@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ResponsivePie } from "@nivo/pie";
 import CategoryIcon from "../MyBudget/CategoryIcon";
@@ -72,12 +73,20 @@ const Legends = () => {
 };
 
 const PieChart = ({ name }) => {
-  const colors = categoryList.map((item) => {
-    if (item.id === name) {
-      return item.Color;
-    }
-    return "#FF7076"; // 기본 색상
-  });
+  const [colors, setColors] = useState([]);
+
+  useEffect(() => {
+    const sortedData = data.sort((a, b) => b.value - a.value); // value 값을 기준으로 내림차순 정렬
+
+    const sortedColors = sortedData.map((item) => {
+      const foundCategory = categoryList.find(
+        (category) => category.Name === item.id
+      );
+      return foundCategory ? foundCategory.Color : "#FF7076"; // 기본 색상
+    });
+
+    setColors(sortedColors);
+  }, [name]);
 
   return (
     <>
