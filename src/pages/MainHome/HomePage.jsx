@@ -30,7 +30,8 @@ const Home = () => {
                 <CalendarContainer>
                     <div className="header">
                         <ToggleButtonLarge onText="일 정" offText="가계부" isOn={isOn} handleToggle={handleToggle} />
-                        {/* <Plus/> */}
+                        <Plus />
+
                         {/* <ToggleButtonSmall
             onText="일 정"
             offText="가계부"
@@ -80,6 +81,9 @@ const CalendarContainer = styled.div`
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        > svg {
+            fill: ${({ theme }) => theme.menuColor};
+        }
     }
 `;
 

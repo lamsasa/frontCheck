@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import styled from "styled-components";
 import { createRoot } from "react-dom/client";
 import { ResponsiveBar } from "@nivo/bar";
 import { Axes } from "@nivo/axes";
@@ -6,8 +7,9 @@ import { line } from "d3-shape";
 import { computeXYScalesForSeries } from "@nivo/scales";
 import { useTooltip, TableTooltip } from "@nivo/tooltip";
 
-const barColor = "#80ffca";
-const lineColor = "#ffa198";
+
+const barColor = "#3fdaae";
+const lineColor = "#ffa947";
 
 // `v` and `v1` are used for bars
 // `l` is used for line
@@ -57,20 +59,23 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
   const linePath = lineGenerator(lineData);
 
   const tip = useTooltip();
+  
 
   function renderTip(e, idx) {
     const barData = bars[idx].data.data;
     if (barData) {
       return tip.showTooltipFromEvent(
         <CustomTooltip
-          barValue={barData.v}
-          barValue1={barData.v1}
+          barValue={barData["수입"]}
+          barValue1={barData["지출"]}
           lineValue={barData.l}
         />,
         e
       );
     }
   }
+  
+  
 
   return (
     <Fragment>
@@ -137,17 +142,17 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
           />
           <text
             x={xScale(bar.data.data.x) + xScale.bandwidth() / 2 - bar.width / 2}
-            y={yScale(bar.data.data.v)} // v 값 텍스트의 y 좌표 수정
+            y={yScale(bar.data.data["수입"])} // v 값 텍스트의 y 좌표 수정
             textAnchor="middle"
             style={{ fontSize: "12px" }}>
-            {bar.data.data.v}
+            {bar.data.data["수입"]}
           </text>
           <text
             x={xScale(bar.data.data.x) + xScale.bandwidth() / 2 + bar.width / 2}
-            y={yScale(bar.data.data.v1)} // v1 값 텍스트의 y 좌표 수정
+            y={yScale(bar.data.data["지출"])} // v1 값 텍스트의 y 좌표 수정
             textAnchor="middle"
             style={{ fontSize: "12px" }}>
-            {bar.data.data.v1}
+            {bar.data.data["지출"]}
           </text>
           <text
             x={xScale(bar.data.data.x) + xScale.bandwidth() / 2}
@@ -166,74 +171,89 @@ function CustomTooltip({ barValue, barValue1, lineValue }) {
   return (
     <TableTooltip
       rows={[
-        ["수입", barValue],
-        ["지출", barValue1],
-        ["합계", lineValue],
+        ["수입", `${barValue}`],
+        ["지출", `${barValue1}`],
+        ["합계", `${lineValue}`],
       ]}
     />
   );
 }
 
+
 const transformedData = data.map((item) => ({
   x: item.x,
-  수입: item.v,
-  지출: item.v1,
+  "수입": item.v,
+  "지출": item.v1,
   l: item.l,
 }));
 
 const LineBarChart = () => (
-  <div style={{ width: "800px", height: "90%" }}>
-    <ResponsiveBar
-      data={transformedData}
-      keys={["수입", "지출"]}
-      groupMode="grouped" // 그룹 모드를 'grouped'로 설정
-      maxValue={maxValue}
-      padding={0.5} // 각 막대 그래프 사이의 거리
-      margin={{
-        top: 20,
-        right: 36,
-        bottom: 36,
-        left: 36,
-      }}
-      indexBy="x"
-      enableLabel={false}
-      colors={[barColor, "#ffca80"]}
-      //borderRadius={2}
-      axisLeft={false} // 왼쪽 y좌표
-      enableGridY={false}
-      layers={["grid", "axes", "bars", Line, "markers", "legends"]}
-      //범례
-      legends={[
-        {
-          anchor: "top-right", // 범례 위치 (top-left, top-right, bottom-left, bottom-right 등)
-          direction: "row", // 범례 방향 (row, column 등)
-          justify: false,
-          translateX: 0,
-          translateY: -20,
-          itemsSpacing: 4,
-          itemWidth: 100,
-          itemHeight: 20,
-          itemDirection: "left-to-right",
-          itemOpacity: 0.85,
-          itemTextColor: "#000",
-          symbolSize: 20,
-          symbolShape: "circle",
-          effects: [
-            {
-              on: "hover",
-              style: {
-                itemTextColor: "#000",
-                itemOpacity: 1,
+  <LineBarChartContainer>
+    <div className="lineBarChart">
+      <ResponsiveBar
+        data={transformedData}
+        keys={["수입", "지출"]}
+        groupMode="grouped" // 그룹 모드를 'grouped'로 설정
+        maxValue={maxValue}
+        padding={0.5} // 각 막대 그래프 사이의 거리
+        margin={{
+          top: 20,
+          right: 36,
+          bottom: 36,
+          left: 36,
+        }}
+        indexBy="x"
+        enableLabel={false}
+        colors={[barColor, "#ff3e85"]}
+        borderRadius={2}
+        axisLeft={false} // 왼쪽 y좌표
+        enableGridY={false}
+        layers={["grid", "axes", "bars", Line, "markers", "legends"]}
+        //범례
+        legends={[
+          {
+            anchor: "top-right", // 범례 위치 (top-left, top-right, bottom-left, bottom-right 등)
+            direction: "row", // 범례 방향 (row, column 등)
+            justify: false,
+            translateX: 0,
+            translateY: -20,
+            itemsSpacing: 4,
+            itemWidth: 100,
+            itemHeight: 20,
+            itemDirection: "left-to-right",
+            itemOpacity: 0.85,
+            itemTextColor: "#000",
+            symbolSize: 20,
+            symbolShape: "circle",
+            effects: [
+              {
+                on: "hover",
+                style: {
+                  itemTextColor: "#000",
+                  itemOpacity: 1,
+                },
               },
-            },
-          ],
-        },
-      ]}
-    />
-  </div>
+            ],
+          },
+        ]}
+      />
+    </div>
+  </LineBarChartContainer>
 );
 
 const root = createRoot(document.getElementById("root"));
 root.render(<LineBarChart />);
 
 export default LineBarChart;
+
+const LineBarChartContainer = styled.div`
+  width: 800px;
+  height: 100%;
+  display: flex;
+
+  .lineBarChart{
+    margin-top: 10px;
+    width: 100%;
+    height: 90%;
+  }
+`;

@@ -37,13 +37,13 @@ const SwitchLabel = styled.label`
   cursor: pointer;
   width: 100px;
   height: 40px;
-  background: #fff;
+  background: ${({ theme }) => theme.bgColor};
   border-radius: 100px;
   transition: 0.2s;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    background: #efefef;
+    /* background: #efefef; */
   }
 `;
 

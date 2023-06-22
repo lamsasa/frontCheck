@@ -3,15 +3,15 @@ import Header from "../components/Common/Header";
 import Navbar from "../components/Common/Navbar";
 import LineBarChart from "../components/Chart/LineBarChart";
 import Container from "../components/Common/Container";
+import ListBox from "../components/Common/ListBox";
 import Box from "../components/Common/Box";
 import PieChart from "../components/Chart/PieChart";
 import ChartButton from "../components/Chart/ChartButton";
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from "react";
 
 // 버튼 년도 단위로 변경 필요
 
 const Chart = () => {
-
   const inBoxRef = useRef(null);
 
   useEffect(() => {
@@ -24,7 +24,9 @@ const Chart = () => {
     if (inBoxElement) {
       const currentDate = new Date();
       const currentMonth = currentDate.getMonth();
-      const monthElement = inBoxElement.querySelector(`[data-month="${currentMonth}"]`);
+      const monthElement = inBoxElement.querySelector(
+        `[data-month="${currentMonth}"]`
+      );
       if (monthElement) {
         const scrollLeft = monthElement.offsetLeft;
         inBoxElement.scrollLeft = scrollLeft;
@@ -37,22 +39,22 @@ const Chart = () => {
       <Header />
       <Navbar />
       <Container>
-        <Box>
+        <ListBox mobileHeight={"350px"}>
           <ButtonContainer>
             <ChartButton />
           </ButtonContainer>
           <ChartContainer>
-          <InBox ref={inBoxRef}>
+            <InBox ref={inBoxRef}>
               <LineBarChart />
             </InBox>
           </ChartContainer>
-        </Box>
+        </ListBox>
 
-        <Box>
+        <ListBox>
           <ChartContainer2>
             <PieChart />
           </ChartContainer2>
-        </Box>
+        </ListBox>
       </Container>
     </>
   );
@@ -66,10 +68,6 @@ const ButtonContainer = styled.div`
   justify-content: center;
   background-color: none;
   margin-top: 10px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
 `;
 
 const ChartContainer = styled.div`
@@ -78,12 +76,15 @@ const ChartContainer = styled.div`
   align-content: center;
   justify-content: center;
   background-color: none;
+  padding-bottom: 10px;
 
   @media (max-width: 768px) {
     width: 100%;
+    height: 95%;
   }
 `;
 
+//Pie Chart
 const ChartContainer2 = styled.div`
   display: flex;
   height: 500px;
@@ -93,16 +94,17 @@ const ChartContainer2 = styled.div`
   background-color: none;
   @media (max-width: 768px) {
     width: 100%;
-    height: 300px;
+    height: 280px;
   }
 `;
 
 const InBox = styled.div`
-  height: 500px;
-
   justify-content: center;
   overflow-x: scroll;
   overflow-y: hidden;
   scroll-behavior: smooth;
+
+  @media (max-width: 768px) {
+    height: 100%;
+  }
 `;
- 
