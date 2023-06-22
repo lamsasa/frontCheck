@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // ë¸
 import { ThemeProvider } from "./components/themeProvider";
 import Home from "./pages/MainHome/HomePage";
 import Login from "./pages/LoginPage";
-import Login2 from "./pages/LoginPage2";
 import Signup from "./pages/SignupPage";
 import MainList from "./pages/MainListPage";
 import Mybudget from "./pages/MybudgetPage";
@@ -21,7 +20,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Login" element={<Login />} />
-              <Route path="/login2" element={<Login2 />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/MainList" element={<MainList />} />
               <Route path="/Chart" element={<Chart />} />
