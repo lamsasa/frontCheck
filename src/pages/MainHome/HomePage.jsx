@@ -10,10 +10,11 @@ import Container from '../../components/Common/Container';
 import ToggleButtonLarge from '../../components/Common/ToggleButtonLarge';
 import MyCal from '../../components/Calendar/MyCal';
 // import ToggleButtonSmall from "../../components/Common/ToggleButtonSmall";
-import useViewport from '../../hooks/viewportHook';
+
+// import useViewport from "../../hooks/viewportHook";
 
 const Home = () => {
-    const { isMobile } = useViewport();
+    // const { isMobile } = useViewport();
 
     const [isOn, setIsOn] = useState(false);
 
@@ -30,7 +31,7 @@ const Home = () => {
                 <CalendarContainer>
                     <div className="header">
                         <ToggleButtonLarge onText="일 정" offText="가계부" isOn={isOn} handleToggle={handleToggle} />
-                        <Plus width={'33px'} height={'33px'} />
+                        <Plus width="33px" height="33px" />
 
                         {/* <ToggleButtonSmall
             onText="일 정"
@@ -42,7 +43,7 @@ const Home = () => {
                     </div>
 
                     <div className="calendar">
-                        <div className="App">{isOn ? <MyCal isCal={true} /> : <MyCal isCal={false} />}</div>
+                        <div className="App">{isOn ? <MyCal isBasic={false} /> : <MyCal isBasic={true} />}</div>
                     </div>
                 </CalendarContainer>
                 <BoxContainer>
@@ -75,12 +76,15 @@ const CalendarContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0 0 30px 70px;
+    width: 100%;
 
     .header {
         width: 800px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
+        padding-right: 15px;
         > svg {
             fill: ${({ theme }) => theme.menuColor};
         }
@@ -100,7 +104,7 @@ const BoxContainer = styled.div`
         /* position: absolute; */
         width: 550px;
         height: 200px;
-        background: #ffffff;
+        background: ${({ theme }) => theme.bgColor};
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         margin-left: 30px;
