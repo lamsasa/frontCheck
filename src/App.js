@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // ë¸
 import { ThemeProvider } from "./components/themeProvider";
 import Home from "./pages/MainHome/HomePage";
 import Login from "./pages/LoginPage";
+import Signup from "./pages/SignupPage";
 import MainList from "./pages/MainListPage";
 import Mybudget from "./pages/MybudgetPage";
 import Chart from "./pages/ChartPage";
@@ -19,6 +20,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               <Route path="/MainList" element={<MainList />} />
               <Route path="/Chart" element={<Chart />} />
               <Route path="/mybudget" element={<Mybudget />} />
