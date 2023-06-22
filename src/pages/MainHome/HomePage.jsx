@@ -8,7 +8,7 @@ import { ReactComponent as Plus } from '../../assets/plus.svg';
 import Container from '../../components/Common/Container';
 // import Box from "../../components/Common/Box";
 import ToggleButtonLarge from '../../components/Common/ToggleButtonLarge';
-import MyCal from '../../components/calendar/MyCal';
+import MyCal from '../../components/Calendar/MyCal';
 // import ToggleButtonSmall from "../../components/Common/ToggleButtonSmall";
 import useViewport from '../../hooks/viewportHook';
 
@@ -30,7 +30,7 @@ const Home = () => {
                 <CalendarContainer>
                     <div className="header">
                         <ToggleButtonLarge onText="일 정" offText="가계부" isOn={isOn} handleToggle={handleToggle} />
-                        <Plus />
+                        <Plus width={'33px'} height={'33px'} />
 
                         {/* <ToggleButtonSmall
             onText="일 정"
