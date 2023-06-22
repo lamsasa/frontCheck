@@ -214,6 +214,8 @@ const MYCalendar = ({ isBasic }) => {
 export default MYCalendar;
 
 const CalendarContainer = styled.div`
+  width: auto;
+
   .calendar-tab {
     display: flex;
     flex-direction: column;
@@ -221,7 +223,7 @@ const CalendarContainer = styled.div`
     align-items: center;
     margin: 20px 30px 0 30px;
     padding: 10px;
-    width: 300px;
+    min-width: 300px;
     height: auto;
     background-color: ${({ theme }) => theme.bgColor};
     color: #999;
