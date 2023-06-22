@@ -1,11 +1,11 @@
-import axios from 'axios';
+// import axios from 'axios';
 //import Container from "../components/Common/Container";
 import Box from "../components/Common/Box";
 import logo1 from "../assets/logo1.png";
 import styled from "styled-components";
 import ClickButton from "../components/Common/ClickButton";
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+// import {useNavigate} from "react-router-dom";
 import AuthAxiosAPI from "../api/AuthAxiosAPI";
 
 const handleGoogleLogin = () => {
@@ -30,16 +30,16 @@ const handleGoogleLogin = () => {
 };
 
 const Login = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // 키보드 입력 받기
   const [inputEmail, setInputEmail] = useState("");
   const [inputPwd, setInputPwd] = useState("");
   const onChangeEmail = (e) => {
     setInputEmail(e.target.value);
-  }
+  };
   const onChangePwd = (e) => {
     setInputPwd(e.target.value);
-  }
+  };
   const onClickLogin = async (e) => {
     e.preventDefault();
     try {
@@ -49,9 +49,9 @@ const Login = () => {
 
       if (response.status === 200) {
         console.log(userInfoParse);
-        localStorage.setItem('name', userInfoParse.data.name);
+        localStorage.setItem("name", userInfoParse.data.name);
         console.log(userInfoParse.data.name);
-        localStorage.setItem('email', userInfoParse.data.email);
+        localStorage.setItem("email", userInfoParse.data.email);
         console.log(userInfoParse.data.email);
       }
     } catch (error) {
@@ -59,10 +59,6 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
-    // Your existing handleGoogleLogin code here
-    // ...
-  };
   return (
     <>
       <LoginContainer>
@@ -72,15 +68,17 @@ const Login = () => {
           <Box height={"auto"} width={"90%"}>
             <div className="loginBox">
               <button onClick={handleGoogleLogin}>Google Login</button>
-              <InputBox type="text"
-                        placeholder="이메일을 입력해주세요."
-                        value={inputEmail}
-                        onChange={onChangeEmail}
+              <InputBox
+                type="text"
+                placeholder="이메일을 입력해주세요."
+                value={inputEmail}
+                onChange={onChangeEmail}
               />
-              <InputBox type="password"
-                        placeholder="비밀번호를 입력해주세요."
-                        value={inputPwd}
-                        onChange={onChangePwd}
+              <InputBox
+                type="password"
+                placeholder="비밀번호를 입력해주세요."
+                value={inputPwd}
+                onChange={onChangePwd}
               />
               <ClickButton width={"90%"} height={"40px"} onClick={onClickLogin}>
                 로그인
