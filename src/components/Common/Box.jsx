@@ -1,7 +1,10 @@
 import styled from 'styled-components';
+import useViewport from '../../hooks/viewportHook';
 const Box = ({ children, height, titleMargin, width }) => {
+    const { isMobile } = useViewport();
+
     return (
-        <BoxStyle height={height} margin={titleMargin} width={width}>
+        <BoxStyle height={height} margin={titleMargin} width={width} isMobile={isMobile}>
             {children}
         </BoxStyle>
     );
@@ -9,7 +12,7 @@ const Box = ({ children, height, titleMargin, width }) => {
 export default Box;
 
 const BoxStyle = styled.div`
-    width: ${({ width }) => width || '80%'};
+    width: ${({ width, widthMobile, isMobile }) => (isMobile ? widthMobile || '90%' : width || '80%')};
     margin: 0 auto;
     margin-bottom: 20px;
     height: ${({ height }) => height || ''};
