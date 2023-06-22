@@ -36,8 +36,8 @@ const Home = () => {
       <Header />
       <Navbar />
 
-      <Container>
-        <CalendarContainer>
+      <Container isMobile={isMobile}>
+        <CalendarContainer isMobile={isMobile}>
           <div className="header">
             <ToggleButtonLarge
               onText="일 정"
@@ -92,15 +92,22 @@ export default Home;
 const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: ${(props) => (props.isMobile ? "400px" : "800px")};
   padding: ${(props) => (props.isMobile ? "auto" : "0 0 30px 70px")};
+  margin-bottom: 10px;
+
+  .calendar {
+    width: ${(props) => (props.isMobile ? "450px" : "800px")};
+  }
 
   .header {
-    width: 800px;
+    max-width: ${(props) => (props.isMobile ? "450px" : "800px")};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-right: 15px;
+    /* padding-right: 10px; */
     > svg {
       fill: ${({ theme }) => theme.menuColor};
     }
@@ -113,18 +120,19 @@ const BoxContainer = styled.div`
   padding-bottom: 30px;
   display: flex;
   flex-wrap: wrap;
-  padding-left: 40px;
+  justify-content: center;
+  padding-left: ${(props) => (props.isMobile ? "0px" : "40px")};
 
   .box-1,
   .box-2 {
-    border-radius: 10px;
     /* position: absolute; */
-    width: ${(props) => (props.isMobile ? "500px" : "550px")};
+    width: ${(props) => (props.isMobile ? "400px" : "550px")};
     height: 200px;
     background: ${({ theme }) => theme.bgColor};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin-left: 30px;
+    margin-bottom: ${(props) => (props.isMobile ? "10px" : "0")};
+    margin-left: ${(props) => (props.isMobile ? "0px" : "30px")};
   }
 
   .text {

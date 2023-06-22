@@ -19,6 +19,7 @@ const ContainerStyle = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: ${(props) => props.flex || "column"};
   padding-left: ${(props) => (props.isMobile ? "0" : "180px")};
   padding-top: 100px;

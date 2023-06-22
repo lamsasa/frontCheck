@@ -80,7 +80,7 @@ const MYCalendar = ({ isBasic }) => {
         <>
           {isBasic ? (
             <>
-              <p className="income-text">+ 0원</p>
+              <p className="income-text">+0원</p>
             </>
           ) : (
             <div className="dot-income"></div>
@@ -95,7 +95,7 @@ const MYCalendar = ({ isBasic }) => {
         <>
           {isBasic ? (
             <>
-              <p className="expense-text">- 0원</p>
+              <p className="expense-text">-0원</p>
             </>
           ) : (
             <div className="dot-expense"></div>
@@ -272,8 +272,8 @@ const CalendarContainer = styled.div`
   .dot-schedule,
   .dot-work {
     margin: 1px;
-    width: 0.6em;
-    height: 0.6em;
+    width: ${(props) => (props.isMobile ? "0.5em" : "0.6em")};
+    height: ${(props) => (props.isMobile ? "0.5em" : "0.6em")};
     border-radius: 50%;
     /* margin-top: 55px; */
   }
@@ -315,7 +315,7 @@ const CalendarContainer = styled.div`
     margin: 1.5px;
     p {
       color: #fff;
-      font-size: 0.6em;
+      font-size: "0.6em";
     }
   }
 
@@ -330,7 +330,7 @@ const CalendarContainer = styled.div`
   // react-calendar.css
   .react-calendar {
     padding: 10px;
-    width: ${(props) => (props.isMobile ? "500px" : "800px")};
+    width: ${(props) => (props.isMobile ? "400px" : "800px")};
     max-width: 100%;
     height: auto;
     margin-top: 20px;
