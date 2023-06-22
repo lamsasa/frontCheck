@@ -7,25 +7,24 @@ import { line } from "d3-shape";
 import { computeXYScalesForSeries } from "@nivo/scales";
 import { useTooltip, TableTooltip } from "@nivo/tooltip";
 
-
-const barColor = "#3fdaae";
-const lineColor = "#ffa947";
+const barColor = "#80ffca";
+const lineColor = "#ffa198";
 
 // `v` and `v1` are used for bars
 // `l` is used for line
 const data = [
-  { x: "1월", v: 1200, v1: 300, l: 500 },
-  { x: "2월", v: -100.5, v1: 20.9, l: 300.1 },
-  { x: "3월", v: 300.8, v1: 300.2, l: 200.3 },
-  { x: "4월", v: 400.1, v1: 500.0, l: 300.1 },
-  { x: "5월", v: 400.4, v1: 300.8, l: 550.0 },
-  { x: "6월", v: 400.7, v1: 400.1, l: 300.9 },
-  { x: "7월", v: 400.9, v1: 400.3, l: 405.9 },
-  { x: "8월", v: 300.0, v1: 400.6, l: 230.3 },
-  { x: "9월", v: 3000.0, v1: 400.6, l: 203.3 },
-  { x: "10월", v: 300.0, v1: 400.6, l: 203.3 },
-  { x: "11월", v: 300.0, v1: 400.6, l: 203.3 },
-  { x: "12월", v: 300.0, v1: 400.6, l: 203.3 },
+  { x: "1월", v: 120, v1: 30, l: 50 },
+  { x: "2월", v: -10.5, v1: 2.9, l: 30.1 },
+  { x: "3월", v: 3.8, v1: 3.2, l: 2.3 },
+  { x: "4월", v: 4.1, v1: 5.0, l: 3.1 },
+  { x: "5월", v: 4.4, v1: 3.8, l: 55.0 },
+  { x: "6월", v: 4.7, v1: 4.1, l: 3.9 },
+  { x: "7월", v: 4.9, v1: 4.3, l: 45.9 },
+  { x: "8월", v: 3.0, v1: 4.6, l: 23.3 },
+  { x: "9월", v: 3.0, v1: 4.6, l: 23.3 },
+  { x: "10월", v: 3.0, v1: 4.6, l: 23.3 },
+  { x: "11월", v: 3.0, v1: 4.6, l: 23.3 },
+  { x: "12월", v: 3.0, v1: 4.6, l: 23.3 },
 ];
 
 // scale 최댓값 입력
@@ -59,23 +58,20 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
   const linePath = lineGenerator(lineData);
 
   const tip = useTooltip();
-  
 
   function renderTip(e, idx) {
     const barData = bars[idx].data.data;
     if (barData) {
       return tip.showTooltipFromEvent(
         <CustomTooltip
-          barValue={barData["수입"]}
-          barValue1={barData["지출"]}
+          barValue={barData.v}
+          barValue1={barData.v1}
           lineValue={barData.l}
         />,
         e
       );
     }
   }
-  
-  
 
   return (
     <Fragment>
@@ -142,17 +138,17 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
           />
           <text
             x={xScale(bar.data.data.x) + xScale.bandwidth() / 2 - bar.width / 2}
-            y={yScale(bar.data.data["수입"])} // v 값 텍스트의 y 좌표 수정
+            y={yScale(bar.data.data.v)} // v 값 텍스트의 y 좌표 수정
             textAnchor="middle"
             style={{ fontSize: "12px" }}>
-            {bar.data.data["수입"]}
+            {bar.data.data.v}
           </text>
           <text
             x={xScale(bar.data.data.x) + xScale.bandwidth() / 2 + bar.width / 2}
-            y={yScale(bar.data.data["지출"])} // v1 값 텍스트의 y 좌표 수정
+            y={yScale(bar.data.data.v1)} // v1 값 텍스트의 y 좌표 수정
             textAnchor="middle"
             style={{ fontSize: "12px" }}>
-            {bar.data.data["지출"]}
+            {bar.data.data.v1}
           </text>
           <text
             x={xScale(bar.data.data.x) + xScale.bandwidth() / 2}
@@ -171,19 +167,18 @@ function CustomTooltip({ barValue, barValue1, lineValue }) {
   return (
     <TableTooltip
       rows={[
-        ["수입", `${barValue}`],
-        ["지출", `${barValue1}`],
-        ["합계", `${lineValue}`],
+        ["수입", barValue],
+        ["지출", barValue1],
+        ["합계", lineValue],
       ]}
     />
   );
 }
 
-
 const transformedData = data.map((item) => ({
   x: item.x,
-  "수입": item.v,
-  "지출": item.v1,
+  수입: item.v,
+  지출: item.v1,
   l: item.l,
 }));
 
@@ -204,8 +199,8 @@ const LineBarChart = () => (
         }}
         indexBy="x"
         enableLabel={false}
-        colors={[barColor, "#ff3e85"]}
-        borderRadius={2}
+        colors={[barColor, "#ffca80"]}
+        //borderRadius={2}
         axisLeft={false} // 왼쪽 y좌표
         enableGridY={false}
         layers={["grid", "axes", "bars", Line, "markers", "legends"]}

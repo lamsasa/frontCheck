@@ -9,12 +9,12 @@ import Container from "../../components/Common/Container";
 // import Box from "../../components/Common/Box";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 import MyCal from "../../components/Calendar/MyCal";
-import Modal from "../../components/Common/Modal";
+// import ToggleButtonSmall from "../../components/Common/ToggleButtonSmall";
 
-import useViewport from "../../hooks/viewportHook";
+// import useViewport from "../../hooks/viewportHook";
 
 const Home = () => {
-  const { isMobile } = useViewport();
+  // const { isMobile } = useViewport();
 
   const [isOn, setIsOn] = useState(false);
 
@@ -22,22 +22,13 @@ const Home = () => {
     setIsOn((prevState) => !prevState);
   };
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
   return (
     <>
       <Header />
       <Navbar />
 
-      <Container isMobile={isMobile}>
-        <CalendarContainer isMobile={isMobile}>
+      <Container>
+        <CalendarContainer>
           <div className="header">
             <ToggleButtonLarge
               onText="일 정"
@@ -45,7 +36,7 @@ const Home = () => {
               isOn={isOn}
               handleToggle={handleToggle}
             />
-            <Plus width="33px" height="33px" onClick={openModal} />
+            <Plus width="33px" height="33px" />
 
             {/* <ToggleButtonSmall
             onText="일 정"
@@ -62,7 +53,7 @@ const Home = () => {
             </div>
           </div>
         </CalendarContainer>
-        <BoxContainer isMobile={isMobile}>
+        <BoxContainer>
           <div className="box-1">
             <div className="text">지난 달 대비 사용 금액</div>
           </div>
@@ -70,7 +61,6 @@ const Home = () => {
             <div className="text">남은 돈 확인</div>
           </div>
         </BoxContainer>
-        {modalOpen && <Modal open={modalOpen} close={closeModal}></Modal>}
       </Container>
     </>
   );
@@ -92,22 +82,15 @@ export default Home;
 const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: ${(props) => (props.isMobile ? "400px" : "800px")};
-  padding: ${(props) => (props.isMobile ? "auto" : "0 0 30px 70px")};
-  margin-bottom: 10px;
-
-  .calendar {
-    width: ${(props) => (props.isMobile ? "450px" : "800px")};
-  }
+  padding: 0 0 30px 70px;
 
   .header {
-    max-width: ${(props) => (props.isMobile ? "450px" : "800px")};
+    width: 800px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* padding-right: 10px; */
+    padding-right: 15px;
     > svg {
       fill: ${({ theme }) => theme.menuColor};
     }
@@ -115,29 +98,27 @@ const CalendarContainer = styled.div`
 `;
 
 const BoxContainer = styled.div`
-  width: ${(props) => (props.isMobile ? "768px" : "1200px")};
+  width: 1200px;
   height: auto;
   padding-bottom: 30px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-left: ${(props) => (props.isMobile ? "0px" : "40px")};
+  padding-left: 40px;
 
   .box-1,
   .box-2 {
+    border-radius: 10px;
     /* position: absolute; */
-    width: ${(props) => (props.isMobile ? "400px" : "550px")};
+    width: 550px;
     height: 200px;
     background: ${({ theme }) => theme.bgColor};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin-bottom: ${(props) => (props.isMobile ? "10px" : "0")};
-    margin-left: ${(props) => (props.isMobile ? "0px" : "30px")};
+    margin-left: 30px;
   }
 
   .text {
     height: 30px;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
     padding: 20px;
   }

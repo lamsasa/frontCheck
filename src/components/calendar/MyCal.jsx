@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import useViewport from "../../hooks/viewportHook";
 
 // 캘린더 API 적용
 import Calendar from "react-calendar";
@@ -12,8 +11,7 @@ import ToggleButtonSmall from "../Common/ToggleButtonSmall";
 // import { Prev1 } from "../../assets/prev.png";
 
 const MYCalendar = ({ isBasic }) => {
-  const { isMobile } = useViewport();
-
+  // const { isMobile } = useViewport();
   // const apiKey = process.env.REACT_APP_CAL_API_KEY;
 
   // Today 버튼
@@ -80,7 +78,7 @@ const MYCalendar = ({ isBasic }) => {
         <>
           {isBasic ? (
             <>
-              <p className="income-text">+0원</p>
+              <p className="income-text">+ 0원</p>
             </>
           ) : (
             <div className="dot-income"></div>
@@ -95,7 +93,7 @@ const MYCalendar = ({ isBasic }) => {
         <>
           {isBasic ? (
             <>
-              <p className="expense-text">-0원</p>
+              <p className="expense-text">- 0원</p>
             </>
           ) : (
             <div className="dot-expense"></div>
@@ -157,7 +155,7 @@ const MYCalendar = ({ isBasic }) => {
   };
 
   return (
-    <CalendarContainer isMobile={isMobile}>
+    <CalendarContainer>
       <div className="calendar_Main">
         {isBasic ? (
           <div className="App">
@@ -217,14 +215,13 @@ export default MYCalendar;
 
 const CalendarContainer = styled.div`
   .calendar-tab {
-    display: ${(props) => (props.isMobile ? "none" : "flex")};
+    display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
     margin: 20px 30px 0 30px;
     padding: 10px;
     width: 300px;
-    min-width: 300px;
     height: auto;
     background-color: ${({ theme }) => theme.bgColor};
     color: #999;
@@ -272,8 +269,8 @@ const CalendarContainer = styled.div`
   .dot-schedule,
   .dot-work {
     margin: 1px;
-    width: ${(props) => (props.isMobile ? "0.5em" : "0.6em")};
-    height: ${(props) => (props.isMobile ? "0.5em" : "0.6em")};
+    width: 0.6em;
+    height: 0.6em;
     border-radius: 50%;
     /* margin-top: 55px; */
   }
@@ -315,7 +312,7 @@ const CalendarContainer = styled.div`
     margin: 1.5px;
     p {
       color: #fff;
-      font-size: "0.6em";
+      font-size: 0.6em;
     }
   }
 
@@ -330,7 +327,7 @@ const CalendarContainer = styled.div`
   // react-calendar.css
   .react-calendar {
     padding: 10px;
-    width: ${(props) => (props.isMobile ? "400px" : "800px")};
+    width: 800px;
     max-width: 100%;
     height: auto;
     margin-top: 20px;
