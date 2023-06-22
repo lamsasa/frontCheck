@@ -45,4 +45,8 @@ const BoxStyle = styled.div`
     .totalMoney {
         font-size: 15px;
     }
+
+    @media (max-width: 768px) {
+    width: 90%;
+  }
 `;

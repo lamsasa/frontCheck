@@ -74,15 +74,29 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
 
   return (
     <Fragment>
+      {/* y좌표 전부 안 보이게! 
+      <div className="AxesWrapper" style={{ display: "none" }}>
+  <Axes
+    yScale={yScale}
+    xScale={xScale}
+    width={innerWidth}
+    height={innerHeight}
+    right={{
+      ticksPosition: "after"
+    }}
+  />
+</div> */}
+
       <Axes
         yScale={yScale}
         xScale={xScale}
         width={innerWidth}
         height={innerHeight}
         right={{
-          ticksPosition: "after"
+          ticksPosition: "after",
         }}
       />
+
       <text
         x={innerWidth + 10} // 오른쪽 끝에 위치
         y={yScale(maxValue) - 12} // yScale의 최댓값에 해당하는 y 좌표에서 약간 위로 이동
@@ -184,10 +198,8 @@ const LineBarChart = () => (
       indexBy="x"
       enableLabel={false}
       colors={[barColor, "#ffca80"]}
-      borderRadius={2}
-      axisLeft={{
-        tickValues: 7,
-      }}
+      //borderRadius={2}
+      axisLeft={false} // 왼쪽 y좌표
       enableGridY={false}
       layers={["grid", "axes", "bars", Line, "markers", "legends"]}
       //범례

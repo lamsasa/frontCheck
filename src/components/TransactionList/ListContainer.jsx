@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BudgetCalendar from '../MyBudget/BudgetCalendar';
 import CategoryIcon from '../MyBudget/CategoryIcon';
-import Box from '../Common/Box';
+import ListBox from '../Common/ListBox';
 
 const ListContainer = ({ listData }) => {
     const [showList, setShowList] = useState(false);
@@ -13,7 +13,7 @@ const ListContainer = ({ listData }) => {
 
     return (
         <>
-            <Box>
+            <ListBox>
                 <ListContainerStyled>
                     <BudgetCalendar />
                     <table className="table">
@@ -33,7 +33,7 @@ const ListContainer = ({ listData }) => {
                         </tbody>
                     </table>
                 </ListContainerStyled>
-            </Box>
+            </ListBox>
         </>
     );
 };
@@ -82,7 +82,9 @@ const ListContainerStyled = styled.div`
     }
     .table .table-header {
         padding: 10px;
+        width: auto;
         font-weight: bolder;
+        font-size: 1rem;
     }
 
     .table-cell {
@@ -106,8 +108,14 @@ const ListContainerStyled = styled.div`
         display: flex;
         align-items: center;
     }
+
     .category {
-        margin-left: 10px;
+        margin-left: 0px;
+        width: 80px;
+    }
+
+    .content-cell {
+        width: 40%;
     }
 `;
 
