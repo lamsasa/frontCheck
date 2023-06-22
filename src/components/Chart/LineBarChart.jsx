@@ -7,8 +7,9 @@ import { line } from "d3-shape";
 import { computeXYScalesForSeries } from "@nivo/scales";
 import { useTooltip, TableTooltip } from "@nivo/tooltip";
 
-const barColor = "#80ffca";
-const lineColor = "#ffa198";
+
+const barColor = "#3fdaae";
+const lineColor = "#ffa947";
 
 // `v` and `v1` are used for bars
 // `l` is used for line
@@ -58,20 +59,23 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
   const linePath = lineGenerator(lineData);
 
   const tip = useTooltip();
+  
 
   function renderTip(e, idx) {
     const barData = bars[idx].data.data;
     if (barData) {
       return tip.showTooltipFromEvent(
         <CustomTooltip
-          barValue={barData.v}
-          barValue1={barData.v1}
+          barValue={barData["수입"]}
+          barValue1={barData["지출"]}
           lineValue={barData.l}
         />,
         e
       );
     }
   }
+  
+  
 
   return (
     <Fragment>
@@ -138,17 +142,17 @@ const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
           />
           <text
             x={xScale(bar.data.data.x) + xScale.bandwidth() / 2 - bar.width / 2}
-            y={yScale(bar.data.data.v)} // v 값 텍스트의 y 좌표 수정
+            y={yScale(bar.data.data["수입"])} // v 값 텍스트의 y 좌표 수정
             textAnchor="middle"
             style={{ fontSize: "12px" }}>
-            {bar.data.data.v}
+            {bar.data.data["수입"]}
           </text>
           <text
             x={xScale(bar.data.data.x) + xScale.bandwidth() / 2 + bar.width / 2}
-            y={yScale(bar.data.data.v1)} // v1 값 텍스트의 y 좌표 수정
+            y={yScale(bar.data.data["지출"])} // v1 값 텍스트의 y 좌표 수정
             textAnchor="middle"
             style={{ fontSize: "12px" }}>
-            {bar.data.data.v1}
+            {bar.data.data["지출"]}
           </text>
           <text
             x={xScale(bar.data.data.x) + xScale.bandwidth() / 2}
@@ -167,18 +171,19 @@ function CustomTooltip({ barValue, barValue1, lineValue }) {
   return (
     <TableTooltip
       rows={[
-        ["수입", barValue],
-        ["지출", barValue1],
-        ["합계", lineValue],
+        ["수입", `${barValue}`],
+        ["지출", `${barValue1}`],
+        ["합계", `${lineValue}`],
       ]}
     />
   );
 }
 
+
 const transformedData = data.map((item) => ({
   x: item.x,
-  수입: item.v,
-  지출: item.v1,
+  "수입": item.v,
+  "지출": item.v1,
   l: item.l,
 }));
 
@@ -199,8 +204,8 @@ const LineBarChart = () => (
         }}
         indexBy="x"
         enableLabel={false}
-        colors={[barColor, "#ffca80"]}
-        //borderRadius={2}
+        colors={[barColor, "#ff3e85"]}
+        borderRadius={2}
         axisLeft={false} // 왼쪽 y좌표
         enableGridY={false}
         layers={["grid", "axes", "bars", Line, "markers", "legends"]}
