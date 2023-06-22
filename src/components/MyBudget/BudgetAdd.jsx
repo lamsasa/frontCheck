@@ -3,6 +3,7 @@ import BudgetCalendar from './BudgetCalendar';
 import CategoryIcon from './CategoryIcon';
 import BlockLine from '../Common/BlockLine';
 import ClickButton from '../Common/ClickButton';
+import categoryList from '../../styles/categoryColor';
 
 const BudgetAdd = ({ categoryData }) => {
     return (
@@ -12,7 +13,7 @@ const BudgetAdd = ({ categoryData }) => {
             </Block>
             <BlockLine />
             <Block>
-                <BudgetLabel categoryData={categoryData} />
+                <BudgetLabel categoryData={categoryData} categoryList={categoryList} />
             </Block>
             <Block>
                 <ClickButton>예산 추가</ClickButton>
@@ -22,18 +23,20 @@ const BudgetAdd = ({ categoryData }) => {
 };
 export default BudgetAdd;
 
-const BudgetLabel = ({ categoryData }) => {
+const BudgetLabel = ({ categoryData, categoryList }) => {
     return (
         <>
-            {categoryData &&
-                categoryData.map((data) => (
-                    <>
-                        <Label>
-                            <CategoryIcon name={data.Name} /> <p className="categoryName">{data.Name}</p>
-                            <Input defaultValue={data.Money} type="text" />원
-                        </Label>
-                    </>
-                ))}
+            {categoryList.map((category) => {
+                const data = categoryData.find((item) => item.Name === category.Name);
+                const defaultValue = data ? data.Money : 0;
+
+                return (
+                    <Label key={category.Name}>
+                        <CategoryIcon name={category.Name} /> <p className="categoryName">{category.Name}</p>
+                        <Input defaultValue={defaultValue} type="text" />원
+                    </Label>
+                );
+            })}
         </>
     );
 };
