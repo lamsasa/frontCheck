@@ -8,8 +8,6 @@ import "react-calendar/dist/Calendar.css";
 import moment from "moment";
 
 import ToggleButtonSmall from "../Common/ToggleButtonSmall";
-// import { Next1 } from "../../assets/next.png";
-// import { Prev1 } from "../../assets/prev.png";
 
 const MYCalendar = ({ isBasic }) => {
   const { isMobile } = useViewport();
@@ -184,8 +182,8 @@ const MYCalendar = ({ isBasic }) => {
               // onClickDay={dayIn}
               // returnValue="range"
 
-              // nextLabel={<Next1 />}
-              // prevLabel={<Prev1 />}
+              // nextLabel={<NextLabel />}
+              // prevLabel={<PrevLabel />}
               // next2Label={null}
               // prev2Label={null}
               tileContent={addContent}
@@ -360,7 +358,10 @@ const CalendarContainer = styled.div`
   }
 
   .react-calendar__navigation__arrow {
-    font-size: 20px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .react-calendar__navigation__label {
@@ -377,10 +378,6 @@ const CalendarContainer = styled.div`
     border: 0px;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .react-calendar__navigation button[disabled] {
-    /* background-color: #fff; */
   }
 
   abbr[title] {
