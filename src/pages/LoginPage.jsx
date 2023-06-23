@@ -8,6 +8,8 @@ import { useState } from "react";
 // import {useNavigate} from "react-router-dom";
 import AuthAxiosAPI from "../api/AuthAxiosAPI";
 
+import Modal from "../../src/components/Common/Modal";
+
 const handleGoogleLogin = () => {
   const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   const redirectUri = "http://localhost:8888/auth/login";
@@ -59,6 +61,15 @@ const Login = () => {
     }
   };
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
       <LoginContainer>
@@ -86,10 +97,13 @@ const Login = () => {
             </div>
           </Box>
           <div className="signUpBox">
-            <div className="click">회원가입</div>
+            <div className="click" onClick={openModal}>
+              회원가입
+            </div>
             <div className="click">아이디/비밀번호 찾기</div>
           </div>
         </div>
+        {modalOpen && <Modal open={modalOpen} close={closeModal}></Modal>}
       </LoginContainer>
     </>
   );
@@ -120,6 +134,7 @@ const LoginContainer = styled.div`
   .click {
     color: gray;
     font-size: 1.5rem;
+    cursor: pointer;
   }
 
   @media (max-width: 768px) {
