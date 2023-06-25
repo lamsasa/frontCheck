@@ -11,6 +11,7 @@
     "@fullcalendar/interaction": "^6.1.7",
     "@fullcalendar/react": "^6.1.8",
     "@fullcalendar/vue3": "^6.1.8",
+    "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.5",
     "@nivo/bar": "^0.83.0",
     "@nivo/bullet": "^0.83.0",
