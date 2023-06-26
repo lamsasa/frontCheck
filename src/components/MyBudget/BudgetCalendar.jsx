@@ -10,7 +10,7 @@ const BudgetCalendar = ({ onChangeDate }) => {
 
     useEffect(() => {
         if (typeof onChangeDate === 'function') {
-            const formattedDate = `${year}-${String(month).padStart(2, '0')}-00`;
+            const formattedDate = `${year}-${String(month).padStart(2, '0')}-00T${currentDate.toLocaleTimeString()}`;
             onChangeDate(formattedDate);
         }
     }, [year, month, onChangeDate]);
