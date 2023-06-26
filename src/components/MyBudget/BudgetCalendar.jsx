@@ -1,14 +1,20 @@
-import { useState } from "react";
-import { ReactComponent as Right } from "../../assets/right.svg";
-import { ReactComponent as Left } from "../../assets/left.svg";
-import styled from "styled-components";
+import { useState, useEffect } from 'react';
+import { ReactComponent as Right } from '../../assets/right.svg';
+import { ReactComponent as Left } from '../../assets/left.svg';
+import styled from 'styled-components';
 
-const BudgetCalendar = () => {
+const BudgetCalendar = ({ onChangeDate }) => {
     const currentDate = new Date();
     const [year, setYear] = useState(currentDate.getFullYear());
     const [month, setMonth] = useState(currentDate.getMonth() + 1);
 
-    // 버튼 클릭 시 다음 달로 값을 넘김
+    useEffect(() => {
+        if (typeof onChangeDate === 'function') {
+            const formattedDate = `${year}-${String(month).padStart(2, '0')}-00`;
+            onChangeDate(formattedDate);
+        }
+    }, [year, month, onChangeDate]);
+
     const handleNextMonth = () => {
         if (month === 12) {
             setYear(year + 1);
@@ -17,7 +23,7 @@ const BudgetCalendar = () => {
             setMonth(month + 1);
         }
     };
-    // 버튼 클릭 시 이전 달로 값을 넘김
+
     const handlePreviousMonth = () => {
         if (month === 1) {
             setYear(year - 1);
@@ -26,28 +32,59 @@ const BudgetCalendar = () => {
             setMonth(month - 1);
         }
     };
+
     return (
         <>
             <Calendar>
-                <Left onClick={handlePreviousMonth} />
-                <span className="date">
-                    {year}년 {month}월
-                </span>
-                <Right onClick={handleNextMonth} />
+                <div className="clickbutton" onClick={handlePreviousMonth}>
+                    <Left />
+                </div>
+
+                <div className="calbox">
+                    <span className="date">
+                        {year}년 {month}월
+                    </span>
+                </div>
+                <div className="clickbutton" onClick={handleNextMonth}>
+                    <Right />
+                </div>
             </Calendar>
         </>
     );
 };
+
 export default BudgetCalendar;
 
 const Calendar = styled.div`
-    > svg {
-        fill: ${({ theme }) => theme.budgetButton};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .calbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 140px;
     }
     .date {
-        margin: 20px;
         font-style: normal;
         font-weight: bolder;
         font-size: 18px;
+    }
+
+    .clickbutton {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        background-color: #ffffff00;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+            background-color: ${({ theme }) => theme.menuBgColor};
+        }
+        > svg {
+            fill: ${({ theme }) => theme.budgetButton};
+        }
     }
 `;
