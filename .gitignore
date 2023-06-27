@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/mkcert
 /.pnp
 .pnp.js
 yarn.lock
