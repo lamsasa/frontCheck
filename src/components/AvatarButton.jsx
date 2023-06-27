@@ -1,5 +1,8 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
+import AuthAxiosAPI from "../api/AuthAxiosAPI";
+import {useNavigate} from "react-router-dom";
+
 
 
 // 색상 랜덤하게 바꿔줌
@@ -52,8 +55,23 @@ const stringAvatar = (name) => {
 
 
 const AvatarButton = ({name}) => {
+    const navigate = useNavigate();
+
+    const onClickLogOut = async(e) => {
+        e.preventDefault();
+        try {
+            const response = await AuthAxiosAPI.logout();
+            if(response.status === 200) {
+                console.log("로그아웃 성공")
+                navigate("/")
+            }
+        }catch (e) {
+            console.log(e);
+        }
+
+    }
     return (
-        <Avatar {...stringAvatar(name)} />
+        <Avatar {...stringAvatar(name)} onClick={onClickLogOut} />
     );
 }
 export default AvatarButton;
