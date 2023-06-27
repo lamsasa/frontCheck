@@ -19,25 +19,56 @@ const YearButton = () => {
 
   return (
     <>
-      <Calendar>
-        <Left onClick={handlePreviousYear} />
-        <span className="date">{year}년</span>
-        <Right onClick={handleNextYear} />
-      </Calendar>
-    </>
+            <Calendar>
+                <div className="clickbutton" onClick={handlePreviousYear}>
+                    <Left />
+                </div>
+
+                <div className="calbox">
+                    <span className="date">
+                        {year}년
+                    </span>
+                </div>
+                <div className="clickbutton" onClick={handleNextYear}>
+                    <Right />
+                </div>
+            </Calendar>
+        </>
   );
 };
 
 export default YearButton;
 
 const Calendar = styled.div`
-  > svg {
-    fill: ${({ theme }) => theme.budgetButton};
-  }
-  .date {
-    margin: 15px;
-    font-style: normal;
-    font-weight: bolder;
-    font-size: 18px;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .calbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 140px;
+    }
+    .date {
+        font-style: normal;
+        font-weight: bolder;
+        font-size: 18px;
+    }
+
+    .clickbutton {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        background-color: #ffffff00;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+            background-color: ${({ theme }) => theme.menuBgColor};
+        }
+        > svg {
+            fill: ${({ theme }) => theme.budgetButton};
+        }
+    }
 `;
