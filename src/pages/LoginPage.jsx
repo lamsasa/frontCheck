@@ -1,49 +1,43 @@
-
-import * as React from 'react';
-
+import * as React from "react";
 
 import logo1 from "../assets/logo1.png";
 import styled from "styled-components";
-import {useState} from "react";
+import { useState } from "react";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 
 const LoginAndRegister = () => {
-    const [value, setValue] = useState('login');
-    const handleButtonClick = (newValue) => {
-        setValue(newValue);
-    };
+  const [value, setValue] = useState("login");
+  const handleButtonClick = (newValue) => {
+    setValue(newValue);
+  };
 
-    return (
-        <LoginContainer>
-            <div className="loginbox">
-                {/* Temporary logo will be changed */}
-                <div className="loginbox-top">
-                    <Img className="logo" src={logo1} alt="logo1" />
-                    <div className="tabs">
-                        <button
-                            onClick={() => handleButtonClick('login')}
-                            className={value === 'login' ? 'button-active' : ''}
-                        >
-                            Login
-                        </button>
-                        <button
-                            onClick={() => handleButtonClick('signup')}
-                            className={value === 'signup' ? 'button-active' : ''}
-                        >
-                            Sign Up
-                        </button>
-                    </div>
-                </div>
-                {value === 'login' &&
-                    <LoginForm/>
-                }
-                {value === 'signup' &&
-                    <SignupForm value={value} setValue={setValue}/>
-                }
-            </div>
-        </LoginContainer>
-    );
+  return (
+    <LoginContainer>
+      <div className="loginbox">
+        {/* Temporary logo will be changed */}
+        <div className="loginbox-top">
+          <Img className="logo" src={logo1} alt="logo1" />
+          <div className="tabs">
+            <button
+              onClick={() => handleButtonClick("login")}
+              className={value === "login" ? "button-active" : ""}
+            >
+              Login
+            </button>
+            <button
+              onClick={() => handleButtonClick("signup")}
+              className={value === "signup" ? "button-active" : ""}
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+        {value === "login" && <LoginForm />}
+        {value === "signup" && <SignupForm value={value} setValue={setValue} />}
+      </div>
+    </LoginContainer>
+  );
 };
 
 export default LoginAndRegister;
@@ -63,8 +57,9 @@ const LoginContainer = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    border: 1px solid #87EEC5;
+    border: 1px solid #87eec5;
   }
+  
   .tabs {
     margin-top: 10px;
     width: 100%;
@@ -77,19 +72,17 @@ const LoginContainer = styled.div`
       height: 40px;
       font-size: 1.5rem;
     }
-    
+
     .button-active {
       font-weight: bold;
       color: ${({ theme }) => theme.text};
-      border-bottom: 2px solid #87EEC6;
+      border-bottom: 2px solid #87eec6;
     }
-    
-    
   }
 
   .signUpBox {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     width: 80%;
   }
 
@@ -121,4 +114,3 @@ const Img = styled.img`
     width: 80%;
   }
 `;
-
