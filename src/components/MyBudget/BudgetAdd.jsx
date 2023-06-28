@@ -31,6 +31,7 @@ const BudgetAdd = ({ categoryData }) => {
                 window.location.reload();
             } else {
                 console.log('입력 실패');
+                window.location.reload();
             }
         } catch (error) {
             console.log('에러:', error);
