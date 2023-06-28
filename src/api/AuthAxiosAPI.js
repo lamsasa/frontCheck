@@ -27,7 +27,11 @@ const AuthAxiosAPI = {
       password,
       role: role !== undefined ? role : null,
     };
-    return await axios.post(DOMAIN + "/api/auth/signup", SignupUser);
+    try {
+      return await axios.post(`${DOMAIN}/api/auth/signup`, SignupUser);
+    } catch (error) {
+      throw error
+    }
   },
 
   SignupAdmin: async (email, name, password) => {
