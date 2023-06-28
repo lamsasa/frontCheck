@@ -27,7 +27,11 @@ const AuthAxiosAPI = {
             password,
             role: role !== undefined ? role : null,
         };
-        return await axios.post(DOMAIN + '/api/auth/signup', SignupUser);
+        try {
+            return await axios.post(`${DOMAIN}/api/auth/signup`, SignupUser);
+        } catch (error) {
+            throw error;
+        }
     },
 
     SignupAdmin: async (email, name, password) => {
@@ -44,8 +48,7 @@ const AuthAxiosAPI = {
     GoogleLogin: async () => {
         try {
             const response = await axios.get(DOMAIN + 'auth/google');
-            const googleUrl = response.data.url;
-            window.location.href = googleUrl;
+            window.location.href = response.data.url;
         } catch (error) {
             console.log(error);
         }
