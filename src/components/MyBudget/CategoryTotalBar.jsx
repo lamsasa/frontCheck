@@ -12,13 +12,13 @@ const CategoryTotalBar = ({ categoryData, totalData }) => {
     return (
         <TotalBar>
             {categoryData.map((data, index) => {
-                const selectedItem = categoryList.find((item) => item.Name === data.Name);
-                const percent = `${(data.Money / totalData[0].Money) * 100}%`;
+                const selectedItem = categoryList.find((item) => item.Name === data.categoryName);
+                const percent = `${(data.budgetMoney / totalData[0].Money) * 100}%`;
                 const color = selectedItem ? selectedItem.Color : '#FF7076';
 
                 return (
                     <Bar
-                        key={data.Name}
+                        key={data.categoryId}
                         width={percent}
                         color={color}
                         animationDelay={index * 0.1}
@@ -44,10 +44,10 @@ const Bar = styled.div`
 `;
 
 const TotalBar = styled.div`
-  width: 100%;
-  height: 5px;
-  background-color: #d6d6d6;
-  border-radius: 100px;
-  margin-bottom: 20px;
-  display: flex;
+    width: 100%;
+    height: 5px;
+    background-color: #d6d6d6;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    display: flex;
 `;
