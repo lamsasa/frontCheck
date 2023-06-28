@@ -5,7 +5,7 @@ import BlockLine from '../Common/BlockLine';
 import ClickButton from '../Common/ClickButton';
 import categoryList from '../../styles/categoryColor';
 import { useState } from 'react';
-import AxiosApi from '../../api/AxiosAPI';
+import AxiosApi from '../../api/BudgetAxiosAPI';
 
 const BudgetAdd = ({ categoryData }) => {
     const [selectedDate, setSelectedDate] = useState('');
@@ -13,50 +13,62 @@ const BudgetAdd = ({ categoryData }) => {
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
+    const selectedMonth = selectedDate.substring(0, 7);
 
-    const BudgetLabel = () => {
-        const [inputValues, setInputValues] = useState([]);
+    const filteredCategoryData = categoryData.filter((data) => {
+        const dataMonth = data.budgetMonth.substring(0, 7); // 데이터의 월 값만 추출
+        return dataMonth === selectedMonth;
+    });
 
-        const onCreateBudget = async () => {
-            console.log(inputValues);
-            try {
-                const createMyBudget = await AxiosApi.createMyBudget(inputValues);
-                if (createMyBudget.data.result === 'OK') {
-                    console.log('입력 성공');
-                } else {
-                    console.log('입력 실패');
-                }
-            } catch (error) {
-                console.log('에러:', error);
-            }
-        };
+    const [inputValues, setInputValues] = useState([]);
 
-        const onChangeInputMoney = (e) => {
-            const { name, value } = e.target;
-            const existingValueIndex = inputValues.findIndex((item) => item.categoryId === name);
-
-            if (existingValueIndex !== -1) {
-                const updatedValues = [...inputValues];
-                updatedValues[existingValueIndex] = {
-                    ...updatedValues[existingValueIndex],
-                    budgetMoney: value,
-                };
-                setInputValues(updatedValues);
+    const onCreateBudget = async () => {
+        console.log(inputValues);
+        try {
+            const createMyBudget = await AxiosApi.createMyBudget(inputValues);
+            if (createMyBudget.data === '예산을 성공적으로 생성했습니다.') {
+                console.log('입력 성공');
+                window.location.reload();
             } else {
-                const newValue = {
-                    budgetMoney: value,
-                    budgetMonth: selectedDate,
-                    categoryId: name,
-                };
-                setInputValues((prevValues) => [...prevValues, newValue]);
+                console.log('입력 실패');
             }
-        };
+        } catch (error) {
+            console.log('에러:', error);
+            alert('😢숫자만 입력 가능해요 ㅠ.ㅠ');
+        }
+    };
 
-        return (
-            <>
+    const onChangeInputMoney = (e) => {
+        const { name, value } = e.target;
+        const existingValueIndex = inputValues.findIndex((item) => item.categoryId === name);
+
+        if (existingValueIndex !== -1) {
+            const updatedValues = [...inputValues];
+            updatedValues[existingValueIndex] = {
+                ...updatedValues[existingValueIndex],
+                budgetMoney: value,
+            };
+            setInputValues(updatedValues);
+        } else {
+            const newValue = {
+                budgetMoney: value,
+                budgetMonth: selectedDate,
+                categoryId: name,
+            };
+            setInputValues((prevValues) => [...prevValues, newValue]);
+        }
+    };
+
+    return (
+        <>
+            <Block>
+                <BudgetCalendar onChangeDate={handleDateChange} />
+            </Block>
+            <BlockLine />
+            <Block>
                 {categoryList.map((category) => {
-                    const data = categoryData.find((item) => item.Name === category.Name);
-                    const defaultValue = data ? data.Money : 0;
+                    const data = filteredCategoryData.find((item) => item.categoryId === category.categoryId);
+                    const defaultValue = data ? Number(data.budgetMoney) : '';
 
                     return (
                         <Label key={category.categoryId}>
@@ -67,26 +79,13 @@ const BudgetAdd = ({ categoryData }) => {
                                 name={category.categoryId}
                                 onChange={onChangeInputMoney}
                             />
-                            원
                         </Label>
                     );
                 })}
-                <ClickButtonWrapper>
-                    <ClickButton onClick={onCreateBudget}>예산 추가</ClickButton>
-                </ClickButtonWrapper>
-            </>
-        );
-    };
-
-    return (
-        <>
-            <Block>
-                <BudgetCalendar onChangeDate={handleDateChange} />
             </Block>
-            <BlockLine />
-            <Block>
-                <BudgetLabel />
-            </Block>
+            <ClickButtonWrapper>
+                <ClickButton onClick={onCreateBudget}>예산 추가</ClickButton>
+            </ClickButtonWrapper>
         </>
     );
 };
@@ -131,8 +130,10 @@ const Label = styled.div`
         width: 80px;
     }
 `;
+
 const ClickButtonWrapper = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    margin: 20px;
 `;

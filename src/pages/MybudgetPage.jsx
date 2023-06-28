@@ -9,9 +9,18 @@ import CategoryTotalBar from '../components/MyBudget/CategoryTotalBar';
 import BudgetCalendar from '../components/MyBudget/BudgetCalendar';
 import Modal from '../components/Common/Modal';
 import BudgetAdd from '../components/MyBudget/BudgetAdd';
+import { useEffect } from 'react';
+import AxiosApi from '../api/BudgetAxiosAPI';
 
 const MybudgetPage = () => {
     const [modalOpen, setModalOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState('');
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+        console.log(date);
+    };
+
     const openModal = () => {
         setModalOpen(true);
     };
@@ -19,17 +28,29 @@ const MybudgetPage = () => {
     const closeModal = () => {
         setModalOpen(false);
     };
-    // 임시 데이터
-    const categoryData = [
-        { Name: '식비', Money: '60000', date: '2023-06' },
-        { Name: '교통/차량', Money: '90000', date: '2023-06' },
-        { Name: '주유', Money: '90000', date: '2023-06' },
-        { Name: '문화/레저', Money: '30000', date: '2023-06' },
-        { Name: '마트/편의점', Money: '20000', date: '2023-06' },
-        { Name: '패션/미용', Money: '10000', date: '2023-06' },
-        { Name: '생활용품', Money: '0', date: '2023-06' },
-    ];
-    const totalData = [{ Money: '476000', date: '2023-06' }];
+    const [categoryData, setCategoryData] = useState([]);
+
+    useEffect(() => {
+        const getMyBudget = async () => {
+            const rsp = await AxiosApi.getMyBudget();
+            if (rsp.status === 200) setCategoryData(rsp.data);
+            console.log(rsp.data);
+        };
+        getMyBudget();
+    }, []);
+    const selectedMonth = selectedDate.substring(0, 7);
+
+    const filteredCategoryData = categoryData.filter((data) => {
+        const dataMonth = data.budgetMonth.substring(0, 7); // 데이터의 월 값만 추출
+        return dataMonth === selectedMonth;
+    });
+
+    const totalData = [{ Money: '0', date: selectedMonth }];
+
+    if (filteredCategoryData.length > 0) {
+        const totalMoney = filteredCategoryData.reduce((sum, data) => sum + data.budgetMoney, 0);
+        totalData[0].Money = totalMoney.toString();
+    }
 
     return (
         <>
@@ -44,25 +65,25 @@ const MybudgetPage = () => {
                         </ClickButton>
                     </div>
                     <div className="content">
-                        <BudgetCalendar></BudgetCalendar>
+                        <BudgetCalendar onChangeDate={handleDateChange}></BudgetCalendar>
                         <div className="total">
                             <p>총 예산</p>
                             <p className="totalMoney">{totalData[0].Money ? totalData[0].Money : '0'}원</p>
                         </div>
                     </div>
                     <div className="content">
-                        <CategoryTotalBar categoryData={categoryData} totalData={totalData} />
+                        <CategoryTotalBar categoryData={filteredCategoryData} totalData={totalData} />
                     </div>
                 </Box>
                 <Box>
                     <div className="center">
-                        {categoryData.map((data) => {
+                        {filteredCategoryData.map((data) => {
                             if (data.Money === '0') return null; // 돈이 0인 경우 null 리턴
                             return (
                                 <BudgetChart
-                                    key={data.Name}
-                                    name={data.Name}
-                                    money={data.Money}
+                                    key={data.categoryId}
+                                    name={data.categoryName}
+                                    money={data.budgetMoney}
                                     totalMoney={totalData[0].Money ? totalData[0].Money : '0'}
                                 />
                             );

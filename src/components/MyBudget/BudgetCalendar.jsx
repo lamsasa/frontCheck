@@ -10,8 +10,14 @@ const BudgetCalendar = ({ onChangeDate }) => {
 
     useEffect(() => {
         if (typeof onChangeDate === 'function') {
-            const formattedDate = `${year}-${String(month).padStart(2, '0')}-00T${currentDate.toLocaleTimeString()}`;
-            onChangeDate(formattedDate);
+            const formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(currentDate.getDate()).padStart(
+                2,
+                '0'
+            )}T01:01:01`; // 시간을 고정된 값인 "01:01:01"으로 설정
+
+            const cleanedDate = formattedDate.replace(/\s/g, ''); // 띄어쓰기 제거
+
+            onChangeDate(cleanedDate);
         }
     }, [year, month, onChangeDate]);
 
