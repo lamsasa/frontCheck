@@ -99,7 +99,6 @@ const LoginContainer = styled.div`
       width: 100%;
       height: 100vh;
       border-radius: 0;
-      border: 1px solid red;
       align-items: center;
     }
   }

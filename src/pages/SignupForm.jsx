@@ -61,14 +61,19 @@ const SignupForm = ({ setValue}) => {
 
         try {
             const name = inputFirstName+inputLastName;
-            const response = AuthAxiosAPI.signup(inputEmail, name, inputPwd);
+            const response = await AuthAxiosAPI.signup(inputEmail, name, inputPwd);
             if (response.status === 200) {
-                console.log("회원가입 성공");
+                console.log('회원가입 성공');
                 setValue('login');
+                alert('회원가입 성공')
             }
-
         } catch (error) {
-            console.log(error)
+            alert('이미 사용중인 이메일 입니다.');
+            setInputEmail('');
+            setInputPwd('');
+            setInputLastName('');
+            setInputFirstName('');
+            setInputConPwd('');
         }
     };
 
