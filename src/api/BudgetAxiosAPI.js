@@ -1,12 +1,19 @@
 import axios from 'axios';
-const MPT_DOMAIN = 'http://localhost:8888';
+const MPT_DOMAIN = 'https://localhost:8888';
 
 const AxiosApi = {
     // 나의 예산 생성
     createMyBudget: async (inputValues) => {
-        return await axios.post(MPT_DOMAIN + '/mybudget', inputValues, {
-            withCredentials: true,
-        });
+        try {
+            const response = await axios.post(MPT_DOMAIN + '/mybudget', inputValues, {
+                withCredentials: true,
+            });
+
+            return response.data;
+        } catch (error) {
+            console.error('Request Error:', error);
+            throw error;
+        }
     },
 
     getMyBudget: async () => {
@@ -17,3 +24,4 @@ const AxiosApi = {
 };
 
 export default AxiosApi;
+
