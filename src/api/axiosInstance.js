@@ -15,7 +15,7 @@ axiosInstance.interceptors.response.use(
 
         if (error.response.status === 401 && !originalRequest._retry) {
             try {
-                await axiosInstance.get(`${DOMAIN}/refreshtoken`);
+                await axiosInstance.post(`${DOMAIN}/api/auth/refreshtoken`);
                 console.log("쿠키 업데이트 성공");
                 return axiosInstance(originalRequest);
             } catch (refreshError) {
