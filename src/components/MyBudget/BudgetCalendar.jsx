@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { ReactComponent as Right } from '../../assets/right.svg';
 import { ReactComponent as Left } from '../../assets/left.svg';
 import styled from 'styled-components';
+import { useMemo } from 'react';
 
 const BudgetCalendar = ({ onChangeDate }) => {
-    const currentDate = new Date();
+    const currentDate = useMemo(() => new Date(), []);
     const [year, setYear] = useState(currentDate.getFullYear());
     const [month, setMonth] = useState(currentDate.getMonth() + 1);
 
@@ -19,7 +20,7 @@ const BudgetCalendar = ({ onChangeDate }) => {
 
             onChangeDate(cleanedDate);
         }
-    }, [year, month, onChangeDate]);
+    }, [year, month, currentDate, onChangeDate]);
 
     const handleNextMonth = () => {
         if (month === 12) {
