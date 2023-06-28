@@ -18,9 +18,9 @@ function App() {
           <Router>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/Login" element={<Login />} />
-              <Route path="/MainList" element={<MainList />} />
-              <Route path="/Chart" element={<Chart />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/mainlist" element={<MainList />} />
+              <Route path="/chart" element={<Chart />} />
               <Route path="/mybudget" element={<Mybudget />} />
               <Route path="/mypage" element={<Mypage />} />
             </Routes>
