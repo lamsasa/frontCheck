@@ -43,7 +43,7 @@ const Legends = () => {
               display: "block",
               width: "20px",
               height: "20px",
-              marginLeft: "5px",
+              marginLeft: "2px",
             }}
           />
           {formattedData.map((item) => (
