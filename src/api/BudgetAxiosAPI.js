@@ -1,5 +1,5 @@
 import axios from 'axios';
-const MPT_DOMAIN = 'http://localhost:8888';
+const MPT_DOMAIN = 'https://localhost:8888';
 
 const AxiosApi = {
     // 나의 예산 생성

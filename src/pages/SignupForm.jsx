@@ -65,10 +65,14 @@ const SignupForm = ({ setValue}) => {
             if (response.status === 200) {
                 console.log("회원가입 성공");
                 setValue('login');
+                alert("회원가입 성공")
             }
-
         } catch (error) {
-            console.log(error)
+            if (error.response && error.response.status === 400) {
+                throw new Error("이미 사용중인 이메일 입니다");
+            } else {
+                console.log(error);
+            }
         }
     };
 
