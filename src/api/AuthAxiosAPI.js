@@ -44,8 +44,7 @@ const AuthAxiosAPI = {
   GoogleLogin: async () => {
     try {
       const response = await axios.get(DOMAIN + "auth/google");
-      const googleUrl = response.data.url;
-      window.location.href = googleUrl;
+      window.location.href = response.data.url;
     } catch (error) {
       console.log(error);
     }
