@@ -38,6 +38,7 @@ const LoginForm = () => {
             }
         } catch (error) {
             console.log("Login error:", error.message);
+            alert("로그인 실패 : 아이디 비밀번호를 다시 확인해 주세요")
         }
     };
     return (
