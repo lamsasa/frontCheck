@@ -23,7 +23,7 @@ const BoxStyle = styled.div`
     .content {
         display: flex;
         justify-content: space-between;
-        padding: 20px;
+        padding: 10px;
         align-items: center;
     }
 
@@ -35,7 +35,7 @@ const BoxStyle = styled.div`
     }
 
     .date {
-        margin: 20px;
+        margin: 8px;
         font-style: normal;
         font-weight: bolder;
         font-size: 18px;
@@ -43,9 +43,12 @@ const BoxStyle = styled.div`
 
     .total {
         text-align: right;
+        font-size: 12px;
+        margin-right: 10px;
     }
 
     .totalMoney {
-        font-size: 15px;
+        font-size: 19px;
+        margin-top: 10px;
     }
 `;
