@@ -60,7 +60,7 @@ const SignupForm = ({ setValue}) => {
         e.preventDefault();
 
         try {
-            const name = inputFirstName+inputLastName;
+            const name = inputFirstName + ' ' + inputLastName;
             const response = await AuthAxiosAPI.signup(inputEmail, name, inputPwd);
             if (response.status === 200) {
                 console.log('회원가입 성공');
