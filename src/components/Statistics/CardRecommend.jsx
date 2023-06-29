@@ -49,7 +49,13 @@ const CardRecommend = () => {
                     <div>
                         <div className="cardName">카드이름</div>
                         <div className="cardAnnualFee">카드연회비</div>
-                        <div className="cardDesc">카드설명</div>
+                        <div className="cardDesc">
+                            카드설명
+                            <br />
+                            설명
+                            <br />
+                            설명
+                        </div>
                     </div>
                 </div>
                 <ButtonContainer>
