@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import AuthAxiosAPI from "../api/AuthAxiosAPI";
+import UserAxiosAPI from "../api/UserAxiosAPI";
 import {useNavigate} from "react-router-dom";
-
+import {useEffect, useState} from "react";
 
 
 // 색상 랜덤하게 바꿔줌
@@ -46,32 +47,56 @@ const stringAvatar = (name) => {
             fontSize: 13,
             width: 50,
             height: 50,
-            margin: 11/8 // 1당 8px
+            margin: 11 / 8 // 1당 8px
         },
         children: name,
     };
 };
 
 
-
-const AvatarButton = ({name}) => {
+const AvatarButton = () => {
     const navigate = useNavigate();
+    const [name, setName] = useState(null);
 
-    const onClickLogOut = async(e) => {
+    useEffect(() => {
+        const fetchUserName = async () => {
+            try {
+                const response = await UserAxiosAPI.getUserInfo();
+                if (response.status === 200) {
+                    const userName = response.data.name;
+                    setName(userName);
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
+        fetchUserName();
+    }, []);
+
+    const onClickLogOut = async (e) => {
         e.preventDefault();
         try {
             const response = await AuthAxiosAPI.logout();
-            if(response.status === 200) {
-                console.log("로그아웃 성공")
-                navigate("/")
+            if (response.status === 200) {
+                console.log("logout successful");
+                navigate("/");
+                setName(null);
             }
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
+    };
 
-    }
     return (
-        <Avatar {...stringAvatar(name)} onClick={onClickLogOut} />
+        <>
+            {name ? (
+                <Avatar {...stringAvatar(name)} onClick={onClickLogOut} />
+            ) : (
+                <Avatar onClick={() => navigate("/login")} />
+            )}
+        </>
     );
-}
+};
+
 export default AvatarButton;

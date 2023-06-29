@@ -23,7 +23,7 @@ const Header = () => {
           <img src={darkMode} alt="#" />
         </DarkModeButton>
 
-        <AvatarButton name="홍비"></AvatarButton>
+        <AvatarButton></AvatarButton>
       </div>
     </Container>
   );
