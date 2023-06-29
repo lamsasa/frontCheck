@@ -57,7 +57,7 @@ const MybudgetPage = () => {
             <Header />
             <Navbar />
             <Container flex="column">
-                <Box>
+                <Box titleMargin={'20px'}>
                     <div className="content">
                         <p className="title">나의 예산</p>
                         <ClickButton width={'90px'} onClick={openModal}>
