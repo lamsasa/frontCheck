@@ -1,22 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import styled from "styled-components";
 import { ResponsivePie } from "@nivo/pie";
 import CategoryIcon from "../MyBudget/CategoryIcon";
 import categoryList from "../../styles/categoryColor";
 import crown from "../../assets/crown.png";
-
-const data = [
-  { id: "식비", category: "식비", label: "식비", value: 100 },
-  { id: "교통/차량", category: "교통/차량", label: "교통/차량", value: 200 },
-  { id: "주유", category: "주유", label: "주유", value: 150 },
-  { id: "문화/레저", category: "문화/레저", label: "문화/레저", value: 80 },
-  {
-    id: "마트/편의점",
-    category: "마트/편의점",
-    label: "마트/편의점",
-    value: 120,
-  },
-];
+import AxiosApi from "../../api/ListAxiosAPI";
 
 //퍼센테이지 반환을 백에서 할지 프론트에서 할지 아직 모르겠음
 const formatData = (data) => {
@@ -29,13 +17,14 @@ const formatData = (data) => {
   }));
 };
 
-const Legends = () => {
+const Legends = ({ data }) => {
   const formattedData = formatData(data);
 
   return (
     <>
       <LegendsContainer>
         <ul>
+          <>여기 버튼</>
           <img
             src={crown}
             alt="Crown"
@@ -72,11 +61,49 @@ const Legends = () => {
   );
 };
 
-const PieChart = ({ name }) => {
+const PieChart = () => {
   const [colors, setColors] = useState([]);
+  const [data, setData] = useState([]);
+
+  const selectedMonthData = useMemo(() => {
+    if (!data || data.length === 0) {
+      return [];
+    }
+
+    const currentDate = new Date();
+    const selectedMonth = currentDate.getMonth() + 1;
+    const selectedYear = currentDate.getFullYear();
+
+    return data.filter((item) => {
+      const itemDate = new Date(item.date);
+      const itemMonth = itemDate.getMonth() + 1;
+      const itemYear = itemDate.getFullYear();
+
+      return itemMonth === selectedMonth && itemYear === selectedYear;
+    });
+  }, [data]);
 
   useEffect(() => {
-    const sortedData = data.sort((a, b) => b.value - a.value); // value 값을 기준으로 내림차순 정렬
+    const fetchData = async () => {
+      try {
+        const data = await AxiosApi.getPieChart();
+        const transformedData = data.map((item) => ({
+          value: item.expenseAmount,
+          label: item.categoryName,
+          id: item.categoryName,
+          category: item.categoryName,
+        }));
+        setData(transformedData);
+      } catch (error) {
+        console.error("조회 실패", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const sortedData = selectedMonthData.sort((a, b) => b.value - a.value); // 선택된 월 데이터를 기준으로 내림차순 정렬
 
     const sortedColors = sortedData.map((item) => {
       const foundCategory = categoryList.find(
@@ -86,7 +113,17 @@ const PieChart = ({ name }) => {
     });
 
     setColors(sortedColors);
-  }, [name]);
+  }, [selectedMonthData]);
+
+
+  if (!data.length) {
+    return (
+      <>
+        <>이번 달 사용액이 존재하지 않습니다.😢</>
+      </>
+    );
+  }
+
 
   return (
     <>
@@ -136,7 +173,7 @@ const PieChart = ({ name }) => {
           ]}
         />
       </StyledPieChartContainer>
-      <Legends />
+      <Legends data={data} />
     </>
   );
 };
