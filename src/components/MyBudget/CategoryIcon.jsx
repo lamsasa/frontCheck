@@ -16,7 +16,7 @@ import { ReactComponent as Pet } from '../../assets/category/반려동물.svg';
 import { ReactComponent as Etc } from '../../assets/category/기타.svg';
 import categoryList from '../../styles/categoryColor';
 
-const CategoryIcon = ({ name }) => {
+const CategoryIcon = ({ name, onClick }) => {
     // 카테고리 이름을 받아 해당 카테고리의 svg를 리턴
     const getItemSvg = (svgName) => {
         switch (svgName) {
@@ -56,7 +56,11 @@ const CategoryIcon = ({ name }) => {
     // 카테고리 이름(name)을 받아 카테고리 이름별 색코드 파일(categoryList)에서 해당 카테고리 이름에 해당하는 색 코드를 찾아옴
     const selectedItem = categoryList.find((item) => item.Name === name);
 
-    return <Icon color={selectedItem ? selectedItem.Color : '#FF7076'}>{getItemSvg(name)}</Icon>;
+    return (
+        <Icon color={selectedItem ? selectedItem.Color : '#FF7076'} onClick={onClick}>
+            {getItemSvg(name)}
+        </Icon>
+    );
 };
 
 export default CategoryIcon;
