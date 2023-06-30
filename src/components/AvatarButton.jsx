@@ -63,11 +63,11 @@ const AvatarButton = () => {
             try {
                 const response = await UserAxiosAPI.getUserInfo();
                 if (response.status === 200) {
-                    const userName = response.data.name;
+                    const userName = response.data.name.split(" ")[0];
                     setName(userName);
                 }
-            } catch (e) {
-                console.log(e);
+            } catch (error) {
+                console.log('getNameError : '+ error);
             }
         };
 

@@ -10,7 +10,7 @@ import BudgetCalendar from '../components/MyBudget/BudgetCalendar';
 import Modal from '../components/Common/Modal';
 import BudgetAdd from '../components/MyBudget/BudgetAdd';
 import { useEffect } from 'react';
-import BudgetAxiosApi from '../api/BudgetAxiosAPI';
+import AxiosApi from '../api/BudgetAxiosAPI';
 
 const MybudgetPage = () => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -32,9 +32,13 @@ const MybudgetPage = () => {
 
     useEffect(() => {
         const getMyBudget = async () => {
-            const rsp = await BudgetAxiosApi.getMyBudget();
-            if (rsp.status === 200) setCategoryData(rsp.data);
-            console.log(rsp.data);
+            try {
+                const rsp = await AxiosApi.getMyBudget();
+                if (rsp.status === 200) setCategoryData(rsp.data);
+                console.log(rsp.data);
+            } catch (e) {
+                console.log(e);
+            }
         };
         getMyBudget();
     }, []);
