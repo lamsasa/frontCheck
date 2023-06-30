@@ -24,7 +24,7 @@ const CategoryCard = ({ cardCategory, cardName, cardImg, cardLink, cardDesc }) =
 export default CategoryCard;
 
 const CategoryCardContainer = styled.div`
-    background: linear-gradient(100deg, rgba(66, 230, 148, 0.294) 3.56%, rgba(59, 178, 184, 0.228) 96.4%);
+    background: linear-gradient(100deg, rgba(66, 230, 148, 0.142) 3.56%, rgba(59, 178, 184, 0.109) 96.4%);
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -62,6 +62,7 @@ const CategoryCardContainer = styled.div`
         font-size: 30px;
         font-weight: bolder;
         margin-bottom: 10px;
+        color: #3fcea5;
     }
 
     .cardDesc {
