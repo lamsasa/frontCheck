@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ListContainer from './ListContainer';
-import AxiosApi from "../../api/ListAxiosAPI";
+import ListAxiosAPI from "../../api/ListAxiosAPI";
 
 const IncomeList = () => {
     // const listData = [
@@ -18,12 +18,14 @@ const IncomeList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await AxiosApi.getListIncome();
+                const data = await ListAxiosAPI.getListIncome();
+                console.log(data);
                 const transformedData = data.map(item => ({
                     money: item.incomeAmount,
                     date: item.incomeDate,
                     category: item.categoryName,
-                    detail: item.incomeContent
+                    detail: item.incomeContent,
+                    deal: "수입"
                 }));
                 setListData(transformedData);
             } catch (error) {
