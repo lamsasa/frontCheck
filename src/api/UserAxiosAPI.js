@@ -1,8 +1,13 @@
-import axiosInstance from "./axiosInstance";
+import axios from "axios";
+const DOMAIN = "https://localhost:8888";
 
 const UserAxiosAPI = {
     getUserInfo : async() => {
-        return await axiosInstance.get("/user/me");
+        try {
+            return await axios.get(DOMAIN + "/user/me", {withCredentials: true});
+        } catch (e) {
+            console.log("getUserInfo : " + e)
+        }
     }
 }
 
