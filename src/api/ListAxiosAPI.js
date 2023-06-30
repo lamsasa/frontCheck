@@ -1,32 +1,38 @@
 import axios from "axios";
 const MPT_DOMAIN = "https://localhost:8888";
 
-const AxiosApi = {
+const ListAxiosAPI = {
   // ListPage
   getListIncome: async () => {
     try {
-      const response = await axios.get(MPT_DOMAIN + "/income/category", {});
+      const response = await axios.get(MPT_DOMAIN + '/list/income/category', {
+        withCredentials: true,
+      });
       const data = response.data.map((item) => ({
-        incomeAmount: item.incomeAmount,
-        date: item.incomeDate,
-        category: item.categoryName,
-        detail: item.incomeContent,
+        money: item.incomeAmount,
+        incomeDate: item.incomeDate,
+        categoryName: item.categoryName,
+        incomeContent: item.incomeContent,
+        deal: "수입"
       }));
       return data;
     } catch (error) {
-      console.error("Income List 조회가 불가능합니다.");
+      console.error('Income List 조회가 불가능합니다.');
       throw error;
     }
   },
 
   getListExpense: async () => {
     try {
-      const response = await axios.get(MPT_DOMAIN + "/expense/category", {});
+      const response = await axios.get(MPT_DOMAIN + "/list/expense/category", {
+        withCredentials: true,
+      });
       const data = response.data.map((item) => ({
         money: item.expenseAmount,
         date: item.expenseDate,
         category: item.categoryName,
         detail: item.expenseContent,
+        deal: "지출"
       }));
       return data;
     } catch (error) {
@@ -63,4 +69,4 @@ const AxiosApi = {
   },
 };
 
-export default AxiosApi;
+export default ListAxiosAPI;
