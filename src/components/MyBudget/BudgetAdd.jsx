@@ -5,7 +5,7 @@ import BlockLine from '../Common/BlockLine';
 import ClickButton from '../Common/ClickButton';
 import categoryList from '../../styles/categoryColor';
 import { useState } from 'react';
-import AxiosApi from '../../api/BudgetAxiosAPI';
+import BudgetAxiosApi from '../../api/BudgetAxiosAPI';
 
 const BudgetAdd = ({ categoryData }) => {
     const [selectedDate, setSelectedDate] = useState('');
@@ -25,7 +25,7 @@ const BudgetAdd = ({ categoryData }) => {
     const onCreateBudget = async () => {
         console.log(inputValues);
         try {
-            const createMyBudget = await AxiosApi.createMyBudget(inputValues);
+            const createMyBudget = await BudgetAxiosApi.createMyBudget(inputValues);
             if (createMyBudget.data === '예산을 성공적으로 생성했습니다.') {
                 console.log('입력 성공');
                 window.location.reload();

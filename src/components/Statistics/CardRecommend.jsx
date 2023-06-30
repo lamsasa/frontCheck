@@ -1,199 +1,85 @@
-import BlockLine from '../Common/BlockLine';
 import styled from 'styled-components';
-import ClickButton from '../Common/ClickButton';
 import { useEffect, useState } from 'react';
+import CardAxiosApi from '../../api/CardAxiosAPI';
+import CardList from './CardList';
+import CategoryCard from './CategoryCard';
 
 const CardRecommend = () => {
-    const [cardsVisible, setCardsVisible] = useState(false);
+    const [selectedCardRecommendDate, setSelectedCardRecommendDate] = useState('');
+    const [selectedCategoryCardTop1Date, setselectedCategoryCardTop1Date] = useState('');
+    const currentDate = new Date();
+    const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
 
     useEffect(() => {
-        setCardsVisible(true);
+        const getCardRecommend = async () => {
+            const rsp = await CardAxiosApi.getCardRecommend();
+            if (rsp.status === 200) setSelectedCardRecommendDate(rsp.data);
+            console.log(rsp.data);
+        };
+        getCardRecommend();
+
+        const getCategoryCardTop1 = async () => {
+            const rsp = await CardAxiosApi.getCategoryCardTop1();
+            if (rsp.status === 200) setselectedCategoryCardTop1Date(rsp.data);
+            console.log(rsp.data);
+        };
+        getCategoryCardTop1();
     }, []);
 
     return (
         <>
             <Title>
-                <p>카드 추천</p>
+                <p className="title">{currentMonth} 지출 카테고리</p>
+                <p className="title">TOP 3</p>
+                <p>당신의 지출 습관에 맞춰 카드를 준비해봤어요!</p>
             </Title>
-            <BlockLine />
-            <Month>
-                <p>6월</p>
-                <p className="title">가장 많이 지출한 카테고리를 참고했습니다. 이런 카드는 어떠세요?</p>
-            </Month>
-            <CategoryCard>
-                <FadeInCard visible={cardsVisible}>
-                    <div className="categoryCard">
-                        식비
-                        <div className="cardImg"></div>
-                        <p>카드 이름</p>
-                    </div>
-                </FadeInCard>
-                <FadeInCard visible={cardsVisible} delay={500}>
-                    <div className="categoryCard">
-                        식비
-                        <div className="cardImg"></div>
-                        <p>카드 이름</p>
-                    </div>
-                </FadeInCard>
-                <FadeInCard visible={cardsVisible} delay={800}>
-                    <div className="categoryCard">
-                        식비
-                        <div className="cardImg"></div>
-                        <p>카드 이름</p>
-                    </div>
-                </FadeInCard>
-            </CategoryCard>
-            <CardList>
-                <div className="cardlist">
-                    <div className="cardImg" />
-                    <div>
-                        <div className="cardName">카드이름</div>
-                        <div className="cardAnnualFee">카드연회비</div>
-                        <div className="cardDesc">
-                            카드설명
-                            <br />
-                            설명
-                            <br />
-                            설명
-                        </div>
-                    </div>
-                </div>
-                <ButtonContainer>
-                    <ClickButton>카드 정보 보기</ClickButton>
-                </ButtonContainer>
-            </CardList>
+            <CategoryCardFlex>
+                {selectedCategoryCardTop1Date &&
+                    selectedCategoryCardTop1Date.map((data, index) => (
+                        <CategoryCard
+                            key={index}
+                            cardName={data.cardName}
+                            cardImg={data.cardImg}
+                            cardLink={data.cardLink}
+                            cardCategory={data.cardCategory}
+                            cardDesc={data.cardDesc}
+                        />
+                    ))}
+            </CategoryCardFlex>
 
-            <CardList>
-                <div className="cardlist">
-                    <div className="cardImg" />
-                    <div>
-                        <div className="cardName">카드이름</div>
-                        <div className="cardAnnualFee">카드연회비</div>
-                        <div className="cardDesc">카드설명</div>
-                    </div>
-                </div>
-                <ButtonContainer>
-                    <ClickButton>카드 정보 보기</ClickButton>
-                </ButtonContainer>
-            </CardList>
-            <CardList>
-                <div className="cardlist">
-                    <div className="cardImg" />
-                    <div>
-                        <div className="cardName">카드이름</div>
-                        <div className="cardAnnualFee">카드연회비</div>
-                        <div className="cardDesc">카드설명</div>
-                    </div>
-                </div>
-                <ButtonContainer>
-                    <ClickButton>카드 정보 보기</ClickButton>
-                </ButtonContainer>
-            </CardList>
+            {selectedCardRecommendDate &&
+                selectedCardRecommendDate.map((data, index) => (
+                    <CardList
+                        key={index}
+                        cardName={data.cardName}
+                        cardDesc={data.cardDescList.join('\n')}
+                        cardImg={data.cardImg}
+                        cardLink={data.cardLink}
+                    />
+                ))}
         </>
     );
 };
 export default CardRecommend;
+
 const Title = styled.div`
-    margin: 30px;
-    font-size: 19px;
-    margin-top: 0px;
+    margin: 20px;
+    font-size: 12px;
     display: block;
-`;
-const Month = styled.div`
-    margin: 30px;
-    font-size: 17px;
-    display: block;
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
     .title {
-        font-size: 12px;
-        margin-top: 10px;
+        font-size: 17px;
+        margin-bottom: 10px;
+        font-weight: bolder;
     }
 `;
-const CategoryCard = styled.div`
-    display: flex;
-    justify-content: space-between;
+
+const CategoryCardFlex = styled.div`
     flex-wrap: wrap;
     width: 100%;
     align-items: center;
-    padding: 10%;
+    padding: 2%;
     padding-top: 10px;
     padding-bottom: 0px;
-
-    .categoryCard {
-        font-size: 17px;
-        display: block;
-        margin-top: 20px;
-    }
-
-    .cardImg {
-        width: 90px;
-        height: 110px;
-        transform: rotate(13.636deg);
-        flex-shrink: 0;
-        background: #d9d9d9;
-        box-shadow: 0px 20px 30px -10px #26394d;
-        margin: 30px;
-        margin-left: 0px;
-    }
-`;
-
-const FadeInCard = styled.div`
-    opacity: 0;
-    animation: ${({ visible, delay }) => (visible ? 'fade-in 1.0s ease-in-out forwards' : 'none')};
-    animation-delay: ${({ delay }) => (delay ? `${delay}ms` : '0ms')};
-
-    @keyframes fade-in {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-`;
-
-const CardList = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 30px;
-    padding-bottom: 0px;
-    margin-top: 30px;
-
-    .cardlist {
-        display: flex;
-        align-items: center;
-    }
-
-    .cardImg {
-        width: 65px;
-        height: 80px;
-        background: #d9d9d9;
-        margin-right: 30px;
-    }
-
-    .cardName {
-        font-size: 15px;
-        font-weight: bolder;
-    }
-
-    .cardDesc {
-        font-size: 12px;
-        margin-bottom: 10px;
-    }
-
-    .cardAnnualFee {
-        font-size: 12px;
-        margin: 7px;
-        margin-top: 12px;
-        margin-left: 0px;
-    }
-`;
-
-const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    padding: 30px;
 `;

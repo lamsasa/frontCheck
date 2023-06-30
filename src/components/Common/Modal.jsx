@@ -44,6 +44,7 @@ const ModalStyle = styled.div`
     .modal button {
         outline: none;
         cursor: pointer;
+
         border: 0;
     }
 
@@ -80,6 +81,7 @@ const ModalStyle = styled.div`
         font-weight: 700;
         text-align: center;
         color: #999;
+        position: fixed;
         background-color: transparent;
     }
 
