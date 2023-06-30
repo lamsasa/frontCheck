@@ -1,7 +1,7 @@
 import axios from 'axios';
 const MPT_DOMAIN = 'https://localhost:8888';
 
-const AxiosApi = {
+const BudgetAxiosApi = {
     // 나의 예산 생성
     createMyBudget: async (inputValues) => {
         try {
@@ -16,6 +16,7 @@ const AxiosApi = {
         }
     },
 
+    // 나의 예산 리스트
     getMyBudget: async () => {
         return await axios.get(MPT_DOMAIN + '/mybudget', {
             withCredentials: true,
@@ -23,4 +24,4 @@ const AxiosApi = {
     },
 };
 
-export default AxiosApi;
+export default BudgetAxiosApi;
