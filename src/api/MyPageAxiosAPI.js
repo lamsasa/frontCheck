@@ -34,7 +34,7 @@ const AxiosApi = {
     }
   },
 
-  getMyPage: async () => {
+  getMyPageList: async () => {
     return await axios.get(MPT_DOMAIN + "/mypage", {
       withCredentials: true,
     });
