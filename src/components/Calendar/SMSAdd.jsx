@@ -4,7 +4,7 @@ import ClickButton from '../Common/ClickButton';
 import CategoryInput from '../Common/CategoryInput';
 import { useState } from 'react';
 import ExpenseAxiosApi from '../../api/ExpenseAxiosAPI';
-import categoryList from '../../styles/categoryColor';
+import categoryList from '../../styles/categoryExpenseColor';
 
 const SMSAdd = () => {
     const [categoryId, setCategoryId] = useState(1); // 초기값으로 categoryId 1 설정
