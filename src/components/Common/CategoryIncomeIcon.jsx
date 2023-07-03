@@ -9,7 +9,8 @@ import { ReactComponent as ExtraIncome } from "../../assets/categoryIncome/부�
 import { ReactComponent as Etc } from "../../assets/categoryIncome/기타.svg";
 import categoryList from "../../styles/categoryIncomeColor";
 
-const CategoryIncomeIcon = ({ name }) => {
+//왜 카테고리가 존재하는데 없다고 하는가...
+const CategoryIncomeIcon = ({ name, onClick }) => {
   // 카테고리 이름을 받아 해당 카테고리의 svg를 리턴
   const getItemSvg = (svgName) => {
     switch (svgName) {
@@ -28,7 +29,7 @@ const CategoryIncomeIcon = ({ name }) => {
       case "기타":
         return <Etc />;
       default:
-        return "없는 카테고리입니다.";
+        return "無";
     }
   };
 
@@ -36,7 +37,9 @@ const CategoryIncomeIcon = ({ name }) => {
   const selectedItem = categoryList.find((item) => item.Name === name);
 
   return (
-    <Icon color={selectedItem ? selectedItem.Color : "#FF7076"}>
+    <Icon
+      color={selectedItem ? selectedItem.Color : "#FF7076"}
+      onClick={onClick}>
       {getItemSvg(name)}
     </Icon>
   );
