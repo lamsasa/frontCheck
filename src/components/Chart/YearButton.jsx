@@ -4,17 +4,20 @@ import { ReactComponent as Left } from "../../assets/left.svg";
 import styled from "styled-components";
 
 
-const YearButton = () => {
+const YearButton = ({ onChangeYear }) => {
   const currentDate = new Date();
   const [year, setYear] = useState(currentDate.getFullYear()); // 현재 년도로 초기화
 
-  // 버튼 클릭 시 다음 달로 값을 넘김
+  // 버튼 클릭 시 다음 해로 값을 넘김
   const handleNextYear = () => {
     setYear(year + 1);
+    onChangeYear(year + 1); // 연도 변경 시 콜백 호출
   };
-  // 버튼 클릭 시 이전 달로 값을 넘김
+
+  // 버튼 클릭 시 이전 해로 값을 넘김
   const handlePreviousYear = () => {
     setYear(year - 1);
+    onChangeYear(year - 1); // 연도 변경 시 콜백 호출
   };
 
   return (
