@@ -1,44 +1,40 @@
-import axios from "axios";
-const MPT_DOMAIN = "https://localhost:8888";
+import axiosInstance from "./axiosInstance";
 
-const AxiosApi = {
+const MyPageAxiosApi = {
+  // 나의 일정 생성
   createMySchedule: async (inputValues) => {
     try {
-      const response = await axios.post(
-        MPT_DOMAIN + "/mypage/create/schedule",
-        inputValues,
-        {
-          withCredentials: true,
-        }
+      const response = await axiosInstance.post(
+        "/mypage/create/schedule",
+        inputValues
       );
       return response.data;
     } catch (error) {
       console.error("Request Error:", error);
-      throw error;
     }
   },
 
+  // 나의 근무 생성
   createMyWork: async (inputValues) => {
     try {
-      const response = await axios.post(
-        MPT_DOMAIN + "/mypage/create/work",
-        inputValues,
-        {
-          withCredentials: true,
-        }
+      const response = await axiosInstance.post(
+        "/mypage/create/work",
+        inputValues
       );
       return response.data;
     } catch (error) {
       console.error("Request Error:", error);
-      throw error;
     }
   },
 
+  // 마이페이지 전체 조회
   getMyPageList: async () => {
-    return await axios.get(MPT_DOMAIN + "/mypage", {
-      withCredentials: true,
-    });
+    try {
+      return await axiosInstance.get("/mypage");
+    } catch (error) {
+      throw error;
+    }
   },
 };
 
-export default AxiosApi;
+export default MyPageAxiosApi;

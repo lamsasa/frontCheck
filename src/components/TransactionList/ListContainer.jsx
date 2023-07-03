@@ -106,7 +106,7 @@ const ListRow = ({ show, index, listData }) => {
       <td className="table-cell">{listData.date}</td>
       <td className="table-cell category-cell">
         <div className="category-cell-content">
-        {listData.deal === "수입" ? (
+        {listData.deal === "지출" ? (
             <CategoryIcon name={listData.category} />
           ) : (
             <CategoryIncomeIcon name={listData.category} />
