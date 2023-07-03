@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BudgetCalendar from "../MyBudget/BudgetCalendar";
 import CategoryIcon from "../MyBudget/CategoryIcon";
+import CategoryIncomeIcon from '../Common/CategoryIncomeIcon';
 import ListBox from "../Common/ListBox";
 
 const ListContainer = ({ listData }) => {
@@ -105,7 +106,11 @@ const ListRow = ({ show, index, listData }) => {
       <td className="table-cell">{listData.date}</td>
       <td className="table-cell category-cell">
         <div className="category-cell-content">
-          <CategoryIcon name={listData.category} />
+        {listData.deal === "지출" ? (
+            <CategoryIcon name={listData.category} />
+          ) : (
+            <CategoryIncomeIcon name={listData.category} />
+          )}
           <p className="category">{listData.category}</p>
         </div>
       </td>

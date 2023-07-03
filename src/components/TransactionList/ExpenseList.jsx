@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ListContainer from "./ListContainer";
-import AxiosApi from "../../api/ListAxiosAPI";
+import ListAxiosAPI from "../../api/ListAxiosAPI";
 
 const ExpenseList = () => {
   // const listData = [
@@ -11,19 +11,20 @@ const ExpenseList = () => {
   //     { category: '마트/편의점', money: '20000', date: '2023-06', detail: '스타벅스', deal: '지출' },
   //     { category: '패션/미용', money: '10000', date: '2023-06', detail: '스타벅스', deal: '지출' },
   // ];
-  const [listData, setListData] = useState([]);
+  const [expenseListData, setExpenseListData] = useState([]);
 
   useEffect(() => {
       const fetchData = async () => {
           try {
-              const data = await AxiosApi.getListExpense();
+              const data = await ListAxiosAPI.getListExpense();
               const transformedData = data.map(item => ({
-                  money: item.expenseAmount,
-                  date: item.expenseDate,
-                  category: item.categoryName,
-                  detail: item.expenseContent
+                  money: item.money,
+                  date: item.date,
+                  category: item.category,
+                  detail: item.detail,
+                  deal: "지출"
               }));
-              setListData(transformedData);
+              setExpenseListData(transformedData);
           } catch (error) {
               console.error('조회 실패', error);
           }
@@ -34,7 +35,7 @@ const ExpenseList = () => {
 
   return (
     <>
-      <ListContainer listData={listData} />
+      <ListContainer listData={expenseListData} />
     </>
   );
 };
