@@ -6,7 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import AuthAxiosAPI from "../api/AuthAxiosAPI";
+import GoogleLogin from "../assets/GoogleLoginButtonLight.png";
+import styled from "styled-components";
 
+const GoogleLoginButton = styled.div`
+  width: 250px;
+  margin: 0 auto;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`
 // google login button 추가예정
 
 const LoginForm = () => {
@@ -41,6 +51,16 @@ const LoginForm = () => {
             alert("로그인 실패 : 아이디 비밀번호를 다시 확인해 주세요")
         }
     };
+    const OnClickGoogle = async (e) => {
+        console.log("버튼")
+        try {
+            const response = await AuthAxiosAPI.GoogleLogin();
+            console.log(response);
+            window.location.href = response.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <Box
             component="form"
@@ -180,12 +200,16 @@ const LoginForm = () => {
                         fontSize: '1.3rem',
                         paddingTop: '5px',
                         margin: '0 auto',
+
                     }}
                     color="textSecondary"
                 >
                     or continue with
                 </Typography>
             </Grid>
+            <GoogleLoginButton onClick={OnClickGoogle}>
+                <img src={GoogleLogin} alt="#" />
+            </GoogleLoginButton>
         </Box>
 
     );
