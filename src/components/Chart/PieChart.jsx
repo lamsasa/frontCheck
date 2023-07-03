@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ResponsivePie } from "@nivo/pie";
 import CategoryIcon from "../MyBudget/CategoryIcon";
-import categoryList from "../../styles/categoryColor";
+import categoryList from "../../styles/categoryExpenseColor";
 import crown from "../../assets/crown.png";
 import AxiosApi from "../../api/ListAxiosAPI";
 
@@ -63,33 +63,35 @@ const Legends = ({ data }) => {
 
 const PieChart = () => {
   const [colors, setColors] = useState([]);
-const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
-const fetchData = async () => {
-  try {
-    const fetchedData = await AxiosApi.getPieChart();
-    const transformedData = fetchedData.map((item) => ({
-      value: item.value,
-      label: item.label,
-      id: item.id,
-      category: item.category,
-    }));
+  const fetchData = async () => {
+    try {
+      const fetchedData = await AxiosApi.getPieChart();
+      const transformedData = fetchedData.map((item) => ({
+        value: item.value,
+        label: item.label,
+        id: item.id,
+        category: item.category,
+      }));
 
-    const matchedColors = transformedData.map((item) => {
-      const matchedCategory = categoryList.find((category) => category.Name === item.category);
-      return matchedCategory ? matchedCategory.Color : "";
-    });
+      const matchedColors = transformedData.map((item) => {
+        const matchedCategory = categoryList.find(
+          (category) => category.Name === item.category
+        );
+        return matchedCategory ? matchedCategory.Color : "";
+      });
 
-    setData(transformedData);
-    setColors(matchedColors);
-  } catch (error) {
-    console.error("조회 실패", error);
-  }
-};
+      setData(transformedData);
+      setColors(matchedColors);
+    } catch (error) {
+      console.error("조회 실패", error);
+    }
+  };
 
-useEffect(() => {
-  fetchData();
-}, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   if (!data.length) {
     return (
@@ -98,7 +100,6 @@ useEffect(() => {
       </>
     );
   }
-
 
   return (
     <>

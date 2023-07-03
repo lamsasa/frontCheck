@@ -38,6 +38,8 @@ export default TagBox;
 
 const TagBoxStyle = styled.div`
   width: ${(props) => (props.isMobile ? "90%" : "46%")};
+  /* display: flex; */
+  /* flex-wrap: wrap; */
   margin: 0 auto;
   margin-bottom: 20px;
   margin-top: ${(props) => (props.isMobile ? "55px" : "30px")};

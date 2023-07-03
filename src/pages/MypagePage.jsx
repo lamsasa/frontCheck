@@ -6,8 +6,8 @@ import Container from "../components/Common/Container";
 import Box from "../components/Common/Box";
 import TagBox from "../components/MyPage/TagBox";
 import useViewport from "../hooks/viewportHook";
-// import Tag from "../components/MyPage/Tag";
-import AxiosApi from "../api/MyPageAxiosAPI";
+import Tag from "../components/MyPage/Tag";
+import MyPageAxiosApi from "../api/MyPageAxiosAPI";
 
 const Mypage = () => {
   const { isMobile } = useViewport();
@@ -18,11 +18,15 @@ const Mypage = () => {
   // const {userId} = useContext(LoginContext);
 
   useEffect(() => {
-    const getMyPageList = async() => {
-      const rsp = await AxiosApi.getMyPageList();
-      if(rsp.status === 200) setMyPageList(rsp.data);
-      setMyPageList(rsp.data);
-      console.log("마이페이지 list 조회");
+    const getMyPageList = async () => {
+      try {
+        const rsp = await MyPageAxiosApi.getMyPageList();
+        if (rsp.status === 200) setMyPageList(rsp.data);
+        setMyPageList(rsp.data);
+        console.log("마이페이지 list 조회");
+      } catch (error) {
+        console.error("Request Error:", error);
+      }
     };
     getMyPageList();
   }, []);
@@ -40,7 +44,7 @@ const Mypage = () => {
   //     { tag: '근무', detail: '국어 과외' },
   //     { tag: '근무', detail: '볼링장 알바' },
   // ];
-  
+
   return (
     <>
       <Header />
@@ -48,18 +52,19 @@ const Mypage = () => {
       <Container>
         <Box titleMargin={"30px"}>
           <p className="title">간편 입력</p>
+
           <Display isMobile={isMobile}>
             <TagBox tag={"일정"}>
-              {myPageList &&
-                myPageList.map((data) => (
-                  <Tag tag={data.schduleName} detail={data.detail} />
+              {myPageList.myScheduleDtoList &&
+                myPageList.myScheduleDtoList.map((data1) => (
+                  <Tag color={data1.myColor} detail={data1.myScName} />
                 ))}
             </TagBox>
 
             <TagBox tag={"근무"}>
-              {myPageList &&
-                myPageList.map((data) => (
-                  <Tag tag={data.workName} detail={data.detail} />
+              {myPageList.myWorkDtoList &&
+                myPageList.myWorkDtoList.map((data2) => (
+                  <Tag color={data2.myColor} detail={data2.myWorkName} />
                 ))}
             </TagBox>
           </Display>
@@ -73,18 +78,4 @@ export default Mypage;
 
 const Display = styled.div`
   display: ${(props) => (props.isMobile ? "block" : "flex")};
-`;
-
-const Tag = styled.button`
-  height: 32px;
-  border-radius: 15px;
-  color: white;
-  font-size: 8px;
-  text-align: center;
-  /* background: ${(props) => props.backgroundColor}; */
-  margin: 1%;
-  margin-top: 0px;
-  box-shadow: 0px 2.04082px 4.08163px rgba(0, 0, 0, 0.05);
-  border: none;
-  outline: none;
 `;

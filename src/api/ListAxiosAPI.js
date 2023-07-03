@@ -1,13 +1,12 @@
 import axios from "axios";
-import moment from 'moment/moment';
+// import moment from "moment/moment";
 const MPT_DOMAIN = "https://localhost:8888";
-
 
 const ListAxiosAPI = {
   // ListPage
   getListIncome: async () => {
     try {
-      const response = await axios.get(MPT_DOMAIN + '/check/income/category', {
+      const response = await axios.get(MPT_DOMAIN + "/check/income/category", {
         withCredentials: true,
       });
       const data = response.data.map((item) => ({
@@ -15,11 +14,11 @@ const ListAxiosAPI = {
         date: item.incomeDate,
         category: item.categoryName,
         detail: item.incomeContent,
-        deal: "수입"
+        deal: "수입",
       }));
       return data;
     } catch (error) {
-      console.error('Income List 조회가 불가능합니다.');
+      console.error("Income List 조회가 불가능합니다.");
       throw error;
     }
   },
@@ -34,7 +33,7 @@ const ListAxiosAPI = {
         date: item.expenseDate,
         category: item.categoryName,
         detail: item.expenseContent,
-        deal: "지출"
+        deal: "지출",
       }));
       return data;
     } catch (error) {
@@ -43,55 +42,59 @@ const ListAxiosAPI = {
     }
   },
 
-  
-  
-
-
   // ChartPage
   getLineChart: async () => {
     try {
-      const response = await axios.get(MPT_DOMAIN + "/ledger/statistics/monthly", {
-        withCredentials: true,
-      });
-      const transformedData = Object.entries(response.data).map(([date, value]) => ({
-        x: date,
-        l: value,
-      }));
+      const response = await axios.get(
+        MPT_DOMAIN + "/ledger/statistics/monthly",
+        {
+          withCredentials: true,
+        }
+      );
+      const transformedData = Object.entries(response.data).map(
+        ([date, value]) => ({
+          x: date,
+          l: value,
+        })
+      );
       return transformedData;
     } catch (error) {
       console.error("월간 합계 조회가 불가능합니다.", error);
       throw error;
     }
   },
-  
+
   getBarIncomeChart: async () => {
     try {
       const response = await axios.get(MPT_DOMAIN + "/ledger/income/monthly", {
         withCredentials: true,
       });
-  
-      const transformedData = Object.entries(response.data).map(([date, value]) => ({
-        v: value !== null ? value : 0, // value 값이 null인 경우 0으로 처리
-        x: date,
-      }));
-  
+
+      const transformedData = Object.entries(response.data).map(
+        ([date, value]) => ({
+          v: value !== null ? value : 0, // value 값이 null인 경우 0으로 처리
+          x: date,
+        })
+      );
+
       return transformedData;
     } catch (error) {
       console.error("월간 수입 합계 조회가 불가능 합니다.");
       throw error;
     }
   },
-  
 
   getBarExpenseChart: async () => {
     try {
       const response = await axios.get(MPT_DOMAIN + "/ledger/expense/monthly", {
         withCredentials: true,
       });
-      const transformedData = Object.entries(response.data).map(([date, value]) => ({
-        v1: value !== null ? value : 0, // value 값이 null인 경우 0으로 처리
-        x: date,
-      }));
+      const transformedData = Object.entries(response.data).map(
+        ([date, value]) => ({
+          v1: value !== null ? value : 0, // value 값이 null인 경우 0으로 처리
+          x: date,
+        })
+      );
       return transformedData;
     } catch (error) {
       console.error("월간 지출 합계 조회가 불가능 합니다.");
@@ -101,9 +104,12 @@ const ListAxiosAPI = {
 
   getPieChart: async () => {
     try {
-      const response = await axios.get(MPT_DOMAIN + "/check/expense/sum-by-category", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        MPT_DOMAIN + "/check/expense/sum-by-category",
+        {
+          withCredentials: true,
+        }
+      );
       const data = Object.entries(response.data).map(([key, value]) => ({
         value: value,
         label: key.split("_")[0], // 카테고리명만 보여주기 위함
@@ -116,7 +122,6 @@ const ListAxiosAPI = {
       throw error;
     }
   },
-  
 };
 
 export default ListAxiosAPI;
