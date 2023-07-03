@@ -1,8 +1,22 @@
+import React, { useState } from "react";
+
 import styled from "styled-components";
 import useViewport from "../../hooks/viewportHook";
+import Modal from "../Common/Modal";
 import { ReactComponent as Plus } from "../../assets/plus.svg";
+
 const TagBox = ({ tag, children }) => {
   const { isMobile } = useViewport();
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <TagBoxStyle isMobile={isMobile}>
       <div className="tagTitle">
@@ -11,11 +25,12 @@ const TagBox = ({ tag, children }) => {
         ) : (
           <div className="tagWork">근무</div>
         )}
-        <Plus width="19px" height="19px" />
+        <Plus width="19px" height="19px" onClick={openModal} />
       </div>
       <div className="tagContent">
         <div className="tagList">{children}</div>
       </div>
+      {modalOpen && <Modal open={modalOpen} close={closeModal}></Modal>}
     </TagBoxStyle>
   );
 };
