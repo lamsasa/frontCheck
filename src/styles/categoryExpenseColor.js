@@ -1,4 +1,4 @@
-const categoryList = [
+const categoryExpenseList = [
   { categoryId: 1, Name: "식비", Color: "#FF7076" },
   { categoryId: 2, Name: "교통/차량", Color: "#FFB7A0" },
   { categoryId: 3, Name: "주유", Color: "#FFD9A0" },
@@ -15,4 +15,4 @@ const categoryList = [
   { categoryId: 14, Name: "기타", Color: "#C8C8C8" },
 ];
 
-export default categoryList;
+export default categoryExpenseList;

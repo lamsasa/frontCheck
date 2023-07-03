@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ResponsivePie } from "@nivo/pie";
 import CategoryIcon from "../MyBudget/CategoryIcon";
-import categoryList from "../../styles/categoryColor";
+import categoryList from "../../styles/categoryExpenseColor";
 import crown from "../../assets/crown.png";
 import AxiosApi from "../../api/ListAxiosAPI";
 
@@ -65,56 +65,33 @@ const PieChart = () => {
   const [colors, setColors] = useState([]);
   const [data, setData] = useState([]);
 
-  const selectedMonthData = useMemo(() => {
-    if (!data || data.length === 0) {
-      return [];
+  const fetchData = async () => {
+    try {
+      const fetchedData = await AxiosApi.getPieChart();
+      const transformedData = fetchedData.map((item) => ({
+        value: item.value,
+        label: item.label,
+        id: item.id,
+        category: item.category,
+      }));
+
+      const matchedColors = transformedData.map((item) => {
+        const matchedCategory = categoryList.find(
+          (category) => category.Name === item.category
+        );
+        return matchedCategory ? matchedCategory.Color : "";
+      });
+
+      setData(transformedData);
+      setColors(matchedColors);
+    } catch (error) {
+      console.error("조회 실패", error);
     }
-
-    const currentDate = new Date();
-    const selectedMonth = currentDate.getMonth() + 1;
-    const selectedYear = currentDate.getFullYear();
-
-    return data.filter((item) => {
-      const itemDate = new Date(item.date);
-      const itemMonth = itemDate.getMonth() + 1;
-      const itemYear = itemDate.getFullYear();
-
-      return itemMonth === selectedMonth && itemYear === selectedYear;
-    });
-  }, [data]);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await AxiosApi.getPieChart();
-        const transformedData = data.map((item) => ({
-          value: item.expenseAmount,
-          label: item.categoryName,
-          id: item.categoryName,
-          category: item.categoryName,
-        }));
-        setData(transformedData);
-      } catch (error) {
-        console.error("조회 실패", error);
-      }
-    };
-
     fetchData();
   }, []);
-
-  useEffect(() => {
-    const sortedData = selectedMonthData.sort((a, b) => b.value - a.value); // 선택된 월 데이터를 기준으로 내림차순 정렬
-
-    const sortedColors = sortedData.map((item) => {
-      const foundCategory = categoryList.find(
-        (category) => category.Name === item.id
-      );
-      return foundCategory ? foundCategory.Color : "#FF7076"; // 기본 색상
-    });
-
-    setColors(sortedColors);
-  }, [selectedMonthData]);
-
 
   if (!data.length) {
     return (
@@ -123,7 +100,6 @@ const PieChart = () => {
       </>
     );
   }
-
 
   return (
     <>
