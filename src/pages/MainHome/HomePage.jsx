@@ -10,6 +10,7 @@ import Box from "../../components/Common/Box";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 import MyCal from "../../components/Calendar/MyCal";
 import Modal from "../../components/Common/Modal";
+import CreateSchedule from "../../components/Calendar/CreateSchedule";
 
 // import useViewport from "../../hooks/viewportHook";
 
@@ -62,7 +63,9 @@ const Home = () => {
             <div className="text">남은 돈 확인</div>
           </Box>
         </BoxContainer>
-        {modalOpen && <Modal open={modalOpen} close={closeModal}></Modal>}
+        {modalOpen && <Modal open={modalOpen} close={closeModal} width={'20%'}>
+          <CreateSchedule/>
+          </Modal>}
       </Container>
     </>
   );

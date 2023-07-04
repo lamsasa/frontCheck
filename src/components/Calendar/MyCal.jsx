@@ -9,7 +9,6 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
 
-import ToggleButtonSmall from '../Common/ToggleButtonSmall';
 import SMSAdd from './SMSAdd';
 
 const MYCalendar = ({ isBasic }) => {
@@ -198,12 +197,7 @@ const MYCalendar = ({ isBasic }) => {
                 )}
 
                 <div className="calendar-tab">
-                    <ToggleButtonSmall
-                        onText="수 입"
-                        offText="지 출"
-                        // isOn={isOn}
-                        // handleToggle={handleToggle}
-                    />
+                
                     <div className="select-day">{moment(value).format('YYYY년 MM월 DD일')}</div>
                     <SMS onClick={openModal} />
                 </div>

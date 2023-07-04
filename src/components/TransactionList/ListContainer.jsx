@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BudgetCalendar from "../MyBudget/BudgetCalendar";
 import CategoryIcon from "../MyBudget/CategoryIcon";
-import CategoryIncomeIcon from '../Common/CategoryIncomeIcon';
+import CategoryIncomeIcon from "../Common/CategoryIncomeIcon";
 import ListBox from "../Common/ListBox";
 
 const ListContainer = ({ listData }) => {
@@ -106,12 +106,19 @@ const ListRow = ({ show, index, listData }) => {
       <td className="table-cell">{listData.date}</td>
       <td className="table-cell category-cell">
         <div className="category-cell-content">
-        {listData.deal === "지출" ? (
-            <CategoryIcon name={listData.category} />
+          {listData.deal === "지출" ? (
+            <>
+              <CategoryIcon name={listData.category} />
+              {/* <p className="category">{listData.category}</p> */}
+              <p className="category">지출입니다.</p>
+            </>
           ) : (
-            <CategoryIncomeIcon name={listData.category} />
+            <>
+              <CategoryIncomeIcon name={listData.category} />
+              {/* <p className="category">{listData.category}</p> */}
+              <p className="category">수입입니다.</p>
+            </>
           )}
-          <p className="category">{listData.category}</p>
         </div>
       </td>
       <td className="table-cell content-cell">{listData.detail}</td>
@@ -156,7 +163,7 @@ const ListContainerStyled = styled.div`
   }
 
   .blue {
-    color: #00a3ff;
+    color: #3fdaae;
   }
 
   .category-cell {
