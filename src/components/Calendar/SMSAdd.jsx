@@ -3,7 +3,7 @@ import BlockLine from '../Common/BlockLine';
 import ClickButton from '../Common/ClickButton';
 import CategoryInput from '../Common/CategoryInput';
 import { useState } from 'react';
-import ExpenseAxiosApi from '../../api/ExpenseAxiosAPI';
+import LedgerAxiosApi from '../../api/LedgerAxiosAPI';
 import categoryList from '../../styles/categoryExpenseColor';
 
 const SMSAdd = () => {
@@ -31,7 +31,7 @@ const SMSAdd = () => {
     const onCreateExpense = async () => {
         try {
             const amount = parseInt(defaultAmount);
-            const createExpense = await ExpenseAxiosApi.createExpense(categoryId, amount, defaultDate, defaultContent);
+            const createExpense = await LedgerAxiosApi.createExpense(categoryId, amount, defaultDate, defaultContent);
             if (createExpense.data === '지출을 성공적으로 생성했습니다.') {
                 console.log('입력 성공');
                 window.location.reload();

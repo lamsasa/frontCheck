@@ -2,22 +2,56 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import CategoryInput from "../Common/CategoryInput";
 import categoryList from "../../styles/categoryExpenseColor";
+import categoryIncomeList from "../../styles/categoryIncomeColor";
+import CategoryIncomeInput from "../Common/CategoryIncomeInput";
 import ClickButton from "../Common/ClickButton";
-import ExpenseAxiosApi from "../../api/ExpenseAxiosAPI";
+import LedgerAxiosAPI from "../../api/LedgerAxiosAPI";
 
-const CreateScheduleInner = ({isIncome}) => {
+const CreateScheduleInner = ({ isIncome }) => {
   const [categoryId, setCategoryId] = useState(1);
+  const [categoryIncomeId, setCategoryIncomeId] = useState(15);
 
   const handleCategoryIdChange = (id) => {
     setCategoryId(id);
   };
 
+  const handleCategoryIncomeIdChange = (id) => {
+    setCategoryIncomeId(id);
+  };
+
   const onCreateExpense = async () => {
     try {
-      const amount = parseInt();
-      const createExpense = await ExpenseAxiosApi.createExpense(
+      const amount = parseInt(document.getElementById("amount").value);
+      const date = document.getElementById("date").value;
+      const content = document.getElementById("content").value;
+      const createExpense = await LedgerAxiosAPI.createExpense(
         categoryId,
-        amount
+        amount,
+        date,
+        content
+      );
+      if (createExpense.data === "지출을 성공적으로 생성했습니다.") {
+        console.log("입력 성공");
+        window.location.reload();
+      } else {
+        console.log("입력 실패");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log("에러:", error);
+    }
+  };
+
+  const onCreateIncome = async () => {
+    try {
+      const amount = parseInt(document.getElementById("amount").value);
+      const date = document.getElementById("date").value;
+      const content = document.getElementById("content").value;
+      const createExpense = await LedgerAxiosAPI.createExpense(
+        categoryIncomeId,
+        amount,
+        date,
+        content
       );
       if (createExpense.data === "지출을 성공적으로 생성했습니다.") {
         console.log("입력 성공");
@@ -35,26 +69,34 @@ const CreateScheduleInner = ({isIncome}) => {
     <>
       <CreateScheduleContainer>
         <Container>
-          <CategoryInput
-            categoryList={categoryList}
-            categoryId={categoryId}
-            onCategoryIdChange={handleCategoryIdChange}
-          />
+          {isIncome ? (
+            <CategoryIncomeInput
+            categoryIncomeList={categoryIncomeList}
+            categoryIncomeId={categoryIncomeId}
+            onCategoryIncomeIdChange={handleCategoryIncomeIdChange}
+            />
+          ) : (
+            <CategoryInput
+              categoryList={categoryList}
+              categoryId={categoryId}
+              onCategoryIdChange={handleCategoryIdChange}
+            />
+          )}
           <InputContainer>
             <p className="label">금액</p>
-            <Input />
+            <Input id="amount" />
             <p className="label">날짜</p>
-            <Input />
+            <Input type="date" id="date" />
             <p className="label">내용</p>
-            <Input />
+            <Input id="content" />
           </InputContainer>
         </Container>
         <ButtonContainer>
-        {isIncome ? (
-          <ClickButton onClick={onCreateExpense}>수입 추가</ClickButton>
-        ) : (
-          <ClickButton onClick={onCreateExpense}>지출 추가</ClickButton>
-        )}
+          {isIncome ? (
+            <ClickButton onClick={onCreateIncome}>수입 추가</ClickButton>
+          ) : (
+            <ClickButton onClick={onCreateExpense}>지출 추가</ClickButton>
+          )}
         </ButtonContainer>
       </CreateScheduleContainer>
     </>
