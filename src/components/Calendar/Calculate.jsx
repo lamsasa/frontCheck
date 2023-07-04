@@ -11,6 +11,7 @@ const Calculate = () => {
     const year = currentDate.getFullYear();
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const formattedDate = `${year}-${Number(month)}`;
+    const lastFormattedDate = `${year}-${Number(month) - 1}`;
 
     const { isMobile } = useViewport();
     useEffect(() => {
@@ -45,7 +46,9 @@ const Calculate = () => {
                         <div className="title">지난 달 대비 사용 금액</div>
                         <div className="textContent">
                             <div>지난 달</div>
-                            <div></div>
+                            <div>
+                                {DailyExpense && DailyExpense[lastFormattedDate] ? DailyExpense[lastFormattedDate] : 0}
+                            </div>
                         </div>
                         <div className="textContent">
                             <div>이번 달</div>
@@ -54,9 +57,19 @@ const Calculate = () => {
 
                         <div className="hr"></div>
                         <div className="textContent">
-                            <div> 합계 총</div>
+                            <div> 이번 달은</div>
                             <div>
-                                <span className="sum">15000000</span> 남았어요!
+                                <span className="sum">
+                                    {DailyExpense && DailyExpense[lastFormattedDate] && DailyExpense[formattedDate]
+                                        ? parseInt(DailyExpense[lastFormattedDate]) -
+                                          parseInt(DailyExpense[formattedDate])
+                                        : DailyExpense && DailyExpense[formattedDate]
+                                        ? -parseInt(DailyExpense[formattedDate])
+                                        : DailyExpense && DailyExpense[lastFormattedDate]
+                                        ? parseInt(DailyExpense[lastFormattedDate])
+                                        : 0}
+                                </span>
+                                남았어요 !
                             </div>
                         </div>
                     </div>
@@ -88,7 +101,7 @@ const Calculate = () => {
                                         : DailyIncome && DailyIncome[formattedDate]
                                         ? parseInt(DailyIncome[formattedDate])
                                         : 0}
-                                </span>{' '}
+                                </span>
                                 남았어요!
                             </div>
                         </div>
@@ -105,14 +118,17 @@ const BoxContainer = styled.div`
     display: ${(props) => (props.isMobile ? 'block' : 'flex')};
     align-items: center;
     justify-content: center;
+    width: ${(props) => (props.isMobile ? '100%' : '95%')};
+    margin: 0 auto;
 
     .textContent {
         display: flex;
-        width: 92%;
+        width: 93%;
         margin: 20px;
         font-size: 14px;
         justify-content: space-between;
         align-items: center;
+        margin-left: 10px;
     }
     .hr {
         border-bottom: 1px solid black;
@@ -126,6 +142,7 @@ const BoxContainer = styled.div`
         font-size: 20px;
         font-weight: bolder;
         color: #3fcea5;
+        margin-right: 10px;
     }
     .container {
         align-items: center;
