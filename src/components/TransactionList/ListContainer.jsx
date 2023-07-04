@@ -109,14 +109,12 @@ const ListRow = ({ show, index, listData }) => {
           {listData.deal === "지출" ? (
             <>
               <CategoryIcon name={listData.category} />
-              {/* <p className="category">{listData.category}</p> */}
-              <p className="category">지출입니다.</p>
+              <p className="category">{listData.category}</p>
             </>
           ) : (
             <>
               <CategoryIncomeIcon name={listData.category} />
-              {/* <p className="category">{listData.category}</p> */}
-              <p className="category">수입입니다.</p>
+              <p className="category">{listData.category}</p>
             </>
           )}
         </div>

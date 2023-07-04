@@ -7,7 +7,7 @@ import { ReactComponent as ExtraIncome } from "../../assets/categoryIncome/부�
 // import { ReactComponent as - } from '../../assets/category/.svg';
 // import { ReactComponent as -- } from '../../assets/category/.svg';
 import { ReactComponent as Etc } from "../../assets/categoryIncome/기타.svg";
-import categoryList from "../../styles/categoryIncomeColor";
+import categoryIncomeList from "../../styles/categoryIncomeColor";
 
 //왜 카테고리가 존재하는데 없다고 하는가...
 const CategoryIncomeIcon = ({ name, onClick }) => {
@@ -34,7 +34,7 @@ const CategoryIncomeIcon = ({ name, onClick }) => {
   };
 
   // 카테고리 이름(name)을 받아 카테고리 이름별 색코드 파일(categoryList)에서 해당 카테고리 이름에 해당하는 색 코드를 찾아옴
-  const selectedItem = categoryList.find((item) => item.Name === name);
+  const selectedItem = categoryIncomeList.find((item) => item.Name === name);
 
   return (
     <Icon
