@@ -82,7 +82,7 @@ const SMSAdd = () => {
                     <p className="label">금액</p>
                     <Input value={defaultAmount} onChange={handleAmountChange} />
                     <p className="label">날짜</p>
-                    <Input value={defaultDate} onChange={handleDateChange} />
+                    <Input value={defaultDate} onChange={handleDateChange} type="date" id="date" />
                     <p className="label">내용</p>
                     <Input value={defaultContent} onChange={handleContentChange} />
                 </InputContainer>

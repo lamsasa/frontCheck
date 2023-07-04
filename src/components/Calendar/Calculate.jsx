@@ -79,7 +79,7 @@ const Calculate = () => {
                 <div className="container">
                     <div className="minus" />
                     <div className="detail">
-                        <div className="title">남은 돈 확인</div>
+                        <div className="title">이번 달 남은 돈 확인</div>
                         <div className="textContent">
                             <div>수입</div>
                             <div>{DailyIncome && DailyIncome[formattedDate] ? DailyIncome[formattedDate] : 0}</div>
