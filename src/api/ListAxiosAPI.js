@@ -12,7 +12,7 @@ const ListAxiosAPI = {
       const data = response.data.map((item) => ({
         money: item.incomeAmount,
         date: item.incomeDate,
-        category: item.categoryName,
+        category: item.categoryIncomeName,
         detail: item.incomeContent,
         deal: "수입",
       }));
