@@ -71,9 +71,9 @@ const CreateScheduleInner = ({ isIncome }) => {
         <Container>
           {isIncome ? (
             <CategoryIncomeInput
-            categoryIncomeList={categoryIncomeList}
-            categoryIncomeId={categoryIncomeId}
-            onCategoryIncomeIdChange={handleCategoryIncomeIdChange}
+              categoryIncomeList={categoryIncomeList}
+              categoryIncomeId={categoryIncomeId}
+              onCategoryIncomeIdChange={handleCategoryIncomeIdChange}
             />
           ) : (
             <CategoryInput

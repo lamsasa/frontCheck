@@ -5,7 +5,7 @@ import { ReactComponent as SMS } from "../../assets/SMS.svg";
 import SMSAdd from "./SMSAdd";
 import Modal from "../Common/Modal";
 import BlockLine from "../Common/BlockLine";
-import CreateScheduleInner from "./CreateScheduleInner";
+import CreateLedgerInner from "./CreateLedgerInner";
 
 const CreateSchedule = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -46,9 +46,9 @@ const CreateSchedule = () => {
         </CreateScheduleBox>
         <BlockLine />
         {isOn ? (
-          <CreateScheduleInner isIncome={true} />
+          <CreateLedgerInner isIncome={true} />
         ) : (
-          <CreateScheduleInner isIncome={false} />
+          <CreateLedgerInner isIncome={false} />
         )}
       </CreateScheduleContainer>
     </>
