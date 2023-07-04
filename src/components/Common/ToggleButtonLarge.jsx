@@ -32,7 +32,7 @@ const SwitchLabel = styled.label`
 
     cursor: pointer;
     width: ${({ width }) => width || '139px'};
-    height: ${({ height }) => height || '42px'};
+    height: ${({ height }) => height || '47px'};
     background: ${({ theme }) => theme.bgColor};
     border-radius: 100px;
     transition: 0.2s;
@@ -48,7 +48,7 @@ const OnButton = styled.span`
     left: 3px;
     display: inline-block;
     width: ${({ width }) => width || '63px'};
-    height: ${({ height }) => height || '32px'};
+    height: ${({ height }) => height || '37px'};
 
     transition: 0.2s;
     background: linear-gradient(100deg, rgba(66, 230, 149, 0.8) 3.56%, rgba(59, 178, 184, 0.8) 96.4%);
@@ -73,8 +73,8 @@ const TextContainer = styled.div`
 `;
 
 const OffText = styled.span`
-    font-weight: ${({ fontWeight }) => fontWeight || '700'};
-    font-size: ${({ fontSize }) => fontSize || '16px'};
+    font-weight: ${({ fontWeight }) => fontWeight || '500'};
+    font-size: ${({ fontSize }) => fontSize || '13px'};
     line-height: 19px;
     color: #ffffff;
     position: relative;
@@ -88,8 +88,8 @@ const OffText = styled.span`
 `;
 
 const OnText = styled.span`
-    font-weight: ${({ fontWeight }) => fontWeight || '700'};
-    font-size: ${({ fontSize }) => fontSize || '16px'};
+    font-weight: ${({ fontWeight }) => fontWeight || '500'};
+    font-size: ${({ fontSize }) => fontSize || '13px'};
     line-height: 19px;
     color: rgba(192, 192, 192, 1);
     position: relative;
