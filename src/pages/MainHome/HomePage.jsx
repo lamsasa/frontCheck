@@ -36,12 +36,10 @@ const Home = () => {
                 <CalendarContainer>
                     <div className="header">
                         <ToggleButtonLarge onText="일 정" offText="가계부" isOn={isOn} handleToggle={handleToggle} />
-                        <Plus width="33px" height="33px" onClick={openModal} />
+                        <Plus width="25px" height="25px" onClick={openModal} />
                     </div>
 
-                    <div className="calendar">
-                        <div className="App">{isOn ? <MyCal isBasic={false} /> : <MyCal isBasic={true} />}</div>
-                    </div>
+                    <div className="calendar">{isOn ? <MyCal isBasic={false} /> : <MyCal isBasic={true} />}</div>
                 </CalendarContainer>
                 <Calculate />
 
@@ -67,16 +65,16 @@ export default Home;
 const CalendarContainer = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0 0 30px 70px;
     width: 100%;
 
     .header {
-        width: 800px;
+        width: 90%;
+        margin: 0 auto;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding-right: 15px;
+        margin-bottom: 20px;
         > svg {
             fill: ${({ theme }) => theme.menuColor};
         }

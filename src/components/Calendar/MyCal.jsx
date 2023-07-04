@@ -11,11 +11,11 @@ import moment from 'moment';
 
 import ToggleButtonSmall from '../Common/ToggleButtonSmall';
 import SMSAdd from './SMSAdd';
+import Box from '../Common/Box';
 
 const MYCalendar = ({ isBasic }) => {
-    const { isMobile } = useViewport();
     const [modalOpen, setModalOpen] = useState(false);
-
+    const { isMobile } = useViewport();
     const openModal = () => {
         setModalOpen(true);
     };
@@ -156,48 +156,44 @@ const MYCalendar = ({ isBasic }) => {
         <CalendarContainer isMobile={isMobile}>
             <div className="calendar_Main">
                 {isBasic ? (
-                    <div className="App">
-                        <Calendar
-                            calendarType="US" // 요일을 일요일부터 시작하도록 설정
-                            locale="en"
-                            onChange={onChange}
-                            value={value}
-                            // next2Label={null}
-                            // prev2Label={null}
-                            tileContent={addContent}
-                            isBasic={true}
-                            minDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
-                            maxDetail="month"
-                        />
-                    </div>
+                    <Calendar
+                        calendarType="US" // 요일을 일요일부터 시작하도록 설정
+                        locale="en" // 달력 언어
+                        onChange={onChange}
+                        value={value}
+                        // next2Label={null}
+                        // prev2Label={null}
+                        tileContent={addContent}
+                        isBasic={true}
+                        minDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
+                        maxDetail="month"
+                    />
                 ) : (
-                    <div className="App">
-                        <Calendar
-                            calendarType="US" // 요일을 일요일부터 시작하도록 설정
-                            locale="en"
-                            onChange={onChange}
-                            value={value}
-                            // onClickDay={dayIn}
-                            // returnValue="range"
+                    <Calendar
+                        calendarType="US" // 요일을 일요일부터 시작하도록 설정
+                        locale="en" //
+                        onChange={onChange}
+                        value={value}
+                        // onClickDay={dayIn}
+                        // returnValue="range"
 
-                            // nextLabel={<NextLabel />}
-                            // prevLabel={<PrevLabel />}
-                            // next2Label={null}
-                            // prev2Label={null}
-                            tileContent={addContent}
-                            isBasic={false}
-                            minDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
-                            maxDetail="month"
+                        // nextLabel={<NextLabel />}
+                        // prevLabel={<PrevLabel />}
+                        // next2Label={null}
+                        // prev2Label={null}
+                        tileContent={addContent}
+                        isBasic={false}
+                        minDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
+                        maxDetail="month"
 
-                            // defaultValue={new Date()}
-                            // today 값
-                            // value={date}
-                            // onChange={setDate}
-                        />
-                    </div>
+                        // defaultValue={new Date()}
+                        // today 값
+                        // value={date}
+                        // onChange={setDate}
+                    />
                 )}
 
-                <div className="calendar-tab">
+                {/* <Box width={'20%'}>
                     <ToggleButtonSmall
                         onText="수 입"
                         offText="지 출"
@@ -206,7 +202,7 @@ const MYCalendar = ({ isBasic }) => {
                     />
                     <div className="select-day">{moment(value).format('YYYY년 MM월 DD일')}</div>
                     <SMS onClick={openModal} />
-                </div>
+                </Box> */}
             </div>
             {modalOpen && (
                 <Modal open={modalOpen} close={closeModal} width={'20%'}>
@@ -219,8 +215,11 @@ const MYCalendar = ({ isBasic }) => {
 export default MYCalendar;
 
 const CalendarContainer = styled.div`
-    width: auto;
-
+    padding-bottom: 30px;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
     .calendar-tab {
         display: ${(props) => (props.isMobile ? 'none' : 'flex')};
         flex-direction: column;
@@ -229,7 +228,6 @@ const CalendarContainer = styled.div`
         margin: 20px 10px 0 20px;
         padding: 10px;
         width: 300px;
-        min-width: 300px;
         height: auto;
         background-color: ${({ theme }) => theme.bgColor};
         color: #999;
@@ -244,7 +242,7 @@ const CalendarContainer = styled.div`
     }
 
     .contents {
-        height: 100px;
+        height: 80px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -253,7 +251,6 @@ const CalendarContainer = styled.div`
 
     .calendar_Main {
         display: flex;
-        flex-direction: row;
     }
 
     .content-row {
@@ -334,15 +331,11 @@ const CalendarContainer = styled.div`
 
     // react-calendar.css
     .react-calendar {
-        padding: 10px;
-        width: ${(props) => (props.isMobile ? '400px' : '800px')};
-        max-width: 100%;
-        height: auto;
-        margin-top: 20px;
+        margin: 10px;
+        width: 90%;
+        margin: 0 auto;
         background-color: ${({ theme }) => theme.bgColor};
         color: #999;
-        font-family: Arial, Helvetica, sans-serif;
-        /* line-height: 1.125em; */
         border: 0px;
         border-radius: 10px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
@@ -383,12 +376,6 @@ const CalendarContainer = styled.div`
 
     abbr[title] {
         text-decoration: none;
-    }
-
-    .react-calendar__tile {
-        height: 80px;
-        font-size: 16px;
-        color: #222;
     }
 
     .react-calendar__tile:enabled:hover,
@@ -458,12 +445,13 @@ const CalendarContainer = styled.div`
     .react-calendar__tile {
         text-align: center;
         padding: 20px;
-        height: 110px;
-        width: 80px;
+        height: ${(props) => (props.isMobile ? '85px' : '100px')};
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
+        font-size: 12px;
+        color: #222;
     }
 
     .react-calendar__month-view__weekdays {
