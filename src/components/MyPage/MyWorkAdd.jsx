@@ -123,7 +123,6 @@ const MyWorkAdd = (width) => {
             />
           </div>
           {/* <p className="label">color</p> */}
-          <SelColor />
           <SelColor value={defaultMyColor} onChange={handleMyColorChange} />
         </InputContainer>
       </Container>
