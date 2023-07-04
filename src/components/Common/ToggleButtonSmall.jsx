@@ -1,10 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const ToggleButtonSmall = ({ offText, onText }) => {
+const ToggleButtonSmall = ({ offText, onText, isOn, handleToggle }) => {
   return (
     <>
-      <SwitchInput id="toggle_small" type="checkbox" />
+      <SwitchInput
+        id="toggle_small"
+        type="checkbox"
+        checked={isOn}
+        onChange={handleToggle}
+      />
       {/* width, height 설정 가능 */}
       <SwitchLabel htmlFor="toggle_small">
         {/* width, height 설정 가능 */}
