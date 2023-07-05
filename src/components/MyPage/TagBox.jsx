@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import useViewport from "../../hooks/viewportHook";
 import Modal from "../Common/Modal";
+import MyScAdd from "../MyPage/MyScAdd";
+import MyWorkAdd from "../MyPage/MyWorkAdd";
+
 import { ReactComponent as Plus } from "../../assets/plus.svg";
 
 const TagBox = ({ tag, children }) => {
@@ -21,16 +24,33 @@ const TagBox = ({ tag, children }) => {
     <TagBoxStyle isMobile={isMobile}>
       <div className="tagTitle">
         {tag === "일정" ? (
-          <div className="tagLife">일정</div>
+          <>
+            <div className="tagLife">일정</div>
+            <Plus width="19px" height="19px" onClick={openModal} />
+          </>
         ) : (
-          <div className="tagWork">근무</div>
+          <>
+            <div className="tagWork">근무</div>
+            <Plus width="19px" height="19px" onClick={openModal} />
+          </>
         )}
-        <Plus width="19px" height="19px" onClick={openModal} />
       </div>
       <div className="tagContent">
         <div className="tagList">{children}</div>
       </div>
-      {modalOpen && <Modal open={modalOpen} close={closeModal}></Modal>}
+      {modalOpen && (
+        <>
+          {tag === "일정" ? (
+            <Modal open={modalOpen} close={closeModal} width={"20%"}>
+              <MyScAdd width={"60px"} />
+            </Modal>
+          ) : (
+            <Modal open={modalOpen} close={closeModal} width={"20%"}>
+              <MyWorkAdd width={"60px"} />
+            </Modal>
+          )}
+        </>
+      )}
     </TagBoxStyle>
   );
 };

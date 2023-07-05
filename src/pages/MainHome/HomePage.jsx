@@ -10,7 +10,7 @@ import ToggleButtonLarge from '../../components/Common/ToggleButtonLarge';
 import MyCal from '../../components/Calendar/MyCal';
 import Modal from '../../components/Common/Modal';
 import Calculate from '../../components/Calendar/Calculate';
-import CreateSchedule from '../../components/Calendar/CreateSchedule';
+import CreateSchedule from '../../components/Calendar/CreateLedger';
 
 const Home = () => {
     const [isOn, setIsOn] = useState(false);

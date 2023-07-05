@@ -2,20 +2,11 @@ import styled from "styled-components";
 import contentList from "../../styles/contentColor";
 
 const Tag = ({ color, detail }) => {
-  // 임시로 랜덤으로 태그 색이 변하게 만듬, 백엔드 개발 시 태그 추가 할때 색을 저장하게 만드는게 필요해 보임
-  // let backgroundColor;
-  // if (tag === '0') {
-  // const colors = ['#205072', '#329D9C', '#56C596'];
-  // backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-  // } else if (tag === '1') {
-  // const colors = ['#484848', '#808080', '#A8A8A8', '#cacaca'];
-  // backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-  // }
-
   // 컨텐츠 이름을 받아오고, 콘텐츠별 설정된 색 코드를 contentList에서 해당하는 색 코드 찾아오기
-  // const setColor = contentList.contentId;
-  //  contentList.Color;
-  const setColor = contentList.find((item) => item.contentId === color);
+  const setColor =
+    color <= 4
+      ? contentList.schedule.find((item) => item.contentId === color)
+      : contentList.work.find((item) => item.contentId === color);
 
   return (
     <TagStyled backgroundColor={setColor ? setColor.Color : null}>
