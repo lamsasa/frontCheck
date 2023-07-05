@@ -6,9 +6,14 @@ import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
 import SelColor from "../../components/Calendar/SelColor";
 
 const MyScAdd = (width) => {
+  const [contentId, setContentId] = useState(1);
   const [defaultMyScName, setDefaultMyScName] = useState("");
   const [defaultMyScBudget, setDefaultMyScBudget] = useState("");
-  const [defaultMyColor, setDefaultMyColor] = useState("");
+  // const [defaultMyColor, setDefaultMyColor] = useState("");
+
+  const handleContentIdChange = (id) => {
+    setContentId(id);
+  };
 
   const handleMyScNameChange = (event) => {
     setDefaultMyScName(event.target.value);
@@ -18,9 +23,9 @@ const MyScAdd = (width) => {
     setDefaultMyScBudget(event.target.value);
   };
 
-  const handleMyColorChange = (event) => {
-    setDefaultMyColor(event.target.value);
-  };
+  // const handleMyColorChange = (event) => {
+  //   setDefaultMyColor(event.target.value);
+  // };
 
   const onCreateMySc = async () => {
     try {
@@ -28,7 +33,7 @@ const MyScAdd = (width) => {
       const createMySc = await MyPageAxiosApi.createMySchedule(
         amount,
         defaultMyScBudget,
-        defaultMyColor
+        // defaultMyColor
       );
       if (createMySc.data === "일정을 성공적으로 생성했습니다.") {
         console.log("입력 성공");
@@ -55,8 +60,9 @@ const MyScAdd = (width) => {
           <Input value={defaultMyScBudget} onChange={handleMyScBudgetChange} />
           {/* <p className="label">color</p> */}
           <SelColor
-            value={defaultMyColor}
-            onChange={handleMyColorChange}
+            // value={defaultMyColor}
+            contentId={contentId}
+            onContentIdChange={handleContentIdChange}
             isBasic={true}
           />
         </InputContainer>
