@@ -46,10 +46,10 @@ const SelType = () => {
         value={category}
         onChange={handleCategoryChange}
       >
-        <option value="hourly-rate">시급</option>
-        <option value="first-rate">월급</option>
-        <option value="salary">일급</option>
-        <option value="per-case">건별</option>
+        <option value="1">시급</option>
+        <option value="2">월급</option>
+        <option value="3">일급</option>
+        <option value="4">건별</option>
       </select>
     </StyledCategory>
   );
@@ -63,6 +63,8 @@ const StyledCategory = styled.div`
   margin-left: 0;
 
   .dropBox {
+    background-color: ${({ theme }) => theme.bgColor};
+    color: ${({ theme }) => theme.menuColor};
     width: 60px;
     height: 30px;
     margin-left: 0px;

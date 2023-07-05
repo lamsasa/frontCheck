@@ -31,19 +31,6 @@ const Mypage = () => {
     getMyPageList();
   }, []);
 
-  // const lifeData = [
-  //     { tag: '일정', detail: '술도녀 모임' },
-  //     { tag: '일정', detail: '백엔드 공부' },
-  //     { tag: '일정', detail: '코딩테스트' },
-  //     { tag: '일정', detail: '국취제 신청' },
-  //     { tag: '일정', detail: '정처기 시험 접수' },
-  // ];
-  // const workData = [
-  //     { tag: '근무', detail: '순댓국 알바' },
-  //     { tag: '근무', detail: '수학 과외' },
-  //     { tag: '근무', detail: '국어 과외' },
-  //     { tag: '근무', detail: '볼링장 알바' },
-  // ];
 
   return (
     <>

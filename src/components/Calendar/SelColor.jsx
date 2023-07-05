@@ -9,7 +9,7 @@ const SelColor = ({ isBasic }) => {
   // const setColor = contentList.find((item) => item.contentId === color);
   const colorSc = contentList.schedule.map((content) => content.Color);
   const colorWork = contentList.work.map((content) => content.Color);
-  
+
   // const ColorScId = contentList.schedule.map((content) => content.contentId);
   // const ColorWorkId = contentList.work.map((content) => content.contentId);
 
@@ -24,7 +24,9 @@ const SelColor = ({ isBasic }) => {
               className="color-box"
               key={index}
               style={{ backgroundColor: color }}
-              onClick={handleColorBoxClick}
+              onClick={() =>
+                handleColorBoxClick(contentList.schedule[index].contentId)
+              }
             ></div>
           ))}
         </div>
@@ -35,7 +37,9 @@ const SelColor = ({ isBasic }) => {
               className="color-box"
               key={index}
               style={{ backgroundColor: color }}
-              onClick={handleColorBoxClick}
+              onClick={() =>
+                handleColorBoxClick(contentList.work[index].contentId)
+              }
             ></div>
           ))}
         </div>
