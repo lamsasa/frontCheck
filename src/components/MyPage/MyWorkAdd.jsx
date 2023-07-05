@@ -4,6 +4,7 @@ import ClickButton from "../Common/ClickButton";
 import { useState } from "react";
 import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
 import SelColor from "../../components/Calendar/SelColor";
+import MyType from "../Calendar/SelType";
 
 const MyWorkAdd = (width) => {
   const [defaultMyWkName, setDefaultMyWkName] = useState("");
@@ -87,37 +88,53 @@ const MyWorkAdd = (width) => {
 
         <InputContainer>
           <div>
-            <p className="label">근무</p>
+            <p className="label">근무이름</p>
             <Input value={defaultMyWkName} onChange={handleMyWkNameChange} />
           </div>
           <div>
-            <p className="label">급여형태</p>
-            <Input value={defaultMyPayType} onChange={handleMyPayTypeChange} />
+            <p className="label">근무형태</p>
+            {/* <Input value={defaultMyPayType} onChange={handleMyPayTypeChange} /> */}
+            <MyType value={defaultMyPayType} onChange={handleMyPayTypeChange} />
           </div>
           <div>
             <p className="label">금액</p>
             <Input value={defaultMyWkMoney} onChange={handleMyWkMoneyChange} />
+            <p className="times">원</p>
           </div>
 
           <p className="label">근무시간</p>
           <div>
-            <Input value={defaultMyWkStart} onChange={handleMyWkStartChange} />
+            <Input
+              type="time"
+              value={defaultMyWkStart}
+              onChange={handleMyWkStartChange}
+            />
             <p className="label"> - </p>
-            <Input value={defaultMyWkEnd} onChange={handleMyWkEndChange} />
+            <Input
+              type="time"
+              value={defaultMyWkEnd}
+              onChange={handleMyWkEndChange}
+            />
           </div>
+
           <div>
             <p className="label">휴게시간</p>
-            <Input value={defaultMyWkRest} onChange={handleMyWkRestChange} />
+            <Input
+              type="number"
+              min="0"
+              value={defaultMyWkRest}
+              onChange={handleMyWkRestChange}
+            />
+            <p className="times">분</p>
           </div>
           <div>
-            <p className="label">세금</p>
+            <p className="label">세 금</p>
             <Input value={defaultMyWkTax} onChange={handleMyWkTaxChange} />
           </div>
           <div>
-            <p className="label">급여일</p>
+            <p className="label">급여 일</p>
             <Input
               type="date"
-              id="date"
               value={defaultMyWkPayday}
               onChange={handleMyWkPaydayChange}
             />
@@ -144,7 +161,7 @@ const Title = styled.div`
 `;
 
 const Input = styled.input`
-  width: 60%;
+  width: 55%;
   border-top: none;
   border-left: none;
   color: lightgray;
@@ -167,10 +184,19 @@ const Container = styled.div`
   flex-wrap: wrap;
   .label {
     width: ${({ width }) => width || "auto"};
-    margin: 10px;
+    margin: 5px;
+    margin-top: 10px;
     font-size: 15px;
     align-items: center;
     justify-content: center;
+  }
+  .times {
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    margin: 3px;
+    margin-top: 9px;
+    color: gray;
   }
 `;
 
@@ -185,6 +211,7 @@ const InputContainer = styled.div`
 
   div {
     display: flex;
+    width: auto;
     flex-direction: row;
     margin: 5px;
   }
