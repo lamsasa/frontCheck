@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import ClickButton from '../Common/ClickButton';
+import useViewport from '../../hooks/viewportHook';
 
 const CardList = ({ cardName, cardDesc, cardImg, cardLink }) => {
+    const { isMobile } = useViewport();
     const handleClick = () => {
         window.open(cardLink);
     };
@@ -26,9 +28,15 @@ const CardList = ({ cardName, cardDesc, cardImg, cardLink }) => {
                     </p>
                 </div>
             </div>
-            <ButtonContainer>
-                <ClickButton onClick={handleClick}>카드 정보 보기</ClickButton>
-            </ButtonContainer>
+            {isMobile ? (
+                <ButtonContainer></ButtonContainer>
+            ) : (
+                <ButtonContainer>
+                    <ClickButton onClick={handleClick} width={'100%'}>
+                        카드 정보 보기
+                    </ClickButton>
+                </ButtonContainer>
+            )}
         </CardListContainer>
     );
 };
@@ -40,7 +48,6 @@ const CardListContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 30px;
     padding-bottom: 0px;
     margin-top: 30px;
 
@@ -59,6 +66,7 @@ const CardListContainer = styled.div`
     .product-img-div {
         display: table-cell;
         vertical-align: middle;
+        width: 20%;
     }
 
     .product-img {

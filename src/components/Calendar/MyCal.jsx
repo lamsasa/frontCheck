@@ -7,7 +7,7 @@ import Modal from '../Common/Modal';
 // 캘린더 API 적용
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import moment from 'moment';
+import moment, { locale } from 'moment';
 
 import SMSAdd from './SMSAdd';
 // import Box from '../Common/Box';
@@ -160,6 +160,9 @@ const MYCalendar = ({ isBasic }) => {
                         locale="en" // 달력 언어
                         onChange={onChange}
                         value={value}
+                        formatMonthYear={(locale, value) =>
+                            value.toLocaleDateString('ko', { year: 'numeric', month: 'long' })
+                        }
                         // next2Label={null}
                         // prev2Label={null}
                         tileContent={addContent}
@@ -173,6 +176,9 @@ const MYCalendar = ({ isBasic }) => {
                         locale="en" //
                         onChange={onChange}
                         value={value}
+                        formatMonthYear={(locale, value) =>
+                            value.toLocaleDateString('ko', { year: 'numeric', month: 'long' })
+                        }
                         // onClickDay={dayIn}
                         // returnValue="range"
 
@@ -331,7 +337,7 @@ const CalendarContainer = styled.div`
     // react-calendar.css
     .react-calendar {
         margin: 10px;
-        width: 90%;
+        width: 85%;
         margin: 0 auto;
         background-color: ${({ theme }) => theme.bgColor};
         color: #999;
@@ -341,7 +347,7 @@ const CalendarContainer = styled.div`
     }
 
     .react-calendar__navigation button {
-        color: #222;
+        color: ${({ theme }) => theme.menuColor};
         font-weight: bold;
         width: auto;
         height: auto;
@@ -357,8 +363,9 @@ const CalendarContainer = styled.div`
         justify-content: center;
     }
 
-    .react-calendar__navigation__label {
-        font-size: 20px;
+    .react-calendar__navigation__label__labelText {
+        color: ${({ theme }) => theme.menuColor};
+        font-size: 17px;
     }
 
     .react-calendar__viewContainer {
@@ -450,7 +457,7 @@ const CalendarContainer = styled.div`
         justify-content: flex-start;
         align-items: center;
         font-size: 12px;
-        color: #222;
+        color: ${({ theme }) => theme.menuColor};
     }
 
     .react-calendar__month-view__weekdays {

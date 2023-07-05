@@ -118,7 +118,7 @@ const BoxContainer = styled.div`
     display: ${(props) => (props.isMobile ? 'block' : 'flex')};
     align-items: center;
     justify-content: center;
-    width: ${(props) => (props.isMobile ? '100%' : '95%')};
+    width: ${(props) => (props.isMobile ? '95%' : '90%')};
     margin: 0 auto;
 
     .textContent {
