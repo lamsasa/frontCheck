@@ -132,7 +132,7 @@ const MyWorkAdd = (width) => {
             <Input value={defaultMyWkTax} onChange={handleMyWkTaxChange} />
           </div>
           <div>
-            <p className="label">급여 일</p>
+            <p className="label">급여일</p>
             <Input
               type="date"
               value={defaultMyWkPayday}

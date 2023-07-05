@@ -46,7 +46,7 @@ const TagBox = ({ tag, children }) => {
             </Modal>
           ) : (
             <Modal open={modalOpen} close={closeModal} width={"20%"}>
-              <MyWorkAdd width={"60px"} />
+              <MyWorkAdd />
             </Modal>
           )}
         </>
@@ -72,9 +72,9 @@ const TagBoxStyle = styled.div`
   .tagTitle {
     width: 130px;
     height: 55px;
-    box-shadow: 0px 4.28571px 2.85714px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 4.28571px 2.85714px rgba(0, 0, 0, 0.1);
     border-radius: 142.857px;
-    background-color: ${({ theme }) => theme.bgColor};
+    background-color: ${({ theme }) => theme.comColor};
     display: flex;
     align-items: center;
     justify-content: center;
