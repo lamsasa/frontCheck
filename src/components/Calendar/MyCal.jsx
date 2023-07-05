@@ -7,7 +7,7 @@ import Modal from '../Common/Modal';
 // 캘린더 API 적용
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import moment, { locale } from 'moment';
+import moment from 'moment';
 
 import SMSAdd from './SMSAdd';
 // import Box from '../Common/Box';
