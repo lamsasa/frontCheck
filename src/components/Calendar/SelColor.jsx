@@ -3,10 +3,17 @@ import styled from "styled-components";
 import contentList from "../../styles/contentColor";
 
 const SelColor = ({ isBasic }) => {
+  // const [selectedContentId, setSelectedContentId] = useState(1);
+
   // 컨텐츠 이름을 받아오고, 콘텐츠별 설정된 색 코드를 contentList에서 해당하는 색 코드 찾아오기
   // const setColor = contentList.find((item) => item.contentId === color);
   const colorSc = contentList.schedule.map((content) => content.Color);
   const colorWork = contentList.work.map((content) => content.Color);
+  
+  // const ColorScId = contentList.schedule.map((content) => content.contentId);
+  // const ColorWorkId = contentList.work.map((content) => content.contentId);
+
+  const handleColorBoxClick = {};
 
   return (
     <SelBoxContainer>
@@ -17,6 +24,7 @@ const SelColor = ({ isBasic }) => {
               className="color-box"
               key={index}
               style={{ backgroundColor: color }}
+              onClick={handleColorBoxClick}
             ></div>
           ))}
         </div>
@@ -27,6 +35,7 @@ const SelColor = ({ isBasic }) => {
               className="color-box"
               key={index}
               style={{ backgroundColor: color }}
+              onClick={handleColorBoxClick}
             ></div>
           ))}
         </div>
