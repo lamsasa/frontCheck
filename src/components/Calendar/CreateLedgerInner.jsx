@@ -10,6 +10,21 @@ import LedgerAxiosAPI from "../../api/LedgerAxiosAPI";
 const CreateScheduleInner = ({ isIncome }) => {
   const [categoryId, setCategoryId] = useState(1);
   const [categoryIncomeId, setCategoryIncomeId] = useState(15);
+  const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
+  const [content, setContent] = useState("");
+
+  const handleAmountChange = (event) => {
+    setAmount(event.target.value);
+  };
+
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
+  };
+
+  const handleContentChange = (event) => {
+    setContent(event.target.value);
+  };
 
   const handleCategoryIdChange = (id) => {
     setCategoryId(id);
@@ -21,15 +36,14 @@ const CreateScheduleInner = ({ isIncome }) => {
 
   const onCreateExpense = async () => {
     try {
-      const amount = parseInt(document.getElementById("amount").value);
-      const date = document.getElementById("date").value;
-      const content = document.getElementById("content").value;
+      const parsedAmount = parseInt(amount);
       const createExpense = await LedgerAxiosAPI.createExpense(
         categoryId,
-        amount,
+        parsedAmount,
         date,
         content
       );
+
       if (createExpense.data === "지출을 성공적으로 생성했습니다.") {
         console.log("입력 성공");
         window.location.reload();
@@ -44,16 +58,15 @@ const CreateScheduleInner = ({ isIncome }) => {
 
   const onCreateIncome = async () => {
     try {
-      const amount = parseInt(document.getElementById("amount").value);
-      const date = document.getElementById("date").value;
-      const content = document.getElementById("content").value;
-      const createExpense = await LedgerAxiosAPI.createExpense(
+      const parsedAmount = parseInt(amount);
+      const createIncome = await LedgerAxiosAPI.createIncome(
         categoryIncomeId,
-        amount,
+        parsedAmount,
         date,
         content
       );
-      if (createExpense.data === "지출을 성공적으로 생성했습니다.") {
+
+      if (createIncome.data === "지출을 성공적으로 생성했습니다.") {
         console.log("입력 성공");
         window.location.reload();
       } else {
@@ -84,11 +97,20 @@ const CreateScheduleInner = ({ isIncome }) => {
           )}
           <InputContainer>
             <p className="label">금액</p>
-            <Input id="amount" />
+            <Input id="amount" value={amount} onChange={handleAmountChange} />
             <p className="label">날짜</p>
-            <Input type="date" id="date" />
+            <Input
+              type="date"
+              id="date"
+              value={date}
+              onChange={handleDateChange}
+            />
             <p className="label">내용</p>
-            <Input id="content" />
+            <Input
+              id="content"
+              value={content}
+              onChange={handleContentChange}
+            />
           </InputContainer>
         </Container>
         <ButtonContainer>
