@@ -19,12 +19,12 @@ const MYCalendar = ({ isBasic }) => {
 
   const { isMobile } = useViewport();
   const openModal = () => {
-      setModalOpen(true);
+    setModalOpen(true);
   };
 
-    const closeModal = () => {
-      setModalOpen(false);
-    };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   // const apiKey = process.env.REACT_APP_CAL_API_KEY;
 
@@ -226,17 +226,19 @@ const MYCalendar = ({ isBasic }) => {
         </div> */}
 
         <>
-        {isBasic
-          ? modalOpen && (
-              <Modal open={modalOpen} close={closeModal} width={"20%"}>
-                <CreateSchedule />
-              </Modal>
-            )
-          : modalOpen && (
-              <Modal open={modalOpen} close={closeModal} width={"20%"}>
-                
-              </Modal>
-            )}
+          {isBasic
+            ? modalOpen && (
+                <Modal open={modalOpen} close={closeModal} width={"20%"}>
+                  <CreateSchedule />
+                </Modal>
+              )
+            : modalOpen && (
+                <Modal
+                  open={modalOpen}
+                  close={closeModal}
+                  width={"20%"}
+                ></Modal>
+              )}
         </>
       </div>
     </CalendarContainer>
@@ -294,9 +296,11 @@ const CalendarContainer = styled.div`
     flex-direction: column;
   }
 
-  .content-sc {
+  .content-sc,
+  .content-work {
     display: flex;
     flex-direction: column;
+    height: auto;
   }
 
   .dot-income,
@@ -342,12 +346,16 @@ const CalendarContainer = styled.div`
   .box-schedule,
   .box-work {
     width: 2em;
-    height: 1em;
+    height: 1.2em;
     border-radius: 10%;
-    margin: 1.5px;
+    margin: 1px;
+    align-items: center;
+    justify-content: center;
+    vertical-align: center;
     p {
       color: #fff;
       font-size: 0.6em;
+      padding-bottom: 1px;
     }
   }
 
@@ -454,30 +462,6 @@ const CalendarContainer = styled.div`
 
   .react-calendar__month-view__days__day--weekend:nth-child(7n) {
     color: blue;
-  }
-
-  .dot-work {
-    background-color: #bdbdbd;
-  }
-
-  .box-schedule,
-  .box-work {
-    width: 2em;
-    height: 1em;
-    border-radius: 10%;
-    margin: 1.5px;
-    p {
-      color: #fff;
-      font-size: 0.6em;
-    }
-  }
-
-  .box-schedule {
-    background-color: #329d9c;
-  }
-
-  .box-work {
-    background-color: #bdbdbd;
   }
 
   // react-calendar.css
