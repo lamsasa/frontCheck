@@ -110,6 +110,8 @@ const CreateScheduleInner = ({ isIncome }) => {
               id="content"
               value={content}
               onChange={handleContentChange}
+              //defaultValue={MYCalendar.value}
+              //placeholder={MYCalendar.value}
             />
           </InputContainer>
         </Container>
