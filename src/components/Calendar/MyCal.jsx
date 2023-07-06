@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import useViewport from "../../hooks/viewportHook";
 import Modal from "../Common/Modal";
+import AdminAll from "./AdminAll";
+import { ReactComponent as Right } from "../../assets/right.svg";
+import { ReactComponent as Left } from "../../assets/left.svg";
+
 // import { ReactComponent as SMS } from '../../assets/SMS.svg';
 // import { ReactComponent as Plus } from "../../assets/plus.svg";
-import CreateSchedule from "../../components/Calendar/CreateLedger";
 
 // 캘린더 API 적용
 import Calendar from "react-calendar";
@@ -33,23 +36,18 @@ const MYCalendar = ({ isBasic }) => {
 
   // value가 변경될 때마다 모달 창 열기
   useEffect(() => {
-    openModal();
+    if (value !== curDate) {
+      openModal();
+    }
   }, [value]);
 
-  const handleChange = (newValue) => {
-    setValue(newValue);
+  const handleNextDay = () => {
+    const nextDay = moment(value).add(1, "day").toDate();
+    setValue(nextDay);
   };
-
-  // 모달이 열려 있을 때 렌더링할 내용
-  const renderModalContent = () => {
-    // 모달 내용을 구현하는 로직을 작성하세요.
-    return (
-      <div>
-        <h1>Modal Content</h1>
-        <p>Selected date: {value}</p>
-        <button onClick={closeModal}>Close</button>
-      </div>
-    );
+  const handleBeforeDay = () => {
+    const beforeDay = moment(value).add(-1, "day").toDate();
+    setValue(beforeDay);
   };
 
   // 컨텐츠 날짜 리스트
@@ -220,26 +218,31 @@ const MYCalendar = ({ isBasic }) => {
           />
         )}
 
-        {/* 선택된 날짜 값 출력 value */}
-        {/* <div className="select-day">
-          {moment(value).format("YYYY년 MM월 DD일")}
-        </div> */}
-
-        <>
+        <div>
           {isBasic
             ? modalOpen && (
-                <Modal open={modalOpen} close={closeModal} width={"20%"}>
-                  <CreateSchedule />
+                <Modal open={modalOpen} close={closeModal} width={"300px"}>
+                  <DayContainer>
+                    <DayButton onClick={handleBeforeDay}>
+                      <Left />
+                    </DayButton>
+                    <SelectDay>
+                      {moment(value).format("YYYY년 MM월 DD일")}
+                    </SelectDay>
+                    <DayButton onClick={handleNextDay}>
+                      <Right />
+                    </DayButton>
+                  </DayContainer>
+                  <AdminAll />
                 </Modal>
               )
             : modalOpen && (
                 <Modal
                   open={modalOpen}
                   close={closeModal}
-                  width={"20%"}
-                ></Modal>
+                  width={"300px"}></Modal>
               )}
-        </>
+        </div>
       </div>
     </CalendarContainer>
   );
@@ -597,5 +600,35 @@ const CalendarContainer = styled.div`
   /* 해당 월의 날짜가 아니면 투명도 0.5 */
   .react-calendar__month-view__days__day--neighboringMonth {
     opacity: 0.3;
+  }
+`;
+
+const SelectDay = styled.div`
+  font-size: 18px;
+  margin-right: 10px;
+`;
+
+const DayContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+`;
+
+const DayButton = styled.button`
+  border-radius: 15%;
+  width: 30px;
+  height: 30px;
+  background-color: #ffffff00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.menuBgColor};
+  }
+  > svg {
+    fill: ${({ theme }) => theme.budgetButton};
   }
 `;
