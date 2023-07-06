@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import useViewport from "../../hooks/viewportHook";
-import Modal from "../Common/Modal";
+// import Modal from "../Common/Modal";
 // import { ReactComponent as SMS } from '../../assets/SMS.svg';
 
 // 캘린더 API 적용
@@ -9,27 +9,21 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import moment from "moment";
 
-import SMSAdd from "./SMSAdd";
+// import SMSAdd from "./SMSAdd";
 // import Box from '../Common/Box';
 
 const MYCalendar = ({ isBasic }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+  //   const [modalOpen, setModalOpen] = useState(false);
   const { isMobile } = useViewport();
   // const openModal = () => {
   //     setModalOpen(true);
   // };
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  //   const closeModal = () => {
+  //     setModalOpen(false);
+  //   };
 
   // const apiKey = process.env.REACT_APP_CAL_API_KEY;
-
-  // Today 버튼
-  // const [date, setDate] = useState(new Date());
-  // const handleTodayClick = () => {
-  //   setDate(new Date());
-  // };
 
   const curDate = new Date();
   const [value, onChange] = useState(curDate);
@@ -171,7 +165,7 @@ const MYCalendar = ({ isBasic }) => {
         {isBasic ? (
           <Calendar
             calendarType="US" // 요일을 일요일부터 시작하도록 설정
-            locale="en" // 달력 언어
+            locale="en" // 달력 설정 언어
             onChange={onChange}
             value={value}
             formatMonthYear={(locale, value) =>
@@ -187,7 +181,7 @@ const MYCalendar = ({ isBasic }) => {
         ) : (
           <Calendar
             calendarType="US" // 요일을 일요일부터 시작하도록 설정
-            locale="en" //
+            locale="en" // 달력 설정 언어
             onChange={onChange}
             value={value}
             formatMonthYear={(locale, value) =>
@@ -195,18 +189,18 @@ const MYCalendar = ({ isBasic }) => {
             }
             // onClickDay={dayIn}
             // returnValue="range"
+            tileContent={addContent}
+            isBasic={false}
+            minDetail="month" // 상단 네비게이션에서 '월' 단위만 보이게 설정
+            maxDetail="month"
           />
         )}
 
+        {/* 선택된 날짜 값 출력 value */}
         {/* <div className="select-day">
           {moment(value).format("YYYY년 MM월 DD일")}
         </div> */}
       </div>
-      {modalOpen && (
-        <Modal open={modalOpen} close={closeModal} width={"20%"}>
-          <SMSAdd></SMSAdd>
-        </Modal>
-      )}
     </CalendarContainer>
   );
 };
