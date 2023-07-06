@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import useViewport from "../../hooks/viewportHook";
-// import Modal from "../Common/Modal";
+import Modal from "../Common/Modal";
 // import { ReactComponent as SMS } from '../../assets/SMS.svg';
+// import { ReactComponent as Plus } from "../../assets/plus.svg";
+import CreateSchedule from "../../components/Calendar/CreateLedger";
 
 // 캘린더 API 적용
 import Calendar from "react-calendar";
@@ -13,20 +15,42 @@ import moment from "moment";
 // import Box from '../Common/Box';
 
 const MYCalendar = ({ isBasic }) => {
-  //   const [modalOpen, setModalOpen] = useState(false);
-  const { isMobile } = useViewport();
-  // const openModal = () => {
-  //     setModalOpen(true);
-  // };
+  const [modalOpen, setModalOpen] = useState(false);
 
-  //   const closeModal = () => {
-  //     setModalOpen(false);
-  //   };
+  const { isMobile } = useViewport();
+  const openModal = () => {
+      setModalOpen(true);
+  };
+
+    const closeModal = () => {
+      setModalOpen(false);
+    };
 
   // const apiKey = process.env.REACT_APP_CAL_API_KEY;
 
   const curDate = new Date();
-  const [value, onChange] = useState(curDate);
+  const [value, setValue] = useState(curDate);
+
+  // value가 변경될 때마다 모달 창 열기
+  useEffect(() => {
+    openModal();
+  }, [value]);
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
+
+  // 모달이 열려 있을 때 렌더링할 내용
+  const renderModalContent = () => {
+    // 모달 내용을 구현하는 로직을 작성하세요.
+    return (
+      <div>
+        <h1>Modal Content</h1>
+        <p>Selected date: {value}</p>
+        <button onClick={closeModal}>Close</button>
+      </div>
+    );
+  };
 
   // 컨텐츠 날짜 리스트
   const incomeList = [
@@ -166,7 +190,7 @@ const MYCalendar = ({ isBasic }) => {
           <Calendar
             calendarType="US" // 요일을 일요일부터 시작하도록 설정
             locale="en" // 달력 설정 언어
-            onChange={onChange}
+            onChange={setValue}
             value={value}
             formatMonthYear={(locale, value) =>
               value.toLocaleDateString("ko", { year: "numeric", month: "long" })
@@ -182,7 +206,7 @@ const MYCalendar = ({ isBasic }) => {
           <Calendar
             calendarType="US" // 요일을 일요일부터 시작하도록 설정
             locale="en" // 달력 설정 언어
-            onChange={onChange}
+            onChange={setValue}
             value={value}
             formatMonthYear={(locale, value) =>
               value.toLocaleDateString("ko", { year: "numeric", month: "long" })
@@ -200,6 +224,20 @@ const MYCalendar = ({ isBasic }) => {
         {/* <div className="select-day">
           {moment(value).format("YYYY년 MM월 DD일")}
         </div> */}
+
+        <>
+        {isBasic
+          ? modalOpen && (
+              <Modal open={modalOpen} close={closeModal} width={"20%"}>
+                <CreateSchedule />
+              </Modal>
+            )
+          : modalOpen && (
+              <Modal open={modalOpen} close={closeModal} width={"20%"}>
+                
+              </Modal>
+            )}
+        </>
       </div>
     </CalendarContainer>
   );

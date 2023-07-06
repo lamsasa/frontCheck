@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Header from "../../components/Common/Header";
 import Navbar from "../../components/Common/Navbar";
 
-// import { ReactComponent as Plus } from "../../assets/plus.svg";
 import Container from "../../components/Common/Container";
 import ToggleButtonLarge from "../../components/Common/ToggleButtonLarge";
 import Button from "../../components/Common/ClickButton";
@@ -63,15 +62,6 @@ const Home = () => {
           </div>
         </CalendarContainer>
         <Calculate />
-        {/* {isOn
-          ? modalOpen && (
-              <Modal open={modalOpen} close={closeModal} width={"20%"}></Modal>
-            )
-          : modalOpen && (
-              <Modal open={modalOpen} close={closeModal} width={"20%"}>
-                <CreateSchedule />
-              </Modal>
-            )} */}
       </Container>
     </>
   );
