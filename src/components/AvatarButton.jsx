@@ -6,6 +6,59 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 
+const AvatarButton = () => {
+    const navigate = useNavigate();
+    const [name, setName] = useState(null);
+
+    useEffect(() => {
+        const fetchUserName = async () => {
+            try {
+                const response = await UserAxiosAPI.getUserInfo();
+                if (response.status === 200) {
+                    const userName = response.data.name.split(" ")[0];
+                    setName(userName);
+                }
+            } catch (error) {
+                console.log('getNameError : '+ error);
+            }
+        };
+
+        fetchUserName();
+    }, []);
+
+    const onClickLogOut = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await AuthAxiosAPI.logout();
+            if (response.status === 200) {
+                console.log("logout successful");
+                navigate("/");
+                setName(null);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    return (
+        <>
+            {name ? (
+                <Avatar {...stringAvatar(name)} onClick={onClickLogOut} />
+            ) : (
+                <Avatar
+                    sx={{
+                        fontWeight: 'bold',
+                        fontSize: 13,
+                        width: 50,
+                        height: 50,
+                        margin: 11 / 8 // 1당 8px
+                    }}
+                    onClick={() => navigate("/login")} />
+            )}
+        </>
+    );
+};
+
 // 색상 랜덤하게 바꿔줌
 const stringToColor = (string) => {
     let hash = 0;
@@ -53,50 +106,5 @@ const stringAvatar = (name) => {
     };
 };
 
-
-const AvatarButton = () => {
-    const navigate = useNavigate();
-    const [name, setName] = useState(null);
-
-    useEffect(() => {
-        const fetchUserName = async () => {
-            try {
-                const response = await UserAxiosAPI.getUserInfo();
-                if (response.status === 200) {
-                    const userName = response.data.name.split(" ")[0];
-                    setName(userName);
-                }
-            } catch (error) {
-                console.log('getNameError : '+ error);
-            }
-        };
-
-        fetchUserName();
-    }, []);
-
-    const onClickLogOut = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await AuthAxiosAPI.logout();
-            if (response.status === 200) {
-                console.log("logout successful");
-                navigate("/");
-                setName(null);
-            }
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-    return (
-        <>
-            {name ? (
-                <Avatar {...stringAvatar(name)} onClick={onClickLogOut} />
-            ) : (
-                <Avatar onClick={() => navigate("/login")} />
-            )}
-        </>
-    );
-};
 
 export default AvatarButton;
