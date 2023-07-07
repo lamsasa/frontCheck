@@ -101,7 +101,7 @@ const CreateScheduleInner = ({ isIncome, value }) => {
             <Input
               type="date"
               id="date"
-              value={moment(date).format("YYYY-MM-DD")}
+              value={date}
               onChange={handleDateChange}
             />
             <p className="label">금액</p>

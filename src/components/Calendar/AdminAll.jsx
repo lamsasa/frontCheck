@@ -4,7 +4,7 @@ import BlockLine from "../Common/BlockLine";
 import AdminSchedule from "./AdminSchedule";
 import AdminLedger from "./AdminLedger";
 
-const AdminAll = ({value}) => {
+const AdminAll = ({setValue}) => {
 
 
   return (
@@ -17,7 +17,7 @@ const AdminAll = ({value}) => {
       <BlockLine />
 
       {/* 가계부 */}
-      <AdminLedger value={value}/>
+      <AdminLedger value={setValue}/>
 
     </AdminAllContainer>
   );

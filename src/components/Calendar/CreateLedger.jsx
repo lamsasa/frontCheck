@@ -7,7 +7,7 @@ import Modal from "../Common/Modal";
 import BlockLine from "../Common/BlockLine";
 import CreateLedgerInner from "./CreateLedgerInner";
 
-const CreateLedger = ({value}) => {
+const CreateLedger = ({setValue}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isOn, setIsOn] = useState(false);
 
@@ -46,9 +46,9 @@ const CreateLedger = ({value}) => {
         </CreateScheduleBox>
         <BlockLine />
         {isOn ? (
-          <CreateLedgerInner isIncome={true} value={value}/>
+          <CreateLedgerInner isIncome={true} value={setValue}/>
         ) : (
-          <CreateLedgerInner isIncome={false} value={value}/>
+          <CreateLedgerInner isIncome={false} value={setValue}/>
         )}
       </CreateScheduleContainer>
     </>

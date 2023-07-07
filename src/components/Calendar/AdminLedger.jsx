@@ -3,9 +3,8 @@ import styled from "styled-components";
 import CreateLedger from "../../components/Calendar/CreateLedger";
 import Modal from "../Common/Modal";
 import BlinkingButton from "../Common/BlinkingButton";
-import moment from "moment";
 
-const AdminLedger = ({value}) => {
+const AdminLedger = ({setValue}) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -25,7 +24,7 @@ const AdminLedger = ({value}) => {
       {/* 모달 */}
       {modalOpen && (
         <Modal open={modalOpen} close={closeModal} width={"20%"}>
-          <CreateLedger/>
+          <CreateLedger value={setValue}/>
         </Modal>
       )}
     </>

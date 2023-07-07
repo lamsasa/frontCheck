@@ -233,7 +233,7 @@ const MYCalendar = ({ isBasic }) => {
                       <Right />
                     </DayButton>
                   </DayContainer>
-                  <AdminAll value={moment(value)}/>
+                  <AdminAll value={setValue}/>
                 </Modal>
               )
             : modalOpen && (
