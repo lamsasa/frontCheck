@@ -1,24 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import BlockLine from "../Common/BlockLine";
-import AdminSchedule from "./AdminSchedule";
+import AdminContents from "./AdminContents";
 import AdminLedger from "./AdminLedger";
 
-const AdminAll = ({setValue}) => {
-
-
+const AdminAll = ({ setValue }) => {
   return (
     <AdminAllContainer>
       <BlockLine />
 
       {/* 일정 */}
-      <AdminSchedule/>
+      <AdminContents />
+
+      <BlockLine />
+
+      {/* 근무 */}
+      <AdminContents  />
 
       <BlockLine />
 
       {/* 가계부 */}
-      <AdminLedger value={setValue}/>
-
+      <AdminLedger value={setValue} />
     </AdminAllContainer>
   );
 };
@@ -30,5 +32,3 @@ const AdminAllContainer = styled.div`
   flex-direction: column;
   width: 100%;
 `;
-
-
