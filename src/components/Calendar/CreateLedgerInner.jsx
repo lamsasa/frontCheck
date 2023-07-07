@@ -6,12 +6,13 @@ import categoryIncomeList from "../../styles/categoryIncomeColor";
 import CategoryIncomeInput from "../Common/CategoryIncomeInput";
 import ClickButton from "../Common/ClickButton";
 import LedgerAxiosAPI from "../../api/LedgerAxiosAPI";
+import moment from "moment";
 
-const CreateScheduleInner = ({ isIncome }) => {
+const CreateScheduleInner = ({ isIncome, value }) => {
   const [categoryId, setCategoryId] = useState(1);
   const [categoryIncomeId, setCategoryIncomeId] = useState(15);
   const [amount, setAmount] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState({value});
   const [content, setContent] = useState("");
 
   const handleAmountChange = (event) => {
@@ -102,7 +103,7 @@ const CreateScheduleInner = ({ isIncome }) => {
             <Input
               type="date"
               id="date"
-              value={date}
+              value={moment(date).format("YYYY-MM-DD")}
               onChange={handleDateChange}
             />
             <p className="label">내용</p>
@@ -110,8 +111,6 @@ const CreateScheduleInner = ({ isIncome }) => {
               id="content"
               value={content}
               onChange={handleContentChange}
-              //defaultValue={MYCalendar.value}
-              //placeholder={MYCalendar.value}
             />
           </InputContainer>
         </Container>

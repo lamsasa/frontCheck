@@ -1,0 +1,36 @@
+import React, { useState } from "react";
+import styled from "styled-components";
+import Modal from "../Common/Modal";
+import BlinkingButton from "../Common/BlinkingButton";
+
+const AdminSchedule = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <>
+      {/* 일정 */}
+      <BlinkingButton clickOn={openModal} />
+
+      {/* 모달 */}
+      {modalOpen && (
+        <Modal open={modalOpen} close={closeModal} width={"20%"}></Modal>
+      )}
+    </>
+  );
+};
+
+export default AdminSchedule;
+
+// const AdminScheduleContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+// `;
