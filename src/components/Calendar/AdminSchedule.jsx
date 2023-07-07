@@ -21,7 +21,7 @@ const AdminSchedule = () => {
 
       {/* 모달 */}
       {modalOpen && (
-        <Modal open={modalOpen} close={closeModal} width={"20%"}></Modal>
+        <Modal open={modalOpen} close={closeModal} width={"300px"}></Modal>
       )}
     </>
   );

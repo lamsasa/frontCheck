@@ -4,7 +4,7 @@ import CreateLedger from "../../components/Calendar/CreateLedger";
 import Modal from "../Common/Modal";
 import BlinkingButton from "../Common/BlinkingButton";
 
-const AdminLedger = ({setValue}) => {
+const AdminLedger = ({ setValue }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -23,8 +23,8 @@ const AdminLedger = ({setValue}) => {
 
       {/* 모달 */}
       {modalOpen && (
-        <Modal open={modalOpen} close={closeModal} width={"20%"}>
-          <CreateLedger value={setValue}/>
+        <Modal open={modalOpen} close={closeModal} width={"300px"}>
+          <CreateLedger value={setValue} />
         </Modal>
       )}
     </>
