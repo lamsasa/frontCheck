@@ -105,7 +105,7 @@ const MYCalendar = ({ isBasic }) => {
         <>
           {isBasic ? (
             <>
-              <p className="income-text">+0원</p>
+              <p className="income-text">+[0]원</p>
             </>
           ) : (
             <div className="dot-income"></div>
@@ -120,7 +120,7 @@ const MYCalendar = ({ isBasic }) => {
         <>
           {isBasic ? (
             <>
-              <p className="expense-text">-0원</p>
+              <p className="expense-text">-[0]원</p>
             </>
           ) : (
             <div className="dot-expense"></div>
@@ -233,14 +233,15 @@ const MYCalendar = ({ isBasic }) => {
                       <Right />
                     </DayButton>
                   </DayContainer>
-                  <AdminAll value={setValue}/>
+                  <AdminAll value={setValue} />
                 </Modal>
               )
             : modalOpen && (
                 <Modal
                   open={modalOpen}
                   close={closeModal}
-                  width={"300px"}></Modal>
+                  width={"300px"}
+                ></Modal>
               )}
         </div>
       </div>
@@ -317,11 +318,13 @@ const CalendarContainer = styled.div`
     /* margin-top: 55px; */
   }
 
-  .income-text {
+  .income-text,
+  .dot-income {
     color: #3fcea5;
   }
 
-  .expense-text {
+  .expense-text,
+  .dot-expense {
     color: #ff005c;
   }
 
@@ -330,19 +333,13 @@ const CalendarContainer = styled.div`
     font-size: 0.8em;
   }
 
-  .dot-income {
-    background-color: #3fcea5;
-  }
-
-  .dot-expense {
-    background-color: #ff005c;
-  }
-
-  .dot-schedule {
+  .dot-schedule,
+  .box-schedule {
     background-color: #329d9c;
   }
 
-  .dot-work {
+  .dot-work,
+  .box-work {
     background-color: #bdbdbd;
   }
 
@@ -360,14 +357,6 @@ const CalendarContainer = styled.div`
       font-size: 0.6em;
       padding-bottom: 1px;
     }
-  }
-
-  .box-schedule {
-    background-color: #329d9c;
-  }
-
-  .box-work {
-    background-color: #bdbdbd;
   }
 
   // react-calendar.css
@@ -623,7 +612,7 @@ const DayButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.menuBgColor};

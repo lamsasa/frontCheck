@@ -6,7 +6,7 @@ import categoryIncomeList from "../../styles/categoryIncomeColor";
 import CategoryIncomeInput from "../Common/CategoryIncomeInput";
 import ClickButton from "../Common/ClickButton";
 import LedgerAxiosAPI from "../../api/LedgerAxiosAPI";
-import moment from "moment";
+// import moment from "moment";
 
 const CreateScheduleInner = ({ isIncome, value }) => {
   const [categoryId, setCategoryId] = useState(1);

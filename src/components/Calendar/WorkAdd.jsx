@@ -3,52 +3,55 @@ import BlockLine from "../Common/BlockLine";
 import ClickButton from "../Common/ClickButton";
 import { useState } from "react";
 import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
-import SelColor from "../../components/Calendar/SelColor";
-import MyType from "../Calendar/SelType";
+import SelColor from "./SelColor";
+import MyType from "./SelType";
 
-const MyWorkAdd = (width) => {
+const WorkAdd = (isMypage) => {
   const [contentId, setContentId] = useState(5);
+  const [date, setDate] = useState("");
+  const [myWkName, setMyWkName] = useState("");
+  const [myPayType, setMyPayType] = useState("");
+  const [myWkMoney, setMyWkMoney] = useState("");
+  const [myWkStart, setMyWkStart] = useState("");
+  const [myWkEnd, setMyWkEnd] = useState("");
+  const [myWkRest, setMyWkRest] = useState("");
+  const [myWkTax, setMyWkTax] = useState("");
+  const [myWkPayday, setMyWkPayday] = useState("");
 
-  const [defaultMyWkName, setDefaultMyWkName] = useState("");
-  const [defaultMyPayType, setDefaultMyPayType] = useState("");
-  const [defaultMyWkMoney, setDefaultMyWkMoney] = useState("");
-  const [defaultMyWkStart, setDefaultMyWkStart] = useState("");
-  const [defaultMyWkEnd, setDefaultMyWkEnd] = useState("");
-  const [defaultMyWkRest, setDefaultMyWkRest] = useState("");
-  const [defaultMyWkTax, setDefaultMyWkTax] = useState("");
-  const [defaultMyWkPayday, setDefaultMyWkPayday] = useState("");
-  const [defaultMyColor, setDefaultMyColor] = useState("");
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
+  };
 
   const handleMyWkNameChange = (event) => {
-    setDefaultMyWkName(event.target.value);
+    setMyWkName(event.target.value);
   };
 
   const handleMyPayTypeChange = (event) => {
-    setDefaultMyPayType(event.target.value);
+    setMyPayType(event.target.value);
   };
 
   const handleMyWkMoneyChange = (event) => {
-    setDefaultMyWkMoney(event.target.value);
+    setMyWkMoney(event.target.value);
   };
 
   const handleMyWkStartChange = (event) => {
-    setDefaultMyWkStart(event.target.value);
+    setMyWkStart(event.target.value);
   };
 
   const handleMyWkEndChange = (event) => {
-    setDefaultMyWkEnd(event.target.value);
+    setMyWkEnd(event.target.value);
   };
 
   const handleMyWkRestChange = (event) => {
-    setDefaultMyWkRest(event.target.value);
+    setMyWkRest(event.target.value);
   };
 
   const handleMyWkTaxChange = (event) => {
-    setDefaultMyWkTax(event.target.value);
+    setMyWkTax(event.target.value);
   };
 
   const handleMyWkPaydayChange = (event) => {
-    setDefaultMyWkPayday(event.target.value);
+    setMyWkPayday(event.target.value);
   };
 
   const handleContentIdChange = (id) => {
@@ -61,18 +64,17 @@ const MyWorkAdd = (width) => {
 
   const onCreateMyWork = async () => {
     try {
-      const MyWkName = parseInt(defaultMyWkName);
+      const MyWkName = parseInt(myWkName);
       const createMyWork = await MyPageAxiosApi.createMyWork(
         contentId.toExponential,
         MyWkName,
-        defaultMyPayType,
-        defaultMyWkMoney,
-        defaultMyWkStart,
-        defaultMyWkEnd,
-        defaultMyWkRest,
-        defaultMyWkTax,
-        defaultMyWkPayday,
-        defaultMyColor
+        myPayType,
+        myWkMoney,
+        myWkStart,
+        myWkEnd,
+        myWkRest,
+        myWkTax,
+        myWkPayday
       );
 
       if (createMyWork.data === "근무를 성공적으로 생성했습니다.") {
@@ -89,23 +91,38 @@ const MyWorkAdd = (width) => {
 
   return (
     <>
-      <Container width={width}>
+      <Container>
         <Title>근무 등록</Title>
         <BlockLine />
 
         <InputContainer>
           <div>
+            {isMypage ? (
+              <></>
+            ) : (
+              <>
+                <p className="label">날짜</p>
+                <Input
+                  type="date"
+                  id="date"
+                  value={date}
+                  onChange={handleDateChange}
+                />
+              </>
+            )}
+          </div>
+          <div>
             <p className="label">근무이름</p>
-            <Input value={defaultMyWkName} onChange={handleMyWkNameChange} />
+            <Input value={myWkName} onChange={handleMyWkNameChange} />
           </div>
           <div>
             <p className="label">근무형태</p>
             {/* <Input value={defaultMyPayType} onChange={handleMyPayTypeChange} /> */}
-            <MyType value={defaultMyPayType} onChange={handleMyPayTypeChange} />
+            <MyType value={myPayType} onChange={handleMyPayTypeChange} />
           </div>
           <div>
             <p className="label">금액</p>
-            <Input value={defaultMyWkMoney} onChange={handleMyWkMoneyChange} />
+            <Input value={myWkMoney} onChange={handleMyWkMoneyChange} />
             <p className="times">원</p>
           </div>
 
@@ -113,15 +130,11 @@ const MyWorkAdd = (width) => {
           <div>
             <Input
               type="time"
-              value={defaultMyWkStart}
+              value={myWkStart}
               onChange={handleMyWkStartChange}
             />
             <p className="label"> - </p>
-            <Input
-              type="time"
-              value={defaultMyWkEnd}
-              onChange={handleMyWkEndChange}
-            />
+            <Input type="time" value={myWkEnd} onChange={handleMyWkEndChange} />
           </div>
 
           <div>
@@ -129,20 +142,20 @@ const MyWorkAdd = (width) => {
             <Input
               type="number"
               min="0"
-              value={defaultMyWkRest}
+              value={myWkRest}
               onChange={handleMyWkRestChange}
             />
             <p className="times">분</p>
           </div>
           <div>
             <p className="label">세 금</p>
-            <Input value={defaultMyWkTax} onChange={handleMyWkTaxChange} />
+            <Input value={myWkTax} onChange={handleMyWkTaxChange} />
           </div>
           <div>
             <p className="label">급여일</p>
             <Input
               type="date"
-              value={defaultMyWkPayday}
+              value={myWkPayday}
               onChange={handleMyWkPaydayChange}
             />
           </div>
@@ -162,7 +175,7 @@ const MyWorkAdd = (width) => {
   );
 };
 
-export default MyWorkAdd;
+export default WorkAdd;
 
 const Title = styled.div`
   display: flex;

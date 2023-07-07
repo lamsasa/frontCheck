@@ -3,12 +3,17 @@ import BlockLine from "../Common/BlockLine";
 import ClickButton from "../Common/ClickButton";
 import { useState } from "react";
 import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
-import SelColor from "../../components/Calendar/SelColor";
+import SelColor from "./SelColor";
 
-const MyScAdd = (width) => {
+const ScAdd = (isMypage) => {
   const [contentId, setContentId] = useState(1);
+  const [date, setDate] = useState("");
   const [myScName, setMyScName] = useState("");
   const [myScBudget, setMyScBudget] = useState("");
+
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
+  };
 
   const handleMyScNameChange = (event) => {
     setMyScName(event.target.value);
@@ -48,11 +53,24 @@ const MyScAdd = (width) => {
 
   return (
     <>
-      <Container width={width}>
+      <Container>
         <Title>일정 등록</Title>
         <BlockLine />
 
         <InputContainer>
+          {isMypage ? (
+            <></>
+          ) : (
+            <>
+              <p className="label">날짜</p>
+              <Input
+                type="date"
+                id="date"
+                value={date}
+                onChange={handleDateChange}
+              />
+            </>
+          )}
           <p className="label">일정</p>
           <Input value={myScName} onChange={handleMyScNameChange} />
           <p className="label">예산</p>
@@ -73,7 +91,7 @@ const MyScAdd = (width) => {
   );
 };
 
-export default MyScAdd;
+export default ScAdd;
 
 const Title = styled.div`
   display: flex;
@@ -106,11 +124,8 @@ const Container = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   .label {
-    width: ${({ width }) => width || "auto"};
     margin: 10px;
     font-size: 15px;
-    align-items: center;
-    justify-content: center;
   }
 `;
 
