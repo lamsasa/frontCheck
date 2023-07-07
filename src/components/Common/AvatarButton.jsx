@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-import AuthAxiosAPI from "../api/AuthAxiosAPI";
-import UserAxiosAPI from "../api/UserAxiosAPI";
+import AuthAxiosAPI from "../../api/AuthAxiosAPI";
+import UserAxiosAPI from "../../api/UserAxiosAPI";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
