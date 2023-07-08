@@ -286,7 +286,8 @@ const MYCalendar = forwardRef(({ isBasic }, ref) => {
                 <Modal
                   open={modalOpen}
                   close={closeModal}
-                  width={"300px"}></Modal>
+                  width={"300px"}
+                ></Modal>
               )}
         </div>
       </div>
@@ -363,11 +364,13 @@ const CalendarContainer = styled.div`
     /* margin-top: 55px; */
   }
 
-  .income-text {
+  .income-text,
+  .dot-income {
     color: #3fcea5;
   }
 
-  .expense-text {
+  .expense-text,
+  .dot-expense {
     color: #ff005c;
   }
 
@@ -376,19 +379,13 @@ const CalendarContainer = styled.div`
     font-size: 0.8em;
   }
 
-  .dot-income {
-    background-color: #3fcea5;
-  }
-
-  .dot-expense {
-    background-color: #ff005c;
-  }
-
-  .dot-schedule {
+  .dot-schedule,
+  .box-schedule {
     background-color: #329d9c;
   }
 
-  .dot-work {
+  .dot-work,
+  .box-work {
     background-color: #bdbdbd;
   }
 
@@ -406,14 +403,6 @@ const CalendarContainer = styled.div`
       font-size: 0.6em;
       padding-bottom: 1px;
     }
-  }
-
-  .box-schedule {
-    background-color: #329d9c;
-  }
-
-  .box-work {
-    background-color: #bdbdbd;
   }
 
   // react-calendar.css

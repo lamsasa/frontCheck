@@ -2,8 +2,10 @@ import React, { useState } from "react";
 //import styled from "styled-components";
 import Modal from "../Common/Modal";
 import BlinkingButton from "../Common/BlinkingButton";
+import ScAdd from "./ScAdd";
+import WorkAdd from "./WorkAdd";
 
-const AdminSchedule = () => {
+const AdminContents = (isBasic) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -21,13 +23,15 @@ const AdminSchedule = () => {
 
       {/* 모달 */}
       {modalOpen && (
-        <Modal open={modalOpen} close={closeModal} width={"300px"}></Modal>
+        <Modal open={modalOpen} close={closeModal} width={"300px"}>
+          {isBasic ? <ScAdd isMypage={false} /> : <WorkAdd isMypage={false} />}
+        </Modal>
       )}
     </>
   );
 };
 
-export default AdminSchedule;
+export default AdminContents;
 
 // const AdminScheduleContainer = styled.div`
 //   display: flex;
