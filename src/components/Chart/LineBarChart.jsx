@@ -196,7 +196,7 @@ const LineBarChart = ({ data }) => {
   if (!data.length) {
     return (
       <>
-        <NotUse>내역이 존재하지 않습니다.😢</NotUse>
+        <NotUse> 해당 년도에 내역이 없습니다.😢</NotUse>
       </>
     );
   }
