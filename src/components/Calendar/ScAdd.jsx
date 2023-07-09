@@ -27,18 +27,15 @@ const ScAdd = ({ isMypage }) => {
     setContentId(id);
   };
 
-  // const handleMyColorChange = (event) => {
-  //   setDefaultMyColor(event.target.value);
-  // };
-
   const onCreateMySc = async () => {
     try {
-      const amount = parseInt(myScName);
-      const createMySc = await MyPageAxiosApi.createMySchedule(
-        contentId.toExponential,
-        amount,
-        myScBudget
-      );
+      const createMySc = await MyPageAxiosApi.createMySchedule({
+        date,
+        myScName,
+        myScBudget,
+        contentId: contentId.toString(),
+      });
+
       if (createMySc.data === "일정을 성공적으로 생성했습니다.") {
         console.log("입력 성공");
         window.location.reload();
@@ -75,7 +72,6 @@ const ScAdd = ({ isMypage }) => {
           <Input value={myScName} onChange={handleMyScNameChange} />
           <p className="label">예산</p>
           <Input value={myScBudget} onChange={handleMyScBudgetChange} />
-          {/* <p className="label">color</p> */}
           <SelColor
             // value={myColor}
             contentId={contentId}

@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import BlockLine from "../Common/BlockLine";
 import ClickButton from "../Common/ClickButton";
-import { useState } from "react";
 import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
 import SelColor from "./SelColor";
 import MyType from "./SelType";
@@ -10,8 +10,8 @@ const WorkAdd = ({ isMypage }) => {
   const [contentId, setContentId] = useState(5);
   const [date, setDate] = useState("");
   const [myWkName, setMyWkName] = useState("");
-  const [myPayType, setMyPayType] = useState("");
-  const [isSalary, setIsSalary] = useState(false);
+  const [myPayType, setMyPayType] = useState(1);
+  const [isHourly, setIsHourly] = useState(true);
   const [isCase, setIsCase] = useState(false);
   const [myWkMoney, setMyWkMoney] = useState("");
   const [myWkStart, setMyWkStart] = useState("");
@@ -35,24 +35,25 @@ const WorkAdd = ({ isMypage }) => {
 
     switch (parseInt(selectedItem)) {
       case 1: // 시급
-        setIsSalary(false);
+        setIsHourly(true);
         setIsCase(false);
         break;
+
       case 2: // 일급
-        setIsSalary(true);
+        setIsHourly(false);
         setIsCase(false);
         break;
+
       case 3: // 월급
-        setIsSalary(true);
+        setIsHourly(false);
         setIsCase(false);
         break;
+
       case 4: // 건별
-        setIsSalary(true);
+        setIsHourly(false);
         setIsCase(true);
         break;
       default:
-        setIsSalary(false);
-        setIsCase(false);
     }
   };
 
@@ -88,16 +89,12 @@ const WorkAdd = ({ isMypage }) => {
     setContentId(id);
   };
 
-  // const handleMyColorChange = (event) => {
-  //   setDefaultMyColor(event.target.value);
-  // };
-
   const onCreateMyWork = async () => {
     try {
-      const MyWkName = parseInt(myWkName);
-      const createMyWork = await MyPageAxiosApi.createMyWork(
-        contentId.toExponential,
-        MyWkName,
+      const createMyWork = await MyPageAxiosApi.createMyWork({
+        contentId: contentId.toString(),
+        date,
+        myWkName,
         myPayType,
         myWkMoney,
         myWkStart,
@@ -105,8 +102,8 @@ const WorkAdd = ({ isMypage }) => {
         myWkRest,
         myWkCase,
         myWkTax,
-        myWkPayday
-      );
+        myWkPayday,
+      });
 
       if (createMyWork.data === "근무를 성공적으로 생성했습니다.") {
         console.log("입력 성공");
@@ -148,18 +145,15 @@ const WorkAdd = ({ isMypage }) => {
           </div>
 
           <p className="label">급여</p>
-          {/* <Input value={defaultMyPayType} onChange={handleMyPayTypeChange} /> */}
           <div>
+            {/* <MyType value={myPayType.toString()} onChange={onChangeMyPayType} /> */}
             <MyType value={myPayType} onChange={onChangeMyPayType} />
             <Input value={myWkMoney} onChange={handleMyWkMoneyChange} />
             <p className="text">원</p>
           </div>
 
-          {isSalary ? (
-            <></>
-          ) : (
+          {isHourly ? (
             <>
-              {" "}
               <p className="label">근무시간</p>
               <div>
                 <Input
@@ -185,6 +179,8 @@ const WorkAdd = ({ isMypage }) => {
                 <p className="text">분</p>
               </div>
             </>
+          ) : (
+            <></>
           )}
           {isCase ? (
             <div>
