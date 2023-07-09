@@ -6,7 +6,7 @@ import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
 import SelColor from "./SelColor";
 import MyType from "./SelType";
 
-const WorkAdd = (isMypage) => {
+const WorkAdd = ({ isMypage }) => {
   const [contentId, setContentId] = useState(5);
   const [date, setDate] = useState("");
   const [myWkName, setMyWkName] = useState("");

@@ -5,7 +5,7 @@ import { useState } from "react";
 import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
 import SelColor from "./SelColor";
 
-const ScAdd = (isMypage) => {
+const ScAdd = ({ isMypage }) => {
   const [contentId, setContentId] = useState(1);
   const [date, setDate] = useState("");
   const [myScName, setMyScName] = useState("");
