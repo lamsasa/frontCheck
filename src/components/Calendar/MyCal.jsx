@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, forwardRef } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import styled from "styled-components";
 import useViewport from "../../hooks/viewportHook";
 import Modal from "../Common/Modal";
@@ -6,9 +6,6 @@ import AdminAll from "./AdminAll";
 import { ReactComponent as Right } from "../../assets/right.svg";
 import { ReactComponent as Left } from "../../assets/left.svg";
 import CalenderAPI from "../../api/CalendarAPI";
-
-// import { ReactComponent as SMS } from '../../assets/SMS.svg';
-// import { ReactComponent as Plus } from "../../assets/plus.svg";
 
 // 캘린더 API 적용
 import Calendar from "react-calendar";
@@ -73,7 +70,8 @@ const MYCalendar = forwardRef(({ isBasic }, ref) => {
   const [expenseAmounts, setExpenseAmounts] = useState([]);
   const [incomeDates, setIncomeDates] = useState([]);
   const [incomeAmounts, setIncomeAmounts] = useState([]);
-  //리스트 사용 확인: 안 되는 거 같은데...?
+
+  //리스트 사용 확인
   // const [dailyExpenseList, setDailyExpenseList] = useState([]);
   // const [dailyIncomeList, setDailyIncomeList] = useState([]);
 
@@ -364,14 +362,20 @@ const CalendarContainer = styled.div`
     /* margin-top: 55px; */
   }
 
-  .income-text,
-  .dot-income {
+  .income-text {
     color: #3fcea5;
   }
 
-  .expense-text,
-  .dot-expense {
+  .expense-text {
     color: #ff005c;
+  }
+
+  .dot-income {
+    background-color: #3fcea5;
+  }
+
+  .dot-expense {
+    background-color: #ff005c;
   }
 
   .income-text,

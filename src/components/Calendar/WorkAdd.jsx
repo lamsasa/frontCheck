@@ -11,10 +11,13 @@ const WorkAdd = ({ isMypage }) => {
   const [date, setDate] = useState("");
   const [myWkName, setMyWkName] = useState("");
   const [myPayType, setMyPayType] = useState("");
+  const [isSalary, setIsSalary] = useState(false);
+  const [isCase, setIsCase] = useState(false);
   const [myWkMoney, setMyWkMoney] = useState("");
   const [myWkStart, setMyWkStart] = useState("");
   const [myWkEnd, setMyWkEnd] = useState("");
   const [myWkRest, setMyWkRest] = useState("");
+  const [myWkCase, setMyWkCase] = useState("");
   const [myWkTax, setMyWkTax] = useState("");
   const [myWkPayday, setMyWkPayday] = useState("");
 
@@ -26,8 +29,31 @@ const WorkAdd = ({ isMypage }) => {
     setMyWkName(event.target.value);
   };
 
-  const handleMyPayTypeChange = (event) => {
-    setMyPayType(event.target.value);
+  // 카테고리 값 가져오기
+  const onChangeMyPayType = (selectedItem) => {
+    setMyPayType(parseInt(selectedItem));
+
+    switch (parseInt(selectedItem)) {
+      case 1: // 시급
+        setIsSalary(false);
+        setIsCase(false);
+        break;
+      case 2: // 일급
+        setIsSalary(true);
+        setIsCase(false);
+        break;
+      case 3: // 월급
+        setIsSalary(true);
+        setIsCase(false);
+        break;
+      case 4: // 건별
+        setIsSalary(true);
+        setIsCase(true);
+        break;
+      default:
+        setIsSalary(false);
+        setIsCase(false);
+    }
   };
 
   const handleMyWkMoneyChange = (event) => {
@@ -44,6 +70,10 @@ const WorkAdd = ({ isMypage }) => {
 
   const handleMyWkRestChange = (event) => {
     setMyWkRest(event.target.value);
+  };
+
+  const handleMyWkCaseChange = (event) => {
+    setMyWkCase(event.target.value);
   };
 
   const handleMyWkTaxChange = (event) => {
@@ -73,6 +103,7 @@ const WorkAdd = ({ isMypage }) => {
         myWkStart,
         myWkEnd,
         myWkRest,
+        myWkCase,
         myWkTax,
         myWkPayday
       );
@@ -115,38 +146,55 @@ const WorkAdd = ({ isMypage }) => {
             <p className="label">근무이름</p>
             <Input value={myWkName} onChange={handleMyWkNameChange} />
           </div>
+
+          <p className="label">급여</p>
+          {/* <Input value={defaultMyPayType} onChange={handleMyPayTypeChange} /> */}
           <div>
-            <p className="label">근무형태</p>
-            {/* <Input value={defaultMyPayType} onChange={handleMyPayTypeChange} /> */}
-            <MyType value={myPayType} onChange={handleMyPayTypeChange} />
-          </div>
-          <div>
-            <p className="label">금액</p>
+            <MyType value={myPayType} onChange={onChangeMyPayType} />
             <Input value={myWkMoney} onChange={handleMyWkMoneyChange} />
-            <p className="times">원</p>
+            <p className="text">원</p>
           </div>
 
-          <p className="label">근무시간</p>
-          <div>
-            <Input
-              type="time"
-              value={myWkStart}
-              onChange={handleMyWkStartChange}
-            />
-            <p className="label"> - </p>
-            <Input type="time" value={myWkEnd} onChange={handleMyWkEndChange} />
-          </div>
-
-          <div>
-            <p className="label">휴게시간</p>
-            <Input
-              type="number"
-              min="0"
-              value={myWkRest}
-              onChange={handleMyWkRestChange}
-            />
-            <p className="times">분</p>
-          </div>
+          {isSalary ? (
+            <></>
+          ) : (
+            <>
+              {" "}
+              <p className="label">근무시간</p>
+              <div>
+                <Input
+                  type="time"
+                  value={myWkStart}
+                  onChange={handleMyWkStartChange}
+                />
+                <p className="label"> - </p>
+                <Input
+                  type="time"
+                  value={myWkEnd}
+                  onChange={handleMyWkEndChange}
+                />
+              </div>
+              <div>
+                <p className="label">휴게시간</p>
+                <Input
+                  type="number"
+                  min="0"
+                  value={myWkRest}
+                  onChange={handleMyWkRestChange}
+                />
+                <p className="text">분</p>
+              </div>
+            </>
+          )}
+          {isCase ? (
+            <div>
+              <p className="label">건 수</p>
+              <Input value={myWkCase} onChange={handleMyWkCaseChange} />
+              <p className="text">건</p>
+            </div>
+          ) : (
+            <></>
+          )}
           <div>
             <p className="label">세 금</p>
             <Input value={myWkTax} onChange={handleMyWkTaxChange} />
@@ -215,7 +263,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
   }
-  .times {
+  .text {
     font-size: 12px;
     align-items: center;
     justify-content: center;
