@@ -493,7 +493,7 @@ const CalendarContainer = styled.div`
   }
 
   .react-calendar__tile--range {
-    background: ${({ theme }) => theme.todayColor};
+    background: ${({ theme }) => theme.seldayColor};
     color: #fff;
     border-radius: 6px;
   }
@@ -504,104 +504,11 @@ const CalendarContainer = styled.div`
 
   .react-calendar__month-view__days__day--weekend:nth-child(7n) {
     color: blue;
-  }
-
-  // react-calendar.css
-  .react-calendar {
-    margin: 10px;
-    width: 85%;
-    margin: 0 auto;
-    background-color: ${({ theme }) => theme.bgColor};
-    color: #999;
-    border: 0px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .react-calendar__navigation button {
-    color: ${({ theme }) => theme.menuColor};
-    font-weight: bold;
-    width: auto;
-    height: auto;
-    background: none;
-    /* font-size: 16px; */
-    /* margin-top: 15px; */
-  }
-
-  .react-calendar__navigation__arrow {
-    font-size: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .react-calendar__navigation__label__labelText {
     color: ${({ theme }) => theme.menuColor};
     font-size: 17px;
-  }
-
-  .react-calendar__viewContainer {
-    margin-bottom: 15px;
-  }
-
-  .react-calendar__navigation button:enabled:hover,
-  .react-calendar__navigation button:enabled:focus {
-    background-color: ${({ theme }) => theme.bgColor};
-    border: 0px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  abbr[title] {
-    text-decoration: none;
-  }
-
-  .react-calendar__tile:enabled:hover,
-  .react-calendar__tile:enabled:focus {
-    background: ${({ theme }) => theme.seldayColor};
-    color: #fff;
-    border-radius: 6px;
-  }
-
-  .react-calendar__tile--now {
-    /* background: ${({ theme }) => theme.bgColor}; */
-    background: ${({ theme }) => theme.todayColor};
-    border-radius: 6px;
-    font-weight: bold;
-    color: #222;
-  }
-
-  // 오늘 날짜 선택 시
-  .react-calendar__tile--now:enabled:hover,
-  .react-calendar__tile--now:enabled:focus {
-    background: ${({ theme }) => theme.seldayColor};
-
-    border-radius: 6px;
-    font-weight: bold;
-    color: #fff;
-  }
-
-  .react-calendar__tile--hasActive:enabled:hover,
-  .react-calendar__tile--hasActive:enabled:focus {
-    background: ${({ theme }) => theme.todayColor};
-  }
-
-  .react-calendar--selectRange .react-calendar__tile--hover {
-    background-color: #f0f0f0;
-  }
-
-  .react-calendar__tile--range {
-    background: ${({ theme }) => theme.todayColor};
-    color: #fff;
-    border-radius: 6px;
-  }
-
-  .react-calendar__month-view__days__day--weekend {
-    color: red;
-  }
-
-  .react-calendar__month-view__days__day--weekend:nth-child(7n) {
-    color: blue;
   }
 
   /* .react-calendar__month-view__weekNumbers .react-calendar__tile {
