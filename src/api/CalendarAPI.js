@@ -1,6 +1,4 @@
-import axios from "axios";
 import axiosInstance from "./axiosInstance";
-const MPT_DOMAIN = "https://localhost:8888";
 const AxiosApi = {
   createSchedule: async (inputValues) => {
     try {
