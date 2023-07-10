@@ -1,16 +1,11 @@
 import axios from "axios";
+import axiosInstance from "./axiosInstance";
 const MPT_DOMAIN = "https://localhost:8888";
-
 const AxiosApi = {
   createSchedule: async (inputValues) => {
     try {
-      const response = await axios.post(
-        MPT_DOMAIN + "/calendar/create/schedule",
-        inputValues,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axiosInstance.post("/calendar/create/schedule", inputValues);
+
       return response.data;
     } catch (error) {
       console.error("Request Error:", error);
@@ -20,13 +15,7 @@ const AxiosApi = {
 
   createWork: async (inputValues) => {
     try {
-      const response = await axios.post(
-        MPT_DOMAIN + "/calendar/create/work",
-        inputValues,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axiosInstance.post("/calendar/create/work", inputValues);
       return response.data;
     } catch (error) {
       console.error("Request Error:", error);
@@ -35,10 +24,13 @@ const AxiosApi = {
   },
 
   getCalendarView: async () => {
-    return await axios.get(MPT_DOMAIN + "/calendar", {
-      withCredentials: true,
-    });
-  },
+    try {
+      return await axiosInstance.get("/calendar");
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
 };
 
 export default AxiosApi;
