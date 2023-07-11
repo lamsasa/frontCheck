@@ -59,10 +59,6 @@ const WorkAdd = ({ isMypage }) => {
         break;
 
       default:
-        setIsHourly(false);
-        setIsCase(false);
-        break;
-
     }
   };
 
@@ -71,11 +67,11 @@ const WorkAdd = ({ isMypage }) => {
   };
 
   const handleMyWkStartChange = (event) => {
-    setMyWkStart(event.target.value.toString());
+    setMyWkStart(event.target.value);
   };
 
   const handleMyWkEndChange = (event) => {
-    setMyWkEnd(event.target.value.toString());
+    setMyWkEnd(event.target.value);
   };
 
   const handleMyWkRestChange = (event) => {
@@ -94,14 +90,14 @@ const WorkAdd = ({ isMypage }) => {
     setMyWkPayday(event.target.value);
   };
 
-  const handleContentIdChange = (event) => {
-    setContentId(event.target.contentId);
+  const handleContentIdChange = (id) => {
+    setContentId(id);
+    // setContentId(event.target.contentId);
   };
 
   const onCreateMyWork = async () => {
     try {
       const createMyWork = await MyPageAxiosApi.createMyWork({
-        myColor: contentId,
         date,
         myWkName,
         myPayType,
@@ -112,6 +108,8 @@ const WorkAdd = ({ isMypage }) => {
         myWkCase,
         myWkTax,
         myWkPayday,
+        // myColor: contentId,
+        contentId: contentId.toString(),
       });
 
       if (createMyWork.data === "근무를 성공적으로 생성했습니다.") {

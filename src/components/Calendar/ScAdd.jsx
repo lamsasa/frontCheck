@@ -27,8 +27,9 @@ const ScAdd = ({ isMypage }) => {
     setMyScBudget(event.target.value);
   };
 
-  const handleContentIdChange = (event) => {
-    setContentId(event.target.contentId);
+  const handleContentIdChange = (id) => {
+    setContentId(id);
+    // setContentId(event.target.contentId);
   };
 
   const onCreateMySc = async () => {
@@ -37,7 +38,8 @@ const ScAdd = ({ isMypage }) => {
         date,
         myScName,
         myScBudget,
-        myColor: contentId,
+        // myColor: contentId,
+        contentId: contentId.toString(),
       });
 
       if (createMySc.data === "일정을 성공적으로 생성했습니다.") {
