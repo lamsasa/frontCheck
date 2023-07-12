@@ -13,6 +13,12 @@ const lineColor = "#ffa947";
 // `v` and `v1` are used for bars
 // `l` is used for line
 
+// 내가 처리해야하는 undefined의 문제점...
+// 지출 값'만' 들어오는 경우 -> 강제로 수입 값을 0으로 만들어줘야 함
+// 수입도 마찬가지
+// 이걸 어떻게 함...?
+// 그러면 애초에 undefined 값을 전부 0으로 처리하면 될 거 같기도 하고...?
+
 const LineBarChart = ({ data }) => {
   const Line = ({ bars, xScale, yScale, innerWidth, innerHeight }) => {
     // scale 최댓값 입력
@@ -189,7 +195,19 @@ const LineBarChart = ({ data }) => {
 
   // scale 최댓값 입력
   const maxValue = Math.max(...data.map((item) => Math.max(item.v, item.v1)));
-  const minValue = Math.min(...data.map((item) => Math.min(item.l, item.v, item.v1, 0)));
+  const minValue = Math.min(
+    ...data.map((item) => Math.min(item.l, item.v, item.v1, 0))
+  );
+
+  if (!data.length) {
+    return (
+      <>
+        <NotUseContainer>
+          <NotUse>현재 수입, 지출 내역이 존재하지 않습니다.😢</NotUse>
+        </NotUseContainer>
+      </>
+    );
+  }
 
   return (
     <LineBarChartContainer>
@@ -264,4 +282,19 @@ const LineBarChartContainer = styled.div`
     width: 100%;
     height: 90%;
   }
+`;
+
+const NotUseContainer = styled.div`
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 10%;
+`;
+
+const NotUse = styled.div`
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  font-size: 20px;
 `;

@@ -55,13 +55,13 @@ const Chart = () => {
                 const barIncomeItem = transformedBarIncomeChartData.find((barItem) => barItem.x === lineItem.x);
                 const barExpenseItem = transformedBarExpenseChartData.find((barItem) => barItem.x === lineItem.x);
 
-                return {
-                    x: lineItem.x,
-                    l: lineItem.l,
-                    v: barIncomeItem ? barIncomeItem.v : 0,
-                    v1: barExpenseItem ? barExpenseItem.v1 : 0,
-                };
-            });
+        return {
+          x: lineItem.x,
+          l: lineItem.l,
+          v: barIncomeItem ? barIncomeItem.v : "0",
+          v1: barExpenseItem ? barExpenseItem.v1 : "0",
+        };
+      });
 
             // 결합 데이터 분배
             setChartData(combinedChartData);
