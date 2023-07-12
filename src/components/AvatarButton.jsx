@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import styled from "styled-components";
 import Avatar from '@mui/material/Avatar';
 import AuthAxiosAPI from "../api/AuthAxiosAPI";
 import UserAxiosAPI from "../api/UserAxiosAPI";
@@ -43,7 +45,24 @@ const AvatarButton = () => {
     return (
         <>
             {name ? (
+                <>
                 <Avatar {...stringAvatar(name)} onClick={onClickLogOut} />
+                {view && (
+                    <MenuDiv>
+                      <>
+                        <DropDown onClick={onclickManage}>
+                          <MenuImg src={manage} />
+                          <h3 className="manage">권한 넘기기</h3>
+                        </DropDown>
+                        <DropDown onClick={onclickBan}>
+                          <MenuImg src={ban} />
+                          <h3 className="ban">멤버강퇴</h3>
+                        </DropDown>
+                      </>
+                    </MenuDiv>
+                  )}
+                  </>
+
             ) : (
                 <Avatar
                     sx={{
@@ -108,3 +127,28 @@ const stringAvatar = (name) => {
 
 
 export default AvatarButton;
+
+const MenuDiv = styled.div`
+background-color: white;
+position: absolute;
+top: 50px;
+right: 0px;
+text-decoration-line: none;
+width: 140px;
+border-radius: 5px;
+box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+`;
+
+const DropDown = styled.li`
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: row;
+font-size: 1.3rem;
+text-decoration: none;
+list-style: none;
+top: 30px;
+margin: 10px;
+text-decoration-line: none;
+align-items: center;
+cursor: pointer;

@@ -5,19 +5,14 @@ import styled from "styled-components";
 import BlockLine from "../Common/BlockLine";
 import ClickButton from "../Common/ClickButton";
 import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
-import SelColor from "./SelColor";
+import SelColor from "../Calendar/SelColor";
 
-const ScAdd = ({ isMypage }) => {
+const ScAdd = () => {
   const navigate = useNavigate();
 
   const [contentId, setContentId] = useState(1);
-  const [date, setDate] = useState("");
   const [myScName, setMyScName] = useState("");
   const [myScBudget, setMyScBudget] = useState("");
-
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
-  };
 
   const handleMyScNameChange = (event) => {
     setMyScName(event.target.value);
@@ -27,18 +22,18 @@ const ScAdd = ({ isMypage }) => {
     setMyScBudget(event.target.value);
   };
 
-  const handleContentIdChange = (event) => {
-    setContentId(event);
+  const handleContentIdChange = (id) => {
+    setContentId(id);
     // setContentId(event.target.contentId);
   };
 
   const onCreateMySc = async () => {
     try {
       const createMySc = await MyPageAxiosApi.createMySchedule({
-        date,
         myScName,
         myScBudget,
-        myColor: contentId,
+        // myColor: contentId,
+        contentId: contentId.toString(),
       });
 
       if (createMySc.data === "일정을 성공적으로 생성했습니다.") {
@@ -60,19 +55,6 @@ const ScAdd = ({ isMypage }) => {
         <BlockLine />
 
         <InputContainer>
-          {isMypage ? (
-            <></>
-          ) : (
-            <>
-              <p className="label">날짜</p>
-              <Input
-                type="date"
-                id="date"
-                value={date}
-                onChange={handleDateChange}
-              />
-            </>
-          )}
           <p className="label">일정</p>
           <Input value={myScName} onChange={handleMyScNameChange} />
           <p className="label">예산</p>

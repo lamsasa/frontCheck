@@ -5,14 +5,13 @@ import styled from "styled-components";
 import BlockLine from "../Common/BlockLine";
 import ClickButton from "../Common/ClickButton";
 import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
-import SelColor from "./SelColor";
-import SelType from "./SelType";
+import SelColor from "../Calendar/SelColor";
+import MyType from "../Calendar/SelType";
 
-const WorkAdd = ({ isMypage }) => {
+const WorkAdd = () => {
   const navigate = useNavigate();
 
   const [contentId, setContentId] = useState(5);
-  const [date, setDate] = useState("");
   const [myWkName, setMyWkName] = useState("");
   const [myPayType, setMyPayType] = useState(1);
   const [isHourly, setIsHourly] = useState(true);
@@ -24,10 +23,6 @@ const WorkAdd = ({ isMypage }) => {
   const [myWkCase, setMyWkCase] = useState("");
   const [myWkTax, setMyWkTax] = useState("");
   const [myWkPayday, setMyWkPayday] = useState("");
-
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
-  };
 
   const handleMyWkNameChange = (event) => {
     setMyWkName(event.target.value);
@@ -90,20 +85,25 @@ const WorkAdd = ({ isMypage }) => {
     setMyWkPayday(event.target.value);
   };
 
-  const handleContentIdChange = (event) => {
-    setContentId(event);
+  const handleContentIdChange = (id) => {
+    setContentId(id);
+    // setContentId(event.target.contentId);
   };
 
   const onCreateMyWork = async () => {
     try {
       const createMyWork = await MyPageAxiosApi.createMyWork({
-        date,
         myWkName,
-        myPayType: myPayType,
+        myPayType,
+        myWkMoney,
         myWkStart,
         myWkEnd,
+        myWkRest,
+        myWkCase,
+        myWkTax,
         myWkPayday,
-        myColor : contentId,
+        // myColor: contentId,
+        contentId: contentId.toString(),
       });
 
       if (createMyWork.data === "근무를 성공적으로 생성했습니다.") {
@@ -126,21 +126,6 @@ const WorkAdd = ({ isMypage }) => {
 
         <InputContainer>
           <div>
-            {isMypage ? (
-              <></>
-            ) : (
-              <>
-                <p className="label">날짜</p>
-                <Input
-                  type="date"
-                  id="date"
-                  value={date}
-                  onChange={handleDateChange}
-                />
-              </>
-            )}
-          </div>
-          <div>
             <p className="label">근무이름</p>
             <Input value={myWkName} onChange={handleMyWkNameChange} />
           </div>
@@ -148,9 +133,8 @@ const WorkAdd = ({ isMypage }) => {
           <p className="label">급여</p>
           <div>
             {/* <MyType value={myPayType.toString()} onChange={onChangeMyPayType} /> */}
-            <SelType value={myPayType} myPayType={myPayType} onChange={onChangeMyPayType} />
+            <MyType value={myPayType} onChange={onChangeMyPayType} />
             <Input value={myWkMoney} onChange={handleMyWkMoneyChange} />
-
             <p className="text">원</p>
           </div>
 
@@ -196,7 +180,6 @@ const WorkAdd = ({ isMypage }) => {
           <div>
             <p className="label">세 금</p>
             <Input value={myWkTax} onChange={handleMyWkTaxChange} />
-            <p className="text">%</p>
           </div>
           <div>
             <p className="label">급여일</p>
