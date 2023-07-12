@@ -22,9 +22,8 @@ const ScAdd = () => {
     setMyScBudget(event.target.value);
   };
 
-  const handleContentIdChange = (id) => {
-    setContentId(id);
-    // setContentId(event.target.contentId);
+  const handleContentIdChange = (event) => {
+    setContentId(event);
   };
 
   const onCreateMySc = async () => {
@@ -32,8 +31,7 @@ const ScAdd = () => {
       const createMySc = await MyPageAxiosApi.createMySchedule({
         myScName,
         myScBudget,
-        // myColor: contentId,
-        contentId: contentId.toString(),
+        myColor: contentId,
       });
 
       if (createMySc.data === "일정을 성공적으로 생성했습니다.") {
