@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import {TextField, InputAdornment, Box, Grid} from '@mui/material';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { TextField, InputAdornment, Box, Grid } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import AuthAxiosAPI from "../api/AuthAxiosAPI";
 import GoogleLogin from "../assets/GoogleLoginButtonLight.png";
 import styled from "styled-components";
+import FindPassword from "../components/FindPwd/FindPassword";
+
+//패스워드/아이디 찾기
+import Modal from "../components/Common/Modal";
 
 const GoogleLoginButton = styled.div`
   width: 250px;
