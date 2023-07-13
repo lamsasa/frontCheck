@@ -136,29 +136,40 @@ const WorkAdd = ({ isQuick }) => {
         <BlockLine />
 
         <InputContainer>
-          <div className="quick" onClick={openModal}>
-            <Post width="15" height="15" fill="#575757" />
-            <p className="label">간편 등록</p>
-          </div>
-
           <div>
             {isQuick ? (
-              <></>
+              <>
+                <div>
+                  <p className="label">날짜</p>
+                  <Input
+                    type="date"
+                    id="date"
+                    value={workDate}
+                    onChange={handleWkDateChange}
+                  />
+                </div>
+              </>
             ) : (
               <>
-                <p className="label">날짜</p>
-                <Input
-                  type="date"
-                  id="date"
-                  value={workDate}
-                  onChange={handleWkDateChange}
-                />
+                <div className="quick" onClick={openModal}>
+                  <Post width="12" height="12" fill="#575757" />
+                  <p className="label">간편 등록</p>
+                </div>
+                <div>
+                  <p className="label">날짜</p>
+                  <Input
+                    type="date"
+                    id="date"
+                    value={workDate}
+                    onChange={handleWkDateChange}
+                  />
+                </div>
               </>
             )}
           </div>
 
           <div>
-            <p className="label">근무이름</p>
+            <p className="label">근무</p>
             <Input value={workName} onChange={handleWorkNameChange} />
           </div>
 
@@ -170,7 +181,11 @@ const WorkAdd = ({ isQuick }) => {
               myPayType={payType}
               onChange={onChangePayType}
             />
-            <Input value={workMoney} onChange={handleWorkMoneyChange} />
+            <Input
+              className="money"
+              value={workMoney}
+              onChange={handleWorkMoneyChange}
+            />
 
             <p className="text">원</p>
           </div>
@@ -180,12 +195,14 @@ const WorkAdd = ({ isQuick }) => {
               <p className="label">근무시간</p>
               <div>
                 <Input
+                  className="time"
                   type="time"
                   value={workStart}
                   onChange={handleWorkStartChange}
                 />
-                <p className="label"> - </p>
+                <p className="time-set"> - </p>
                 <Input
+                  className="time"
                   type="time"
                   value={workEnd}
                   onChange={handleWorkEndChange}
@@ -193,8 +210,11 @@ const WorkAdd = ({ isQuick }) => {
               </div>
 
               <div>
-                <p className="label">휴게시간</p>
+                <p className="label" width="150px">
+                  휴게시간
+                </p>
                 <Input
+                  className="small"
                   type="number"
                   min="0"
                   value={workRest}
@@ -210,7 +230,11 @@ const WorkAdd = ({ isQuick }) => {
           {isCase ? (
             <div>
               <p className="label">건 수</p>
-              <Input value={workCase} onChange={handleWorkCaseChange} />
+              <Input
+                className="small"
+                value={workCase}
+                onChange={handleWorkCaseChange}
+              />
               <p className="text">건</p>
             </div>
           ) : (
@@ -219,7 +243,11 @@ const WorkAdd = ({ isQuick }) => {
 
           <div>
             <p className="label">세 금</p>
-            <Input value={workTax} onChange={handleWorkTaxChange} />
+            <Input
+              className="small"
+              value={workTax}
+              onChange={handleWorkTaxChange}
+            />
             <p className="text">%</p>
           </div>
 
@@ -234,15 +262,14 @@ const WorkAdd = ({ isQuick }) => {
             contentId={contentId}
             onContentIdChange={handleContentIdChange}
           />
-
-          {modalOpen && (
-            <Modal open={modalOpen} close={closeModal} width={"300px"}></Modal>
-          )}
         </InputContainer>
       </Container>
       <ButtonContainer>
         <ClickButton onClick={onCreateWork}>근무 등록</ClickButton>
       </ButtonContainer>
+      {modalOpen && (
+        <Modal open={modalOpen} close={closeModal} width={"300px"}></Modal>
+      )}
     </>
   );
 };
@@ -258,7 +285,7 @@ const Title = styled.div`
 `;
 
 const Input = styled.input`
-  width: 55%;
+  width: 60%;
   border-top: none;
   border-left: none;
   color: lightgray;
@@ -281,19 +308,30 @@ const Container = styled.div`
   flex-wrap: wrap;
   .label {
     width: ${({ width }) => width || "auto"};
-    margin: 5px;
-    margin-top: 10px;
+    margin: 10px;
     font-size: 15px;
     align-items: center;
     justify-content: center;
+  }
+
+  .time-set {
+    font-size: 20px;
+    margin: 5px;
+    color: gray;
   }
   .text {
     font-size: 12px;
     align-items: center;
     justify-content: center;
     margin: 3px;
-    margin-top: 9px;
+    margin-top: 8px;
     color: gray;
+  }
+  .small {
+    width: 30%;
+  }
+  .money {
+    margin-left: 10px;
   }
 `;
 
@@ -302,23 +340,29 @@ const InputContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  width: 200px;
+  width: 240px;
   margin: 20px;
+  padding: 0 10px;
 
   div {
+    width: auto;
     display: flex;
     flex-direction: row;
     margin: 5px;
     align-items: center;
-    width: 90%;
     align-items: center;
     justify-content: center;
     vertical-align: center;
   }
-
   .quick {
-    margin: 5px;
-    align-items: center;
+    margin: 10px;
+    /* align-items: center; */
+    color: gray;
+    font-size: 12px;
+  }
+  .time {
+    width: 100px;
+    font-size: 13px;
   }
 `;
 
