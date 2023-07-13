@@ -10,6 +10,7 @@ const UserAxiosAPI = {
     }
   },
 
+  // 비밀번호 변경 이메일 보내기
   postEmailSend: async (inputEmail) => {
     try {
       const response = await axios.post(
@@ -25,6 +26,21 @@ const UserAxiosAPI = {
     } catch (error) {
       console.log("postEmailSend: " + error);
       throw error;
+    }
+  },
+
+  // 비밀번호 수정
+  postNewPassword: async ({inputValues}) => {
+    try {
+      const response = await axios.post(
+        DOMAIN + "/password/update",
+        inputValues,
+        { withCredentials: true }
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (e) {
+      throw e;
     }
   },
 };

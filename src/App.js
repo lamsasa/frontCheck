@@ -7,6 +7,7 @@ import Mybudget from "./pages/MybudgetPage";
 import Chart from "./pages/ChartPage";
 import GlobalStyle from "./styles/GlobalStyle";
 import Mypage from "./pages/MypagePage";
+import Setting from "./pages/SettingPage";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/chart" element={<Chart />} />
               <Route path="/mybudget" element={<Mybudget />} />
               <Route path="/mypage" element={<Mypage />} />
+              <Route path="/setting" element={<Setting />} />
             </Routes>
           </Router>
         </GoogleOAuthProvider>
