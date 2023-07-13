@@ -70,24 +70,25 @@ const ScAdd = ({ isQuick }) => {
         <BlockLine />
 
         <InputContainer>
-          <div className="quick" onClick={openModal}>
-            <Post width="15" height="15" fill="#575757" />
-            <p className="label">간편 등록</p>
-          </div>
-
           <div>
             {isQuick ? (
-              <></>
-            ) : (
               <>
-                <p className="label">날짜</p>
-                <Input
-                  type="date"
-                  id="date"
-                  value={scDate}
-                  onChange={handleScDateChange}
-                />
+                <div className="quick" onClick={openModal}>
+                  <Post width="20" height="20" fill="#575757" />
+                  <p className="label">간편 등록</p>
+                </div>
+                <div>
+                  <p className="label">날짜</p>
+                  <Input
+                    type="date"
+                    id="date"
+                    value={scDate}
+                    onChange={handleScDateChange}
+                  />
+                </div>
               </>
+            ) : (
+              <></>
             )}
           </div>
 
@@ -99,6 +100,7 @@ const ScAdd = ({ isQuick }) => {
           <div>
             <p className="label">예산</p>
             <Input value={scBudget} onChange={handleScBudgetChange} />
+            <p className="text">원</p>
           </div>
 
           <SelColor
@@ -107,15 +109,15 @@ const ScAdd = ({ isQuick }) => {
             onContentIdChange={handleContentIdChange}
             isBasic={true}
           />
-
-          {modalOpen && (
-            <Modal open={modalOpen} close={closeModal} width={"300px"}></Modal>
-          )}
         </InputContainer>
       </Container>
       <ButtonContainer>
         <ClickButton onClick={onCreateSc}>일정 등록</ClickButton>
       </ButtonContainer>
+
+      {modalOpen && (
+        <Modal open={modalOpen} close={closeModal} width={"300px"}></Modal>
+      )}
     </>
   );
 };
@@ -131,7 +133,7 @@ const Title = styled.div`
 `;
 
 const Input = styled.input`
-  width: 70%;
+  width: 50%;
   border-top: none;
   border-left: none;
   color: lightgray;
@@ -156,6 +158,14 @@ const Container = styled.div`
     margin: 10px;
     font-size: 15px;
   }
+  .text {
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    margin: 3px;
+    margin-top: 9px;
+    color: gray;
+  }
 `;
 
 const InputContainer = styled.div`
@@ -163,7 +173,7 @@ const InputContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  width: 200px;
+  width: 220px;
   margin: 20px;
 
   div {
@@ -176,10 +186,11 @@ const InputContainer = styled.div`
     justify-content: center;
     vertical-align: center;
   }
-
   .quick {
-    margin: 5px;
-    align-items: center;
+    margin: 10px;
+    /* align-items: center; */
+    color: gray;
+    font-size: 12px;
   }
 `;
 

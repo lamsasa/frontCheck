@@ -29,14 +29,14 @@ const SelType = ({ onChange }) => {
 export default SelType;
 
 const StyledCategory = styled.div`
-  text-align: left;
+  width: 60px;
+  text-align: center;
   align-items: center;
-  margin-left: 0;
 
   .dropBox {
     background-color: ${({ theme }) => theme.bgColor};
     color: ${({ theme }) => theme.menuColor};
-    width: 60px;
+    width: 50px;
     height: 30px;
   }
 `;
