@@ -41,13 +41,13 @@ const Chart = () => {
             const barIncomeChartData = await ListAxiosAPI.getBarIncomeChart();
             const transformedBarIncomeChartData = barIncomeChartData.map((item) => ({
                 x: item.x,
-                v: item.v,
+                v: item.v || 0,
             }));
 
             const barExpenseChartData = await ListAxiosAPI.getBarExpenseChart();
             const transformedBarExpenseChartData = barExpenseChartData.map((item) => ({
                 x: item.x,
-                v1: item.v1,
+                v1: item.v1 || 0,
             }));
 
             // 데이터 결합
