@@ -3,12 +3,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import BlockLine from "../Common/BlockLine";
 import ClickButton from "../Common/ClickButton";
-import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
+import MyPageAxiosApi from "../../api/QuickAddAxiosAPI";
 import SelColor from "../Calendar/SelColor";
 import SelType from "../Calendar/SelType";
 
 const WorkAdd = () => {
-
   const [contentId, setContentId] = useState(5);
   const [myWkName, setMyWkName] = useState("");
   const [myPayType, setMyPayType] = useState(1);
@@ -20,7 +19,7 @@ const WorkAdd = () => {
   const [myWkRest, setMyWkRest] = useState("");
   const [myWkCase, setMyWkCase] = useState("");
   const [myWkTax, setMyWkTax] = useState("");
-  const [myWkPayday, setMyWkPayday] = useState("");
+  const [myPayday, setMyPayday] = useState("");
 
   const handleMyWkNameChange = (event) => {
     setMyWkName(event.target.value);
@@ -79,8 +78,8 @@ const WorkAdd = () => {
     setMyWkTax(event.target.value);
   };
 
-  const handleMyWkPaydayChange = (event) => {
-    setMyWkPayday(event.target.value);
+  const handleMyPaydayChange = (event) => {
+    setMyPayday(event.target.value);
   };
 
   const handleContentIdChange = (event) => {
@@ -94,8 +93,8 @@ const WorkAdd = () => {
         myPayType,
         myWkStart,
         myWkEnd,
-        myWkPayday,
-        myColor : contentId,
+        myPayday,
+        myColor: contentId,
       });
 
       if (createMyWork.data === "근무를 성공적으로 생성했습니다.") {
@@ -125,7 +124,11 @@ const WorkAdd = () => {
           <p className="label">급여</p>
           <div>
             {/* <MyType value={myPayType.toString()} onChange={onChangeMyPayType} /> */}
-            <SelType value={myPayType} myPayType={myPayType} onChange={onChangeMyPayType} />
+            <SelType
+              value={myPayType}
+              myPayType={myPayType}
+              onChange={onChangeMyPayType}
+            />
             <Input value={myWkMoney} onChange={handleMyWkMoneyChange} />
 
             <p className="text">원</p>
@@ -179,8 +182,8 @@ const WorkAdd = () => {
             <p className="label">급여일</p>
             <Input
               type="date"
-              value={myWkPayday}
-              onChange={handleMyWkPaydayChange}
+              value={myPayday}
+              onChange={handleMyPaydayChange}
             />
           </div>
           {/* <p className="label">color</p> */}

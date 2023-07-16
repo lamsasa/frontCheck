@@ -3,8 +3,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import BlockLine from "../Common/BlockLine";
 import Modal from "../Common/Modal";
+import QuickAdd from "../MyPage/QuickView";
 import ClickButton from "../Common/ClickButton";
-import CalendarAxiosApi from "../../api/CalendarAPI";
+import CalendarAxiosApi from "../../api/CalendarAxiosAPI";
 import SelColor from "./SelColor";
 
 import { ReactComponent as Post } from "../../assets/Post.svg";
@@ -44,7 +45,7 @@ const ScAdd = ({ isQuick }) => {
 
   const onCreateSc = async () => {
     try {
-      const createSc = await CalendarAxiosApi.createSchedule({
+      const createSc = await CalendarAxiosApi.createSchedule(isQuick, {
         scDate,
         scName,
         scBudget,
@@ -70,36 +71,41 @@ const ScAdd = ({ isQuick }) => {
         <BlockLine />
 
         <InputContainer>
-          <div>
-            {isQuick ? (
-              <>
-                <div className="quick" onClick={openModal}>
-                  <Post width="20" height="20" fill="#575757" />
-                  <p className="label">간편 등록</p>
-                </div>
-                <div>
-                  <p className="label">날짜</p>
-                  <Input
-                    type="date"
-                    id="date"
-                    value={scDate}
-                    onChange={handleScDateChange}
-                  />
-                </div>
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
+          {isQuick ? (
+            <></>
+          ) : (
+            <>
+              <div className="quick" onClick={openModal}>
+                <Post width="12" height="12" fill="#575757" />
+                <p className="quick-text">간편 등록</p>
+              </div>
+              <div>
+                <p className="label">날짜</p>
+                <Input
+                  // className="date"
+                  type="date"
+                  id="date"
+                  value={scDate}
+                  onChange={handleScDateChange}
+                />
+                <p> ㅤ </p>
+              </div>
+            </>
+          )}
 
           <div>
             <p className="label">일정</p>
             <Input value={scName} onChange={handleScNameChange} />
+            <p> ㅤ </p>
           </div>
 
           <div>
             <p className="label">예산</p>
-            <Input value={scBudget} onChange={handleScBudgetChange} />
+            <Input
+              className="budget-size"
+              value={scBudget}
+              onChange={handleScBudgetChange}
+            />
             <p className="text">원</p>
           </div>
 
@@ -116,7 +122,9 @@ const ScAdd = ({ isQuick }) => {
       </ButtonContainer>
 
       {modalOpen && (
-        <Modal open={modalOpen} close={closeModal} width={"300px"}></Modal>
+        <Modal open={modalOpen} close={closeModal} width={"300px"}>
+          <QuickAdd isBasic={true} />
+        </Modal>
       )}
     </>
   );
@@ -133,7 +141,7 @@ const Title = styled.div`
 `;
 
 const Input = styled.input`
-  width: 50%;
+  width: 60%;
   border-top: none;
   border-left: none;
   color: lightgray;
@@ -173,8 +181,9 @@ const InputContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  width: 220px;
+  width: 200px;
   margin: 20px;
+  padding-left: 5px;
 
   div {
     display: flex;
@@ -188,9 +197,14 @@ const InputContainer = styled.div`
   }
   .quick {
     margin: 10px;
-    /* align-items: center; */
-    color: gray;
+    align-items: center;
+    color: #575757;
+    font-size: 10px;
+  }
+  .quick-text {
     font-size: 12px;
+    margin: 3px;
+    cursor: pointer;
   }
 `;
 

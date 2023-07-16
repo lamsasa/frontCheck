@@ -1,93 +1,145 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
-import CreateSchedule from "../../components/Calendar/CreateLedger";
-import Modal from "../Common/Modal";
-import { ReactComponent as Plus } from "../../assets/plus.svg";
-import BlockLine from "../Common/BlockLine";
+import React, { useState, useEffect} from 'react';
+import styled from 'styled-components';
+import BlockLine from '../Common/BlockLine';
+import AdminContents from './AdminContents';
+import AdminLedger from './AdminLedger';
+import Tag from '../MyPage/Tag';
+import Work from './Work';
+import Account from './Account';
+import LedgerAxiosApi from '../../api/LedgerAxiosAPI';
 
-const AdminAll = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+const AdminAll = ({ setValue }) => {
+    const [selectTodayExpense, setSelectTodayExpense] = useState([]);
+    const [selectTodayIncome, setSelectTodayIncome] = useState([]);
 
-  const openModal = () => {
-    setModalOpen(true);
-  };
+    useEffect(() => {
+        const nowDate = formatDate(setValue);
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+         function formatDate(date) {
+             const formattedDate = new Date(date);
+             formattedDate.setDate(formattedDate.getDate() + 1);
+             return formattedDate.toISOString().split('T')[0];
+         }
 
-  return (
-    <AdminAllContainer>
-      <BlockLine />
-      <Header>
-        <BlinkingButton onClick={openModal} />
-      </Header>
+        const getTodayExpense = async () => {
+            try {
+                const rsp = await LedgerAxiosApi.getTodayExpense(nowDate);
+                if (rsp.status === 200) setSelectTodayExpense(rsp.data);
+                console.log(rsp.data);
+            } catch (e) {
+                console.log(e);
+            }
+        };
+        getTodayExpense();
 
-      {/* 일정 */}
+        const getTodayIncome = async () => {
+            try {
+                const rsp = await LedgerAxiosApi.getTodayIncome(nowDate);
+                if (rsp.status === 200) setSelectTodayIncome(rsp.data);
+                console.log(rsp.data);
+            } catch (e) {
+                console.log(e);
+            }
+        };
+        getTodayIncome();
+    }, [setValue]);
 
-      <BlockLine />
+    return (
+        <AdminAllContainer>
+            <BlockLine />
+            {/* 일정 */}
+            <div className="block">
+                <div className="title">일정</div>
+                <AdminContents isBasic={true} setValue={setValue} />
+            </div>
+            <div className="tagBox">
+                <Tag color={'red'} detail={'tes'}></Tag>
+                <Tag color={'red'} detail={'test'}></Tag>
+                <Tag color={'red'} detail={'test'}></Tag>
+                <Tag color={'red'} detail={'test'}></Tag>
+            </div>
 
-      <Header>
-        <BlinkingButton onClick={openModal} />
-      </Header>
-      {/* 가계부 */}
+            {/* 근무 */}
+            <div className="block">
+                <div className="title">근무</div>
+                <AdminContents isBasic={false} setValue={setValue} />
+            </div>
+            <Work />
+            <Work />
+            <Work />
 
+            <BlockLine />
+            {/* 가계부 */}
 
-      {modalOpen && (
-        <Modal open={modalOpen} close={closeModal} width={"20%"}>
-          <CreateSchedule />
-        </Modal>
-      )}
-      <svg width="0" height="0">
-        <defs>
-          <linearGradient id="gradientId" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(90, 243, 167, 0.7)" />
-            <stop offset="100%" stopColor="rgba(47, 155, 161, 0.7)" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </AdminAllContainer>
-  );
+            <div className="block">
+                <div className="title">수입/지출</div>
+                <AdminLedger setValue={setValue} />
+            </div>
+            <div className="accountBox">
+                {selectTodayExpense.length === 0 && selectTodayIncome.length === 0 ? (
+                    <p className="none">수입/지출 내역이 없습니다.</p>
+                ) : (
+                    <>
+                        {selectTodayExpense.map((data, index) => (
+                            <Account
+                                account={'지출'}
+                                key={index}
+                                amount={data.expenseAmount}
+                                content={data.expenseContent}
+                                categoryName={data.categoryName}
+                            />
+                        ))}
+                        {selectTodayIncome.map((data, index) => (
+                            <Account
+                                account={'수입'}
+                                key={index}
+                                amount={data.incomeAmount}
+                                content={data.incomeContent}
+                                categoryName={data.categoryIncomeName}
+                            />
+                        ))}
+                    </>
+                )}
+            </div>
+        </AdminAllContainer>
+    );
 };
 
 export default AdminAll;
 
 const AdminAllContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
-const blinkingAnimation = keyframes`
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
+    .none {
+        margin-left: 20px;
+        font-size: 12px;
+    }
+    .border {
+        border-bottom: 1px solid black;
+        width: 95%;
+        margin-left: 3px;
+        padding-right: 50px;
+    }
+    .block {
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+    }
 
-const BlinkingButton = styled(Plus)`
-  width: 22px;
-  height: 22px;
-  margin-top: 10px;
-  fill: url(#gradientId);
+    .title {
+        font-size: 15px;
+        width: 100px;
+        margin-left: 10px;
+    }
+    .tagBox {
+        display: flex;
+        padding-left: 10px;
+    }
 
-  &:hover {
-    animation: ${blinkingAnimation} 1s infinite;
-  }
-`;
-
-const Header = styled.div`
-  width: 85%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  /* background-color: aquamarine; */
+    .accountBox {
+        margin-bottom: 20px;
+        padding-right: 10px;
+    }
 `;

@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import BlockLine from "../Common/BlockLine";
 import Modal from "../Common/Modal";
+import QuickAdd from "../MyPage/QuickView";
 import ClickButton from "../Common/ClickButton";
-import CalendarAxiosApi from "../../api/CalendarAPI";
+import CalendarAxiosApi from "../../api/CalendarAxiosAPI";
 import SelColor from "./SelColor";
 import SelType from "./SelType";
 
@@ -20,11 +21,12 @@ const WorkAdd = ({ isQuick }) => {
   const [workEnd, setWorkEnd] = useState("");
   const [workRest, setWorkRest] = useState("");
   const [workCase, setWorkCase] = useState("");
-  const [workTax, setWorkTax] = useState("");
+  const [workTax, setWorkTax] = useState(0);
   const [payday, setPayday] = useState("");
 
   const [isHourly, setIsHourly] = useState(true);
   const [isCase, setIsCase] = useState(false);
+  const [isSalary, setIsSalary] = useState(true);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -36,7 +38,7 @@ const WorkAdd = ({ isQuick }) => {
     setModalOpen(false);
   };
 
-  const handleWkDateChange = (event) => {
+  const handleWorkDateChange = (event) => {
     setDate(event.target.value);
   };
 
@@ -52,21 +54,25 @@ const WorkAdd = ({ isQuick }) => {
       case 1: // 시급
         setIsHourly(true);
         setIsCase(false);
+        setIsSalary(true);
         break;
 
       case 2: // 건별
         setIsHourly(false);
         setIsCase(true);
+        setIsSalary(false);
         break;
 
       case 3: // 일급
         setIsHourly(false);
         setIsCase(false);
+        setIsSalary(false);
         break;
 
       case 4: // 월급
         setIsHourly(false);
         setIsCase(false);
+        setIsSalary(true);
         break;
 
       default:
@@ -107,12 +113,15 @@ const WorkAdd = ({ isQuick }) => {
 
   const onCreateWork = async () => {
     try {
-      const createWork = await CalendarAxiosApi.createWork({
+      const createWork = await CalendarAxiosApi.createWork(isQuick, {
         workDate,
         workName,
         payType,
+        workMoney,
         workStart,
         workEnd,
+        workTax,
+        workCase,
         payday,
         colorId: contentId,
       });
@@ -136,37 +145,26 @@ const WorkAdd = ({ isQuick }) => {
         <BlockLine />
 
         <InputContainer>
-          <div>
-            {isQuick ? (
-              <>
-                <div>
-                  <p className="label">날짜</p>
-                  <Input
-                    type="date"
-                    id="date"
-                    value={workDate}
-                    onChange={handleWkDateChange}
-                  />
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="quick" onClick={openModal}>
-                  <Post width="12" height="12" fill="#575757" />
-                  <p className="label">간편 등록</p>
-                </div>
-                <div>
-                  <p className="label">날짜</p>
-                  <Input
-                    type="date"
-                    id="date"
-                    value={workDate}
-                    onChange={handleWkDateChange}
-                  />
-                </div>
-              </>
-            )}
-          </div>
+          {isQuick ? (
+            <></>
+          ) : (
+            <>
+              <div className="quick" onClick={openModal}>
+                <Post width="13" height="13" fill="#575757" />
+                <p className="quick-text">간편 등록</p>
+              </div>
+              <div>
+                <p className="label">날짜</p>
+                <Input
+                  type="date"
+                  id="date"
+                  required
+                  value={workDate}
+                  onChange={handleWorkDateChange}
+                />
+              </div>
+            </>
+          )}
 
           <div>
             <p className="label">근무</p>
@@ -210,7 +208,10 @@ const WorkAdd = ({ isQuick }) => {
               </div>
 
               <div>
-                <p className="label" width="150px">
+                <p
+                  className="label"
+                  // width="150px"
+                >
                   휴게시간
                 </p>
                 <Input
@@ -232,7 +233,10 @@ const WorkAdd = ({ isQuick }) => {
               <p className="label">건 수</p>
               <Input
                 className="small"
+                type="number"
+                min="0"
                 value={workCase}
+                required
                 onChange={handleWorkCaseChange}
               />
               <p className="text">건</p>
@@ -253,7 +257,20 @@ const WorkAdd = ({ isQuick }) => {
 
           <div>
             <p className="label">급여일</p>
-            <Input type="date" value={payday} onChange={handlePaydayChange} />
+            {isSalary ? (
+              <Input type="date" value={payday} onChange={handlePaydayChange} />
+            ) : (
+              <>
+                <p className="text">매달</p>
+                <Input
+                  type="number"
+                  min="0"
+                  value={payday}
+                  onChange={handlePaydayChange}
+                />
+                <p className="text">일</p>
+              </>
+            )}
           </div>
 
           {/* <p className="label">color</p> */}
@@ -268,14 +285,15 @@ const WorkAdd = ({ isQuick }) => {
         <ClickButton onClick={onCreateWork}>근무 등록</ClickButton>
       </ButtonContainer>
       {modalOpen && (
-        <Modal open={modalOpen} close={closeModal} width={"300px"}></Modal>
+        <Modal open={modalOpen} close={closeModal} width={"300px"}>
+          <QuickAdd isBasic={false} />
+        </Modal>
       )}
     </>
   );
 };
 
 export default WorkAdd;
-
 const Title = styled.div`
   display: flex;
   align-items: center;
@@ -359,6 +377,11 @@ const InputContainer = styled.div`
     /* align-items: center; */
     color: gray;
     font-size: 12px;
+  }
+  .quick-text {
+    font-size: 12px;
+    margin: 3px;
+    cursor: pointer;
   }
   .time {
     width: 100px;

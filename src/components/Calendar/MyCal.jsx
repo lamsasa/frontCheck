@@ -5,7 +5,7 @@ import Modal from "../Common/Modal";
 import AdminAll from "./AdminAll";
 import { ReactComponent as Right } from "../../assets/right.svg";
 import { ReactComponent as Left } from "../../assets/left.svg";
-import CalenderAPI from "../../api/CalendarAPI";
+import CalendarAxiosApi from "../../api/CalendarAxiosAPI";
 
 // 캘린더 API 적용
 import Calendar from "react-calendar";
@@ -47,17 +47,33 @@ const MYCalendar = forwardRef(({ isBasic }, ref) => {
   const [expenseAmounts, setExpenseAmounts] = useState([]);
   const [incomeDates, setIncomeDates] = useState([]);
   const [incomeAmounts, setIncomeAmounts] = useState([]);
+  const [scDate, setScDate] = useState("");
+  const [scName, setScName] = useState("");
+  const [workDate, setWorkDate] = useState("");
+  const [workName, setWorkName] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await CalenderAPI.getCalendarView();
-        const { expenseDates, expenseAmounts, incomeDates, incomeAmounts } =
-          response;
+        const response = await CalendarAxiosApi.getCalendarView();
+        const {
+          expenseDates,
+          expenseAmounts,
+          incomeDates,
+          incomeAmounts,
+          scDate,
+          scName,
+          workDate,
+          workName,
+        } = response;
         setExpenseDates(expenseDates);
         setExpenseAmounts(expenseAmounts);
         setIncomeDates(incomeDates);
         setIncomeAmounts(incomeAmounts);
+        setScDate(scDate);
+        setScName(scName);
+        setWorkDate(workDate);
+        setWorkName(workName);
 
         console.log("지출 날짜", expenseDates);
         console.log("지출 금액", expenseAmounts);
@@ -72,28 +88,6 @@ const MYCalendar = forwardRef(({ isBasic }, ref) => {
 
     fetchData();
   }, []);
-
-  // 컨텐츠 날짜 리스트
-
-  const scList = [
-    "2023-06-04",
-    "2023-06-05",
-    "2023-06-10",
-    "2023-06-11",
-    "2023-06-17",
-    "2023-06-30",
-  ];
-
-  const workList = [
-    "2023-06-03",
-    "2023-06-04",
-    "2023-06-10",
-    "2023-06-11",
-    "2023-06-17",
-    "2023-06-18",
-    "2023-06-24",
-    "2023-06-25",
-  ];
 
   // 각 날짜 타일에 컨텐츠 추가
   const addContent = ({ date }: any) => {
@@ -139,14 +133,14 @@ const MYCalendar = forwardRef(({ isBasic }, ref) => {
     });
 
     // 일정
-    if (scList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
+    if (scDate) {
       contentSchedule.push(
         <>
           {isBasic ? (
             <div className="dot-schedule"></div>
           ) : (
             <div className="box-schedule">
-              <p>일정</p>
+              <p>{scName}</p>
             </div>
           )}
         </>
@@ -154,14 +148,14 @@ const MYCalendar = forwardRef(({ isBasic }, ref) => {
     }
 
     // 근무
-    if (workList.find((day) => day === moment(date).format("YYYY-MM-DD"))) {
+    if (workDate) {
       contentWork.push(
         <>
           {isBasic ? (
             <div className="dot-work"></div>
           ) : (
             <div className="box-work">
-              <p>근무</p>
+              <p>{workName}</p>
             </div>
           )}
         </>

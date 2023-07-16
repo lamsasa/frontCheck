@@ -3,11 +3,10 @@ import { useState } from "react";
 import styled from "styled-components";
 import BlockLine from "../Common/BlockLine";
 import ClickButton from "../Common/ClickButton";
-import MyPageAxiosApi from "../../api/MyPageAxiosAPI";
+import MyPageAxiosApi from "../../api/QuickAddAxiosAPI";
 import SelColor from "../Calendar/SelColor";
 
 const ScAdd = () => {
-
   const [contentId, setContentId] = useState(1);
   const [myScName, setMyScName] = useState("");
   const [myScBudget, setMyScBudget] = useState("");

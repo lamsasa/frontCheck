@@ -36,5 +36,4 @@ const MyPageAxiosApi = {
     }
   },
 };
-
 export default MyPageAxiosApi;
