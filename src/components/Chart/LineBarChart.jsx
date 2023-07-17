@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
-//import { createRoot } from "react-dom/client";
 import { ResponsiveBar } from "@nivo/bar";
 import { Axes } from "@nivo/axes";
 import { line } from "d3-shape";
@@ -80,7 +79,7 @@ const LineBarChart = ({ data }) => {
 
     return (
       <Fragment>
-        {/* y좌표 전부 안 보이게! 
+        {/* y좌표 전부 안 보이게!
       <div className="AxesWrapper" style={{ display: "none" }}>
   <Axes
     yScale={yScale}
@@ -121,7 +120,8 @@ const LineBarChart = ({ data }) => {
           x={innerWidth} // 오른쪽 끝에 위치
           y={yScale(maxValue) - 12} // yScale의 최댓값에 해당하는 y 좌표에서 약간 위로 이동
           textAnchor="start" // 시작 부분에 정렬
-          style={{ fontSize: "10px" }}>
+          style={{ fontSize: "10px" }}
+        >
           (원)
         </text>
         <path
@@ -161,7 +161,8 @@ const LineBarChart = ({ data }) => {
               }
               y={yScale(bar.data.data["수입"])} // v 값 텍스트의 y 좌표 수정
               textAnchor="middle"
-              style={{ fontSize: "12px" }}>
+              style={{ fontSize: "12px" }}
+            >
               {bar.data.data["수입"]}
             </text>
             <text
@@ -170,14 +171,16 @@ const LineBarChart = ({ data }) => {
               }
               y={yScale(bar.data.data["지출"])} // v1 값 텍스트의 y 좌표 수정
               textAnchor="middle"
-              style={{ fontSize: "12px" }}>
+              style={{ fontSize: "12px" }}
+            >
               {bar.data.data["지출"]}
             </text>
             <text
               x={xScale(bar.data.data.x) + xScale.bandwidth() / 2}
               y={yScale(bar.data.data.l) - 10}
               textAnchor="middle"
-              style={{ fontSize: "12px" }}>
+              style={{ fontSize: "12px" }}
+            >
               {bar.data.data.l}
             </text>
           </Fragment>
@@ -232,7 +235,6 @@ const LineBarChart = ({ data }) => {
           axisLeft={false} // 왼쪽 y좌표
           axisBottom={false} // x축 숨기기
           enableGridY={false}
-          
           layers={["grid", "axes", "bars", Line, "markers", "legends"]}
           //범례
           legends={[

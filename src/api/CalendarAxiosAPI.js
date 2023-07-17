@@ -36,8 +36,8 @@ const CalendarAxiosApi = {
       const {
         dailyExpenseList,
         dailyIncomeList,
-        getScheduleForCal,
-        getWorkForCal,
+        // getScheduleForCal,
+        // getWorkForCal,
       } = response.data || {};
   
       // dailyExpenseList에서 date와 amount 값 가져오기
@@ -52,23 +52,23 @@ const CalendarAxiosApi = {
       console.log("수입 날짜: " + incomeDates); // 응답 데이터 출력
   
       //-------------------------------------------------------------------------
-      // getScheduleForCal에서 date와 myScName 값 가져오기
-      const scDates = getScheduleForCal.map(item => item.scDate);
-      const scNames = getScheduleForCal.map(item => item.scName);
+      // // getScheduleForCal에서 date와 myScName 값 가져오기
+      // const scDates = getScheduleForCal.map(item => item.scDate);
+      // const scNames = getScheduleForCal.map(item => item.scName);
   
-      // getWorkForCal에서 date와 myWorkName 값 가져오기
-      const workDates = getWorkForCal.map(item => item.workDate);
-      const workNames = getWorkForCal.map(item => item.workName);
+      // // getWorkForCal에서 date와 myWorkName 값 가져오기
+      // const workDates = getWorkForCal.map(item => item.workDate);
+      // const workNames = getWorkForCal.map(item => item.workName);
   
       return {
         expenseDates,
         expenseAmounts,
         incomeDates,
         incomeAmounts,
-        scDates,
-        scNames,
-        workDates,
-        workNames,
+        // scDates,
+        // scNames,
+        // workDates,
+        // workNames,
       };
     } catch (error) {
       console.error(error);
