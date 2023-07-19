@@ -14,6 +14,8 @@ const Calculate = () => {
     const lastFormattedDate = `${year}-${Number(month) - 1}`;
 
     const { isMobile } = useViewport();
+
+    
     useEffect(() => {
         const getDailyIncome = async () => {
             try {
@@ -36,6 +38,8 @@ const Calculate = () => {
         };
         getDailyExpense();
     }, []);
+    
+    console.log("DailyExpense[formattedDate]:", DailyExpense[formattedDate]);
 
     return (
         <BoxContainer isMobile={isMobile}>
@@ -43,7 +47,7 @@ const Calculate = () => {
                 <div className="container">
                     <div className="minus" />
                     <div className="detail">
-                        <div className="title">지난 달 대비 사용 금액</div>
+                        <BoxTitle>지난 달 대비 사용 금액</BoxTitle>
                         <div className="textContent">
                             <div>지난 달</div>
                             <div>
@@ -79,7 +83,7 @@ const Calculate = () => {
                 <div className="container">
                     <div className="minus" />
                     <div className="detail">
-                        <div className="title">이번 달 남은 돈 확인</div>
+                        <BoxTitle>이번 달 남은 돈 확인</BoxTitle>
                         <div className="textContent">
                             <div>수입</div>
                             <div>{DailyIncome && DailyIncome[formattedDate] ? DailyIncome[formattedDate] : 0}</div>
@@ -88,13 +92,15 @@ const Calculate = () => {
                             <div>지출</div>
                             <div>{DailyExpense && DailyExpense[formattedDate] ? DailyExpense[formattedDate] : 0}</div>
                         </div>
+                        
 
                         <div className="hr"></div>
                         <div className="textContent">
                             <div> 합계 총</div>
                             <div>
+                            {/* 이거 왜 NaN 뜨지?? 확인 필요 -null로 들어오는 게 아닌갑다 */}
                                 <span className="sum">
-                                    {DailyIncome && DailyExpense && DailyIncome[formattedDate]
+                                {DailyIncome && DailyExpense && DailyIncome[formattedDate]
                                         ? parseInt(DailyIncome[formattedDate]) - parseInt(DailyExpense[formattedDate])
                                         : DailyExpense && DailyExpense[formattedDate]
                                         ? -parseInt(DailyExpense[formattedDate])
@@ -114,6 +120,7 @@ const Calculate = () => {
 
 export default Calculate;
 
+
 const BoxContainer = styled.div`
     display: ${(props) => (props.isMobile ? 'block' : 'flex')};
     align-items: center;
@@ -132,11 +139,10 @@ const BoxContainer = styled.div`
     }
     .hr {
         border-bottom: 1px solid black;
-        width: 92%;
+        width: 97%;
         display: flex;
-        margin: 20px;
         align-items: center;
-        justify-content: center;
+        justify-content: right;
     }
     .sum {
         font-size: 20px;
@@ -153,8 +159,17 @@ const BoxContainer = styled.div`
         border-bottom: 1px solid black;
         width: 10px;
         margin-left: 2%;
+        padding-top: 10px;
     }
     .detail {
         width: 100%;
     }
+`;
+
+const BoxTitle = styled.div`
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 18px;
+
+    margin-top: 20px;
 `;

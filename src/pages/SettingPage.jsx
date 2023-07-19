@@ -6,7 +6,6 @@ import EditMyInfo from "../components/Setting/EditMyInfo";
 import Container from "../components/Common/Container";
 import useViewport from "../hooks/viewportHook";
 import styled from "styled-components";
-//import CalChart from "../components/Chart/CalChart";
 import Logo from "../assets/Logo.png";
 
 const Setting = () => {

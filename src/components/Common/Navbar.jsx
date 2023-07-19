@@ -1,15 +1,30 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ReactComponent as CreditCard } from "../../assets/CreditCard.svg";
 import { ReactComponent as List } from "../../assets/List.svg";
 import { ReactComponent as Stats } from "../../assets/Stats.svg";
-import { ReactComponent as Person } from "../../assets/Person.svg";
+import { ReactComponent as Post } from "../../assets/Post.svg";
 import { ReactComponent as Calendar } from "../../assets/Calendar.svg";
 import { ReactComponent as Logout } from "../../assets/Logout.svg";
 import useViewport from "../../hooks/viewportHook";
+import AuthAxiosAPI from "../../api/AuthAxiosAPI";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { isMobile } = useViewport();
+  const onClickLogOut = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await AuthAxiosAPI.logout();
+      if (response.status === 200) {
+        console.log("logout successful");
+        navigate("/login");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <NavContainer isMobile={isMobile}>
       {isMobile && (
@@ -35,14 +50,16 @@ const Navbar = () => {
       </CustomLink>
 
       <CustomLink to={"/mypage"} isMobile={isMobile}>
-        <Person width="17" height="17" />
-        <p className="navText">마이 페이지</p>
+        <Post width="17" height="17" />
+        <p className="navText">간편 등록</p>
       </CustomLink>
 
-      <CustomLink to={"/logout"} className="logoutDiv">
-        <Logout width="17" height="" fill="#575757" />
-        <p className="navText">로그아웃</p>
-      </CustomLink>
+      {!isMobile && (
+        <div className="logoutDiv" onClick={onClickLogOut}>
+          <Logout width="17" height="" fill="#575757" />
+          <p className="navText">로그아웃</p>
+        </div>
+      )}
     </NavContainer>
   );
 };
@@ -66,8 +83,14 @@ const NavContainer = styled.div`
     bottom: 30px;
     display: flex;
     align-items: center;
+    height: 40px;
+    font-size: 12px;
+    font-weight: 700;
+    padding-left: 10px;
+    margin: 20px;
     > svg {
       fill: ${({ theme }) => theme.menuColor};
+      margin-right: 10px;
     }
     &:hover {
       background-color: #ffffff00;

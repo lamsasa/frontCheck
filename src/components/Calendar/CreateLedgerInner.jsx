@@ -6,20 +6,19 @@ import categoryIncomeList from "../../styles/categoryIncomeColor";
 import CategoryIncomeInput from "../Common/CategoryIncomeInput";
 import ClickButton from "../Common/ClickButton";
 import LedgerAxiosAPI from "../../api/LedgerAxiosAPI";
+// import moment from "moment";
 
-const CreateScheduleInner = ({ isIncome }) => {
+const CreateScheduleInner = ({ isIncome, value }) => {
   const [categoryId, setCategoryId] = useState(1);
   const [categoryIncomeId, setCategoryIncomeId] = useState(15);
   const [amount, setAmount] = useState("");
-  const [date, setDate] = useState("");
   const [content, setContent] = useState("");
+  const setvalue = new Date(value);
+  setvalue.setDate(setvalue.getDate() + 1);
+  const date = setvalue.toISOString().split("T")[0];
 
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
-  };
-
-  const handleDateChange = (event) => {
-    setDate(event.target.value);
   };
 
   const handleContentChange = (event) => {
@@ -96,23 +95,16 @@ const CreateScheduleInner = ({ isIncome }) => {
             />
           )}
           <InputContainer>
-            <p className="label">금액</p>
-            <Input id="amount" value={amount} onChange={handleAmountChange} />
             <p className="label">날짜</p>
-            <Input
-              type="date"
-              id="date"
-              value={date}
-              onChange={handleDateChange}
-            />
+            <Input type="date" id="date" value={date} />
             <p className="label">내용</p>
             <Input
               id="content"
               value={content}
               onChange={handleContentChange}
-              //defaultValue={MYCalendar.value}
-              //placeholder={MYCalendar.value}
             />
+            <p className="label">금액</p>
+            <Input id="amount" value={amount} onChange={handleAmountChange} />
           </InputContainer>
         </Container>
         <ButtonContainer>

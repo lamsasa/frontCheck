@@ -20,27 +20,27 @@ const GoogleLoginButton = styled.div`
     width: 100%;
     height: 100%;
   }
-`
+`;
 // google login button 추가예정
 
 const LoginForm = () => {
-    const navigate = useNavigate();
-    // 키보드 입력 받기
-    const [inputEmail, setInputEmail] = useState("");
-    const [inputPwd, setInputPwd] = useState("");
-    const onChangeEmail = (e) => {
-        setInputEmail(e.target.value);
-    };
+  const navigate = useNavigate();
+  // 키보드 입력 받기
+  const [inputEmail, setInputEmail] = useState("");
+  const [inputPwd, setInputPwd] = useState("");
+  const onChangeEmail = (e) => {
+    setInputEmail(e.target.value);
+  };
 
-    const onChangePwd = (e) => {
-        setInputPwd(e.target.value);
-    };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await AuthAxiosAPI.login(inputEmail, inputPwd);
-            const userInfo = JSON.stringify(response, null, 2);
-            const userInfoParse = JSON.parse(userInfo);
+  const onChangePwd = (e) => {
+    setInputPwd(e.target.value);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await AuthAxiosAPI.login(inputEmail, inputPwd);
+      const userInfo = JSON.stringify(response, null, 2);
+      const userInfoParse = JSON.parse(userInfo);
 
       if (response.status === 200) {
         console.log(userInfoParse);
@@ -94,9 +94,9 @@ const LoginForm = () => {
             onChange={onChangeEmail}
             fullWidth
             name="email"
-            placeholder="Email"
+            placeholder="이메일을 입력해주세요."
             InputProps={{
-              style: { fontSize: "1.8rem" },
+              style: { fontSize: "1.5rem" },
               startAdornment: (
                 <InputAdornment position="start" sx={{ fontSize: "2.4rem" }}>
                   <MailOutlineIcon sx={{ fontSize: "2.8rem" }} />
@@ -129,10 +129,10 @@ const LoginForm = () => {
             onChange={onChangePwd}
             fullWidth
             name="password"
-            placeholder="Password"
+            placeholder="비밀번호를 입력해주세요."
             type="password"
             InputProps={{
-              style: { fontSize: "1.8rem" },
+              style: { fontSize: "1.5rem" },
               startAdornment: (
                 <InputAdornment position="start" sx={{ fontSize: "2.4rem" }}>
                   <LockOutlinedIcon sx={{ fontSize: "2.8rem" }} />
@@ -173,11 +173,15 @@ const LoginForm = () => {
                 color: "#8BD4D3",
               },
             }}>
-            Forget Password?
+            비밀번호를 잊으셨나요?
           </Typography>
 
           {modalOpen && (
-            <Modal open={modalOpen} close={closeModal} width={"300px"}>
+            <Modal
+              open={modalOpen}
+              close={closeModal}
+              width={"350px"}
+              height={"300px"}>
               <FindPassword />
             </Modal>
           )}
@@ -198,7 +202,7 @@ const LoginForm = () => {
                   backgroundColor: "#87EEC5",
                 },
               }}>
-              Sign In
+              로그인
             </Button>
           ) : (
             <Button
@@ -214,7 +218,7 @@ const LoginForm = () => {
                   color: "white",
                 },
               }}>
-              Sign In
+              로그인
             </Button>
           )}
         </Grid>
