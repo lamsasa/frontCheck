@@ -184,11 +184,19 @@ const LineBarChart = ({ data }) => {
   };
 
   const transformedData = data.map((item) => ({
-    x: item.x,
-    수입: item.v,
-    지출: -item.v1,
-    l: item.l,
+    x: item.x || "",
+    수입: item.v || "",
+    지출: -item.v1 || "",
+    l: item.l || "0",
   }));
+  
+  // transformedData 배열을 월(month) 기준으로 정렬
+  transformedData.sort((a, b) => {
+    const aMonth = parseInt(a.x.split("-")[1]);
+    const bMonth = parseInt(b.x.split("-")[1]);
+    return aMonth - bMonth;
+  });
+  
 
   // scale 최댓값 입력
   const maxValue = Math.max(...data.map((item) => Math.max(item.v, item.v1)));
