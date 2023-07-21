@@ -6,8 +6,7 @@ const ClickButton = ({ width, height, margin, children, onClick }) => {
       width={width}
       height={height}
       margin={margin}
-      onClick={onClick}
-    >
+      onClick={onClick}>
       {children}
     </ClickButtonStyled>
   );
