@@ -30,7 +30,7 @@ const QnA = () => {
             </Content>
             <Button onClick={() => handleButtonClick(2)}> 회원 탈퇴는 어떻게 하나요?</Button>
             <Content show={showContent[2]}>
-                <span onClick={openModal}>"회원 탈퇴 페이지 연결"</span>로 들어가시면 됩니다!
+                <span onClick={openModal}>"회원 탈퇴 페이지"</span>로 들어가시면 됩니다!
             </Content>
             <Button onClick={() => handleButtonClick(3)}>다른 질문이 있으시다면?</Button>
             <Content show={showContent[3]}>moneyplantmanager@gmail.com으로 메일 남겨주세요!</Content>

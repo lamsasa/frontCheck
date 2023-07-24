@@ -123,7 +123,8 @@ const ListRow = ({ show, index, listData }) => {
       <td
         className={
           listData.deal === "지출" ? "table-cell red" : "table-cell blue"
-        }>
+        }
+      >
         ￦{listData.money}
       </td>
     </StyledRow>
@@ -140,6 +141,7 @@ const ListContainerStyled = styled.div`
   width: 100%;
   margin-top: 30px;
   padding: 40px;
+  padding-top: 10px;
 
   .table {
     width: 100%;
