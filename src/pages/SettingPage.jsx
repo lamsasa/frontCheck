@@ -7,7 +7,6 @@ import Container from "../components/Common/Container";
 import useViewport from "../hooks/viewportHook";
 import styled from "styled-components";
 //import CalChart from "../components/Chart/CalChart";
-import Logo from "../assets/Logo.png";
 
 const Setting = () => {
   const { isMobile } = useViewport();
@@ -38,22 +37,3 @@ const BoxContainer = styled.div`
   margin: 0 auto;
 `;
 
-const LogoBox = styled.div`
-  display: flex;
-  width: 45%;
-  /* margin-top: 50px; */
-  justify-content: center;
-  background-color: none;
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const Img = styled.img`
-  width: 500px;
-  opacity: 55%;
-
-  @media (max-width: 768px) {
-    width: 80%;
-  }
-`;
