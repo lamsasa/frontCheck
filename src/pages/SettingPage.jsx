@@ -17,7 +17,7 @@ const Setting = () => {
       <Navbar />
       <Container>
         <BoxContainer isMobile={isMobile}>
-          <Box titleMargin={"20px"} height={"300px"} width={"70%"}>
+          <Box titleMargin={"20px"} height={"300px"} width={"70vw"}>
             <EditMyInfo />
           </Box>
 
@@ -33,7 +33,7 @@ const BoxContainer = styled.div`
   display: ${(props) => (props.isMobile ? "block" : "flex")};
   align-items: center;
   justify-content: center;
-  width: ${(props) => (props.isMobile ? "95%" : "90%")};
+  width: ${(props) => (props.isMobile ? "90vw" : "70vw")};
   margin: 0 auto;
 `;
 

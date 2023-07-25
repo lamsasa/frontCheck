@@ -28,6 +28,8 @@ export const lightTheme = {
   budgetButton: "#404040",
   //모달 블록라인 색상
   blockLineColor: "#F4F4F4",
+  //Q&A
+  QnAColor: "#f1f1f1",
 };
 
 export const darkTheme = {
@@ -57,4 +59,6 @@ export const darkTheme = {
   budgetButton: "#ffffff",
   //모달 블록라인 색상
   blockLineColor: "#292C35",
+  //Q&A
+  QnAColor: "#404040",
 };
